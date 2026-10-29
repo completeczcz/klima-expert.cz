@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, regions } from '../data/site';
+---
+<Base title="Pro montážní firmy – poptávky na montáž klimatizací" description="Jste montážní firma? Získávejte poptávky na montáž klimatizací a tepelných čerpadel Mitsubishi Heavy a Hisense ve svém kraji. Staňte se partnerem Klima Expert." crumbs={[{ name: 'Pro montážní firmy', href: '/pro-montazni-firmy/' }]}>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap pm">
+      <div>
+        <h1>Poptávky pro montážní firmy</h1>
+        <p class="lead">Hledáme spolehlivé montážní firmy, které chtějí víc zakázek na klimatizace a tepelná čerpadla Mitsubishi Heavy Industries a Hisense ve svém regionu.</p>
+        <h2>Co vám nabízíme</h2>
+        <ul class="checks">
+          <li>Předkvalifikované poptávky koncových zákazníků z vašeho kraje</li>
+          <li>Každou poptávku dostane jen jedna firma, nesoutěžíte s deseti dalšími</li>
+          <li>Zákazník už zná orientační cenu a ví, co chce</li>
+          <li>Technickou podporu a školení distributora COMPLETE CZ</li>
+        </ul>
+        <h2>Co od vás očekáváme</h2>
+        <ul class="checks">
+          <li>Osvědčení techniků pro práci s F-plyny</li>
+          <li>Reakci na poptávku do 1 pracovního dne a zaměření v rozumném termínu</li>
+          <li>Kvalitní montáž podle pokynů výrobce a férové jednání se zákazníkem</li>
+          <li>Zpětnou vazbu, jak poptávka dopadla</li>
+        </ul>
+      </div>
+      <form class="panel pm__f" id="pmf" action="/api/partner" method="post">
+        <h2>Mám zájem o spolupráci</h2>
+        <label><span>Název firmy</span><input name="firma" required maxlength="120" autocomplete="organization" /></label>
+        <label><span>IČO</span><input name="ico" required inputmode="numeric" pattern="[0-9]{8}" maxlength="8" /></label>
+        <label><span>Kontaktní osoba</span><input name="jmeno" required maxlength="100" autocomplete="name" /></label>
+        <label><span>Telefon</span><input name="telefon" type="tel" required autocomplete="tel" /></label>
+        <label><span>E-mail</span><input name="email" type="email" required autocomplete="email" /></label>
+        <label><span>Kraje, kde montujete</span>
+          <select name="kraje" multiple size="6">{regions.map((r) => <option value={r.slug}>{r.name}</option>)}</select>
+          <small class="muted">Více krajů vyberete se stisknutou klávesou Ctrl (Cmd).</small>
+        </label>
+        <label><span>Zkušenosti se značkami a poznámka</span><textarea name="poznamka" rows="3" maxlength="1500"></textarea></label>
+        <label class="pm__c"><input type="checkbox" name="souhlas" value="ano" required /> <span>Souhlasím se zpracováním údajů pro účely jednání o spolupráci. <a href="/ochrana-osobnich-udaju/">Více</a></span></label>
+        <div class="pf__hp" aria-hidden="true" style="position:absolute;left:-9999px"><input name="web" tabindex="-1" autocomplete="off" /></div>
+        <button class="btn btn--sun" type="submit">Odeslat zájem o spolupráci</button>
+        <p class="small muted" id="pmf-msg" role="status"></p>
+        <p class="small muted">Nebo volejte <a href={site.phoneHref}>{site.phone}</a>.</p>
+      </form>
+    </div>
+  </section>
+</Base>
+<script>
+  const f = document.getElementById('pmf') as HTMLFormElement;
+  const msg = document.getElementById('pmf-msg') as HTMLElement;
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!f.reportValidity()) return;
+    const fd = new FormData(f);
+    const data: Record<string, string> = {};
+    fd.forEach((v, k) => { data[k] = k === 'kraje' ? fd.getAll('kraje').join(',') : String(v); });
+    msg.textContent = 'Odesílám…';
+    try {
+      const r = await fetch('/api/partner', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+      const o = await r.json();
+      if (!o.ok) throw 0;
+      f.reset();
+      msg.textContent = 'Děkujeme, ozveme se vám do několika dnů.';
+    } catch { msg.textContent = 'Odeslání se nepodařilo. Zkuste to znovu nebo nám zavolejte.'; }
+  });
+</script>
+<style>
+  .pm { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .pm h2 { font-size: var(--step-2); margin-top: 1.2em; }
+  .pm__f { display: grid; gap: 14px; position: sticky; top: 96px; }
+  .pm__f h2 { margin-top: 0; font-size: var(--step-1); }
+  .pm__f label { display: grid; gap: 6px; font-weight: 600; font-size: var(--step--1); }
+  .pm__f input:not([type=checkbox]), .pm__f select, .pm__f textarea { font: inherit; font-weight: 400; font-size: var(--step-0); padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); }
+  .pm__c { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 400 !important; }
+  @media (max-width: 860px) { .pm { grid-template-columns: 1fr; } .pm__f { position: static; } }
+</style>

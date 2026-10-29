@@ -81,6 +81,19 @@ Ani nejtišší jednotka nebude příjemná, pokud na vás celou noc fouká. Dop
 3. **Dodržte odstupy od stropu** podle návodu výrobce, aby jednotka mohla nerušeně nasávat vzduch.
 4. **Pozor na odvod kondenzátu.** Čerpadlo kondenzátu je slyšet; pokud lze kondenzát odvést samospádem, je to pro ložnici lepší.
 
+## Jakou teplotu nastavit na noc
+
+Tichá jednotka je jen polovina úspěchu. Druhou je správné nastavení. V praxi se osvědčuje:
+
+- **teplota v ložnici kolem 24–26 °C**, ne výrazně níž. Příliš studený vzduch v kombinaci s prouděním může vysušovat sliznice a zhoršovat spánek,
+- **rozdíl proti venkovní teplotě do zhruba 6–8 °C**, aby nebyl šok při odchodu z místnosti,
+- **odvlhčení** – klimatizace při chlazení odvádí z vzduchu vlhkost, takže ložnice působí příjemně i při o stupeň vyšší teplotě,
+- **předchlazení večer** a v noci jen udržování teploty v nočním režimu.
+
+## Příklad: ložnice 14 m² v bytě na západní straně
+
+Ložnice má jedno okno na západ, odpolední slunce ji ohřeje na 28–29 °C. Podle orientačního výpočtu stačí jednotka kolem 2,0–2,5 kW. Jednotka se umístí na stěnu nad hlavou postele, lamely směřují ke dveřím. Klimatizaci zapnete z aplikace v 19 h, do 22 h místnost vychladí na 25 °C a v noci běží v tichém režimu v nejnižším stupni ventilátoru. Displej je vypnutý, potvrzovací pípnutí také. Venkovní jednotka je na balkoně na opačném konci od oken sousedů.
+
 ## Venkovní jednotka a vaše okno
 
 V létě často spíte s pootevřeným oknem. Venkovní jednotka běžné velikosti má akustický tlak kolem 45–50 dB(A) na 1 m (např. 48 dB(A) v topení a 50 dB(A) v chlazení u jednotky 3,5 kW podle technického listu). Neumisťujte ji proto pod okno ložnice – vaší ani sousedovy. Limity pro venkovní hluk a řešení sporů najdete v článku [hluk venkovní jednotky](/blog/hluk-venkovni-jednotky/).
@@ -96,7 +109,7 @@ Mobilní klimatizace má kompresor přímo v místnosti, a proto je výrazně hl
 - **Zvažte i zvuky mimo ventilátor** – přepínání čtyřcestného ventilu nebo tepelné „praskání“ plastů se v tichu ložnice ozve, u kvalitních jednotek bývá méně výrazné.
 - **Kvalita montáže** – nevyvážená nebo špatně ukotvená jednotka může vibrovat, netěsný odvod kondenzátu zase „bublá“.
 
-Tiché nástěnné řady mají v nabídce například [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) i [Hisense](/znacky/hisense/); přehled řad najdete v sekci [produkty](/produkty/). Montážní technik při zaměření doporučí jednotku i nejlepší místo na stěně – stačí poslat [nezávaznou poptávku](/poptavka/).
+Tiché nástěnné řady mají v nabídce například Mitsubishi Heavy Industries i Hisense; přehled řad najdete v sekci [produkty](/produkty/). Montážní technik při zaměření doporučí jednotku i nejlepší místo na stěně – stačí poslat [nezávaznou poptávku](/poptavka/).
 
 ## Shrnutí
 

@@ -1,6 +1,6 @@
 ---
 title: "Kolik stojí klimatizace do bytu v roce 2026"
-description: "Kolik stojí klimatizace do bytu i s montáží v roce 2026? Orientační ceny s DPH pro jednu i více místností, příplatky a tipy, jak porovnat nabídky."
+description: "Kolik stojí klimatizace do bytu i s montáží v roce 2026? Orientační ceny vč. DPH pro jednu i více místností, příplatky a tipy, jak porovnat nabídky."
 h1: "Kolik stojí klimatizace do bytu: ceny s montáží pro rok 2026"
 category: klimatizace
 keywords: ["kolik stojí klimatizace do bytu", "cena klimatizace s montáží", "klimatizace do bytu cena", "cena montáže klimatizace 2026", "klimatizace 3+kk cena"]

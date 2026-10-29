@@ -62,11 +62,11 @@ Samotná klimatizační jednotka obvykle není stavbou, takže v panelovém dom�
 
 ### Vrtání do panelu
 
-Obvodové panely jsou ze železobetonu, často vícevrstvé (beton – izolace – beton). Prostup pro potrubí se dělá **jádrovým vrtáním** o průměru zhruba 50–65 mm. Proti vrtání do cihly je pomalejší a dražší – v ceníkích montážních firem se příplatek za prostup betonem pohybuje orientačně od 500 do 2 300 Kč s DPH. Zkušený technik volí místo prostupu tak, aby se vyhnul výztuži v okolí okenních otvorů a elektrickým rozvodům ve stěně.
+Obvodové panely jsou ze železobetonu, často vícevrstvé (beton – izolace – beton). Prostup pro potrubí se dělá **jádrovým vrtáním** o průměru zhruba 50–65 mm. Proti vrtání do cihly je pomalejší a dražší – v ceníkích montážních firem se příplatek za prostup betonem pohybuje orientačně od 500 do 2 300 Kč vč. DPH. Zkušený technik volí místo prostupu tak, aby se vyhnul výztuži v okolí okenních otvorů a elektrickým rozvodům ve stěně.
 
 ### Zateplená fasáda
 
-Většina panelových domů už má kontaktní zateplení (ETICS). Konzole venkovní jednotky musí být ukotvena až do nosného panelu, ne jen do izolace, a prostup musí být po montáži dobře utěsněn, aby do izolace nezatékalo. Kotvení přes zateplení se v ceníkách objevuje jako samostatná položka, orientačně 1 000–3 400 Kč s DPH.
+Většina panelových domů už má kontaktní zateplení (ETICS). Konzole venkovní jednotky musí být ukotvena až do nosného panelu, ne jen do izolace, a prostup musí být po montáži dobře utěsněn, aby do izolace nezatékalo. Kotvení přes zateplení se v cenících objevuje jako samostatná položka, orientačně 1 000–3 400 Kč vč. DPH.
 
 Některá SVJ po zateplení stanovují, jakým způsobem se smí do fasády kotvit – např. jen schválenými kotvami nebo v určitých místech. Před montáží se zeptejte.
 
@@ -91,6 +91,24 @@ V paneláku máte sousedy blízko, a to i za stěnou lodžie. Moderní invertoro
 - nastavte noční tichý režim, pokud ho jednotka má.
 
 Zákonné hlukové limity a řešení sporů rozebíráme v samostatném článku [hluk venkovní jednotky](/blog/hluk-venkovni-jednotky/).
+
+## Panelový byt bez lodžie
+
+Ne každý panelový byt má lodžii nebo balkon. I tak je klimatizace možná, jen je potřeba počítat s náročnější montáží:
+
+- **Konzole na fasádě pod oknem nebo vedle okna.** Montáž ve vyšších patrech probíhá z pracovní plošiny nebo horolezeckou technikou, což cenu zvyšuje. Servis venkovní jednotky bude v budoucnu vyžadovat stejný přístup.
+- **Jednotka na střeše domu.** Přichází v úvahu hlavně pro byty v posledním patře. Trasa vede po fasádě nebo stoupacím šachtou, a to jen se souhlasem SVJ.
+- **Klimatizace bez venkovní jednotky** (monoblok s dvěma otvory ve zdi). Je to kompromis s nižší účinností a vyšší hlučností v místnosti, ale bez jednotky na fasádě.
+
+U bytů bez lodžie bývá souhlas SVJ citlivější, protože jednotka je z ulice dobře vidět. Pomůže navrhnout místo, kde jednotka co nejméně ruší vzhled domu – například ve stejné ose jako jednotky sousedů.
+
+## Časté chyby v paneláku
+
+- **Montáž bez souhlasu** v naději, že si toho nikdo nevšimne. Dodatečné přesunutí nebo demontáž vyjde dráž než celé schvalování.
+- **Kondenzát volně kapající z lodžie** na balkony níže.
+- **Venkovní jednotka v zasklené lodžii**, kde se teplo nemá kam odvádět.
+- **Kotvení jen do izolace** zateplené fasády, které časem povolí a jednotka vibruje.
+- **Podcenění výkonu** u bytů v posledním patře pod plochou střechou, kde je tepelná zátěž vyšší.
 
 ## Typická sestava pro panelový byt
 

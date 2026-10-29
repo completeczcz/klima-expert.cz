@@ -73,6 +73,16 @@ Na co myslet při montáži:
 - **Jednotka by neměla stát přímo na zemi** v místě, kde napadne sníh – používá se konzole nebo podstavec.
 - U řad pro chladné klima bývá **vyhřívaná vana kondenzátu**, aby voda nezamrzla uvnitř jednotky.
 
+## Je topení klimatizací zdravé a příjemné?
+
+Teplo z klimatizace přichází proudem vzduchu, ne sáláním jako u radiátoru nebo podlahového topení. Někomu to nevadí, jiní vnímají proudění jako nepříjemné. Pomáhá:
+
+- **nasměrovat lamely dolů a mimo místa, kde sedíte nebo spíte**,
+- **nižší otáčky ventilátoru** – místnost se ohřeje pomaleji, ale proudění je méně znatelné,
+- **nepřetápět** – vzduch ohřátý na vysokou teplotu má nižší relativní vlhkost a může působit sušeji.
+
+Klimatizace při topení vzduch aktivně nevysušuje (vlhkost z místnosti neodebírá jako při chlazení). Pocit suchého vzduchu v zimě je dán hlavně tím, že venkovní studený vzduch obsahuje málo vody – stejně jako u jiných způsobů vytápění.
+
 ## Pro koho je topení klimatizací vhodné
 
 ### Výborně se hodí
@@ -90,6 +100,17 @@ Na co myslet při montáži:
 - **pro ohřev teplé vody** – to klimatizace neumí; pro dům s ústředním topením a teplou vodou je řešením tepelné čerpadlo vzduch-voda.
 
 Podrobněji se klimatizaci jako tepelnému čerpadlu věnuje článek [tepelné čerpadlo vzduch-vzduch](/blog/tepelne-cerpadlo-vzduch-vzduch/) a přehled řešení pro vytápění celého domu najdete v sekci [tepelná čerpadla](/tepelna-cerpadla/).
+
+## Příklad: byt 2+kk s přímotopy
+
+Byt 2+kk, 55 m², v zatepleném bytovém domě se dnes vytápí elektrickými přímotopy. Roční potřeba tepla na vytápění je zhruba 4 000 kWh.
+
+- **Přímotopy:** 4 000 kWh elektřiny × 6,6 Kč = cca **26 400 Kč ročně**.
+- **Klimatizace se SCOP 4,5** v obýváku a ložnici (multisplit nebo dva single splity): 4 000 ÷ 4,5 ≈ 890 kWh × 6,6 Kč = cca **5 900 Kč ročně**.
+
+Rozdíl přesahuje 20 000 Kč za rok. V praxi část tepla dál zajistí přímotop v koupelně a v nejmrazivějších dnech může klimatizace potřebovat dopomoc, takže skutečná úspora bude o něco nižší. Pořízení klimatizace pro dvě místnosti (orientačně 65 000–100 000 Kč vč. 12 % DPH) se tak může vrátit během několika let. V létě navíc získáte chlazení.
+
+Výpočet je modelový. Skutečná potřeba tepla závisí na zateplení, poloze bytu a nastavené teplotě.
 
 ## Tipy pro úsporné topení klimatizací
 

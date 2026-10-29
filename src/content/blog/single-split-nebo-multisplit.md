@@ -63,7 +63,7 @@ Omezení, o kterých se moc nemluví:
 ## Kdy se vyplatí multisplit
 
 - **Je místo jen pro jednu venkovní jednotku.** Typicky jedna lodžie v panelovém bytě nebo malý balkon.
-- **SVJ povolí jen jednu jednotku na fasádě.** Některá společenství chtějí omezit počet jednotek kvůli vzhledu domu. Více o pravidlech v panelových domech najdete v článku [klimatizace v paneláku](/blog/klimatizace-v-panelaku/).
+- **SVJ povolí jen jednu jednotku na fasádě.** Některá společenství chtějí omezit počet jednotek kvůli vzhledu domu. Podrobněji o tom píšeme níže.
 - **Klimatizujete 3 a více místností** a nechcete na fasádě „baterii“ venkovních jednotek.
 - **Estetika a hluk.** Jedna venkovní jednotka bývá přijatelnější pro sousedy než tři.
 
@@ -75,11 +75,44 @@ Obývák s kuchyní 28 m² a ložnice 13 m². Lodžie je jen u obýváku, ložni
 
 ### Rodinný dům, obývák v přízemí a dvě ložnice v patře
 
-Obývák má terasu na jih, ložnice jsou nad sebou na severní a jižní straně. **Doporučení: dva až tři single splity** – každá místnost má jednotku za zdí, trasy jsou krátké, ložnice na severu může v přechodném období přitápět, zatímco jižní chladí. Více o řešeních pro domy najdete na stránce [klimatizace do domu](/klimatizace/do-domu/).
+Obývák má terasu na jih, ložnice jsou nad sebou na severní a jižní straně. **Doporučení: dva až tři single splity** – každá místnost má jednotku za zdí, trasy jsou krátké, ložnice na severu může v přechodném období přitápět, zatímco jižní chladí.
 
 ### Byt 4+kk, 95 m², čtyři místnosti
 
 Kombinace bývá nejrozumnější: **multisplit pro tři ložnice** s jednou venkovní jednotkou a **samostatný single split pro obývák**, kde je největší zátěž. Obývák tak běží nezávisle a ložnice sdílí jednu jednotku.
+
+## Multisplit a souhlas SVJ
+
+V bytových domech hraje roli i to, kolik jednotek bude na fasádě vidět. Společenství vlastníků někdy vydávají pravidla, podle kterých smí mít každý byt nejvýše jednu venkovní jednotku, a to na předem určeném místě (např. na podlaze lodžie). V takovém případě je multisplit často jediné řešení, jak klimatizovat více místností.
+
+Při žádosti o souhlas pomůže, když předložíte:
+
+- přesné umístění venkovní jednotky a její rozměry,
+- hlučnost uvedenou výrobcem (akustický tlak),
+- popis vedení tras a odvodu kondenzátu.
+
+Postup žádosti a pravidla rozebírá článek [povolení klimatizace a SVJ](/blog/povoleni-klimatizace-svj/).
+
+## Servis a životnost
+
+Z hlediska údržby jsou oba systémy podobné: každou vnitřní jednotku je potřeba pravidelně čistit a celý systém by měl jednou ročně projít servisem. Rozdíly jsou v detailech:
+
+- **Více single splitů znamená více venkovních jednotek** k čištění a kontrole. Servis se ale dá zvládnout při jedné návštěvě.
+- **U multisplitu je venkovní jednotka „kritickým bodem“.** Pokud selže kompresor nebo elektronika, čekáte na opravu ve všech místnostech najednou – a v horkém létě může servis mít delší lhůty.
+- **Opravy multisplitu bývají složitější**, protože technik musí řešit více okruhů v jedné jednotce.
+
+## Rozšíření v budoucnu
+
+Pokud plánujete klimatizovat postupně, promyslete to předem:
+
+- **Single split** můžete kdykoli doplnit o další set. Nemusíte nic plánovat dopředu, jen potřebujete místo pro další venkovní jednotku.
+- **Multisplit** lze rozšířit jen tehdy, pokud venkovní jednotka má volný výstup a dostatečnou výkonovou rezervu. Vyplatí se proto rovnou zvolit venkovní jednotku s jedním výstupem navíc a potrubí pro budoucí místnost připravit při první montáži. Pozdější vedení trasy přes hotový interiér je pracnější.
+
+## Nejčastější omyly
+
+- **„Multisplit je vždycky levnější.“** Neplatí. Venkovní jednotka pro více místností je dražší a delší trasy zvyšují cenu montáže.
+- **„Jedna venkovní jednotka spotřebuje méně než dvě.“** Rozhoduje účinnost v reálném provozu, ne počet krabic na fasádě. Když chladíte jen jednu místnost, menší single split bývá úspornější.
+- **„K multisplitu můžu připojit libovolné jednotky.“** Jen v kombinacích, které výrobce povoluje, a obvykle jen od téže značky.
 
 ## Na co se ptát montážní firmy
 

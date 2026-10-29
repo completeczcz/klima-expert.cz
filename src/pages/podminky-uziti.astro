@@ -1,0 +1,18 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+---
+<Legal title="Podmínky užití webu" description="Podmínky užití webu klima-expert.cz a zprostředkování poptávek klimatizací a tepelných čerpadel." h1="Podmínky užití webu" slug="podminky-uziti" updated="1. 11. 2026">
+  <h2>Provozovatel</h2>
+  <p>Web klima-expert.cz provozuje {site.company.name}, IČO {site.company.ico}, DIČ {site.company.dic}, se sídlem {site.company.address}.</p>
+  <h2>Povaha služby</h2>
+  <p>Provozovatel přijímá poptávky na dodávku a montáž klimatizací a tepelných čerpadel, poskytuje základní poradenství a poptávky předává partnerským montážním firmám. Služba je pro zájemce bezplatná. Smlouvu o dodávce a montáži uzavírá zájemce přímo s montážní firmou, která za její plnění odpovídá.</p>
+  <h2>Ceny a informace na webu</h2>
+  <p>Ceny uvedené na webu a výsledky kalkulačky jsou orientační a nezávazné. Vycházejí z doporučených cen distributora a obvyklých cen montáže. Nejsou nabídkou k uzavření smlouvy. Závaznou cenu stanoví montážní firma po zaměření. Technické parametry vycházejí z podkladů výrobců a mohou se změnit.</p>
+  <h2>Obsah poradny</h2>
+  <p>Články mají informativní charakter a nenahrazují individuální posouzení odborníkem. Informace o dotacích a právních předpisech odpovídají stavu ke dni aktualizace článku.</p>
+  <h2>Ochranné známky</h2>
+  <p>Mitsubishi Heavy Industries, Hisense a další názvy jsou ochranné známky svých vlastníků a jsou na webu použity pouze k označení nabízených výrobků.</p>
+  <h2>Kontakt</h2>
+  <p><a href={`mailto:${site.email}`}>{site.email}</a>, {site.phone}</p>
+</Legal>

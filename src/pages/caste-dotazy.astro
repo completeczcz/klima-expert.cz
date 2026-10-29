@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+const groups = [
+  { h: 'Poptávka a spolupráce', items: [
+    { q: 'Kolik stojí poptávka?', a: 'Nic. Poptávka, rada s výběrem, zaměření i cenová nabídka jsou zdarma a nezávazné.' },
+    { q: 'Kdo mi klimatizaci namontuje?', a: 'Ověřená partnerská montážní firma z vašeho kraje, se kterou uzavřete smlouvu napřímo. Její technici mají osvědčení pro práci s F-plyny.' },
+    { q: 'Kolik firem mi zavolá?', a: 'Jedna. Poptávku nepřeposíláme hromadně.' },
+    { q: 'Jak rychle se ozvete?', a: `Ozveme se ${site.responseTime}. V hlavní sezóně od května do srpna může být termín montáže delší, proto se vyplatí poptávat s předstihem.` },
+  ] },
+  { h: 'Ceny a platba', items: [
+    { q: 'Kolik stojí klimatizace s montáží?', a: 'Jedna místnost orientačně 30 000 až 60 000 Kč včetně standardní montáže a 12% DPH. Více v <a href="/cena-klimatizace/">kalkulačce</a>.' },
+    { q: 'Co když je potřeba delší potrubí?', a: 'Standardní montáž počítá s trasou kolem 3 m. Každý další metr se doúčtuje, orientačně 400 až 1 000 Kč. Přesné příplatky uvidíte v nabídce po zaměření.' },
+    { q: 'Platím zálohu?', a: 'Platební podmínky stanovuje montážní firma ve své nabídce. Běžná je záloha na jednotky a doplatek po montáži.' },
+  ] },
+  { h: 'Montáž a provoz', items: [
+    { q: 'Potřebuji povolení?', a: 'Rodinný dům obvykle povolení nepotřebuje. V bytovém domě je potřeba souhlas SVJ nebo družstva, u památkově chráněných domů i vyjádření památkářů. Více v článku <a href="/blog/povoleni-klimatizace-svj/">povolení klimatizace</a>.' },
+    { q: 'Jak dlouho trvá montáž?', a: 'Jedna nástěnná jednotka 4 až 6 hodin, multisplit pro více místností jeden až dva dny.' },
+    { q: 'Jak často je potřeba servis?', a: 'Filtry stačí vyprat jednou za měsíc během sezóny, odborné čištění a kontrolu doporučujeme jednou ročně. Viz <a href="/servis-klimatizace/">servis klimatizace</a>.' },
+    { q: 'Jakou záruku dostanu?', a: `Na jednotky Mitsubishi Heavy Industries ${site.warranty.mhi} let, na Hisense ${site.warranty.hisense} roky. Na montáž poskytuje záruku montážní firma.` },
+  ] },
+];
+const all = groups.flatMap((g) => g.items);
+const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: all.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
+---
+<Base title="Časté dotazy – klimatizace a tepelná čerpadla" description="Odpovědi na časté dotazy: cena klimatizace s montáží, kdo montuje, povolení SVJ, délka montáže, servis a záruka." crumbs={[{ name: 'Časté dotazy', href: '/caste-dotazy/' }]} schema={[ld]}>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap">
+      <h1>Časté dotazy</h1>
+      {groups.map((g) => <div class="fq"><Faq title={g.h} items={g.items} schema={false} /></div>)}
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>.fq { margin-top: 40px; } .fq :global(h2) { font-size: var(--step-2); }</style>

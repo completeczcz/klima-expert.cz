@@ -68,6 +68,10 @@ Mobilní klimatizace tak na stejný chladicí efekt potřebuje přibližně dvoj
 
 Na jedno léto s občasným provozem není rozdíl v korunách dramatický. Pokud ale klimatizaci používáte každý den nebo chcete i topit, vyšší účinnost splitu se projeví znatelně.
 
+### Návratnost vyšší investice
+
+Split je na pořízení dražší. Kdy se rozdíl vrátí? Pokud chladíte jen několik desítek hodin za léto, prakticky nikdy – úspora za elektřinu bude ve stokorunách. Když ale klimatizaci používáte denně několik hodin a v přechodném období s ní i přitápíte místo přímotopu, úspora se počítá v tisících korun ročně. K tomu přistupuje komfort: tichý provoz, volná podlaha a žádná hadice v okně.
+
 ## Hlučnost
 
 Kompresor mobilní klimatizace běží přímo v místnosti, proto jsou tyto jednotky slyšet výrazně víc – běžné modely kolem 65 dB, nejtišší kolem 50 dB. Vnitřní jednotka splitu obsahuje jen ventilátor a výměník; kvalitní nástěnné jednotky mají v nejnižším stupni kolem 19–22 dB(A). Do ložnice je proto mobilní klimatizace nevhodná, podrobněji v článku [tichá klimatizace do ložnice](/blog/ticha-klimatizace-do-loznice/).
@@ -89,6 +93,26 @@ Aby mobilní jednotka fungovala co nejlépe, utěsněte okno kolem hadice (těsn
 - **Plánujete dlouhodobě** – kvalitní split slouží mnoho let a zvyšuje komfort bydlení.
 
 Přehled řešení pro byty najdete na stránce [klimatizace do bytu](/klimatizace/do-bytu/), ceny splitových klimatizací s montáží v článku [kolik stojí klimatizace do bytu](/blog/kolik-stoji-klimatizace-do-bytu/).
+
+## Třetí možnost: klimatizace bez venkovní jednotky
+
+Mezi mobilní klimatizací a splitem existuje ještě kompromis – **monoblok do zdi** (klimatizace bez venkovní jednotky). Celý chladicí okruh je v jedné jednotce na vnitřní straně obvodové zdi, s okolím je propojen dvěma otvory ve zdi.
+
+- **Výhody:** na fasádě je vidět jen dvojice mřížek, odpadá venkovní jednotka. To může pomoci v památkových zónách nebo tam, kde SVJ jednotky na fasádě nepovoluje.
+- **Nevýhody:** kompresor je v místnosti, takže je hlučnější než split; účinnost je nižší; je potřeba vyvrtat dva větší otvory do obvodové zdi; ani tady se obvykle neobejdete bez souhlasu SVJ, protože jde o zásah do fasády.
+
+Pro ložnice a pro trvalé chlazení zůstává split lepší volbou, monoblok je řešením hlavně tam, kde venkovní jednotka opravdu není možná.
+
+## Přechod z mobilní klimatizace na split
+
+Mnoho lidí začíná mobilní jednotkou a po jednom dvou létech přejde na split. Co si před tím ověřit:
+
+1. **Souhlas SVJ, družstva nebo pronajímatele** – bez něj se do montáže nepouštějte.
+2. **Místo pro venkovní jednotku** – balkon, lodžie, fasáda nebo zahrada.
+3. **Elektrický okruh** – zda unese další spotřebič, nebo je potřeba samostatný jistič.
+4. **Které místnosti chcete chladit** – pokud víc než jednu, zvažte rovnou multisplit nebo více setů.
+
+Mobilní jednotku pak můžete ponechat jako záložní řešení, třeba na chatu nebo do pracovny.
 
 ## Co neumí ani jedna z nich
 

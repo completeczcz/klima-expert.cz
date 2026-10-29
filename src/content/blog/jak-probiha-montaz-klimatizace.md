@@ -27,7 +27,7 @@ sources:
 related: ["kolik-stoji-klimatizace-do-bytu", "klimatizace-v-panelaku", "cisteni-a-servis-klimatizace"]
 ---
 
-Montáž klimatizace má jasně daný postup, který se u splitových jednotek opakuje: **zaměření → osazení vnitřní jednotky → průraz zdí → osazení venkovní jednotky → propojení potrubí a kabelů → odvod kondenzátu → tlaková zkouška → vakuování → uvedení do provozu a předání**. Jeden single split zvládne montážní tým obvykle během jednoho pracovního dne. Níže popisujeme jednotlivé kroky, co byste měli připravit a podle čeho poznáte kvalitně odvedenou práci.
+Montáž klimatizace a její postup jsou u splitových jednotek pokaždé stejné: **zaměření → osazení vnitřní jednotky → průraz zdí → osazení venkovní jednotky → propojení potrubí a kabelů → odvod kondenzátu → tlaková zkouška → vakuování → uvedení do provozu a předání**. Jeden single split zvládne montážní tým obvykle během jednoho pracovního dne. Níže popisujeme jednotlivé kroky, co byste měli připravit a podle čeho poznáte kvalitně odvedenou práci.
 
 ## Montáž klimatizace: postup v kostce
 
@@ -54,7 +54,7 @@ Před samotnou montáží přijede technik na prohlídku. Posoudí:
 - materiál zdí (cihla, beton, panel, zateplení),
 - jak odvést kondenzát a zda je k dispozici vhodný elektrický okruh.
 
-Výsledkem je položkový rozpočet. V bytovém domě je to vhodný okamžik pro žádost o souhlas SVJ – více v článku [klimatizace v paneláku](/blog/klimatizace-v-panelaku/).
+Výsledkem je položkový rozpočet. Zaměření od ověřené firmy z vašeho kraje si můžete objednat zdarma přes [nezávaznou poptávku](/poptavka/). V bytovém domě je to vhodný okamžik pro žádost o souhlas SVJ – více v článku [klimatizace v paneláku](/blog/klimatizace-v-panelaku/).
 
 ## 2. Příprava v den montáže
 
@@ -132,8 +132,6 @@ Celkové ceny klimatizace s montáží najdete v článku [kolik stojí klimatiz
 - prostup je utěsněný, nezatéká do zdi ani do zateplení,
 - venkovní jednotka stojí na silentblocích a nevibruje,
 - v protokolu je zapsaná tlaková zkouška a vakuování.
-
-Jak spolupráce přes Klima Expert funguje od poptávky po montáž, shrnuje stránka [jak to funguje](/jak-to-funguje/).
 
 ## Shrnutí
 

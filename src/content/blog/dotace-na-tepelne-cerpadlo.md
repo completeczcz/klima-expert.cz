@@ -109,6 +109,8 @@ Zda konkrétní výrobek podmínky splňuje, si ověříte v **Seznamu výrobků
 
 Instalaci musí provést firma s oprávněním k instalaci obnovitelných zdrojů podle § 10d zákona o hospodaření energií. Ta vystaví i zprávu o instalaci. Bez ní podporu nezískáte.
 
+Pokud chcete mít jistotu, že navržené čerpadlo i firma podmínky splní, můžete poslat [nezávaznou poptávku](/poptavka/). Partnerská firma s oprávněním vám připraví nabídku s výrobkem ze seznamu SVT.
+
 ## Renovační pas a výpočtový nástroj
 
 U NZÚ Light a u úvěru na dílčí opatření (třeba jen tepelné čerpadlo) je povinnou přílohou **Renovační pas NZÚ**. Zpracuje ho registrovaný energetický poradce po prohlídce domu. Pro domácnosti s nižšími příjmy je zdarma, ostatním je cena dotovaná. U výměny zdroje za tepelné čerpadlo do teplovodní soustavy se navíc dokládá **výpočtový nástroj** posuzující vhodnost čerpadla pro daný dům.

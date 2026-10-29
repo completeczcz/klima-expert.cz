@@ -25,7 +25,7 @@ sources:
 related: ["kolik-stoji-klimatizace-do-bytu", "klimatizace-do-podkrovi", "single-split-nebo-multisplit"]
 ---
 
-Jaký výkon klimatizace na m² potřebujete? Pro běžnou obytnou místnost platí orientační pravidlo **30–50 W chladicího výkonu na každý m³ prostoru**. Při standardní výšce stropu 2,5 m to odpovídá přibližně **80–125 W na m² podlahové plochy**. Pokoj 25 m² tak obvykle pokryje jednotka 2,5 kW, obývák 35 m² jednotka 3,5 kW.
+Jaký výkon klimatizace na m2 potřebujete? Pro běžnou obytnou místnost platí orientační pravidlo **30–50 W chladicího výkonu na každý m³ prostoru**. Při standardní výšce stropu 2,5 m to odpovídá přibližně **80–125 W na m² podlahové plochy**. Pokoj 25 m² tak obvykle pokryje jednotka 2,5 kW, obývák 35 m² jednotka 3,5 kW.
 
 Pravidlo je ale jen výchozí bod. Stejně velká místnost může v podkroví s jižními okny potřebovat skoro dvojnásobek výkonu oproti severnímu pokoji v zatepleném domě.
 
@@ -94,6 +94,18 @@ Moderní invertorové klimatizace dokážou výkon plynule snižovat, takže mí
 
 Naopak **poddimenzovaná jednotka** běží v horkých dnech trvale na maximum, je hlučnější a místnost nemusí vychladit na požadovanou teplotu.
 
+## Příklad: výpočet pro byt 3+kk, 75 m²
+
+Vezměme typický byt 3+kk ve zděném domě se stropem 2,6 m. Okna obýváku směřují na jihozápad, ložnice na sever, dětský pokoj na východ.
+
+- **Obývací pokoj s kuchyňským koutem, 30 m²:** jihozápadní okna bez venkovního stínění, k tomu vaření a televize. Koeficient 50 W/m³ → 30 × 2,6 × 50 = 3 900 W. Vhodná je jednotka 3,5 kW s rezervou, nebo 4,2 kW. Pokud byste doplnili venkovní žaluzie, stačilo by 3,5 kW.
+- **Ložnice, 14 m², sever:** 14 × 2,6 × 30 = 1 092 W. Výpočet vychází na nejmenší dostupnou jednotku kolem 2,0 kW. V ložnici navíc oceníte, že jednotka s rezervou poběží v noci na nízké otáčky a tišeji.
+- **Dětský pokoj, 12 m², východ:** 12 × 2,6 × 40 = 1 248 W. Opět stačí nejmenší jednotka 2,0 kW.
+
+Celkem tedy jedna větší jednotka do obýváku a dvě malé do pokojů. Zda je lepší tři samostatné sety, nebo multisplit s jednou venkovní jednotkou, záleží hlavně na dispozici a místě na fasádě.
+
+Na příkladu je vidět i další věc: **nejvíc rozhoduje obývák**. Ložnice na severní straně často potřebuje jen zlomek výkonu, protože se přes den neohřívá sluncem. Pokud řešíte klimatizaci postupně, začněte místností s největší tepelnou zátěží.
+
 ## Výkon pro topení
 
 Pokud chcete klimatizací i topit, rozhoduje i topný výkon a jeho pokles v mrazu. Jmenovitý topný výkon se udává při venkovní teplotě +7 °C a s klesající teplotou klesá. Pro vytápění je proto vhodné výkon posoudit podle tepelné ztráty místnosti, ne jen podle chladicí zátěže. Podrobnosti najdete v článku [topení klimatizací v zimě](/blog/topeni-klimatizaci/).
@@ -111,7 +123,7 @@ Orientační výpočet stačí pro většinu ložnic a pokojů. Přesnější v�
 - chcete klimatizací také topit jako hlavním zdrojem,
 - místnost je výrazně vyšší než 3 m.
 
-Montážní technik při zaměření posoudí orientaci, okna, stínění i stavební konstrukce. Jednotku konkrétní řady, například z nabídky [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) nebo [Hisense](/znacky/hisense/), pak vybere tak, aby výkon odpovídal skutečné zátěži. Zaměření můžete získat zdarma přes [nezávaznou poptávku](/poptavka/).
+Montážní technik při zaměření posoudí orientaci, okna, stínění i stavební konstrukce. Jednotku konkrétní řady, například z nabídky [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) nebo Hisense, pak vybere tak, aby výkon odpovídal skutečné zátěži. Zaměření můžete získat zdarma přes [nezávaznou poptávku](/poptavka/).
 
 ## Shrnutí
 

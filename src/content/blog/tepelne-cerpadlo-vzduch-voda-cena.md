@@ -13,10 +13,10 @@ faq:
     a: "Obvykle venkovní a vnitřní jednotku, zásobník teplé vody, regulaci, hydraulické a elektrické zapojení, uvedení do provozu a revize. Ověřte si, zda nabídka zahrnuje i demontáž starého kotle, úpravy radiátorů a stavební práce."
   - q: "Kolik stojí provoz tepelného čerpadla vzduch-voda?"
     a: "Podle modelového výpočtu Českých staveb z října 2026 vyjde vytápění a ohřev vody v domě o 150 m² s tepelným čerpadlem na zhruba 25 600 Kč ročně, zatímco plynový kondenzační kotel na asi 42 300 Kč."
-  - q: "Dá se na tepelné čerpadlo získat dotace?"
+  - q: "Dá se na tepelné čerpadlo získat dotaci?"
     a: "Běžné domácnosti mohou od roku 2026 čerpat bezúročný úvěr z programu Nová zelená úsporám až 350 000 Kč na čerpadlo vzduch-voda. Přímou dotaci až 150 000 Kč dostanou jen nízkopříjmové domácnosti v programu NZÚ Light."
 sources:
-  - title: "Česká stavby – Čím topit v roce 2026 nejlevněji (srovnání nákladů)"
+  - title: "České stavby – Čím topit v roce 2026 nejlevněji (srovnání nákladů)"
     url: "https://www.ceskestavby.cz/clanky/cim-topit-v-roce-2026-nejlevneji-velke-srovnani-tepelneho-cerpadla-plynu-pelet-dreva-a-elektriny-36243.html"
   - title: "Daibau – Tepelné čerpadlo, cena 2026"
     url: "https://www.daibau.cz/ceny/tepelne_cerpadlo"
@@ -71,7 +71,7 @@ Výkon čerpadla se navrhuje podle tepelné ztráty v kW, ne podle metrů čtver
 
 ### Otopná soustava
 
-S podlahovým topením pracuje tepelné čerpadlo s nízkou teplotou vody, a proto efektivně. U starších radiátorů může být potřeba vyšší teplota vody nebo výměna některých těles. Více v článku [tepelné čerpadlo do staršího domu s radiátory](/blog/tepelne-cerpadlo-do-starsiho-domu/).
+S podlahovým topením pracuje tepelné čerpadlo s nízkou teplotou vody, a proto efektivně. U starších radiátorů může být potřeba vyšší teplota vody nebo výměna některých těles. Starším domům s radiátory se podrobně věnuje samostatný článek na našem blogu.
 
 ### Monoblok, nebo split
 
@@ -118,7 +118,11 @@ Dům má zateplenou fasádu, nová okna, radiátory a dosluhující plynový kot
 4. Zeptejte se na **servis, záruku a dostupnost dílů**.
 5. Ověřte, že firma má **oprávnění pro instalaci obnovitelných zdrojů**, bez něj nezískáte podporu z NZÚ.
 
-Orientační kalkulaci pro váš dům najdete na stránce [cena tepelného čerpadla](/cena-tepelneho-cerpadla/). Přehled typů čerpadel je v sekci [tepelná čerpadla](/tepelna-cerpadla/).
+Orientační kalkulaci pro váš dům najdete na stránce [cena tepelného čerpadla](/cena-tepelneho-cerpadla/). Pokud si nejste jistí, co do nabídek zahrnout, pošlete [nezávaznou poptávku](/poptavka/). Partnerská firma připraví nabídku s rozpisem položek, kterou snadno porovnáte s ostatními.
+
+### Proč se ceny na internetu tolik liší
+
+Ceny „od“ v reklamách obvykle zahrnují jen nejmenší čerpadlo do novostavby s podlahovým topením a základní montáž. Skutečná nabídka pro rekonstruovaný dům s radiátory bývá vyšší, protože obsahuje větší výkon, zásobník teplé vody, úpravy soustavy a elektroinstalace. Naopak u velmi nízkých nabídek se vyplatí zkontrolovat, zda neobsahují čerpadlo bez certifikace pro dotační program nebo bez servisu v ČR.
 
 ## Shrnutí
 

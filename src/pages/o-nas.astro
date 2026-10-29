@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+---
+<Base title="O nás – kdo stojí za Klima Expert" description={`Klima Expert provozuje ${site.company.name}. Spolupracujeme s distributorem COMPLETE CZ a ověřenými montážními firmami po celé ČR.`} crumbs={[{ name: 'O nás', href: '/o-nas/' }]}>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap narrow">
+      <h1>O nás</h1>
+      <p class="lead">Klima Expert vznikl, aby lidé mohli klimatizaci nebo tepelné čerpadlo pořídit bez zdlouhavého hledání firmy a bez nejistoty, jestli dostanou kvalitní techniku a poctivou montáž.</p>
+      <h2>Kdo za webem stojí</h2>
+      <p>Web provozuje společnost <strong>{site.company.name}</strong>, IČO {site.company.ico}, DIČ {site.company.dic}. Přijímáme poptávky, radíme s výběrem a předáváme je partnerským montážním firmám.</p>
+      <h2>Technické zázemí</h2>
+      <p>Úzce spolupracujeme se společností {site.partner.name}, {site.partner.note}. Díky tomu máme přímou vazbu na technickou podporu výrobců, aktuální informace o produktech a přístup k proškoleným montážním firmám v celé republice.</p>
+      <h2>Proč jen dvě značky</h2>
+      <p>Nechceme prodávat všechno. Mitsubishi Heavy Industries a Hisense jsou značky, které dobře známe, máme k nim zázemí distributora a umíme je doporučit pro konkrétní situaci. Mitsubishi Heavy Industries pro ty, kdo chtějí prémiovou japonskou techniku, Hisense pro výborný poměr ceny a výkonu.</p>
+      <h2>Kontakt</h2>
+      <p>Telefon <a href={site.phoneHref}>{site.phone}</a>, e-mail <a href={`mailto:${site.email}`}>{site.email}</a>, {site.hours}.</p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>.narrow h2 { font-size: var(--step-2); margin-top: 1.4em; }</style>

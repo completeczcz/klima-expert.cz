@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import QuickStart from '../../components/QuickStart.astro';
+import ContourMap from '../../components/ContourMap.astro';
+import SeriesRow from '../../components/SeriesRow.astro';
+import Steps from '../../components/Steps.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { regions, site } from '../../data/site';
+import { regionContent } from '../../data/regions-content';
+import { products } from '../../data/products';
+
+export function getStaticPaths() {
+  return regions.map((r) => ({ params: { kraj: r.slug }, props: { r } }));
+}
+const { r } = Astro.props;
+const c = regionContent[r.slug];
+const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-diamond-zsx', 'hisense-multi-split', 'hisense-hi-therma-monoblok'].map((id) => products.find((p) => p.id === id)!);
+const short = r.name.replace(' kraj', '').replace('Kraj ', '');
+const others = regions.filter((x) => x.slug !== r.slug);
+const isPraha = r.slug === 'praha';
+const title = isPraha ? 'Montáž klimatizace Praha – klimatizace s montáží' : `Montáž klimatizace ${r.name} – ${r.cities[0]}`;
+const faq = [
+  { q: `Kolik stojí montáž klimatizace ${r.locative}?`, a: `Klimatizace do jedné místnosti včetně standardní montáže vyjde ${r.locative} orientačně na 30 000 až 60 000 Kč s 12% DPH, multisplit pro tři místnosti na 90 000 až 150 000 Kč. Přesnou cenu připraví partnerská firma po zaměření zdarma.` },
+  { q: `Jak rychle se mi ozvete?`, a: `Na každou poptávku ${r.locative} reagujeme ${site.responseTime}. Zaměření pak partnerská firma domluví podle vašich možností, mimo hlavní sezónu obvykle do týdne.` },
+  { q: `Montujete i mimo ${r.cities[0]}?`, a: `Ano. Poptávky přijímáme z celého kraje, včetně okresů ${r.okresy.slice(0, 4).join(', ')}${r.okresy.length > 4 ? ' a dalších' : ''}.` },
+];
+---
+<Base
+  title={title}
+  description={`Montáž klimatizací a tepelných čerpadel ${r.locative}: ${r.cities.slice(0, 4).join(', ')} a okolí. Mitsubishi Heavy a Hisense, zaměření a nabídka zdarma.`.slice(0, 158)}
+  crumbs={[{ name: 'Montáž v krajích', href: '/#kraje' }, { name: r.name, href: `/montaz-klimatizace/${r.slug}/` }]}
+  schema={[{
+    '@context': 'https://schema.org', '@type': 'Service', name: `Montáž klimatizace ${r.locative}`,
+    provider: { '@id': 'https://klima-expert.cz/#firma' },
+    areaServed: { '@type': isPraha ? 'City' : 'AdministrativeArea', name: r.name },
+  }]}
+>
+  <section class="rh">
+    <div class="wrap rh__in">
+      <div>
+        <h1>Montáž klimatizace {r.locative}</h1>
+        <p class="lead">{c.intro} Poptávku předáme ověřené partnerské firmě, která to má k vám nejblíž.</p>
+        <ul class="checks rh__pts">
+          <li>Klimatizace a tepelná čerpadla Mitsubishi Heavy a Hisense</li>
+          <li>Zaměření a cenová nabídka zdarma</li>
+          <li>Ozveme se {site.responseTime}</li>
+        </ul>
+      </div>
+      <div><QuickStart heading={`Poptávka ${r.locative}`} /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap rg">
+      <div>
+        <h2>Na co se {r.locative} připravit</h2>
+        <h3>Bydlení a povolení</h3>
+        <p>{c.housing}</p>
+        <h3>Klima a výběr jednotky</h3>
+        <p>{c.climate}</p>
+        <h3>Náš tip</h3>
+        <p>{c.tip}</p>
+      </div>
+      <div>
+        <div class="rg__map"><ContourMap highlight={r.slug} /></div>
+        <h3>Kde montujeme</h3>
+        <p><strong>{isPraha ? 'Městské části' : 'Okresy'}:</strong> {r.okresy.join(', ')}</p>
+        <p><strong>Města:</strong> {r.cities.join(', ')} a okolní obce</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ice">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Co {r.locative} montujeme nejčastěji</h2>
+        <p class="lead">Výběr řad, které se osvědčily do bytů i rodinných domů. Celou nabídku najdete v <a href="/produkty/">přehledu produktů</a>.</p>
+      </div>
+      {series.map((s) => <SeriesRow s={s} showCat />)}
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="wrap">
+      <div class="section__head"><h2>Jak to probíhá</h2></div>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="section"><div class="wrap"><Faq items={faq} /></div></section>
+
+  <section class="section section--ice">
+    <div class="wrap">
+      <h2>Montáž v dalších krajích</h2>
+      <ul class="ok">{others.map((o) => <li><a href={`/montaz-klimatizace/${o.slug}/`}>{o.name}</a></li>)}</ul>
+    </div>
+  </section>
+  <CtaBand title={`Klimatizace ${r.locative}`} />
+</Base>
+<style>
+  .rh { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
+  .rh__in { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .rh__pts { font-weight: 600; margin-top: 1.4em; }
+  .rg { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .rg h2 { font-size: var(--step-2); }
+  .rg h3 { margin-top: 1.3em; }
+  .rg__map { margin-bottom: 12px; }
+  .ok { list-style: none; padding: 0; margin: 0; columns: 3; column-gap: 28px; }
+  .ok li { padding: 6px 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+  .ok a { text-decoration: none; font-weight: 600; }
+  @media (max-width: 900px) { .rh__in, .rg { grid-template-columns: 1fr; } .ok { columns: 2; } }
+</style>

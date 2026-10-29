@@ -77,6 +77,26 @@ Jde o orientační modely, ne o garanci. Jižní orientace bez stínění, posle
 
 Pokud klimatizací i topíte, rozhoduje **SCOP** (sezónní topný faktor). Topení obvykle tvoří větší část roční spotřeby než chlazení, protože topná sezóna je mnohem delší. Výpočet a srovnání s přímotopem najdete v článku [topení klimatizací v zimě](/blog/topeni-klimatizaci/).
 
+## Jak změřit skutečnou spotřebu
+
+Pokud chcete vědět přesně, kolik vaše klimatizace spotřebuje, máte několik možností:
+
+- **Aplikace výrobce.** Řada jednotek s Wi-Fi modulem zobrazuje spotřebu po dnech nebo měsících. Jde o odhad z elektroniky jednotky, ale pro představu stačí.
+- **Elektroměr v rozvaděči.** Pokud má klimatizace samostatný jistič, elektrikář může na okruh přidat podružný elektroměr na DIN lištu.
+- **Chytrý elektroměr distributora.** Při vyšším rozlišení odečtů je vidět, jak se mění spotřeba domácnosti v horkých dnech.
+
+Zásuvkový měřič se hodí jen pro mobilní klimatizace – splitové jednotky se do zásuvky obvykle nezapojují.
+
+## Jeden horký den v číslech
+
+Pro představu modelový den během vlny veder: venku 33 °C, obývák 30 m² s jednotkou 3,5 kW, nastaveno 25 °C.
+
+- **15:00–16:00:** rozběh, jednotka dochlazuje přehřátou místnost téměř na plný výkon, příkon kolem 0,9 kW.
+- **16:00–22:00:** udržování teploty, příkon kolem 0,4–0,5 kW.
+- **Celkem za 7 hodin:** zhruba 3,5–4 kWh, tedy přibližně 23–26 Kč.
+
+Kdyby jednotka běžela od rána na mírný výkon a místnost se vůbec nepřehřála, odpolední rozběh by odpadl. U invertorové jednotky je to často srovnatelně drahé nebo levnější a pro pobyt v místnosti příjemnější.
+
 ## Spotřeba v pohotovostním režimu
 
 Jednotka zapojená v síti spotřebovává malé množství elektřiny i ve vypnutém stavu (pohotovost, Wi-Fi modul, u některých jednotek ohřev kompresoru v zimě). Jde o jednotky wattů, za rok to obvykle dělá desítky kWh. Pokud klimatizaci několik měsíců nepoužíváte a nechcete ani topit, můžete ji vypnout jističem – ale řiďte se doporučením výrobce, některé jednotky potřebují před zapnutím v zimě několik hodin předehřívat kompresor.

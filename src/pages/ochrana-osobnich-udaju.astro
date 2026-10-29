@@ -1,0 +1,42 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+const c = site.company;
+---
+<Legal title="Zásady ochrany osobních údajů" description="Jak Klima Expert zpracovává osobní údaje z poptávkového formuláře, komu je předává, jak dlouho je uchovává a jaká máte práva." h1="Zásady ochrany osobních údajů" slug="ochrana-osobnich-udaju" updated="1. 11. 2026">
+  <h2>1. Správce osobních údajů</h2>
+  <p>Správcem osobních údajů je společnost {c.name}, IČO {c.ico}, DIČ {c.dic}, se sídlem {c.address}, zapsaná v obchodním rejstříku {c.register} (dále jen „správce“ nebo „my“). Kontakt: <a href={`mailto:${site.email}`}>{site.email}</a>, {site.phone}.</p>
+
+  <h2>2. Jaké údaje zpracováváme</h2>
+  <ul>
+    <li><strong>Údaje z poptávky:</strong> jméno a příjmení, telefon, e-mail, PSČ, obec a kraj místa realizace, informace o objektu a požadovaném řešení, termín a poznámka.</li>
+    <li><strong>Údaje o původu poptávky:</strong> vstupní stránka, označení reklamní kampaně (UTM) a identifikátor kliknutí z Google Ads.</li>
+    <li><strong>Technické údaje:</strong> zkrácený otisk (hash) IP adresy a typ prohlížeče pro ochranu formuláře před zneužitím.</li>
+    <li><strong>Údaje o chování na webu:</strong> pouze pokud k tomu udělíte souhlas v nastavení cookies (viz <a href="/cookies/">zásady cookies</a>).</li>
+  </ul>
+
+  <h2>3. Proč údaje zpracováváme a na jakém základě</h2>
+  <ul>
+    <li><strong>Vyřízení poptávky a předání partnerské montážní firmě</strong>, která vám připraví nabídku. Právním základem je provedení opatření před uzavřením smlouvy na vaši žádost (čl. 6 odst. 1 písm. b) GDPR) a náš oprávněný zájem na zprostředkování zakázky (čl. 6 odst. 1 písm. f) GDPR).</li>
+    <li><strong>Kontrola kvality a vyhodnocení spolupráce s partnery</strong> (oprávněný zájem).</li>
+    <li><strong>Vyhodnocení účinnosti reklamy</strong> (oprávněný zájem; měřicí cookies jen s vaším souhlasem).</li>
+    <li><strong>Ochrana práv a plnění právních povinností</strong>, například účetních (čl. 6 odst. 1 písm. c) a f) GDPR).</li>
+  </ul>
+
+  <h2>4. Komu údaje předáváme</h2>
+  <ul>
+    <li><strong>Jedné partnerské montážní firmě</strong> z vašeho kraje, které poptávku předáme k vyřízení. Ta se stává samostatným správcem údajů pro účely přípravy nabídky a případné smlouvy s vámi.</li>
+    <li><strong>Technickým zpracovatelům:</strong> Cloudflare, Inc. (hosting a databáze), poskytovateli e-mailových služeb (odesílání notifikací) a v případě souhlasu Google Ireland Ltd. (Google Analytics, Google Ads).</li>
+    <li>Orgánům veřejné moci, pokud to vyžaduje zákon.</li>
+  </ul>
+  <p>Někteří zpracovatelé mohou údaje zpracovávat i mimo EU, zejména v USA. Předání probíhá na základě rozhodnutí Evropské komise o odpovídající ochraně (EU-US Data Privacy Framework) nebo standardních smluvních doložek.</p>
+
+  <h2>5. Jak dlouho údaje uchováváme</h2>
+  <p>Údaje z poptávky uchováváme po dobu 3 let od jejího přijetí, abychom mohli řešit případné dotazy a reklamace a vyhodnocovat spolupráci s partnery. Účetní doklady uchováváme po dobu stanovenou zákonem. Údaje zpracovávané na základě souhlasu uchováváme do jeho odvolání.</p>
+
+  <h2>6. Vaše práva</h2>
+  <p>Máte právo požadovat přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování, přenositelnost údajů a vznést námitku proti zpracování založenému na oprávněném zájmu. Souhlas s cookies můžete kdykoli odvolat v patičce webu. Žádosti posílejte na <a href={`mailto:${site.email}`}>{site.email}</a>. Máte také právo podat stížnost u Úřadu pro ochranu osobních údajů (<a href="https://uoou.gov.cz" rel="noopener" target="_blank">uoou.gov.cz</a>).</p>
+
+  <h2>7. Zabezpečení</h2>
+  <p>Údaje jsou přenášeny šifrovaně (HTTPS) a uloženy v zabezpečené databázi s přístupem omezeným na oprávněné osoby. Partnerským firmám předáváme pouze údaje nezbytné k vyřízení poptávky.</p>
+</Legal>

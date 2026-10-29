@@ -1,0 +1,15 @@
+---
+import Base from './Base.astro';
+interface Props { title: string; description: string; h1: string; slug: string; updated: string }
+const { title, description, h1, slug, updated } = Astro.props;
+---
+<Base title={title} description={description} crumbs={[{ name: h1, href: `/${slug}/` }]}>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap prose legal">
+      <h1>{h1}</h1>
+      <p class="muted small">Účinné od {updated}</p>
+      <slot />
+    </div>
+  </section>
+</Base>
+<style>.legal h1 { font-size: var(--step-3); } .legal :global(h2) { font-size: var(--step-1); }</style>

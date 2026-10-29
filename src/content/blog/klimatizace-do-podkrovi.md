@@ -62,7 +62,7 @@ Nástěnná jednotka potřebuje rovnou svislou stěnu a odstup od stropu podle n
 
 Jednotku směrujte tak, aby proud vzduchu šel do středu místnosti, ne na postel nebo pracovní stůl. Studený vzduch klesá, takže i jednotka umístěná níž na kolenní stěně místnost vychladí, pokud má dostatečný výkon.
 
-Pro atypické prostory, kde nástěnná jednotka nejde použít, existují **parapetní (podlahové) jednotky** nebo u novostaveb **kanálové** řešení skryté v podhledu. Přehled typů jednotek najdete v sekci [produkty](/produkty/).
+Pro atypické prostory, kde nástěnná jednotka nejde použít, existují **parapetní (podlahové) jednotky** nebo u novostaveb **kanálové** řešení skryté v podhledu.
 
 ## Venkovní jednotka a vedení potrubí
 
@@ -83,13 +83,34 @@ Klimatizace odvede teplo, které se do místnosti dostane. Méně tepla dovnitř
 3. **Omezení vnitřních zdrojů tepla** – svítidla, počítače, sušička.
 4. **Dodatečné zateplení střechy** – při rekonstrukci se vyplatí řešit zateplení s ohledem na letní přehřívání, tedy materiály s vyšší tepelnou kapacitou, které zpozdí prostup tepla.
 
+## Příklad: podkrovní ložnice 18 m² se dvěma střešními okny
+
+Rodinný dům z 90. let, podkroví se zateplením mezi krokvemi, ložnice 18 m² s kolenní stěnou 1,2 m a vrcholem 3,2 m. Dvě střešní okna směřují na jihozápad, venkovní stínění zatím chybí.
+
+- **Objem:** při průměrné výšce kolem 2,3 m zhruba 41 m³.
+- **Výkon:** 41 × 50 W/m³ ≈ 2 100 W. Kvůli oknům bez stínění volí technik jednotku 2,5 kW s rezervou.
+- **Umístění:** vnitřní jednotka na štítové stěně, proud vzduchu podél stropu do místnosti. Venkovní jednotka na konzoli pod ní, trasa přes jednu zeď kolem 1,5 m.
+- **Kondenzát:** svedený samospádem v liště po fasádě do okapového svodu nebo do štěrku u domu.
+- **Doporučení navíc:** venkovní markýzy na obě střešní okna. Po jejich instalaci poběží jednotka v horkých dnech na nižší výkon a tišeji.
+
 ## Podkroví a topení klimatizací
 
 Klimatizace v podkroví nemusí sloužit jen v létě. Moderní splitové jednotky fungují jako tepelné čerpadlo vzduch-vzduch a podkroví, které bývá v přechodném období chladnější nebo se vytápí hůř, mohou efektivně přitápět. Kdy to dává smysl a na co si dát pozor v mrazu, popisujeme v článku [topení klimatizací v zimě](/blog/topeni-klimatizaci/).
 
 ## Více místností v podkroví
 
-Pokud máte v podkroví dvě nebo tři ložnice, nabízí se **multisplit** s jednou venkovní jednotkou. Zvlášť v podkroví, kde je místo pro venkovní jednotky omezené, to může být praktické. Výhody a nevýhody obou řešení srovnává článek [single split nebo multisplit](/blog/single-split-nebo-multisplit/). Obecné informace o řešení pro celý dům najdete na stránce [klimatizace do domu](/klimatizace/do-domu/).
+Pokud máte v podkroví dvě nebo tři ložnice, nabízí se **multisplit** s jednou venkovní jednotkou. Zvlášť v podkroví, kde je místo pro venkovní jednotky omezené, to může být praktické. Výhody a nevýhody obou řešení srovnává článek [single split nebo multisplit](/blog/single-split-nebo-multisplit/).
+
+## Kolik stojí klimatizace do podkroví
+
+Samotné zařízení stojí stejně jako v jiném patře, montáž v podkroví ale bývá dražší. Do rozpočtu promítněte:
+
+- **montáž ve výšce** – pracovní plošina vyjde orientačně na 1 500–7 000 Kč vč. DPH, u vyšších štítů může být potřeba lešení,
+- **delší trasu** potrubí, pokud venkovní jednotka stojí na zemi u domu – každý metr navíc zhruba 300–1 000 Kč,
+- **čerpadlo kondenzátu**, pokud nelze zajistit spád (2 000–5 000 Kč),
+- **případně větší jednotku**, protože podkroví potřebuje vyšší výkon.
+
+Orientační ceny klimatizace s montáží pro jednu i více místností najdete v [kalkulačce ceny klimatizace](/cena-klimatizace/). Přesnou cenu určí až zaměření.
 
 ## Na co si dát pozor
 

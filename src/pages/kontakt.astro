@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import QuickStart from '../components/QuickStart.astro';
+import { site } from '../data/site';
+---
+<Base title="Kontakt" description={`Kontakt na Klima Expert: telefon ${site.phone}, e-mail ${site.email}. Poptávky klimatizací a tepelných čerpadel z celé ČR.`} crumbs={[{ name: 'Kontakt', href: '/kontakt/' }]}
+  schema={[{ '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Kontakt Klima Expert', url: `${site.url}/kontakt/` }]}>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap kt">
+      <div>
+        <h1>Kontakt</h1>
+        <p class="lead">Nejrychlejší je poslat poptávku přes formulář. Pokud chcete něco probrat, zavolejte nebo napište.</p>
+        <dl class="kt__dl">
+          <div><dt>Telefon</dt><dd><a href={site.phoneHref}>{site.phone}</a></dd></div>
+          <div><dt>E-mail</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+          <div><dt>Pracovní doba</dt><dd>{site.hours}</dd></div>
+          <div><dt>Provozovatel</dt><dd>{site.company.name}<br />IČO {site.company.ico}, DIČ {site.company.dic}<br />{site.company.address}</dd></div>
+        </dl>
+        <p>Jste montážní firma a chcete s námi spolupracovat? Podívejte se na stránku <a href="/pro-montazni-firmy/">pro montážní firmy</a>.</p>
+      </div>
+      <div><QuickStart /></div>
+    </div>
+  </section>
+</Base>
+<style>
+  .kt { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .kt__dl { margin: 28px 0; border-top: 2px solid var(--ink); }
+  .kt__dl div { display: grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .kt__dl dt { color: var(--ink-soft); }
+  .kt__dl dd { margin: 0; font-weight: 600; }
+  @media (max-width: 860px) { .kt { grid-template-columns: 1fr; } .kt__dl div { grid-template-columns: 1fr; gap: 2px; } }
+</style>

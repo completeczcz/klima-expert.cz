@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Steps from '../components/Steps.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+const faq = [
+  { q: 'Kolik firem mi bude volat?', a: 'Jen jedna. Poptávku nepřeposíláme hromadně desítkám firem. Vybereme jednu partnerskou firmu z vašeho kraje, která s danou značkou pracuje.' },
+  { q: 'Platím vám něco?', a: 'Ne. Poptávka, poradenství, zaměření i cenová nabídka jsou pro vás zdarma. Montáž a jednotky platíte přímo montážní firmě podle její nabídky.' },
+  { q: 'S kým uzavírám smlouvu?', a: 'Smlouvu o dodávce a montáži uzavíráte přímo s partnerskou montážní firmou. Ta odpovídá za montáž a poskytuje na ni záruku. Záruku na jednotky poskytuje výrobce prostřednictvím distributora.' },
+  { q: 'Co když mi nabídka nebude vyhovovat?', a: 'Nemusíte ji přijmout. Dejte nám vědět, co vám nesedí, a pokusíme se najít jiné řešení nebo jinou firmu.' },
+];
+---
+<Base title="Jak to funguje – od poptávky po montáž" description="Jak probíhá poptávka přes Klima Expert: poptávka zdarma, doporučení řešení, zaměření a nabídka od partnerské firmy z vašeho kraje, montáž a servis." crumbs={[{ name: 'Jak to funguje', href: '/jak-to-funguje/' }]}>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap">
+      <div class="section__head">
+        <h1>Jak to funguje</h1>
+        <p class="lead">Klima Expert propojuje lidi, kteří chtějí klimatizaci nebo tepelné čerpadlo, s ověřenými montážními firmami v jejich kraji. Vy získáte radu a nabídku zdarma, firma zákazníka, kterému se může naplno věnovat.</p>
+      </div>
+      <Steps />
+    </div>
+  </section>
+  <section class="section section--ice">
+    <div class="wrap jt">
+      <div>
+        <h2>Co od nás dostanete</h2>
+        <ul class="checks">
+          <li>Radu s výběrem typu, výkonu a značky jednotky</li>
+          <li>Orientační cenu ještě před zaměřením</li>
+          <li>Jednu prověřenou firmu z vašeho kraje místo shánění po internetu</li>
+          <li>Jednotky z oficiální distribuce se zárukou až {site.warranty.mhi} let</li>
+          <li>Kontakt pro případ, že by něco nefungovalo</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Jak vybíráme partnerské firmy</h2>
+        <p>Spolupracujeme s montážními firmami, které s jednotkami Mitsubishi Heavy Industries a Hisense dlouhodobě pracují a jsou proškolené distributorem. Technici mají osvědčení pro práci s chladivy podle evropského nařízení o F-plynech.</p>
+        <p>Sledujeme, jak rychle firmy reagují a jak jsou zákazníci spokojení. Firmy, které nedodržují dohodnuté standardy, poptávky dál nedostávají.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section"><div class="wrap"><Faq items={faq} /></div></section>
+  <CtaBand />
+</Base>
+<style>
+  .jt { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .jt h2 { font-size: var(--step-2); }
+  @media (max-width: 860px) { .jt { grid-template-columns: 1fr; } }
+</style>

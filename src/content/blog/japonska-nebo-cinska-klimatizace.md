@@ -58,7 +58,7 @@ Porovnávejte sezónní účinnost **SEER** (chlazení) a **SCOP** (topení), hl
 
 ### 2. Servis a náhradní díly v Česku
 
-Zeptejte se, kdo je oficiální distributor, jak dlouho značka na českém trhu působí a jestli distributor drží sklad náhradních dílů. Klimatizace má sloužit 10 a více let, takže dostupnost dílů je důležitější než o něco lepší parametr v katalogu. Více o pravidelné péči najdete v článku o [servisu klimatizace](/servis-klimatizace/).
+Zeptejte se, kdo je oficiální distributor, jak dlouho značka na českém trhu působí a jestli distributor drží sklad náhradních dílů. Klimatizace má sloužit 10 a více let, takže dostupnost dílů je důležitější než o něco lepší parametr v katalogu. Více o pravidelné péči najdete v článku o servisu klimatizace na našem webu.
 
 ### 3. Záruka a její podmínky
 
@@ -93,6 +93,10 @@ Pokud chcete klimatizací i topit, porovnejte topný výkon při mrazu, ne jen j
 | Certifikace montážní firmy | Bezpečná a těsná montáž chladivového okruhu | Osvědčení pro práci s F-plyny |
 | Topení při mrazu | Zda jednotka zvládne topit i v zimě | Výkonové tabulky výrobce |
 
+## Jak porovnat nabídky se dvěma různými značkami
+
+Pokud máte na stole dvě nabídky s různými značkami, porovnávejte je položku po položce. Ověřte, zda obě obsahují stejný rozsah montáže (délku potrubí, odvod kondenzátu, elektro, konzoli), stejnou třídu účinnosti a podobnou hlučnost. Zeptejte se, kdo bude jednotku servisovat a kde se objednává záruční oprava. Teprve pak má smysl srovnávat cenu. Nejjednodušší je nechat si připravit nabídku od firmy, která obě značky zná a dokáže vysvětlit rozdíly v konkrétních řadách. Takovou nabídku můžete získat přes [nezávaznou poptávku](/poptavka/).
+
 ## Na co si dát pozor při výběru značky
 
 - **Neznámá značka za nápadně nízkou cenu** bez českého distributora. Úspora při nákupu se může vrátit při první poruše.
@@ -102,7 +106,7 @@ Pokud chcete klimatizací i topit, porovnejte topný výkon při mrazu, ne jen j
 
 ## Příklad: byt 3+kk, 75 m²
 
-Rodina chce chladit obývací pokoj s kuchyní (asi 30 m²) a ložnici (14 m²). V tomto případě je důležitější správně zvolit výkon a typ systému než vybrat „japonskou“, nebo „čínskou“ jednotku. Rozhodnout je potřeba hlavně o tom, jestli zvolit dvě samostatné jednotky, nebo [multisplit](/klimatizace/multisplit/). Do ložnice dávejte pozor na hlučnost v nočním režimu. U obývacího pokoje s velkými okny na jih zase na dostatečný chladicí výkon. Jak výkon spočítat, vysvětluje článek [výkon klimatizace na m²](/blog/jaky-vykon-klimatizace-na-m2/).
+Rodina chce chladit obývací pokoj s kuchyní (asi 30 m²) a ložnici (14 m²). V tomto případě je důležitější správně zvolit výkon a typ systému než vybrat „japonskou“, nebo „čínskou“ jednotku. Rozhodnout je potřeba hlavně o tom, jestli zvolit dvě samostatné jednotky, nebo multisplit s jednou venkovní jednotkou. Do ložnice dávejte pozor na hlučnost v nočním režimu. U obývacího pokoje s velkými okny na jih zase na dostatečný chladicí výkon. Jak výkon spočítat, vysvětluje článek [výkon klimatizace na m²](/blog/jaky-vykon-klimatizace-na-m2/).
 
 ## MHI a Hisense: dvě značky, dva přístupy
 
@@ -111,7 +115,7 @@ Klima Expert pracuje se dvěma značkami, které se vzájemně doplňují:
 - [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) je japonská značka s dlouhou tradicí v chladicí technice. Pro Českou a Slovenskou republiku ji od roku 2007 výhradně distribuuje COMPLETE CZ. Záruka je 5 let.
 - [Hisense](/znacky/hisense/) je velký čínský výrobce se širokou nabídkou a příznivým poměrem ceny a výbavy. V ČR ji distribuuje rovněž COMPLETE CZ. Záruka je 3 roky.
 
-U obou značek tak máte k dispozici stejné technické zázemí, sklad dílů a síť partnerských montážních firem. Přehled všech řad najdete v sekci [produkty](/produkty/).
+U obou značek tak máte k dispozici stejné technické zázemí, sklad dílů a síť partnerských montážních firem. Přehled všech řad najdete v sekci produkty.
 
 ## Shrnutí
 
