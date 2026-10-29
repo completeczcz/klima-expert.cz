@@ -1,0 +1,49 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products } from '../../data/products';
+const series = ['hisense-uni-pure', 'mhi-premium-zs', 'mhi-premium-zt', 'hisense-wings-comfort', 'mhi-diamond-zsx', 'hisense-multi-split', 'mhi-multisplit-scm']
+  .map((id) => products.find((p) => p.id === id)!).filter(Boolean);
+const faq = [
+  { q: 'Potřebuji na klimatizaci v bytě souhlas SVJ?', a: 'Pokud bude venkovní jednotka na fasádě nebo jiné společné části domu, potřebujete souhlas SVJ nebo družstva. Kdo ho dává, určují stanovy, často stačí výbor. Na balkoně nebo lodžii v užívání bytu bývá situace jednodušší, i tak doporučujeme se domluvit předem. Více v článku <a href="/blog/povoleni-klimatizace-svj/">Povolení klimatizace a SVJ</a>.' },
+  { q: 'Jak velkou klimatizaci do bytu potřebuji?', a: 'Pro běžný pokoj počítejte zhruba 100 W chladicího výkonu na m². Ložnice do 20 m² obvykle vystačí s jednotkou 2,0 až 2,5 kW, obývací pokoj do 35 m² s 3,5 kW. Slunné byty pod střechou potřebují víc.' },
+  { q: 'Kolik stojí klimatizace do bytu s montáží?', a: 'Jedna místnost vyjde orientačně na 30 000 až 60 000 Kč včetně standardní montáže a 12% DPH. Byt se třemi klimatizovanými místnostmi s multisplitem obvykle na 90 000 až 150 000 Kč. Spočítejte si to v <a href="/cena-klimatizace/">kalkulačce</a>.' },
+  { q: 'Bude klimatizace v ložnici rušit při spánku?', a: 'Kvalitní invertorové jednotky mají v nočním režimu hlučnost kolem 19 až 21 dB(A), což je méně než šepot. Do ložnice doporučujeme řady Mitsubishi Heavy Premium nebo Diamond a Hisense Uni Pure, Energy Pro X či Air Master.' },
+  { q: 'Jak dlouho trvá montáž v bytě?', a: 'Montáž jedné nástěnné jednotky trvá obvykle 4 až 6 hodin. Multisplit pro tři místnosti bývá hotový za jeden až dva dny. Technici vrtají jeden průraz na místnost a po sobě uklidí.' },
+];
+---
+<Landing
+  title="Klimatizace do bytu s montáží – ceny a výběr"
+  description="Klimatizace do bytu s montáží po celé ČR. Tiché jednotky Mitsubishi Heavy a Hisense, multisplit pro více pokojů, pomoc se souhlasem SVJ. Nabídka zdarma."
+  h1="Klimatizace do bytu s montáží"
+  lead="Tichá klimatizace do ložnice, obývacího pokoje nebo celého bytu. Poradíme s výběrem jednotky i s umístěním venkovní části a partnerská firma z vašeho kraje vše namontuje."
+  points={['Tiché jednotky od 18 dB(A), vhodné do ložnice', 'Řešení pro panelák, cihlový dům i novostavbu', 'V zimě úsporné přitápění']}
+  preset="klimatizace-byt"
+  crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }, { name: 'Do bytu', href: '/klimatizace/do-bytu/' }]}
+  series={series}
+  seriesTitle="Klimatizace, které se do bytů hodí nejlépe"
+  seriesLead="Vybrali jsme řady s tichým chodem, dobrou účinností a rozumnou cenou. Pro více místností a jednu venkovní jednotku slouží multisplit."
+  faq={faq}
+  ctaTitle="Chcete klimatizaci do bytu?"
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      <div>
+        <h2>Jak vybrat klimatizaci do bytu</h2>
+        <p>V bytě rozhodují tři věci: aby byla jednotka tichá, aby měla správný výkon a aby šla venkovní jednotka rozumně umístit. Nástěnná klimatizace typu split je pro byty nejčastější volba. Vnitřní jednotka visí na stěně, venkovní stojí na balkoně, lodžii nebo na konzoli na fasádě a obě spojuje tenké potrubí.</p>
+        <h3>Výkon podle velikosti místnosti</h3>
+        <p>Pro běžný pokoj s výškou stropu do 2,7 m stačí počítat přibližně 100 W chladicího výkonu na m². Ložnice o 16 m² tedy potřebuje zhruba 1,6 kW, a proto se volí nejmenší běžná jednotka 2,0 nebo 2,5 kW. Pokoje s velkými okny na jih nebo západ a byty v posledním patře potřebují o čtvrtinu i víc. Podrobný návod najdete v článku <a href="/blog/jaky-vykon-klimatizace-na-m2/">jaký výkon klimatizace na m²</a>.</p>
+        <h3>Jedna místnost, nebo celý byt</h3>
+        <p>Když chcete chladit jen ložnici, stačí jedna jednotka. Pro dva a více pokojů je často výhodnější multisplit: jedna venkovní jednotka obslouží až pět vnitřních. Na fasádě tak visí jen jedno zařízení, což ocení SVJ i sousedé. Každá vnitřní jednotka se přitom ovládá samostatně.</p>
+      </div>
+      <div>
+        <h2>Klimatizace v paneláku a souhlas SVJ</h2>
+        <p>Fasáda bytového domu je společnou částí domu, a proto k umístění venkovní jednotky na ni potřebujete souhlas SVJ nebo bytového družstva. Mnoho domů má pro klimatizace jednotná pravidla: umístění na lodžii, barvu konzole nebo trasu potrubí. Pomůžeme vám připravit podklady pro výbor, typicky technický list jednotky s hlučností a nákres umístění.</p>
+        <p>Venkovní jednotka musí splnit hlukový limit 40 dB v noci před okny sousedů. Moderní invertorové jednotky ho při správném umístění a nočním tichém režimu bez problému zvládají. Více v článku <a href="/blog/klimatizace-v-panelaku/">klimatizace v panelovém domě</a>.</p>
+        <h2>Kolik stojí klimatizace do bytu</h2>
+        <p>Klimatizace do jedné místnosti vyjde včetně standardní montáže a 12% DPH orientačně na 30 000 až 60 000 Kč. Cena závisí na řadě jednotky, délce potrubí a na tom, kam půjde venkovní jednotka. Orientační cenu pro váš byt spočítá <a href="/cena-klimatizace/">kalkulačka</a>.</p>
+        <h3>A co v zimě?</h3>
+        <p>Klimatizace je tepelné čerpadlo vzduch-vzduch. Na podzim a na jaře, kdy ještě nejede ústřední topení, umí byt rychle a levně vytopit. Z 1 kWh elektřiny vyrobí 4 až 5 kWh tepla.</p>
+      </div>
+    </div>
+  </section>
+</Landing>

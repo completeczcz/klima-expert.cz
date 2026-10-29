@@ -1,0 +1,45 @@
+---
+// Krátký první krok poptávky – pokračuje do /poptavka/ s předvyplněnými údaji.
+interface Props { heading?: string; preset?: string }
+const { heading = 'Co potřebujete vyřešit?', preset } = Astro.props;
+const options = [
+  { v: 'klimatizace-byt', l: 'Klimatizace do bytu' },
+  { v: 'klimatizace-dum', l: 'Klimatizace do domu' },
+  { v: 'klimatizace-kancelar', l: 'Klimatizace do kanceláře / provozovny' },
+  { v: 'tepelne-cerpadlo', l: 'Tepelné čerpadlo k vytápění' },
+  { v: 'servis', l: 'Servis nebo čištění klimatizace' },
+];
+---
+<form class="qs panel" action="/poptavka/" method="get" data-track="quickstart">
+  <p class="qs__h">{heading}</p>
+  <fieldset class="qs__opts">
+    <legend class="visually-hidden">Typ poptávky</legend>
+    {options.map((o, i) => (
+      <label class="qs__opt">
+        <input type="radio" name="typ" value={o.v} required checked={preset ? preset === o.v : i === 0} />
+        <span>{o.l}</span>
+      </label>
+    ))}
+  </fieldset>
+  <label class="qs__psc">
+    <span>PSČ místa montáže</span>
+    <input name="psc" inputmode="numeric" autocomplete="postal-code" pattern="[0-9 ]{5,6}" placeholder="např. 190 14" />
+  </label>
+  <button class="btn btn--sun qs__btn" type="submit">Pokračovat k poptávce</button>
+  <p class="qs__note small muted">Zdarma a nezávazně. Ozveme se {`do 1 pracovního dne`}.</p>
+</form>
+
+<style>
+  .qs { display: grid; gap: 14px; }
+  .qs__h { font: 700 var(--step-1)/1.2 var(--font-head); margin: 0; }
+  .qs__opts { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .qs__opt { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; cursor: pointer; font-weight: 600; transition: border-color 0.15s, background 0.15s; }
+  .qs__opt:hover { border-color: var(--contour); }
+  .qs__opt:has(input:checked) { border-color: var(--ink); background: var(--ice); }
+  .qs__opt input { width: 18px; height: 18px; accent-color: var(--ink); flex: none; }
+  .qs__psc { display: grid; gap: 6px; font-weight: 600; font-size: var(--step--1); }
+  .qs__psc input { font: inherit; font-size: var(--step-0); font-weight: 400; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper); }
+  .qs__psc input:focus { border-color: var(--ink); outline: none; box-shadow: 0 0 0 3px var(--ice-deep); }
+  .qs__btn { width: 100%; }
+  .qs__note { margin: 0; text-align: center; }
+</style>

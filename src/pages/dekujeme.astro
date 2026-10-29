@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Děkujeme za poptávku" description="Vaši poptávku jsme přijali. Ozveme se vám do 1 pracovního dne." noindex hideStickyCta>
+  <section class="section ty">
+    <div class="wrap narrow">
+      <h1>Děkujeme, poptávku jsme přijali</h1>
+      <p class="lead">Ozveme se vám {site.responseTime} a domluvíme další postup. Potvrzení jsme poslali i na váš e-mail.</p>
+      <h2>Co bude následovat</h2>
+      <ol class="ty__list">
+        <li>Projdeme vaši poptávku a případně si upřesníme detaily telefonem.</li>
+        <li>Předáme ji jedné ověřené montážní firmě z vašeho kraje.</li>
+        <li>Firma se s vámi domluví na zaměření a připraví cenovou nabídku zdarma.</li>
+      </ol>
+      <p>Mezitím můžete připravit fotky místa pro vnitřní a venkovní jednotku a místa, kde je nejbližší elektrická zásuvka nebo rozvaděč. Hodně to urychlí přípravu nabídky.</p>
+      <p>Spěcháte? Volejte <a href={site.phoneHref}>{site.phone}</a> ({site.hours}).</p>
+      <p><a class="btn btn--ghost" href="/blog/">Mezitím do poradny</a></p>
+    </div>
+  </section>
+</Base>
+<script is:inline>
+  try {
+    var lead = JSON.parse(sessionStorage.getItem('ke-lead') || 'null');
+    if (lead && !sessionStorage.getItem('ke-lead-tracked')) {
+      sessionStorage.setItem('ke-lead-tracked', '1');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead', lead_type: lead.typ, lead_id: lead.id });
+      if (window.gtag) window.gtag('event', 'generate_lead', { lead_type: lead.typ, value: 1, currency: 'CZK' });
+    }
+  } catch (e) {}
+</script>
+<style>
+  .ty { background: linear-gradient(180deg, var(--paper), var(--ice)); min-height: 60vh; }
+  .ty__list { padding-left: 1.3em; margin-bottom: 1.5em; }
+  .ty__list li { margin-bottom: 0.5em; }
+  .ty h2 { font-size: var(--step-2); margin-top: 1.4em; }
+</style>

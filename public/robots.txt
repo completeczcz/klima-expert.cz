@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dekujeme/
+
+Sitemap: https://klima-expert.cz/sitemap-index.xml

@@ -1,0 +1,43 @@
+---
+import Landing from '../layouts/Landing.astro';
+const faq = [
+  { q: 'Jak často se má klimatizace čistit?', a: 'Filtry ve vnitřní jednotce stačí vyprat zhruba jednou za měsíc během sezóny, to zvládnete sami. Odborné čištění a dezinfekci výměníku doporučujeme jednou ročně, ideálně na jaře před sezónou. Více v článku <a href="/blog/cisteni-a-servis-klimatizace/">čištění a servis klimatizace</a>.' },
+  { q: 'Kolik stojí servis klimatizace?', a: 'Běžné čištění a kontrola jedné nástěnné jednotky vychází orientačně na 1 500 až 2 500 Kč, další jednotka na stejném místě bývá levnější. Cena závisí na dojezdu a stavu jednotky.' },
+  { q: 'Musím mít kontrolu těsnosti?', a: 'Povinná kontrola těsnosti se týká zařízení s náplní chladiva od 5 tun ekvivalentu CO₂. Běžné domácí klimatizace s chladivem R32 jsou obvykle pod tímto limitem. Kontrolu ale doporučujeme při každém servisu.' },
+  { q: 'Servisujete i klimatizace, které jste nemontovali?', a: 'Ano, partnerské firmy servisují jednotky Mitsubishi Heavy Industries a Hisense i od jiných montážních firem. Další značky po domluvě.' },
+];
+---
+<Landing
+  title="Servis a čištění klimatizace – cena a objednání"
+  description="Servis, čištění a dezinfekce klimatizace, kontrola těsnosti a opravy. Mitsubishi Heavy Industries a Hisense po celé ČR. Objednejte servis online."
+  h1="Servis a čištění klimatizace"
+  lead="Pravidelný servis prodlouží životnost klimatizace, sníží spotřebu a zajistí čistý vzduch. Objednejte čištění, kontrolu nebo opravu u partnerské firmy ve vašem kraji."
+  points={['Čištění a dezinfekce vnitřní i venkovní jednotky', 'Kontrola těsnosti a funkce, protokol', 'Opravy a záruční servis']}
+  preset="servis"
+  crumbs={[{ name: 'Servis klimatizace', href: '/servis-klimatizace/' }]}
+  faq={faq}
+  ctaTitle="Objednejte servis klimatizace"
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      <div>
+        <h2>Co obsahuje pravidelný servis</h2>
+        <ul class="checks">
+          <li>Vyčištění a dezinfekce filtrů a výměníku vnitřní jednotky</li>
+          <li>Kontrola a vyčištění odvodu kondenzátu</li>
+          <li>Očištění výměníku venkovní jednotky</li>
+          <li>Kontrola provozních tlaků, teplot a těsnosti spojů</li>
+          <li>Kontrola elektrického zapojení a funkce ovládání</li>
+          <li>Záznam do servisní knížky nebo protokolu</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Proč servis nevynechávat</h2>
+        <p>Na zanesených filtrech a výměníku se usazuje prach a mohou se v nich množit plísně a bakterie, které klimatizace rozfoukává do místnosti. Zanesená jednotka také hůř předává teplo, běží déle a spotřebuje víc elektřiny.</p>
+        <p>Pravidelný odborný servis bývá i podmínkou prodloužené záruky u některých výrobců. Proto si servisní protokoly uschovejte.</p>
+        <h3>Kdy volat kvůli poruše</h3>
+        <p>Pokud klimatizace přestane chladit, kape z ní voda, zapáchá, ozývá se neobvyklý hluk nebo displej ukazuje chybový kód, jednotku vypněte a objednejte kontrolu. Do poznámky v poptávce napište kód chyby a model jednotky.</p>
+      </div>
+    </div>
+  </section>
+</Landing>

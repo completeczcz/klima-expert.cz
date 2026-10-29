@@ -1,0 +1,175 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SeriesRow from '../../components/SeriesRow.astro';
+import Faq from '../../components/Faq.astro';
+import { products, fromPrice, tierLabel, catLabel, useLabel, kw, type Series } from '../../data/products';
+import { czk, montaz } from '../../data/pricing';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return products.map((s) => ({ params: { id: s.id }, props: { s } }));
+}
+const { s } = Astro.props as { s: Series };
+const isTc = s.cat === 'tepelne-cerpadlo';
+const isMulti = s.cat === 'multisplit';
+const price = fromPrice(s);
+const typ = isTc ? 'tepelne-cerpadlo' : s.uses.includes('kancelar') && !s.uses.includes('byt') ? 'klimatizace-kancelar' : s.uses.includes('byt') ? 'klimatizace-byt' : 'klimatizace-dum';
+const q = new URLSearchParams({ typ, znacka: s.brand, poznamka: `Mám zájem o řadu ${s.title}.` });
+const related = products.filter((p) => p.id !== s.id && p.cat === s.cat && !p.status).slice(0, 4);
+const minus = (n: number) => String(n).replace('-', '−');
+const kwRange = (() => {
+  const v = s.models.map((m) => (isTc ? m.heatKw : m.coolKw)).filter((n): n is number => n != null);
+  return v.length ? `${kw(Math.min(...v))} – ${kw(Math.max(...v))}` : null;
+})();
+
+const stats = [
+  kwRange && { k: isTc ? 'Topný výkon' : 'Chladicí výkon', v: kwRange },
+  !isTc && s.noiseMin && { k: 'Hlučnost vnitřní jednotky od', v: `${s.noiseMin} dB(A)` },
+  s.heatMin != null && { k: 'Topí do venkovní teploty', v: `${minus(s.heatMin)} °C` },
+  isMulti && s.outdoorUnits.length && { k: 'Počet místností', v: `2 až ${Math.max(...s.outdoorUnits.map((o) => o.maxIndoor ?? 0))}` },
+  s.refrigerant && { k: 'Chladivo', v: s.refrigerant },
+].filter(Boolean) as { k: string; v: string }[];
+
+const desc = `${s.title}: ${s.intro.split('. ')[0]}. Parametry, výkony a orientační cena s montáží${price ? ` od ${czk(price)}` : ''}.`.slice(0, 158);
+const titleTag = `${s.title}${isTc ? ' – tepelné čerpadlo' : ''}`.slice(0, 60);
+
+const faq = isTc
+  ? [
+      { q: `Kolik stojí ${s.title} s instalací?`, a: price ? `Orientačně od ${czk(price)} včetně DPH a základní instalace. Konečná cena závisí na výkonu, zásobníku teplé vody, úpravách otopné soustavy a elektroinstalaci. Přesnou nabídku připraví partnerská firma po prohlídce domu.` : 'Cenu zatím výrobce nezveřejnil. Pošlete poptávku a ozveme se, jakmile bude řada dostupná.' },
+      { q: 'Lze na tepelné čerpadlo získat dotaci?', a: 'Tepelná čerpadla vzduch-voda bývají podporovaná programem Nová zelená úsporám. Aktuální podmínky a výši podpory najdete v článku <a href="/blog/dotace-na-tepelne-cerpadlo/">Dotace na tepelné čerpadlo</a>.' },
+      { q: 'Jaký výkon potřebuji?', a: 'Výkon se určuje podle tepelné ztráty domu, ne podle plochy. Orientačně pomůže <a href="/blog/vykon-tepelneho-cerpadla/">náš průvodce dimenzováním</a>, přesný návrh udělá technik.' },
+    ]
+  : [
+      { q: `Kolik stojí klimatizace ${s.title} s montáží?`, a: price ? `Orientačně od ${czk(price)} včetně DPH a standardní montáže${isMulti ? ' pro dvě místnosti' : ''}. Standardní montáž počítá s krátkou trasou potrubí (kolem 3 m) a venkovní jednotkou na konzoli. Delší trasa, montáž ve výšce nebo čerpadlo kondenzátu cenu navýší.` : 'Cenu připraví partnerská firma po zaměření.' },
+      { q: 'Jaký výkon zvolit?', a: 'Pro běžnou obytnou místnost se počítá zhruba 100 W chladicího výkonu na m², pro slunné místnosti a podkroví více. Vyzkoušejte <a href="/cena-klimatizace/">kalkulačku</a> nebo si přečtěte <a href="/blog/jaky-vykon-klimatizace-na-m2/">jak spočítat výkon klimatizace</a>.' },
+      { q: 'Kdo klimatizaci namontuje a jaká je záruka?', a: `Montáž provede partnerská firma z vašeho kraje s osvědčením pro práci s chladivy. Záruka na jednotky ${s.brand} je ${s.brandSlug === 'hisense' ? site.warranty.hisense + ' roky' : site.warranty.mhi + ' let'}.` },
+    ];
+---
+<Base
+  title={titleTag}
+  description={desc}
+  crumbs={[{ name: 'Produkty', href: '/produkty/' }, { name: s.title, href: `/produkty/${s.id}/` }]}
+>
+  <section class="ph">
+    <div class="wrap ph__in">
+      <div>
+        <p class="ph__meta"><a href={`/znacky/${s.brandSlug}/`}>{s.brand}</a><span>{catLabel[s.cat]}</span><span>{tierLabel[s.tier]}</span></p>
+        <h1>{s.title}</h1>
+        <p class="lead">{s.intro}</p>
+        {s.status && <p class="badge badge--sun">Připravovaná novinka – cena zatím není zveřejněna</p>}
+        <p class="ph__uses">Vhodné pro: {s.uses.map((u) => useLabel[u]).join(', ')}</p>
+        <div class="ph__cta">
+          <a class="btn btn--sun" href={`/poptavka/?${q}`} data-track="cta-product">Poptat montáž této řady</a>
+          <a class="btn btn--ghost" href="/cena-klimatizace/">Spočítat cenu</a>
+        </div>
+      </div>
+      <aside class="ph__box panel">
+        <p class="ph__price-label">Orientační cena vč. {isTc ? 'instalace' : 'standardní montáže'} a 12% DPH</p>
+        <p class="ph__price">{price ? `od ${czk(price)}` : 'na dotaz'}</p>
+        <dl class="ph__stats">
+          {stats.map((x) => <div><dt>{x.k}</dt><dd>{x.v}</dd></div>)}
+        </dl>
+        <p class="small muted">Cena je orientační. Konečnou cenu určí partnerská firma po zaměření podle délky potrubí, umístění jednotek a elektroinstalace.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap pd">
+      <div>
+        <h2>Výbava a přednosti</h2>
+        <ul class="checks pd__feat">{s.features.map((f) => <li>{f}</li>)}</ul>
+        {s.colours.length > 0 && !isMulti && <p><strong>Barevná provedení:</strong> {s.colours.join(', ')}</p>}
+        {s.wifi && <p><strong>Wi-Fi ovládání:</strong> {s.wifi.replace(/\([^)]*Kč[^)]*\)/g, '').replace(/\s+/g, ' ').trim()}</p>}
+        {s.energy && <p><strong>Energetická třída:</strong> {s.energy}</p>}
+      </div>
+    </div>
+  </section>
+
+  {s.models.length > 0 && (
+    <section class="section section--ice">
+      <div class="wrap">
+        <h2>Dostupné výkony</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                {!isTc && <th>Chlazení</th>}
+                <th>Topení</th>
+                {isTc ? <th>Max. teplota vody</th> : <th>Třída chlazení / topení</th>}
+                {isTc ? <th>SCOP (35 °C)</th> : <th>Doporučeno pro místnost</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {s.models.map((m) => (
+                <tr>
+                  <td>{m.code}{m.line && s.cat !== 'nastenna' ? <span class="small muted"> ({m.line})</span> : null}</td>
+                  {!isTc && <td>{kw(m.coolKw)}</td>}
+                  <td>{kw(m.heatKw)}</td>
+                  {isTc ? <td>{m.flowTemp ? `${m.flowTemp} °C` : '–'}</td> : <td>{m.energy ?? '–'}</td>}
+                  {isTc ? <td>{m.scop ?? '–'}</td> : <td>{m.coolKw ? `cca ${Math.round(m.coolKw * 8)}–${Math.round(m.coolKw * 10)} m²` : '–'}</td>}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {!isTc && <p class="small muted">Doporučená plocha je orientační pro běžnou místnost s výškou stropu do 2,7 m. Slunné místnosti a podkroví potřebují vyšší výkon.</p>}
+      </div>
+    </section>
+  )}
+
+  {isMulti && s.outdoorUnits.length > 0 && (
+    <section class="section section--ice">
+      <div class="wrap">
+        <h2>Venkovní jednotky</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Venkovní jednotka</th><th>Až místností</th><th>Chlazení</th><th>Topení</th><th>Třída</th></tr></thead>
+            <tbody>
+              {s.outdoorUnits.map((o) => (
+                <tr><td>{o.code}</td><td>{o.maxIndoor ?? '–'}</td><td>{kw(o.coolKw)}</td><td>{kw(o.heatKw)}</td><td>{o.energy ?? '–'}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted">Montáž multisplitu stojí orientačně {czk(montaz.multisplit[0])} až {czk(montaz.multisplit[1])} za každou vnitřní jednotku podle délky rozvodů.</p>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap"><Faq items={faq} /></div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section section--ice">
+      <div class="wrap">
+        <h2>Podobné řady</h2>
+        {related.map((r) => <SeriesRow s={r} />)}
+      </div>
+    </section>
+  )}
+
+  <CtaBand title={`Chcete ${isTc ? 'tepelné čerpadlo' : 'klimatizaci'} ${s.brand}?`} />
+</Base>
+
+<style>
+  .ph { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
+  .ph__in { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .ph h1 { font-size: var(--step-4); }
+  .ph__meta { font-size: var(--step--1); color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .ph__meta a { font-weight: 700; color: var(--ink); }
+  .ph__uses { font-weight: 600; }
+  .ph__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .ph__price-label { font-size: var(--step--1); color: var(--ink-soft); margin: 0; }
+  .ph__price { font: 800 var(--step-3)/1.1 var(--font-head); margin: 4px 0 18px; }
+  .ph__stats { margin: 0 0 16px; border-top: 1px solid var(--line); }
+  .ph__stats div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: var(--step--1); }
+  .ph__stats dt { color: var(--ink-soft); }
+  .ph__stats dd { margin: 0; font-weight: 700; text-align: right; }
+  .pd__feat { columns: 2; column-gap: 40px; }
+  .pd__feat li { break-inside: avoid; }
+  @media (max-width: 900px) { .ph__in { grid-template-columns: 1fr; } .pd__feat { columns: 1; } }
+</style>

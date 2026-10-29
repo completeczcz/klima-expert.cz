@@ -1,0 +1,50 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products } from '../../data/products';
+const series = products.filter((p) => p.cat === 'tepelne-cerpadlo');
+const faq = [
+  { q: 'Kolik stojí tepelné čerpadlo vzduch-voda?', a: 'Pro běžný rodinný dům orientačně 250 000 až 450 000 Kč včetně instalace a 12% DPH. Podrobný rozpis podle výkonu najdete na stránce <a href="/cena-tepelneho-cerpadla/">cena tepelného čerpadla</a>.' },
+  { q: 'Jaký výkon tepelného čerpadla potřebuji?', a: 'Výkon se navrhuje podle tepelné ztráty domu. Novostavba o 140 m² často vystačí s 6 až 8 kW, starší nezateplený dům stejné velikosti potřebuje 12 kW i víc. Více v článku <a href="/blog/vykon-tepelneho-cerpadla/">jak dimenzovat tepelné čerpadlo</a>.' },
+  { q: 'Monoblok, nebo split?', a: 'Monoblok má vše ve venkovní jednotce a do domu vede jen voda. Instalace je jednodušší a nepracuje se s chladivem. Split má část techniky v domě a je vhodný tam, kde chcete mít hydrauliku uvnitř. Verze Integra má navíc vestavěný zásobník teplé vody 230 l.' },
+  { q: 'Lze tepelné čerpadlo použít s radiátory?', a: 'Ano, pokud radiátory zvládnou nižší teplotu topné vody, typicky do 50 až 55 °C. Hisense Hi-Therma ohřeje vodu až na 60 až 65 °C podle výkonu. Více v článku <a href="/blog/tepelne-cerpadlo-do-starsiho-domu/">tepelné čerpadlo do staršího domu</a>.' },
+  { q: 'Je na tepelné čerpadlo dotace?', a: 'Od června 2026 běží nová etapa programu Nová zelená úsporám. Přímou dotaci mohou získat domácnosti s nižšími příjmy v NZÚ Light, ostatní mohou využít bezúročný úvěr. Podrobnosti v článku <a href="/blog/dotace-na-tepelne-cerpadlo/">dotace na tepelné čerpadlo</a>.' },
+];
+---
+<Landing
+  title="Tepelné čerpadlo vzduch-voda s instalací"
+  description="Tepelná čerpadla vzduch-voda Hisense Hi-Therma pro vytápění a ohřev vody v rodinném domě. Návrh výkonu, instalace po celé ČR, pomoc s dotací NZÚ."
+  h1="Tepelné čerpadlo vzduch-voda pro rodinný dům"
+  lead="Vytápění, ohřev teplé vody a v létě i chlazení z jednoho zařízení. Navrhneme výkon podle vašeho domu a partnerská firma tepelné čerpadlo nainstaluje."
+  points={['Vytápí až do −25 °C venkovní teploty', 'Pro novostavby i výměnu starého kotle', 'Pomoc s dotací Nová zelená úsporám']}
+  preset="tepelne-cerpadlo"
+  crumbs={[{ name: 'Tepelná čerpadla', href: '/tepelna-cerpadla/' }]}
+  series={series}
+  seriesTitle="Tepelná čerpadla Hisense Hi-Therma"
+  seriesLead="Všechny verze vytápějí, ohřívají teplou vodu a v létě umí chladit. Pracují do −25 °C a zvládnou až dva topné okruhy, například podlahové topení a radiátory."
+  faq={faq}
+  ctaTitle="Chcete nabídku na tepelné čerpadlo?"
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      <div>
+        <h2>Jak tepelné čerpadlo vzduch-voda funguje</h2>
+        <p>Tepelné čerpadlo odebírá teplo z venkovního vzduchu a předává ho vodě v otopné soustavě. Z jedné kilowatthodiny elektřiny vyrobí podle venkovní teploty tři až pět kilowatthodin tepla. Proto patří k nejúspornějším způsobům vytápění rodinného domu.</p>
+        <p>Venkovní jednotka stojí u domu na podstavci nebo na konzoli. V domě je hydraulický modul nebo vnitřní jednotka se zásobníkem teplé vody. Čerpadlo se napojí na podlahové topení, radiátory, nebo na obojí.</p>
+        <h3>Pro koho se hodí</h3>
+        <ul class="checks">
+          <li>Novostavby s podlahovým topením, kde je tepelné čerpadlo nejúčinnější</li>
+          <li>Zateplené domy, které mění plynový nebo elektrický kotel</li>
+          <li>Starší domy s radiátory po posouzení otopné soustavy</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Co pro vás zařídíme</h2>
+        <p>Nejdřív si od vás vezmeme základní údaje o domě: plochu, zateplení, současný zdroj tepla a otopnou soustavu. Partnerská firma pak navrhne výkon, typ jednotky a velikost zásobníku teplé vody a připraví cenovou nabídku.</p>
+        <p>Pomůžeme i s orientací v programu Nová zelená úsporám. Od června 2026 nabízí přímou dotaci domácnostem s nižšími příjmy a bezúročný úvěr ostatním.</p>
+        <h3>Nechcete hned celé vytápění?</h3>
+        <p>Pokud hledáte úsporné přitápění nebo vytápění jednotlivých místností, zvažte <a href="/blog/tepelne-cerpadlo-vzduch-vzduch/">tepelné čerpadlo vzduch-vzduch</a>, tedy klimatizaci, která v zimě topí. Je levnější a v létě chladí.</p>
+        <p><a class="btn btn--ink" href="/cena-tepelneho-cerpadla/">Ceny tepelných čerpadel</a></p>
+      </div>
+    </div>
+  </section>
+</Landing>

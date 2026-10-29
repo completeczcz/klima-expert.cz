@@ -1,0 +1,165 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Crumb { name: string; href: string }
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: Record<string, unknown>[];
+  crumbs?: Crumb[];
+  hideStickyCta?: boolean;
+}
+const { title, description, ogType = 'website', noindex = false, schema = [], crumbs = [], hideStickyCta = false } = Astro.props;
+const canonical = Astro.props.canonical ?? new URL(Astro.url.pathname, site.url).href;
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const ogImage = new URL('/og.png', site.url).href;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HVACBusiness',
+  '@id': `${site.url}/#firma`,
+  name: site.name,
+  url: site.url,
+  telephone: site.phone,
+  email: site.email,
+  areaServed: { '@type': 'Country', name: 'Česká republika' },
+  priceRange: '$$',
+  image: ogImage,
+  logo: new URL('/logo.svg', site.url).href,
+  parentOrganization: { '@type': 'Organization', name: site.company.name, taxID: site.company.dic, identifier: site.company.ico },
+  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' },
+  brand: [{ '@type': 'Brand', name: 'Mitsubishi Heavy Industries' }, { '@type': 'Brand', name: 'Hisense' }],
+};
+const crumbSchema = crumbs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ name: 'Úvod', href: '/' }, ...crumbs].map((c, i) => ({
+        '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, site.url).href,
+      })),
+    }
+  : null;
+const allSchema = [orgSchema, ...(crumbSchema ? [crumbSchema] : []), ...schema];
+const { gtmId, ga4Id, adsId } = site.analytics;
+---
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="theme-color" content="#13283a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Poradna Klima Expert" href="/rss.xml" />
+    {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
+    <!-- Google Consent Mode v2: výchozí stav = vše zamítnuto, dokud návštěvník nesouhlasí -->
+    <script is:inline define:vars={{ gtmId, ga4Id, adsId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      var saved = null;
+      try { saved = JSON.parse(localStorage.getItem('ke-consent') || 'null'); } catch (e) {}
+      gtag('consent', 'default', {
+        ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+        analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
+        wait_for_update: 500
+      });
+      if (saved) {
+        gtag('consent', 'update', {
+          analytics_storage: saved.analytics ? 'granted' : 'denied',
+          ad_storage: saved.marketing ? 'granted' : 'denied',
+          ad_user_data: saved.marketing ? 'granted' : 'denied',
+          ad_personalization: saved.marketing ? 'granted' : 'denied'
+        });
+      }
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+      // Zachycení gclid / UTM pro přiřazení poptávky ke kampani
+      try {
+        var q = new URLSearchParams(location.search);
+        ['gclid','gbraid','wbraid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function (k) {
+          if (q.get(k)) sessionStorage.setItem('ke-' + k, q.get(k));
+        });
+        if (!sessionStorage.getItem('ke-landing')) sessionStorage.setItem('ke-landing', location.pathname);
+      } catch (e) {}
+      if (gtmId) {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtmId);
+      } else if (ga4Id || adsId) {
+        var s = document.createElement('script'); s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + (ga4Id || adsId);
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        if (ga4Id) gtag('config', ga4Id);
+        if (adsId) gtag('config', adsId);
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#obsah">Přeskočit na obsah</a>
+    <Header />
+    <main id="obsah">
+      {crumbs.length > 0 && (
+        <nav class="crumbs wrap" aria-label="Drobečková navigace">
+          <a href="/">Úvod</a>
+          {crumbs.map((c, i) => (
+            <>
+              <span aria-hidden="true">/</span>
+              {i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <a href={c.href}>{c.name}</a>}
+            </>
+          ))}
+        </nav>
+      )}
+      <slot />
+    </main>
+    <Footer />
+    {!hideStickyCta && (
+      <div class="sticky-cta" aria-label="Rychlý kontakt">
+        <a class="btn btn--ghost" href={site.phoneHref} data-track="phone">Zavolat</a>
+        <a class="btn btn--sun" href="/poptavka/" data-track="cta-sticky">Nezávazná poptávka</a>
+      </div>
+    )}
+    <CookieBanner />
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+        if (a && window.gtag) gtag('event', a.href.indexOf('tel:') === 0 ? 'phone_click' : 'email_click');
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .crumbs { display: flex; flex-wrap: wrap; gap: 0.5em; padding-top: 18px; font-size: var(--step--1); color: var(--ink-soft); }
+  .crumbs a { color: var(--ink-soft); }
+  .sticky-cta { display: none; }
+  @media (max-width: 760px) {
+    .sticky-cta {
+      position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 2fr; gap: 10px;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(244, 247, 248, 0.96);
+      border-top: 1px solid var(--line); backdrop-filter: blur(8px);
+    }
+    .sticky-cta .btn { min-height: 46px; padding-inline: 0.8em; }
+    :global(body) { padding-bottom: 70px; }
+  }
+</style>

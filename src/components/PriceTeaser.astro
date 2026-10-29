@@ -1,0 +1,29 @@
+---
+import { priceGuide } from '../data/pricing';
+---
+<section class="section">
+  <div class="wrap pt">
+    <div>
+      <h2>Kolik to bude stát?</h2>
+      <p class="lead">Orientační ceny včetně standardní montáže a 12% DPH, která platí při montáži v bytě nebo rodinném domě. Přesnou cenu určí partnerská firma po zaměření, záleží hlavně na délce potrubí a umístění venkovní jednotky.</p>
+      <p><a class="btn btn--ink" href="/cena-klimatizace/">Spočítat orientační cenu</a></p>
+    </div>
+    <dl class="pt__list">
+      {priceGuide.map((p) => (
+        <div class="pt__row">
+          <dt>{p.label}<span class="small muted">{p.note}</span></dt>
+          <dd>{p.range}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+<style>
+  .pt { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; }
+  .pt__list { margin: 0; border-top: 2px solid var(--ink); }
+  .pt__row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .pt__row dt { font-weight: 700; display: grid; gap: 2px; }
+  .pt__row dd { margin: 0; font: 800 var(--step-1)/1.1 var(--font-head); white-space: nowrap; }
+  @media (max-width: 860px) { .pt { grid-template-columns: 1fr; gap: 20px; } }
+  @media (max-width: 480px) { .pt__row { grid-template-columns: 1fr; gap: 4px; } }
+</style>

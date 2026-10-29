@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import QuickStart from '../../components/QuickStart.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { catNames, readingTime, fmtDate } from '../../data/blog';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((p) => ({ params: { slug: p.id }, props: { post: p, all: posts } }));
+}
+const { post, all } = Astro.props;
+const { Content, headings } = await render(post);
+const d = post.data;
+const related = (d.related.length ? d.related.map((r: string) => all.find((p: any) => p.id === r)).filter(Boolean) : all.filter((p: any) => p.id !== post.id && p.data.category === d.category)).slice(0, 3);
+const toc = headings.filter((h) => h.depth === 2);
+const url = new URL(`/blog/${post.id}/`, site.url).href;
+const preset = d.category === 'tepelna-cerpadla' ? 'tepelne-cerpadlo' : d.category === 'provoz-a-servis' && /servis|cisteni/.test(post.id) ? 'servis' : 'klimatizace-byt';
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.h1 ?? d.title,
+  description: d.description,
+  datePublished: d.published.toISOString(),
+  dateModified: (d.updated ?? d.published).toISOString(),
+  mainEntityOfPage: url,
+  author: { '@type': 'Organization', name: 'Redakce Klima Expert', url: site.url },
+  publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: new URL('/logo.svg', site.url).href } },
+  inLanguage: 'cs-CZ',
+  keywords: d.keywords.join(', '),
+};
+---
+<Base
+  title={d.title}
+  description={d.description}
+  ogType="article"
+  schema={[articleSchema]}
+  crumbs={[{ name: 'Poradna', href: '/blog/' }, { name: d.h1 ?? d.title, href: `/blog/${post.id}/` }]}
+>
+  <article class="wrap art">
+    <header class="art__head">
+      <p class="art__meta"><a href={`/blog/#${d.category}`}>{catNames[d.category]}</a><span>{readingTime(post.body)} min čtení</span><span>Aktualizováno {fmtDate(d.updated ?? d.published)}</span></p>
+      <h1>{d.h1 ?? d.title}</h1>
+      <p class="lead">{d.perex}</p>
+    </header>
+    <div class="art__grid">
+      <div class="art__body">
+        {toc.length > 3 && (
+          <nav class="toc" aria-label="Obsah článku">
+            <p class="toc__h">Obsah článku</p>
+            <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+          </nav>
+        )}
+        <div class="prose"><Content /></div>
+        {d.faq.length > 0 && <div class="art__faq"><Faq items={d.faq} /></div>}
+        {d.sources.length > 0 && (
+          <section class="src">
+            <h2>Zdroje</h2>
+            <ul>{d.sources.map((s) => <li><a href={s.url} rel="noopener nofollow" target="_blank">{s.title}</a></li>)}</ul>
+          </section>
+        )}
+      </div>
+      <aside class="art__side">
+        <div class="art__sticky"><QuickStart heading="Chcete nezávaznou nabídku?" preset={preset} /></div>
+      </aside>
+    </div>
+    {related.length > 0 && (
+      <section class="rel">
+        <h2>Mohlo by vás zajímat</h2>
+        <ul>{related.map((r: any) => <li><a href={`/blog/${r.id}/`}><strong>{r.data.h1 ?? r.data.title}</strong><span>{r.data.perex}</span></a></li>)}</ul>
+      </section>
+    )}
+  </article>
+  <CtaBand />
+</Base>
+<style>
+  .art { padding-block: 16px 64px; }
+  .art__head { max-width: 820px; padding: 12px 0 28px; }
+  .art__head h1 { font-size: var(--step-4); }
+  .art__meta { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: var(--step--1); color: var(--ink-soft); }
+  .art__meta a { font-weight: 700; color: var(--ink); }
+  .art__grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .art__sticky { position: sticky; top: 96px; }
+  .toc { background: var(--ice); border-radius: var(--radius-m); padding: 18px 22px; margin-bottom: 28px; max-width: 70ch; }
+  .toc__h { font-weight: 700; margin: 0 0 6px; }
+  .toc ol { margin: 0; padding-left: 1.2em; }
+  .toc li { margin: 4px 0; }
+  .prose :global(table) { display: block; overflow-x: auto; background: var(--white); border-radius: var(--radius-m); box-shadow: var(--shadow); }
+  .prose :global(h2) { scroll-margin-top: 96px; }
+  .art__faq { margin-top: 48px; }
+  .art__faq :global(h2) { font-size: var(--step-2); }
+  .src { margin-top: 40px; font-size: var(--step--1); }
+  .src h2 { font-size: var(--step-1); }
+  .src ul { padding-left: 1.2em; }
+  .rel { margin-top: 56px; border-top: 2px solid var(--ink); padding-top: 24px; }
+  .rel h2 { font-size: var(--step-2); }
+  .rel ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .rel a { text-decoration: none; display: grid; gap: 6px; }
+  .rel a:hover strong { text-decoration: underline; text-decoration-color: var(--sun); }
+  .rel span { color: var(--ink-soft); font-size: var(--step--1); }
+  @media (max-width: 980px) { .art__grid { grid-template-columns: 1fr; } .art__side { order: 2; } .rel ul { grid-template-columns: 1fr; } }
+</style>

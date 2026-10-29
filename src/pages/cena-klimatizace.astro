@@ -1,0 +1,266 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { products, tierLabel, kw } from '../data/products';
+import { priceWithInstall, montaz, extras, loadPerM2, czk, DPH } from '../data/pricing';
+
+// Data pro kalkulačku: nástěnné jednotky s cenou vč. montáže a DPH
+const wall = products.filter((p) => p.cat === 'nastenna');
+const calcUnits = wall.flatMap((s) =>
+  s.models
+    .filter((m) => m.coolKw && m.priceBezDph)
+    .map((m) => ({ s: s.title, id: s.id, brand: s.brandSlug, tier: s.tier, kw: m.coolKw!, p: priceWithInstall(m.priceBezDph, 'nastenna')! })),
+);
+const multi = products.filter((p) => p.cat === 'multisplit').map((s) => ({
+  s: s.title, id: s.id, brand: s.brandSlug, indoor: s.indoorUnitsMin ?? 8000,
+  outs: s.outdoorUnits.filter((o) => o.priceBezDph && o.coolKw && o.maxIndoor).map((o) => ({ kw: o.coolKw!, max: o.maxIndoor!, p: o.priceBezDph! })),
+}));
+const cfg = { units: calcUnits, multi, montaz, loadPerM2, dph: DPH };
+
+// Tabulka: cena od podle výkonu a třídy (spočítaná z dat)
+const sizes = [2.0, 2.5, 3.5, 5.0, 7.1];
+const near = (a: number, b: number) => Math.abs(a - b) <= 0.35;
+const tableRows = sizes.map((k) => {
+  const row: Record<string, string> = { kw: kw(k) };
+  (['zakladni', 'stredni', 'premium'] as const).forEach((t) => {
+    const c = calcUnits.filter((u) => u.tier === t && near(u.kw, k)).map((u) => u.p);
+    row[t] = c.length ? `od ${czk(Math.min(...c))}` : '–';
+  });
+  return row;
+});
+
+const faq = [
+  { q: 'Kolik stojí klimatizace do bytu s montáží?', a: 'Do jedné místnosti zaplatíte s běžnou montáží orientačně 30 000 až 60 000 Kč včetně 12% DPH. Byt 3+kk se třemi klimatizovanými místnostmi vychází s multisplitem obvykle na 90 000 až 150 000 Kč.' },
+  { q: 'Proč se ceny u různých firem tolik liší?', a: 'Rozdíl dělá značka a řada jednotky, délka a vedení potrubí, způsob odvodu kondenzátu, montáž ve výšce a to, co firma do „standardní montáže“ zahrnuje. Vždy si nechte rozepsat, co je v ceně.' },
+  { q: 'Jakou sazbu DPH zaplatím?', a: 'Při dodávce klimatizace s montáží do bytu nebo rodinného domu se obvykle uplatní snížená sazba 12 %. U kanceláří, provozoven, chat a garáží se platí 21 %.' },
+  { q: 'Je výsledek kalkulačky závazný?', a: 'Ne. Kalkulačka vychází z doporučených cen jednotek a typické ceny montáže. Přesnou cenu připraví partnerská firma po zaměření, zdarma a nezávazně.' },
+];
+---
+<Base
+  title="Kolik stojí klimatizace s montáží 2026 – kalkulačka"
+  description="Spočítejte si orientační cenu klimatizace s montáží. Výkon podle m², ceny řad Mitsubishi Heavy a Hisense, multisplit i příplatky. Vč. 12% DPH."
+  crumbs={[{ name: 'Cena klimatizace', href: '/cena-klimatizace/' }]}
+>
+  <section class="section kc">
+    <div class="wrap">
+      <div class="section__head">
+        <h1>Kolik stojí klimatizace s montáží</h1>
+        <p class="lead">Zadejte místnosti, které chcete klimatizovat. Kalkulačka doporučí výkon a ukáže orientační cenu pro úspornou, střední a prémiovou variantu, včetně standardní montáže a 12% DPH.</p>
+      </div>
+
+      <div class="calc">
+        <form class="calc__in panel" id="calc" onsubmit="return false">
+          <h2 class="calc__h">Vaše místnosti</h2>
+          <div id="rooms"></div>
+          <button type="button" class="btn btn--ghost calc__add" id="add">Přidat místnost</button>
+          <fieldset class="calc__pref">
+            <legend>Značka</legend>
+            <label><input type="radio" name="brand" value="" checked /> Je mi to jedno</label>
+            <label><input type="radio" name="brand" value="mitsubishi-heavy-industries" /> Mitsubishi Heavy Industries</label>
+            <label><input type="radio" name="brand" value="hisense" /> Hisense</label>
+          </fieldset>
+        </form>
+        <div class="calc__out" aria-live="polite">
+          <div class="panel">
+            <p class="calc__need" id="need"></p>
+            <div id="results"></div>
+            <p class="small muted">Cena zahrnuje jednotky podle doporučených cen distributora, standardní montáž (cca 3 m potrubí, kabeláž, odvod kondenzátu, průraz, konzole, uvedení do provozu) a 12% DPH. Konečnou cenu určí partnerská firma po zaměření.</p>
+            <a class="btn btn--sun calc__cta" id="cta" href="/poptavka/">Chci přesnou nabídku zdarma</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ice">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Ceny nástěnných klimatizací podle výkonu</h2>
+        <p class="lead">Nejnižší ceny jednotlivých výkonových tříd v naší nabídce, vždy včetně standardní montáže a 12% DPH. Rozdíl mezi třídami dělá hlavně hlučnost, účinnost, filtrace a výbava.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Výkon jednotky</th><th>{tierLabel.zakladni}</th><th>{tierLabel.stredni}</th><th>{tierLabel.premium}</th></tr></thead>
+          <tbody>
+            {tableRows.map((r) => <tr><td><strong>{r.kw}</strong></td><td>{r.zakladni}</td><td>{r.stredni}</td><td>{r.premium}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">Výkon 2,0 až 2,5 kW obvykle stačí pro ložnici nebo pokoj do 20–25 m², 3,5 kW pro obývací pokoj do 30–35 m². <a href="/blog/jaky-vykon-klimatizace-na-m2/">Jak spočítat výkon klimatizace</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two">
+      <div>
+        <h2>Co obsahuje standardní montáž</h2>
+        <ul class="checks">
+          <li>Chladivové potrubí s izolací do zhruba 3 m a propojovací kabel</li>
+          <li>Konzole pro venkovní jednotku na stěnu nebo na zem</li>
+          <li>Jeden průraz zdí a odvod kondenzátu samospádem</li>
+          <li>Vakuování a tlaková zkouška těsnosti</li>
+          <li>Uvedení do provozu, zaškolení a protokol o instalaci</li>
+        </ul>
+        <p>Standardní montáž nástěnné jednotky vychází orientačně na {czk(montaz.nastenna[0])} až {czk(montaz.nastenna[1])} včetně DPH. Kazetové a kanálové jednotky jsou pracnější, počítejte s {czk(montaz.kanalova[0])} a více.</p>
+      </div>
+      <div>
+        <h2>Časté příplatky</h2>
+        <div class="table-wrap">
+          <table>
+            <tbody>{extras.map((e) => <tr><td>{e.label}</td><td style="white-space:nowrap"><strong>{e.price}</strong></td></tr>)}</tbody>
+          </table>
+        </div>
+        <p class="small muted">Orientační ceny vč. DPH, každá firma je stanovuje sama.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ice">
+    <div class="wrap two">
+      <div>
+        <h2>Jeden multisplit, nebo více samostatných klimatizací?</h2>
+        <p>Multisplit má jednu venkovní jednotku pro dvě až pět místností. Ušetří místo na fasádě a vyhovuje tam, kde SVJ povolí jen jednu venkovní jednotku. Samostatné splity bývají ve výsledku podobně drahé, jsou ale nezávislé: když jedna jednotka selže, ostatní dál běží, a každá místnost může topit nebo chladit podle sebe.</p>
+        <p><a href="/blog/single-split-nebo-multisplit/">Podrobné srovnání single split a multisplit</a></p>
+      </div>
+      <div>
+        <h2>Na čem cena nejvíc závisí</h2>
+        <ul class="checks">
+          <li>Řada jednotky: tišší a účinnější prémiové řady stojí víc, ale méně spotřebují</li>
+          <li>Délka a vedení potrubí mezi vnitřní a venkovní jednotkou</li>
+          <li>Kam se dá venkovní jednotka umístit a jestli je potřeba plošina</li>
+          <li>Odvod kondenzátu: samospádem, nebo čerpadlem</li>
+          <li>Elektroinstalace a případný nový jistič</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="wrap"><Faq items={faq} /></div></section>
+  <CtaBand title="Chcete přesnou cenu?" text="Pošlete poptávku a partnerská firma z vašeho kraje přijede zaměřit a připraví závaznou nabídku zdarma." />
+</Base>
+
+<script define:vars={{ cfg }}>
+  const roomsEl = document.getElementById('rooms');
+  const add = document.getElementById('add');
+  const need = document.getElementById('need');
+  const results = document.getElementById('results');
+  const cta = document.getElementById('cta');
+  const form = document.getElementById('calc');
+  const SIZES = [2.0, 2.5, 3.5, 5.0, 6.3, 7.1];
+  const fmt = (n) => new Intl.NumberFormat('cs-CZ').format(Math.round(n / 100) * 100) + ' Kč';
+  const fkw = (n) => String(n).replace('.', ',') + ' kW';
+  let n = 0;
+
+  function addRoom(area = 20, type = 'bezne') {
+    if (n >= 5) return;
+    n++;
+    const row = document.createElement('div');
+    row.className = 'calc__room';
+    row.innerHTML = `
+      <span class="calc__rn">Místnost ${n}</span>
+      <label><span class="visually-hidden">Plocha místnosti ${n} v m²</span><input type="number" min="5" max="120" value="${area}" inputmode="numeric" data-k="area" /> m²</label>
+      <label><span class="visually-hidden">Typ místnosti ${n}</span><select data-k="type">
+        <option value="bezne">běžná</option><option value="slunne">slunná, velká okna</option><option value="podkrovi">podkroví</option>
+      </select></label>
+      ${n > 1 ? '<button type="button" class="calc__del" aria-label="Odebrat místnost">×</button>' : ''}`;
+    row.querySelector('select').value = type;
+    roomsEl.appendChild(row);
+    add.hidden = n >= 5;
+    calc();
+  }
+  roomsEl.addEventListener('click', (e) => {
+    if (!e.target.closest('.calc__del')) return;
+    e.target.closest('.calc__room').remove();
+    n = 0;
+    roomsEl.querySelectorAll('.calc__room').forEach((r) => (r.querySelector('.calc__rn').textContent = 'Místnost ' + ++n));
+    add.hidden = false;
+    calc();
+  });
+  add.addEventListener('click', () => addRoom(15));
+  form.addEventListener('input', calc);
+  form.addEventListener('change', calc);
+
+  function calc() {
+    const brand = form.querySelector('input[name="brand"]:checked').value;
+    const rooms = [...roomsEl.querySelectorAll('.calc__room')].map((r) => {
+      const area = Math.max(5, Math.min(120, +r.querySelector('[data-k="area"]').value || 0));
+      const type = r.querySelector('[data-k="type"]').value;
+      const load = (area * cfg.loadPerM2[type]) / 1000;
+      const size = SIZES.find((s) => s >= load * 0.95) || 7.1;
+      return { area, type, load, size };
+    });
+    const totalArea = rooms.reduce((a, r) => a + r.area, 0);
+    need.innerHTML = rooms.length === 1
+      ? `Doporučený výkon: <strong>${fkw(rooms[0].size)}</strong> (potřeba cca ${rooms[0].load.toFixed(1).replace('.', ',')} kW)`
+      : `Doporučené výkony: <strong>${rooms.map((r) => fkw(r.size)).join(' + ')}</strong>`;
+
+    const pool = cfg.units.filter((u) => !brand || u.brand === brand);
+    const pick = (tier, size) => {
+      const c = pool.filter((u) => u.tier === tier && u.kw >= size - 0.35).sort((a, b) => a.p - b.p || a.kw - b.kw);
+      return c[0];
+    };
+    const tiers = [['zakladni', 'Úsporná varianta'], ['stredni', 'Střední třída'], ['premium', 'Prémiová varianta']];
+    let html = '<h3 class="calc__rh">Samostatné klimatizace</h3><dl class="calc__res">';
+    tiers.forEach(([t, label]) => {
+      const picks = rooms.map((r) => pick(t, r.size));
+      if (picks.some((p) => !p)) return;
+      const sum = picks.reduce((a, p) => a + p.p, 0);
+      const names = [...new Set(picks.map((p) => p.s))].join(', ');
+      html += `<div><dt>${label}<span>${names}</span></dt><dd>${fmt(sum)} – ${fmt(sum * 1.25)}</dd></div>`;
+    });
+    html += '</dl>';
+
+    if (rooms.length >= 2) {
+      const sumKw = rooms.reduce((a, r) => a + r.size, 0);
+      const opts = cfg.multi.filter((m) => !brand || m.brand === brand).map((m) => {
+        const out = m.outs.filter((o) => o.max >= rooms.length && o.kw >= sumKw * 0.7).sort((a, b) => a.p - b.p)[0];
+        if (!out) return null;
+        const lo = (out.p + m.indoor * rooms.length) * cfg.dph + cfg.montaz.multisplit[0] * rooms.length;
+        return { s: m.s, lo, hi: lo * 1.45 };
+      }).filter(Boolean);
+      if (opts.length) {
+        html += '<h3 class="calc__rh">Multisplit (1 venkovní jednotka)</h3><dl class="calc__res">';
+        opts.forEach((o) => (html += `<div><dt>${o.s}</dt><dd>${fmt(o.lo)} – ${fmt(o.hi)}</dd></div>`));
+        html += '</dl>';
+      }
+    }
+    results.innerHTML = html;
+
+    const typ = totalArea > 90 || rooms.length >= 4 ? 'klimatizace-dum' : 'klimatizace-byt';
+    const note = `Z kalkulačky: ${rooms.length} místnost(i), ${rooms.map((r) => r.area + ' m²').join(', ')}; výkon ${rooms.map((r) => fkw(r.size)).join(' + ')}.`;
+    const q = new URLSearchParams({ typ, mistnosti: rooms.length >= 5 ? '5 a více' : String(rooms.length), plocha: String(totalArea), poznamka: note });
+    if (brand) q.set('znacka', brand === 'hisense' ? 'Hisense' : 'Mitsubishi Heavy Industries');
+    cta.href = '/poptavka/?' + q.toString();
+  }
+  addRoom(22);
+  window.gtag && window.gtag('event', 'calculator_view');
+</script>
+
+<style>
+  .kc { padding-top: 24px; }
+  .calc { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .calc__h { font-size: var(--step-1); }
+  :global(.calc__room) { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  :global(.calc__rn) { font-weight: 700; min-width: 90px; }
+  :global(.calc__room input), :global(.calc__room select) { font: inherit; padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+  :global(.calc__room input) { width: 80px; }
+  :global(.calc__del) { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--white); font-size: 1.2rem; cursor: pointer; color: var(--ink); }
+  .calc__add { margin-top: 14px; min-height: 42px; }
+  .calc__pref { border: 0; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
+  .calc__pref legend { font-weight: 700; margin-bottom: 6px; }
+  .calc__pref input { accent-color: var(--ink); }
+  .calc__out { position: sticky; top: 96px; }
+  .calc__need { font-size: var(--step-1); margin-top: 0; }
+  :global(.calc__rh) { font-size: var(--step-0); font-weight: 700; margin: 18px 0 6px; }
+  :global(.calc__res) { margin: 0; border-top: 2px solid var(--ink); }
+  :global(.calc__res div) { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  :global(.calc__res dt) { font-weight: 700; display: grid; }
+  :global(.calc__res dt span) { font-weight: 400; font-size: var(--step--1); color: var(--ink-soft); }
+  :global(.calc__res dd) { margin: 0; font: 800 var(--step-0)/1.3 var(--font-head); white-space: nowrap; text-align: right; }
+  .calc__cta { width: 100%; margin-top: 8px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .two h2 { font-size: var(--step-2); }
+  @media (max-width: 900px) { .calc, .two { grid-template-columns: 1fr; } .calc__out { position: static; } }
+  @media (max-width: 480px) { :global(.calc__res div) { grid-template-columns: 1fr; gap: 2px; } :global(.calc__res dd) { text-align: left; } }
+</style>

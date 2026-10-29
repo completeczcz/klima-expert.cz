@@ -1,0 +1,87 @@
+---
+// Šablona vstupních stránek služeb (klimatizace do bytu, domu, kanceláře, TČ…)
+import Base from './Base.astro';
+import QuickStart from '../components/QuickStart.astro';
+import SeriesRow from '../components/SeriesRow.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Steps from '../components/Steps.astro';
+import type { Series } from '../data/products';
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  lead: string;
+  points: string[];
+  preset: string;
+  crumbs: { name: string; href: string }[];
+  series?: Series[];
+  seriesTitle?: string;
+  seriesLead?: string;
+  faq?: { q: string; a: string }[];
+  ctaTitle?: string;
+  schema?: Record<string, unknown>[];
+}
+const { title, description, h1, lead, points, preset, crumbs, series = [], seriesTitle = 'Doporučené řady', seriesLead, faq = [], ctaTitle, schema = [] } = Astro.props;
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: h1,
+  description,
+  provider: { '@id': 'https://klima-expert.cz/#firma' },
+  areaServed: { '@type': 'Country', name: 'Česká republika' },
+};
+---
+<Base title={title} description={description} crumbs={crumbs} schema={[serviceSchema, ...schema]}>
+  <section class="lh">
+    <div class="wrap lh__in">
+      <div>
+        <h1>{h1}</h1>
+        <p class="lead">{lead}</p>
+        <ul class="checks lh__pts">{points.map((p) => <li>{p}</li>)}</ul>
+      </div>
+      <div><QuickStart preset={preset} /></div>
+    </div>
+  </section>
+
+  <div class="lc">
+    <slot />
+  </div>
+
+  {series.length > 0 && (
+    <section class="section section--ice">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>{seriesTitle}</h2>
+          {seriesLead && <p class="lead">{seriesLead}</p>}
+        </div>
+        {series.map((s) => <SeriesRow s={s} />)}
+        <p style="margin-top:24px"><a class="btn btn--ghost" href="/produkty/">Všechny řady</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--ink">
+    <div class="wrap">
+      <div class="section__head"><h2>Jak to probíhá</h2></div>
+      <Steps />
+    </div>
+  </section>
+
+  {faq.length > 0 && <section class="section"><div class="wrap"><Faq items={faq} /></div></section>}
+  <CtaBand title={ctaTitle} />
+</Base>
+
+<style>
+  .lh { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
+  .lh__in { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .lh h1 { max-width: 17ch; }
+  .lh__pts { font-weight: 600; margin-top: 1.4em; }
+  .lc :global(.copy) { padding-block: clamp(48px, 7vw, 88px); }
+  .lc :global(.copy__grid) { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); }
+  .lc :global(.copy h2) { font-size: var(--step-2); }
+  .lc :global(.copy h3) { margin-top: 1.4em; }
+  .lc :global(.copy p), .lc :global(.copy li) { max-width: 66ch; }
+  @media (max-width: 900px) { .lh__in, .lc :global(.copy__grid) { grid-template-columns: 1fr; } }
+</style>

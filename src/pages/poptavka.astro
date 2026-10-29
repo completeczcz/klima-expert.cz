@@ -1,0 +1,385 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, regions } from '../data/site';
+---
+<Base
+  title="Nezávazná poptávka klimatizace a tepelného čerpadla"
+  description="Pošlete nezávaznou poptávku na klimatizaci nebo tepelné čerpadlo s montáží. Partnerská firma z vašeho kraje se ozve, zaměří a nacení zdarma."
+  crumbs={[{ name: 'Poptávka', href: '/poptavka/' }]}
+  hideStickyCta
+>
+  <section class="section pq">
+    <div class="wrap pq__in">
+      <div class="pq__intro">
+        <h1>Nezávazná poptávka</h1>
+        <p class="lead">Čtyři krátké kroky, zabere to asi dvě minuty. Čím víc toho víme, tím přesnější bude první odhad ceny.</p>
+        <ul class="checks">
+          <li>Zdarma a bez závazku</li>
+          <li>Ozveme se {site.responseTime}</li>
+          <li>Zaměření a nabídku připraví ověřená firma z vašeho kraje</li>
+          <li>Vaše údaje dostane jen jedna vybraná partnerská firma</li>
+        </ul>
+        <p class="small muted">Raději telefonicky? Volejte <a href={site.phoneHref}>{site.phone}</a>, {site.hours}.</p>
+      </div>
+
+      <form class="pf panel" id="pf" action="/api/poptavka" method="post" novalidate>
+        <div class="pf__progress" aria-hidden="true"><span id="pf-bar"></span></div>
+        <p class="pf__stepinfo small muted" id="pf-stepinfo" aria-live="polite">Krok 1 ze 4</p>
+
+        <!-- KROK 1 -->
+        <fieldset class="pf__step" data-step="1">
+          <legend>Co potřebujete?</legend>
+          <div class="pf__tiles">
+            <label class="pf__tile"><input type="radio" name="typ" value="klimatizace-byt" required /><span>Klimatizace do bytu</span></label>
+            <label class="pf__tile"><input type="radio" name="typ" value="klimatizace-dum" /><span>Klimatizace do rodinného domu</span></label>
+            <label class="pf__tile"><input type="radio" name="typ" value="klimatizace-kancelar" /><span>Klimatizace do kanceláře, obchodu, provozovny</span></label>
+            <label class="pf__tile"><input type="radio" name="typ" value="tepelne-cerpadlo" /><span>Tepelné čerpadlo vzduch-voda</span></label>
+            <label class="pf__tile"><input type="radio" name="typ" value="servis" /><span>Servis, čištění nebo oprava</span></label>
+          </div>
+          <p class="pf__err" data-err="typ">Vyberte jednu z možností.</p>
+        </fieldset>
+
+        <!-- KROK 2 – klimatizace -->
+        <fieldset class="pf__step" data-step="2" data-for="klimatizace" hidden>
+          <legend>Prostor, který chcete klimatizovat</legend>
+          <div class="pf__field">
+            <span class="pf__label" id="l-mistnosti">Kolik místností?</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-mistnosti">
+              {['1', '2', '3', '4', '5 a více'].map((v, i) => <label class="pf__chip"><input type="radio" name="mistnosti" value={v} checked={i === 0} /><span>{v}</span></label>)}
+            </div>
+          </div>
+          <label class="pf__field">
+            <span class="pf__label">Přibližná plocha klimatizovaných místností (m²)</span>
+            <input type="number" name="plocha" min="5" max="2000" inputmode="numeric" placeholder="např. 45" />
+          </label>
+          <div class="pf__field">
+            <span class="pf__label" id="l-ucel">K čemu ji chcete používat?</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-ucel">
+              <label class="pf__chip"><input type="radio" name="ucel" value="chlazení i topení" checked /><span>Chlazení i topení</span></label>
+              <label class="pf__chip"><input type="radio" name="ucel" value="hlavně chlazení" /><span>Hlavně chlazení</span></label>
+            </div>
+          </div>
+          <div class="pf__field">
+            <span class="pf__label" id="l-znacka">Preferovaná značka</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-znacka">
+              <label class="pf__chip"><input type="radio" name="znacka" value="nevím, poraďte" checked /><span>Poraďte mi</span></label>
+              <label class="pf__chip"><input type="radio" name="znacka" value="Mitsubishi Heavy Industries" /><span>Mitsubishi Heavy</span></label>
+              <label class="pf__chip"><input type="radio" name="znacka" value="Hisense" /><span>Hisense</span></label>
+            </div>
+          </div>
+          <div class="pf__field">
+            <span class="pf__label" id="l-objekt">Kde bude venkovní jednotka?</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-objekt">
+              <label class="pf__chip"><input type="radio" name="venkovni" value="fasáda / stěna" checked /><span>Na fasádě</span></label>
+              <label class="pf__chip"><input type="radio" name="venkovni" value="balkon / lodžie" /><span>Na balkoně</span></label>
+              <label class="pf__chip"><input type="radio" name="venkovni" value="na zemi / terase" /><span>Na zemi</span></label>
+              <label class="pf__chip"><input type="radio" name="venkovni" value="střecha" /><span>Na střeše</span></label>
+              <label class="pf__chip"><input type="radio" name="venkovni" value="nevím" /><span>Nevím</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- KROK 2 – tepelné čerpadlo -->
+        <fieldset class="pf__step" data-step="2" data-for="tepelne-cerpadlo" hidden>
+          <legend>Dům, který chcete vytápět</legend>
+          <div class="pf__field">
+            <span class="pf__label" id="l-dum">O jaký dům jde?</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-dum">
+              <label class="pf__chip"><input type="radio" name="dum" value="novostavba" checked /><span>Novostavba</span></label>
+              <label class="pf__chip"><input type="radio" name="dum" value="starší dům" /><span>Starší dům</span></label>
+              <label class="pf__chip"><input type="radio" name="dum" value="po zateplení" /><span>Po zateplení</span></label>
+            </div>
+          </div>
+          <label class="pf__field">
+            <span class="pf__label">Vytápěná plocha (m²)</span>
+            <input type="number" name="plocha_tc" min="20" max="2000" inputmode="numeric" placeholder="např. 140" />
+          </label>
+          <label class="pf__field">
+            <span class="pf__label">Čím topíte dnes?</span>
+            <select name="zdroj">
+              <option value="">Vyberte</option>
+              <option>Plynový kotel</option><option>Kotel na tuhá paliva</option><option>Elektrokotel / přímotopy</option>
+              <option>Starší tepelné čerpadlo</option><option>Jde o novostavbu</option><option>Jiné</option>
+            </select>
+          </label>
+          <div class="pf__field">
+            <span class="pf__label" id="l-soustava">Otopná soustava</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-soustava">
+              <label class="pf__chip"><input type="radio" name="soustava" value="podlahové topení" checked /><span>Podlahové</span></label>
+              <label class="pf__chip"><input type="radio" name="soustava" value="radiátory" /><span>Radiátory</span></label>
+              <label class="pf__chip"><input type="radio" name="soustava" value="kombinace" /><span>Kombinace</span></label>
+            </div>
+          </div>
+          <label class="pf__check"><input type="checkbox" name="dotace" value="ano" /> <span>Mám zájem o pomoc s dotací Nová zelená úsporám</span></label>
+        </fieldset>
+
+        <!-- KROK 2 – servis -->
+        <fieldset class="pf__step" data-step="2" data-for="servis" hidden>
+          <legend>Co je potřeba udělat?</legend>
+          <div class="pf__field">
+            <span class="pf__label" id="l-servis">Typ servisu</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-servis">
+              <label class="pf__chip"><input type="radio" name="servis" value="pravidelné čištění" checked /><span>Čištění a údržba</span></label>
+              <label class="pf__chip"><input type="radio" name="servis" value="kontrola těsnosti" /><span>Kontrola těsnosti</span></label>
+              <label class="pf__chip"><input type="radio" name="servis" value="porucha" /><span>Porucha</span></label>
+            </div>
+          </div>
+          <label class="pf__field">
+            <span class="pf__label">Značka a počet jednotek</span>
+            <input type="text" name="servis_zarizeni" maxlength="200" placeholder="např. Mitsubishi Heavy, 2 vnitřní jednotky" />
+          </label>
+        </fieldset>
+
+        <!-- KROK 3 -->
+        <fieldset class="pf__step" data-step="3" hidden>
+          <legend>Kde a kdy</legend>
+          <div class="pf__row">
+            <label class="pf__field">
+              <span class="pf__label">PSČ</span>
+              <input type="text" name="psc" inputmode="numeric" autocomplete="postal-code" required pattern="[0-9]{3} ?[0-9]{2}" placeholder="190 14" />
+              <span class="pf__err" data-err="psc">Zadejte PSČ ve tvaru 190 14.</span>
+            </label>
+            <label class="pf__field">
+              <span class="pf__label">Obec</span>
+              <input type="text" name="obec" autocomplete="address-level2" maxlength="80" required placeholder="např. Praha 9" />
+              <span class="pf__err" data-err="obec">Vyplňte obec.</span>
+            </label>
+          </div>
+          <label class="pf__field">
+            <span class="pf__label">Kraj</span>
+            <select name="kraj" required>
+              <option value="">Vyberte kraj</option>
+              {regions.map((r) => <option value={r.slug}>{r.name}</option>)}
+            </select>
+            <span class="pf__err" data-err="kraj">Vyberte kraj.</span>
+          </label>
+          <div class="pf__field">
+            <span class="pf__label" id="l-termin">Kdy chcete realizovat?</span>
+            <div class="pf__chips" role="radiogroup" aria-labelledby="l-termin">
+              <label class="pf__chip"><input type="radio" name="termin" value="co nejdříve" checked /><span>Co nejdříve</span></label>
+              <label class="pf__chip"><input type="radio" name="termin" value="do 3 měsíců" /><span>Do 3 měsíců</span></label>
+              <label class="pf__chip"><input type="radio" name="termin" value="později" /><span>Později</span></label>
+              <label class="pf__chip"><input type="radio" name="termin" value="zatím zjišťuji ceny" /><span>Zjišťuji ceny</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- KROK 4 -->
+        <fieldset class="pf__step" data-step="4" hidden>
+          <legend>Kam vám máme poslat nabídku?</legend>
+          <label class="pf__field">
+            <span class="pf__label">Jméno a příjmení</span>
+            <input type="text" name="jmeno" autocomplete="name" required maxlength="100" />
+            <span class="pf__err" data-err="jmeno">Vyplňte jméno.</span>
+          </label>
+          <div class="pf__row">
+            <label class="pf__field">
+              <span class="pf__label">Telefon</span>
+              <input type="tel" name="telefon" autocomplete="tel" required inputmode="tel" pattern="[+0-9 ]{9,17}" placeholder="+420 …" />
+              <span class="pf__err" data-err="telefon">Zadejte telefon, aby se vám technik mohl ozvat.</span>
+            </label>
+            <label class="pf__field">
+              <span class="pf__label">E-mail</span>
+              <input type="email" name="email" autocomplete="email" required maxlength="120" />
+              <span class="pf__err" data-err="email">Zadejte platný e-mail.</span>
+            </label>
+          </div>
+          <label class="pf__field">
+            <span class="pf__label">Poznámka <span class="muted">(nepovinné)</span></span>
+            <textarea name="poznamka" rows="3" maxlength="2000" placeholder="Např. 3. patro, venkovní jednotka na lodžii, chci tichou jednotku do ložnice…"></textarea>
+          </label>
+          <label class="pf__check">
+            <input type="checkbox" name="souhlas" value="ano" required />
+            <span>Beru na vědomí, že poptávku včetně kontaktních údajů předáme jedné partnerské montážní firmě, která ji vyřídí. <a href="/ochrana-osobnich-udaju/" target="_blank">Zásady ochrany osobních údajů</a></span>
+          </label>
+          <span class="pf__err" data-err="souhlas">Bez tohoto potvrzení nemůžeme poptávku předat montážní firmě.</span>
+          <div class="pf__hp" aria-hidden="true"><label>Web <input type="text" name="web" tabindex="-1" autocomplete="off" /></label></div>
+          {site.turnstileSiteKey && <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-language="cs"></div>}
+          <input type="hidden" name="zdroj_stranky" />
+          <input type="hidden" name="kampan" />
+          <input type="hidden" name="gclid" />
+        </fieldset>
+
+        <p class="pf__fail" id="pf-fail" role="alert" hidden>Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na <a href={site.phoneHref}>{site.phone}</a>.</p>
+
+        <div class="pf__nav">
+          <button type="button" class="btn btn--ghost" id="pf-back" hidden>Zpět</button>
+          <button type="button" class="btn btn--ink" id="pf-next">Pokračovat</button>
+          <button type="submit" class="btn btn--sun" id="pf-send" hidden>Odeslat poptávku</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  {site.turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+</Base>
+
+<script>
+  const form = document.getElementById('pf') as HTMLFormElement;
+  const steps = Array.from(form.querySelectorAll<HTMLFieldSetElement>('.pf__step'));
+  const next = document.getElementById('pf-next') as HTMLButtonElement;
+  const back = document.getElementById('pf-back') as HTMLButtonElement;
+  const send = document.getElementById('pf-send') as HTMLButtonElement;
+  const bar = document.getElementById('pf-bar') as HTMLElement;
+  const info = document.getElementById('pf-stepinfo') as HTMLElement;
+  const fail = document.getElementById('pf-fail') as HTMLElement;
+  let current = 1;
+  const TOTAL = 4;
+
+  // PSČ → kraj (orientační předvyplnění, uživatel může změnit)
+  const pscKraj: [RegExp, string][] = [
+    [/^1/, 'praha'], [/^2[5-9]/, 'stredocesky-kraj'], [/^3[0-4]/, 'plzensky-kraj'], [/^3[56]/, 'karlovarsky-kraj'],
+    [/^39[3-6]/, 'kraj-vysocina'], [/^3[7-9]/, 'jihocesky-kraj'], [/^4[0-4]/, 'ustecky-kraj'], [/^4[67]/, 'liberecky-kraj'],
+    [/^51[2-3]/, 'liberecky-kraj'], [/^5[0145]/, 'kralovehradecky-kraj'], [/^5[367]/, 'pardubicky-kraj'], [/^5[89]/, 'kraj-vysocina'],
+    [/^67[45]/, 'kraj-vysocina'], [/^6/, 'jihomoravsky-kraj'], [/^7[0-4]/, 'moravskoslezsky-kraj'], [/^7[56]/, 'zlinsky-kraj'],
+    [/^7[7-9]/, 'olomoucky-kraj'],
+  ];
+
+  const el = (n: string) => form.elements.namedItem(n) as any;
+  const typ = () => (form.querySelector('input[name="typ"]:checked') as HTMLInputElement | null)?.value || '';
+  const group = () => (typ().startsWith('klimatizace') ? 'klimatizace' : typ());
+
+  // Předvyplnění z URL (?typ=…&psc=…) a z kalkulačky
+  const qp = new URLSearchParams(location.search);
+  if (qp.get('typ')) {
+    const r = form.querySelector(`input[name="typ"][value="${CSS.escape(qp.get('typ')!)}"]`) as HTMLInputElement | null;
+    if (r) r.checked = true;
+  }
+  if (qp.get('psc')) { el('psc').value = qp.get('psc'); guessKraj(); }
+  if (qp.get('mistnosti')) { const r = form.querySelector(`input[name="mistnosti"][value="${CSS.escape(qp.get('mistnosti')!)}"]`) as HTMLInputElement | null; if (r) r.checked = true; }
+  if (qp.get('plocha')) el('plocha').value = qp.get('plocha');
+  if (qp.get('znacka')) { const r = form.querySelector(`input[name="znacka"][value="${CSS.escape(qp.get('znacka')!)}"]`) as HTMLInputElement | null; if (r) r.checked = true; }
+  if (qp.get('poznamka')) el('poznamka').value = qp.get('poznamka');
+  try {
+    const camp = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map((k) => sessionStorage.getItem('ke-' + k)).filter(Boolean).join(' / ');
+    el('kampan').value = camp;
+    el('gclid').value = sessionStorage.getItem('ke-gclid') || sessionStorage.getItem('ke-gbraid') || sessionStorage.getItem('ke-wbraid') || '';
+    el('zdroj_stranky').value = sessionStorage.getItem('ke-landing') || document.referrer;
+  } catch {}
+
+  function guessKraj() {
+    const psc = String(el('psc').value).replace(/\s/g, '');
+    if (psc.length < 3 || el('kraj').value) return;
+    const hit = pscKraj.find(([re]) => re.test(psc));
+    if (hit) el('kraj').value = hit[1];
+  }
+  el('psc').addEventListener('blur', guessKraj);
+
+  function visibleStep(n: number) {
+    return steps.find((s) => +s.dataset.step! === n && (!s.dataset.for || s.dataset.for === group()))!;
+  }
+  function show(n: number) {
+    current = n;
+    steps.forEach((s) => (s.hidden = true));
+    const s = visibleStep(n);
+    s.hidden = false;
+    back.hidden = n === 1;
+    next.hidden = n === TOTAL;
+    send.hidden = n !== TOTAL;
+    bar.style.width = `${(n / TOTAL) * 100}%`;
+    info.textContent = `Krok ${n} ze ${TOTAL}`;
+    if (n > 1) (s.querySelector('legend') as HTMLElement)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    (window as any).gtag?.('event', 'form_step', { step: n, form_type: typ() });
+  }
+  function validate(n: number) {
+    const s = visibleStep(n);
+    let ok = true;
+    s.querySelectorAll<HTMLElement>('.pf__err').forEach((e) => e.classList.remove('is-on'));
+    const fields = Array.from(s.querySelectorAll<HTMLInputElement>('input[required], select[required]'));
+    const seen = new Set<string>();
+    for (const f of fields) {
+      if (seen.has(f.name)) continue;
+      seen.add(f.name);
+      let valid = true;
+      if (f.type === 'radio') valid = !!s.querySelector(`input[name="${f.name}"]:checked`);
+      else if (f.type === 'checkbox') valid = f.checked;
+      else valid = f.checkValidity() && String(f.value).trim() !== '';
+      if (!valid) {
+        ok = false;
+        s.querySelector(`[data-err="${f.name}"]`)?.classList.add('is-on');
+        f.setAttribute('aria-invalid', 'true');
+      } else f.removeAttribute('aria-invalid');
+    }
+    if (!ok) (s.querySelector('[aria-invalid="true"]') as HTMLElement | null)?.focus();
+    return ok;
+  }
+  next.addEventListener('click', () => { if (validate(current)) show(current + 1); });
+  back.addEventListener('click', () => show(current - 1));
+  form.querySelectorAll('input[name="typ"]').forEach((r) => r.addEventListener('change', () => setTimeout(() => show(2), 180)));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate(4)) return;
+    fail.hidden = true;
+    send.disabled = true;
+    send.textContent = 'Odesílám…';
+    const data: Record<string, string> = {};
+    const g = group();
+    steps.forEach((s) => {
+      if (s.dataset.for && s.dataset.for !== g) return;
+      s.querySelectorAll<HTMLInputElement>('input, select, textarea').forEach((f) => {
+        if (!f.name || ((f.type === 'radio' || f.type === 'checkbox') && !f.checked)) return;
+        data[f.name] = f.value;
+      });
+    });
+    const ts = form.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]');
+    if (ts) data['cf-turnstile-response'] = ts.value;
+    try {
+      const res = await fetch('/api/poptavka', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.ok) throw new Error(out.error || 'send failed');
+      try { sessionStorage.setItem('ke-lead', JSON.stringify({ id: out.id, typ: data.typ, email: data.email, telefon: data.telefon })); } catch {}
+      location.href = '/dekujeme/';
+    } catch (err) {
+      fail.hidden = false;
+      send.disabled = false;
+      send.textContent = 'Odeslat poptávku';
+    }
+  });
+
+  show(qp.get('typ') ? 2 : 1);
+</script>
+
+<style>
+  .pq { background: linear-gradient(180deg, var(--paper), var(--ice)); padding-top: 24px; }
+  .pq__in { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .pq__intro { position: sticky; top: 100px; }
+  .pq__intro h1 { font-size: var(--step-3); }
+  .pf { padding: clamp(20px, 3.5vw, 40px); }
+  .pf__progress { height: 6px; background: var(--ice); border-radius: 3px; overflow: hidden; }
+  .pf__progress span { display: block; height: 100%; width: 25%; background: var(--sun); transition: width 0.3s; }
+  .pf__stepinfo { margin: 10px 0 6px; }
+  .pf__step { border: 0; margin: 0; padding: 0; display: grid; gap: 20px; }
+  .pf__step legend { font: 800 var(--step-2)/1.15 var(--font-head); margin-bottom: 14px; padding: 0; }
+  .pf__tiles { display: grid; gap: 10px; }
+  .pf__tile { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; font-weight: 600; }
+  .pf__tile:hover { border-color: var(--contour); }
+  .pf__tile:has(input:checked) { border-color: var(--ink); background: var(--ice); }
+  .pf__tile input { width: 20px; height: 20px; accent-color: var(--ink); flex: none; }
+  .pf__field { display: grid; gap: 8px; }
+  .pf__label { font-weight: 700; font-size: var(--step--1); }
+  .pf__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pf input[type='text'], .pf input[type='tel'], .pf input[type='email'], .pf input[type='number'], .pf select, .pf textarea {
+    font: inherit; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); width: 100%;
+  }
+  .pf input:focus, .pf select:focus, .pf textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px var(--ice-deep); }
+  .pf [aria-invalid='true'] { border-color: var(--warn) !important; }
+  .pf__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pf__chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .pf__chip span { display: inline-block; padding: 9px 16px; border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+  .pf__chip input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .pf__chip input:focus-visible + span { outline: 3px solid var(--sun-deep); outline-offset: 2px; }
+  .pf__check { display: flex; gap: 12px; align-items: flex-start; font-size: var(--step--1); }
+  .pf__check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--ink); flex: none; }
+  .pf__err { display: none; color: var(--warn); font-size: var(--step--1); font-weight: 600; margin: 0; }
+  .pf__err.is-on { display: block; }
+  .pf__hp { position: absolute; left: -9999px; }
+  .pf__fail { color: var(--warn); font-weight: 600; margin: 18px 0 0; }
+  .pf__nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .pf__nav .btn:last-child, .pf__nav #pf-next { margin-left: auto; }
+  @media (max-width: 900px) {
+    .pq__in { grid-template-columns: 1fr; }
+    .pq__intro { position: static; }
+    .pq__intro .checks, .pq__intro .small { display: none; }
+  }
+  @media (max-width: 520px) { .pf__row { grid-template-columns: 1fr; } }
+</style>

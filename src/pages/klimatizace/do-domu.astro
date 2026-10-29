@@ -1,0 +1,44 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products } from '../../data/products';
+const series = ['mhi-diamond-zsx', 'hisense-air-master', 'mhi-multisplit-scm', 'hisense-multi-split', 'mhi-parapetni-srf', 'mhi-kanalova-srr', 'hisense-lcac-konzolova']
+  .map((id) => products.find((p) => p.id === id)!).filter(Boolean);
+const faq = [
+  { q: 'Vyplatí se klimatizací v rodinném domě i topit?', a: 'Ano, zejména v přechodném období a jako doplněk k hlavnímu vytápění. Moderní jednotky topí ještě při −15 až −25 °C a vyrobí z 1 kWh elektřiny 4 až 5 kWh tepla. Pokud klimatizace nahrazuje hlavní zdroj tepla, může spadat i pod program Nová zelená úsporám. Více v článku <a href="/blog/topeni-klimatizaci/">topení klimatizací</a>.' },
+  { q: 'Jakou klimatizaci do podkroví?', a: 'Podkroví se v létě přehřívá nejvíc, počítejte zhruba se 150 W na m². Dobře fungují nástěnné jednotky nad dveřmi nebo parapetní jednotky pod oknem, které se hodí i pod šikminu. Více v článku <a href="/blog/klimatizace-do-podkrovi/">klimatizace do podkroví</a>.' },
+  { q: 'Multisplit, nebo samostatné jednotky do domu?', a: 'Multisplit ušetří místo na fasádě a hodí se pro dvě až pět místností blízko sebe. U domu bývá venkovní jednotka snadno umístitelná, takže samostatné splity jsou stejně dobrá volba: každý pokoj má svůj okruh a porucha jedné jednotky neovlivní ostatní.' },
+  { q: 'Kam umístit venkovní jednotku u domu?', a: 'Ideálně na stinnou stranu domu, na konzoli na stěnu nebo na zemi na podstavci, s odstupem od oken ložnic sousedů. Pod jednotkou musí být kam odvést kondenzát a v zimě rozmrazovací vodu.' },
+];
+---
+<Landing
+  title="Klimatizace do rodinného domu s montáží"
+  description="Klimatizace do rodinného domu: chlazení podkroví i celého domu, multisplit nebo samostatné jednotky, úsporné přitápění v zimě. Mitsubishi Heavy a Hisense s montáží."
+  h1="Klimatizace do rodinného domu"
+  lead="Ochlaďte podkroví, ložnice i obývací pokoj a v zimě levně přitápějte. Navrhneme rozmístění jednotek pro celý dům a partnerská firma vše namontuje."
+  points={['Chlazení podkroví a více místností najednou', 'V zimě topí i při mrazech do −20 °C', 'Nástěnné, parapetní i skryté kanálové jednotky']}
+  preset="klimatizace-dum"
+  crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }, { name: 'Do domu', href: '/klimatizace/do-domu/' }]}
+  series={series}
+  seriesTitle="Klimatizace vhodné do rodinných domů"
+  faq={faq}
+  ctaTitle="Chcete klimatizaci do domu?"
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      <div>
+        <h2>Jak klimatizovat celý dům</h2>
+        <p>V rodinném domě se většinou klimatizuje víc místností: ložnice v patře, dětské pokoje, pracovna a obývací pokoj. Nejvíc se přehřívá podkroví, kde v létě teplota i v noci zůstává nad 26 °C. Proto se obvykle začíná tam.</p>
+        <p>Možnosti jsou dvě. <strong>Samostatné klimatizace</strong> mají každá svou venkovní jednotku a hodí se tam, kde jsou místnosti daleko od sebe nebo na různých stranách domu. <strong>Multisplit</strong> zvládne dvě až pět místností jednou venkovní jednotkou, takže je méně zařízení na fasádě a kratší trasy potrubí. Srovnání najdete v článku <a href="/blog/single-split-nebo-multisplit/">single split nebo multisplit</a>.</p>
+        <h3>Jednotky, které nejsou vidět</h3>
+        <p>Při rekonstrukci nebo stavbě se vyplatí zvážit kanálovou jednotku schovanou v podhledu. Z místnosti jsou vidět jen mřížky a jedna jednotka může chladit i dvě sousední místnosti. Pod okno nebo do šikmin se zase hodí parapetní jednotka, která výborně topí.</p>
+      </div>
+      <div>
+        <h2>Klimatizace jako úsporné topení</h2>
+        <p>Klimatizace v domě nemusí jen chladit. Invertorová jednotka funguje jako tepelné čerpadlo vzduch-vzduch a umí topit s nízkou spotřebou. Na jaře a na podzim tak nemusíte zapínat kotel a v zimě můžete přitápět v místnostech, kde je chladněji. Řady Mitsubishi Heavy Diamond a Premium ZT nebo Hisense Air Master topí i při −20 °C a nižších teplotách.</p>
+        <h2>Kolik stojí klimatizace do domu</h2>
+        <p>Jedna místnost vyjde s montáží orientačně na 30 000 až 60 000 Kč, tři místnosti s multisplitem obvykle na 90 000 až 150 000 Kč včetně 12% DPH. U domu bývá montáž jednodušší než v bytovém domě, protože je víc možností, kam umístit venkovní jednotku. Spočítejte si orientační cenu v <a href="/cena-klimatizace/">kalkulačce</a>.</p>
+        <p>Hledáte náhradu kotle? Podívejte se na <a href="/tepelna-cerpadla/">tepelná čerpadla vzduch-voda</a>, která vytápí celý dům a ohřívají i teplou vodu.</p>
+      </div>
+    </div>
+  </section>
+</Landing>

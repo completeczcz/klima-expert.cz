@@ -1,0 +1,98 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products } from '../../data/products';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return [{ params: { brand: 'mitsubishi-heavy-industries' } }, { params: { brand: 'hisense' } }];
+}
+const { brand } = Astro.params;
+const isMhi = brand === 'mitsubishi-heavy-industries';
+const series = products.filter((p) => p.brandSlug === brand && !p.status);
+
+const d = isMhi
+  ? {
+      title: 'Klimatizace Mitsubishi Heavy Industries s montáží',
+      description: `Klimatizace Mitsubishi Heavy Industries (MHI) s montáží po celé ČR. Řady Diamond, Premium a Standard, multisplit, záruka ${site.warranty.mhi} let. Nabídka zdarma.`,
+      h1: 'Klimatizace Mitsubishi Heavy Industries',
+      lead: `Japonská technika s pověstí spolehlivosti a velmi tichého chodu. Klimatizace MHI dovážíme z oficiální distribuce a montují je proškolení partneři, se zárukou ${site.warranty.mhi} let.`,
+      points: ['Tichý chod od 19 dB(A), ideální do ložnice', 'Topení i při −20 °C u řad Diamond a Premium ZT', `Záruka ${site.warranty.mhi} let, výhradní distribuce v ČR od roku 2007`],
+      faq: [
+        { q: 'Je Mitsubishi Heavy Industries totéž co Mitsubishi Electric?', a: 'Ne. Jde o dvě samostatné japonské společnosti, které obě vyrábějí klimatizace. Rozdíly vysvětlujeme v článku <a href="/blog/mitsubishi-heavy-vs-mitsubishi-electric/">Mitsubishi Heavy vs Mitsubishi Electric</a>.' },
+        { q: 'Kdo je distributorem MHI v České republice?', a: 'Výhradním distributorem klimatizací Mitsubishi Heavy Industries pro Českou a Slovenskou republiku je od roku 2007 společnost COMPLETE CZ, která zajišťuje i technickou podporu a servis.' },
+        { q: 'Kterou řadu MHI vybrat do ložnice?', a: 'Do ložnice doporučujeme řady s nejnižší hlučností: Diamond ZSX, Premium ZT nebo Premium ZS, které začínají na 19 dB(A).' },
+      ],
+    }
+  : {
+      title: 'Klimatizace a tepelná čerpadla Hisense s montáží',
+      description: `Klimatizace Hisense s Wi-Fi a tepelná čerpadla Hi-Therma s montáží po celé ČR. Řady Air Master, Energy Pro X, Uni Pure, Wings Comfort. Záruka ${site.warranty.hisense} roky.`,
+      h1: 'Klimatizace a tepelná čerpadla Hisense',
+      lead: `Moderní klimatizace s chytrým ovládáním a výborným poměrem ceny a výkonu. Hisense nabízí i tepelná čerpadla vzduch-voda Hi-Therma pro rodinné domy. Záruka ${site.warranty.hisense} roky.`,
+      points: ['Wi-Fi a ovládání z mobilu u většiny řad', 'Topení do −22 °C u řad Air Master a Uni Pure', 'Tepelná čerpadla vzduch-voda Hi-Therma'],
+      faq: [] as { q: string; a: string }[],
+    };
+---
+<Landing
+  title={d.title}
+  description={d.description}
+  h1={d.h1}
+  lead={d.lead}
+  points={d.points}
+  preset="klimatizace-byt"
+  crumbs={[{ name: isMhi ? 'Mitsubishi Heavy Industries' : 'Hisense', href: `/znacky/${brand}/` }]}
+  series={series}
+  seriesTitle={isMhi ? 'Řady Mitsubishi Heavy Industries' : 'Řady Hisense'}
+  faq={isMhi ? d.faq : [
+    { q: 'Je Hisense kvalitní značka klimatizací?', a: 'Hisense je velký mezinárodní výrobce elektroniky a klimatizací s vlastním vývojem a výrobou. Nabízí moderní jednotky s vysokou účinností až A+++, chytrým ovládáním a zárukou 3 roky. Více v článku <a href="/blog/klimatizace-hisense/">klimatizace Hisense</a>.' },
+    { q: 'Kterou řadu Hisense vybrat?', a: 'Pro nejlepší poměr ceny a účinnosti Uni Pure, pro nejvyšší komfort Air Master se senzorem Smart Eye PRO, pro nízký rozpočet Wings Comfort nebo Hi-Smart.' },
+    { q: 'Má Hisense i tepelná čerpadla?', a: 'Ano, řadu Hi-Therma ve verzích Monoblok, Split a Integra se zásobníkem teplé vody. Více na stránce <a href="/tepelna-cerpadla/">tepelná čerpadla</a>.' },
+  ]}
+  ctaTitle={`Chcete ${isMhi ? 'klimatizaci Mitsubishi Heavy' : 'Hisense'}?`}
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      {isMhi ? (
+        <>
+          <div>
+            <h2>O značce Mitsubishi Heavy Industries</h2>
+            <p>Mitsubishi Heavy Industries je japonský průmyslový koncern založený v roce 1884. Vyrábí elektrárny, lodě, letecké komponenty i kosmickou techniku a klimatizace jsou jednou z jeho klíčových divizí. Zkušenosti z náročného průmyslu se promítají do důrazu na spolehlivost, přesnost a dlouhou životnost.</p>
+            <p>V Česku a na Slovensku zastupuje značku od roku 2007 společnost COMPLETE CZ jako výhradní distributor. Zajišťuje technickou podporu, školení montážníků a servisní zázemí.</p>
+            <h3>Čím se klimatizace MHI vyznačují</h3>
+            <ul class="checks">
+              <li>Velmi tichý chod vnitřních jednotek od 19 dB(A)</li>
+              <li>Vysoká účinnost až A+++ v chlazení i topení</li>
+              <li>Filtry proti alergenům a samočištění u vyšších řad</li>
+              <li>Spolehlivé topení i v mrazech</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Jak vybrat řadu MHI</h2>
+            <p><strong>Diamond ZSX</strong> je vlajková loď s nejvyšší účinností a pohybovým čidlem. <strong>Premium ZT</strong> je nová tichá řada s Wi-Fi a moderním designem v několika barvách. <strong>Premium ZS</strong> nabízí nejlepší poměr výbavy a ceny. <strong>Standard Plus ZTL</strong> a <strong>Standard ZSP</strong> jsou dostupnější varianty do méně náročných místností.</p>
+            <p>Pro víc místností s jednou venkovní jednotkou slouží <a href="/produkty/mhi-multisplit-scm/">multisplit SCM</a>, pro skrytou instalaci kanálové a parapetní jednotky.</p>
+            <p>Podrobný průvodce najdete v článku <a href="/blog/klimatizace-mitsubishi-heavy-industries/">klimatizace Mitsubishi Heavy Industries</a>.</p>
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <h2>O značce Hisense</h2>
+            <p>Hisense je mezinárodní výrobce spotřební elektroniky, domácích spotřebičů a klimatizační techniky. V klimatizacích sází na moderní technologie, chytré ovládání přes aplikaci ConnectLife a hlasové asistenty a na příznivou cenu.</p>
+            <h3>Čím se klimatizace Hisense vyznačují</h3>
+            <ul class="checks">
+              <li>Wi-Fi a ovládání z mobilu, u vyšších řad hlasové ovládání</li>
+              <li>Senzor Smart Eye u řad Air Master a Energy Pro X</li>
+              <li>Ionizace Hi-NANO a vícestupňová filtrace</li>
+              <li>Účinnost až A+++ a topení do −22 °C</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Jak vybrat řadu Hisense</h2>
+            <p><strong>Air Master</strong> je vlajková loď se senzorem polohy osob a prouděním bez průvanu. <strong>Energy Pro X</strong> nabízí podobný komfort za nižší cenu. <strong>Uni Pure</strong> má nejlepší poměr účinnosti a ceny. <strong>Wings Comfort</strong> a <strong>Hi-Smart</strong> jsou dostupné jednotky hlavně na chlazení.</p>
+            <p>Pro kanceláře a obchody má Hisense kazetové, kanálové a podstropní jednotky, pro rodinné domy tepelná čerpadla vzduch-voda <a href="/tepelna-cerpadla/">Hi-Therma</a>.</p>
+            <p>Více v článku <a href="/blog/klimatizace-hisense/">klimatizace Hisense</a>.</p>
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</Landing>

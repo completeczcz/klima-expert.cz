@@ -1,0 +1,132 @@
+@import '@fontsource/bricolage-grotesque/latin-ext-600.css';
+@import '@fontsource/bricolage-grotesque/latin-ext-800.css';
+@import '@fontsource/bricolage-grotesque/latin-600.css';
+@import '@fontsource/bricolage-grotesque/latin-800.css';
+@import '@fontsource/public-sans/latin-ext-400.css';
+@import '@fontsource/public-sans/latin-ext-600.css';
+@import '@fontsource/public-sans/latin-ext-700.css';
+@import '@fontsource/public-sans/latin-400.css';
+@import '@fontsource/public-sans/latin-600.css';
+@import '@fontsource/public-sans/latin-700.css';
+
+:root {
+  --paper: #f4f7f8;
+  --white: #ffffff;
+  --ink: #13283a;
+  --ink-soft: #3f5566;
+  --ice: #dcebf1;
+  --ice-deep: #b9d6e2;
+  --contour: #7fa6b8;
+  --sun: #f4b43a;
+  --sun-deep: #d99512;
+  --ok: #2f7d5b;
+  --warn: #b5432b;
+  --line: #c9dbe3;
+
+  --font-head: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.075rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.4rem);
+  --step-2: clamp(1.45rem, 1.3rem + 0.75vw, 1.85rem);
+  --step-3: clamp(1.8rem, 1.5rem + 1.4vw, 2.6rem);
+  --step-4: clamp(2.2rem, 1.7rem + 2.6vw, 3.9rem);
+
+  --wrap: 1180px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius-s: 6px;
+  --radius-m: 14px;
+  --radius-l: 28px;
+  --shadow: 0 1px 0 rgba(19, 40, 58, 0.06), 0 12px 32px -18px rgba(19, 40, 58, 0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 var(--step-0)/1.62 var(--font-body);
+  text-rendering: optimizeLegibility;
+}
+img, svg { max-width: 100%; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--sun-deep); }
+:focus-visible { outline: 3px solid var(--sun-deep); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 800; line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 0.5em; text-wrap: balance; }
+h1 { font-size: var(--step-4); letter-spacing: -0.03em; }
+h2 { font-size: var(--step-3); letter-spacing: -0.025em; }
+h3 { font-size: var(--step-1); font-weight: 600; letter-spacing: -0.01em; }
+p { margin: 0 0 1em; }
+.lead { font-size: var(--step-1); line-height: 1.5; color: var(--ink-soft); max-width: 62ch; }
+.muted { color: var(--ink-soft); }
+.small { font-size: var(--step--1); }
+
+.wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+.narrow { max-width: 72ch; }
+.section { padding-block: clamp(56px, 8vw, 104px); }
+.section--ice { background: var(--ice); }
+.section--ink { background: var(--ink); color: var(--paper); }
+.section--ink .lead, .section--ink .muted { color: #c4d6df; }
+.section__head { max-width: 68ch; margin-bottom: clamp(28px, 4vw, 48px); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: 0.7em 1.35em; border-radius: 999px; border: 2px solid transparent;
+  font: 700 var(--step-0)/1.1 var(--font-body); text-decoration: none; cursor: pointer;
+  transition: background-color 0.15s, transform 0.15s;
+}
+.btn:active { transform: translateY(1px); }
+.btn--sun { background: var(--sun); color: var(--ink); }
+.btn--sun:hover { background: var(--sun-deep); }
+.btn--ink { background: var(--ink); color: var(--paper); }
+.btn--ink:hover { background: #22405a; }
+.btn--ghost { border-color: currentColor; background: transparent; }
+.btn--ghost:hover { background: rgba(19, 40, 58, 0.06); }
+.section--ink .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* Izotermický oddělovač – podpis webu */
+.isoline { height: 22px; background:
+  radial-gradient(circle at 50% -12px, transparent 18px, var(--contour) 19px, transparent 20px) 0 0 / 46px 22px repeat-x;
+  opacity: 0.6; }
+
+.grid { display: grid; gap: clamp(18px, 2.5vw, 32px); }
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+
+.panel { background: var(--white); border-radius: var(--radius-m); padding: clamp(20px, 3vw, 32px); box-shadow: var(--shadow); }
+
+.checks { list-style: none; padding: 0; margin: 0 0 1em; }
+.checks li { position: relative; padding-left: 1.9em; margin-bottom: 0.55em; }
+.checks li::before { content: ''; position: absolute; left: 0; top: 0.32em; width: 1.05em; height: 1.05em; border-radius: 50%;
+  background: var(--sun) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.6 2.5L12 5.5' fill='none' stroke='%2313283a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat; }
+
+/* Tabulky v obsahu */
+.table-wrap { overflow-x: auto; margin: 1.5em 0; border-radius: var(--radius-m); background: var(--white); box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { text-align: left; padding: 0.75em 1em; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--ice); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+
+/* Typografie obsahu (články, právní stránky) */
+.prose { max-width: 70ch; }
+.prose h2 { font-size: var(--step-2); margin-top: 1.8em; }
+.prose h3 { margin-top: 1.5em; }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li { margin-bottom: 0.4em; }
+.prose blockquote { margin: 1.5em 0; padding: 1em 1.3em; background: var(--ice); border-radius: var(--radius-m); }
+.prose img { border-radius: var(--radius-m); }
+
+.badge { display: inline-block; padding: 0.25em 0.7em; border-radius: 999px; background: var(--ice); font-size: var(--step--1); font-weight: 600; }
+.badge--sun { background: var(--sun); }
+
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--sun); padding: 0.6em 1em; border-radius: 8px; }
+.skip:focus { left: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

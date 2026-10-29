@@ -1,0 +1,51 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products } from '../../data/products';
+const series = ['mhi-kazetova-fdtc', 'hisense-lcac-kazetova', 'hisense-lcac-kanalova', 'mhi-kanalova-srr', 'hisense-lcac-parapetne-podstropni', 'mhi-diamond-zr', 'hisense-wings-comfort']
+  .map((id) => products.find((p) => p.id === id)!).filter(Boolean);
+const faq = [
+  { q: 'Jaká klimatizace je nejlepší do kanceláře?', a: 'Do kanceláří s podhledem se nejčastěji montují kazetové jednotky, které rozvádějí vzduch do čtyř stran bez průvanu. Kde podhled není, poslouží nástěnná nebo podstropní jednotka. Pro reprezentativní prostory se hodí kanálová jednotka skrytá v podhledu.' },
+  { q: 'Jaký výkon potřebuje kancelář?', a: 'Kanceláře mají kromě oslunění i vnitřní zdroje tepla: lidi, počítače, monitory a osvětlení. Počítejte orientačně se 120 až 150 W na m², u zasedaček a serveroven více. Přesný návrh udělá technik při zaměření.' },
+  { q: 'Platí firma 12%, nebo 21% DPH?', a: 'U kanceláří, obchodů a provozoven se uplatní základní sazba 21 %. Plátci DPH si ji odečtou. Ceny na webu uvádíme s 12% DPH, která platí pro byty a rodinné domy.' },
+  { q: 'Musí se klimatizace ve firmě pravidelně kontrolovat?', a: 'Zařízení s náplní chladiva od 5 tun ekvivalentu CO₂ podléhají povinné kontrole těsnosti. Bez ohledu na povinnost doporučujeme roční servis s čištěním, aby jednotky běžely úsporně a hygienicky. Nabízíme i <a href="/servis-klimatizace/">pravidelný servis</a>.' },
+];
+---
+<Landing
+  title="Klimatizace do kanceláře a provozovny s montáží"
+  description="Klimatizace do kanceláří, obchodů, ordinací a provozoven. Kazetové, kanálové i nástěnné jednotky Mitsubishi Heavy a Hisense s montáží a servisem po celé ČR."
+  h1="Klimatizace do kanceláře, obchodu a provozovny"
+  lead="Příjemné prostředí pro zaměstnance i zákazníky. Navrhneme řešení podle dispozice a podhledů, partnerská firma ho namontuje a postará se o pravidelný servis."
+  points={['Kazetové jednotky do podhledu bez průvanu', 'Skryté kanálové řešení pro reprezentativní prostory', 'Montáž mimo pracovní dobu po dohodě']}
+  preset="klimatizace-kancelar"
+  crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }, { name: 'Do kanceláře', href: '/klimatizace/do-kancelare/' }]}
+  series={series}
+  seriesTitle="Jednotky pro kanceláře a komerční prostory"
+  faq={faq}
+  ctaTitle="Potřebujete klimatizovat firmu?"
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      <div>
+        <h2>Klimatizace podle typu prostoru</h2>
+        <h3>Kanceláře s podhledem</h3>
+        <p>Kazetová jednotka zapadne do rastru podhledu 600 × 600 mm, rozvádí vzduch do čtyř stran a nefouká lidem přímo na záda. Má vestavěné čerpadlo kondenzátu, takže se dá umístit kamkoli do prostoru. Mitsubishi Heavy i Hisense nabízejí kazety od 2,5 kW pro jednu kancelář po zhruba 17 kW pro open space.</p>
+        <h3>Reprezentativní prostory a zasedačky</h3>
+        <p>Kanálová jednotka je schovaná nad podhledem a do místnosti vede vzduch potrubím. Vidět jsou jen mřížky. Jedna jednotka může obsloužit i několik menších místností.</p>
+        <h3>Obchody, restaurace a provozovny bez podhledu</h3>
+        <p>Podstropní jednotka se zavěsí pod strop a dofoukne vzduch daleko do prostoru. Do menších provozoven a ordinací stačí výkonnější nástěnná jednotka.</p>
+      </div>
+      <div>
+        <h2>Na co myslet při plánování</h2>
+        <ul class="checks">
+          <li>Vnitřní zdroje tepla: lidé, technika, osvětlení a sluneční zisky okny</li>
+          <li>Kam odvést kondenzát a kde povede potrubí</li>
+          <li>Kde může být venkovní jednotka: střecha, fasáda, dvůr</li>
+          <li>Souhlas pronajímatele nebo správce budovy</li>
+          <li>Pravidelný servis a kontroly těsnosti podle množství chladiva</li>
+        </ul>
+        <p>Pro kanceláře se uplatní 21% DPH. Cenu za montáž připraví partnerská firma po prohlídce prostoru, včetně návrhu výkonu. Montáž je možné domluvit mimo pracovní dobu nebo o víkendu.</p>
+        <p>Klimatizace kancelář v zimě i vytopí. V přechodném období tak není potřeba zapínat hlavní vytápění budovy.</p>
+      </div>
+    </div>
+  </section>
+</Landing>

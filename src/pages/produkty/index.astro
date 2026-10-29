@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import SeriesRow from '../../components/SeriesRow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { products, catLabel } from '../../data/products';
+
+const groups = [
+  { id: 'nastenna', h: 'Nástěnné klimatizace', p: 'Nejčastější volba do bytů a domů. Vnitřní jednotka visí na stěně, venkovní je na fasádě, balkoně nebo na zemi.' },
+  { id: 'multisplit', h: 'Multisplit pro více místností', p: 'Jedna venkovní jednotka a dvě až pět vnitřních. Šetří místo na fasádě a hodí se do bytů a domů.' },
+  { id: 'parapetni', h: 'Parapetní a konzolové klimatizace', p: 'Jednotky u podlahy pod oknem. Výborně topí a hodí se do podkroví se šikminami.' },
+  { id: 'kanalova', h: 'Kanálové klimatizace', p: 'Skryté v podhledu, vidět jsou jen mřížky. Pro novostavby, rekonstrukce a reprezentativní prostory.' },
+  { id: 'kazetova', h: 'Kazetové klimatizace', p: 'Do rastru podhledu v kancelářích, obchodech a ordinacích. Rozvádí vzduch rovnoměrně do všech stran.' },
+  { id: 'podstropni', h: 'Podstropní klimatizace', p: 'Pro velké místnosti bez podhledu: obchody, restaurace, dílny.' },
+  { id: 'tepelne-cerpadlo', h: 'Tepelná čerpadla vzduch-voda', p: 'Vytápění a ohřev teplé vody pro rodinné domy, včetně chlazení v létě.' },
+];
+const tierOrder = { premium: 0, stredni: 1, zakladni: 2 };
+---
+<Base
+  title="Klimatizace a tepelná čerpadla – přehled řad MHI a Hisense"
+  description="Přehled všech řad klimatizací a tepelných čerpadel Mitsubishi Heavy Industries a Hisense: výkony, hlučnost, výbava a orientační ceny s montáží."
+  crumbs={[{ name: 'Produkty', href: '/produkty/' }]}
+>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap">
+      <div class="section__head">
+        <h1>Přehled klimatizací a tepelných čerpadel</h1>
+        <p class="lead">Všechny řady Mitsubishi Heavy Industries a Hisense, které montují naši partneři. U každé řady najdete výkony, hlučnost, výbavu a orientační cenu včetně montáže a DPH.</p>
+      </div>
+      <div class="flt" role="group" aria-label="Filtrovat podle značky">
+        <button type="button" class="flt__b is-on" data-brand="">Všechny značky</button>
+        <button type="button" class="flt__b" data-brand="mitsubishi-heavy-industries">Mitsubishi Heavy Industries</button>
+        <button type="button" class="flt__b" data-brand="hisense">Hisense</button>
+      </div>
+      <nav class="jump" aria-label="Typy jednotek">
+        {groups.map((g) => <a href={`#${g.id}`}>{g.h}</a>)}
+      </nav>
+      {groups.map((g) => {
+        const list = products.filter((p) => p.cat === g.id).sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
+        return list.length ? (
+          <section class="grp" id={g.id}>
+            <h2>{g.h}</h2>
+            <p class="muted">{g.p}</p>
+            {list.map((s) => <div data-brand={s.brandSlug}><SeriesRow s={s} /></div>)}
+          </section>
+        ) : null;
+      })}
+      <p class="small muted" style="margin-top:32px">Ceny jsou orientační, včetně DPH a standardní montáže. Vycházejí z doporučených cen distributora. Konečnou cenu určí partnerská firma po zaměření.</p>
+    </div>
+  </section>
+  <CtaBand title="Nevíte, kterou řadu vybrat?" text="Napište nám, co chcete chladit nebo vytápět. Doporučíme vhodnou řadu a partnerská firma připraví nabídku zdarma." />
+</Base>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.flt__b');
+  btns.forEach((b) => b.addEventListener('click', () => {
+    btns.forEach((x) => x.classList.toggle('is-on', x === b));
+    const v = b.dataset.brand;
+    document.querySelectorAll<HTMLElement>('[data-brand]:not(button)').forEach((el) => (el.hidden = !!v && el.dataset.brand !== v));
+    document.querySelectorAll<HTMLElement>('.grp').forEach((g) => (g.hidden = !g.querySelector('[data-brand]:not([hidden])')));
+  }));
+</script>
+
+<style>
+  .flt { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .flt__b { font: 600 0.95rem/1 var(--font-body); padding: 10px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); cursor: pointer; color: var(--ink); }
+  .flt__b.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .jump { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--step--1); margin-bottom: 24px; }
+  .grp { padding-top: 40px; }
+  .grp h2 { font-size: var(--step-2); }
+</style>

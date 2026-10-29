@@ -1,0 +1,77 @@
+---
+import Logo from './Logo.astro';
+import { site, regions } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <Logo invert />
+        <p>Pomáháme vybrat klimatizaci a tepelné čerpadlo Mitsubishi Heavy Industries a Hisense a zajistíme montáž ověřenou partnerskou firmou ve vašem kraji.</p>
+        <p class="ftr__contact">
+          <a href={site.phoneHref}>{site.phone}</a><br />
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <span>{site.hours}</span>
+        </p>
+      </div>
+      <nav class="ftr__col" aria-label="Služby">
+        <h2>Služby</h2>
+        <a href="/klimatizace/do-bytu/">Klimatizace do bytu</a>
+        <a href="/klimatizace/do-domu/">Klimatizace do domu</a>
+        <a href="/klimatizace/do-kancelare/">Klimatizace do kanceláře</a>
+        <a href="/klimatizace/multisplit/">Multisplit pro více místností</a>
+        <a href="/tepelna-cerpadla/">Tepelná čerpadla vzduch-voda</a>
+        <a href="/servis-klimatizace/">Servis a čištění</a>
+        <a href="/cena-klimatizace/">Cena klimatizace</a>
+        <a href="/cena-tepelneho-cerpadla/">Cena tepelného čerpadla</a>
+      </nav>
+      <nav class="ftr__col" aria-label="Značky a informace">
+        <h2>Značky</h2>
+        <a href="/znacky/mitsubishi-heavy-industries/">Mitsubishi Heavy Industries</a>
+        <a href="/znacky/hisense/">Hisense</a>
+        <a href="/produkty/">Všechny produktové řady</a>
+        <h2>O webu</h2>
+        <a href="/jak-to-funguje/">Jak to funguje</a>
+        <a href="/o-nas/">O nás</a>
+        <a href="/caste-dotazy/">Časté dotazy</a>
+        <a href="/blog/">Poradna</a>
+        <a href="/pro-montazni-firmy/">Pro montážní firmy</a>
+        <a href="/kontakt/">Kontakt</a>
+      </nav>
+      <nav class="ftr__col ftr__regions" aria-label="Montáž v krajích">
+        <h2>Montáž v krajích</h2>
+        {regions.map((r) => <a href={`/montaz-klimatizace/${r.slug}/`}>{r.name}</a>)}
+      </nav>
+    </div>
+    <div class="ftr__bottom">
+      <p>© {year} {site.name} – provozuje {site.company.name}, IČO {site.company.ico}, DIČ {site.company.dic}. Mitsubishi Heavy Industries a Hisense jsou ochranné známky svých vlastníků.</p>
+      <p>
+        <a href="/ochrana-osobnich-udaju/">Ochrana osobních údajů</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/podminky-uziti/">Podmínky užití</a>
+        <button type="button" class="ftr__cookie" data-open-consent>Nastavení cookies</button>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--ink); color: #c9d8e0; padding: 64px 0 28px; font-size: var(--step--1); }
+  .ftr a { color: #e7f0f4; text-decoration: none; }
+  .ftr a:hover { text-decoration: underline; text-decoration-color: var(--sun); }
+  .ftr__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  .ftr__brand p { margin-top: 1em; max-width: 36ch; }
+  .ftr__contact { line-height: 1.9; }
+  .ftr__contact a { font-weight: 700; font-size: var(--step-0); }
+  .ftr__col { display: flex; flex-direction: column; gap: 0.45em; }
+  .ftr__col h2 { font: 700 var(--step-0)/1.2 var(--font-head); color: var(--paper); margin: 0.2em 0 0.4em; }
+  .ftr__col h2:not(:first-child) { margin-top: 1.2em; }
+  .ftr__bottom { margin-top: 48px; padding-top: 20px; border-top: 1px solid #2c4559; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
+  .ftr__bottom p { margin: 0; max-width: 80ch; }
+  .ftr__bottom p:last-child { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .ftr__cookie { background: none; border: 0; padding: 0; color: #e7f0f4; font: inherit; cursor: pointer; }
+  .ftr__cookie:hover { text-decoration: underline; }
+  @media (max-width: 980px) { .ftr__top { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .ftr__top { grid-template-columns: 1fr; } }
+</style>

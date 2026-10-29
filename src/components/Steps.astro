@@ -1,0 +1,33 @@
+---
+const steps = [
+  { t: 'Pošlete poptávku', d: 'Za dvě minuty vyplníte, co chcete chladit nebo vytápět a kde. Fotky místa pomohou, ale nejsou nutné.' },
+  { t: 'Ozveme se a doporučíme řešení', d: 'Projdeme s vámi velikost místností, umístění jednotek a vhodnou řadu Mitsubishi Heavy Industries nebo Hisense.' },
+  { t: 'Partnerská firma zaměří a nacení', d: 'Montážní firma z vašeho kraje přijede, posoudí trasu potrubí a elektro a připraví přesnou nabídku zdarma.' },
+  { t: 'Montáž a spuštění', d: 'Certifikovaní technici jednotku nainstalují, zkontrolují těsnost, spustí ji a předají vám záruční dokumentaci.' },
+];
+---
+<ol class="steps">
+  {steps.map((s, i) => (
+    <li class="steps__item">
+      <span class="steps__n" aria-hidden="true">{i + 1}</span>
+      <h3>{s.t}</h3>
+      <p>{s.d}</p>
+    </li>
+  ))}
+</ol>
+<style>
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .steps__item { position: relative; padding: 0 22px 0 0; }
+  .steps__item::before { content: ''; position: absolute; left: 52px; right: 0; top: 23px; height: 2px; background: repeating-linear-gradient(90deg, var(--contour) 0 6px, transparent 6px 12px); }
+  .steps__item:last-child::before { display: none; }
+  .steps__n { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--sun); font: 800 1.35rem/1 var(--font-head); margin-bottom: 18px; position: relative; }
+  .steps__item h3 { margin-bottom: 0.4em; }
+  .steps__item p { color: var(--ink-soft); margin: 0; }
+  :global(.section--ink) .steps__item p { color: #c4d6df; }
+  @media (max-width: 900px) {
+    .steps { grid-template-columns: 1fr; gap: 28px; }
+    .steps__item { padding: 0 0 0 68px; }
+    .steps__n { position: absolute; left: 0; top: 0; margin: 0; }
+    .steps__item::before { left: 23px; right: auto; top: 52px; bottom: -28px; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--contour) 0 6px, transparent 6px 12px); }
+  }
+</style>

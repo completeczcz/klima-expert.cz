@@ -1,0 +1,73 @@
+---
+// Zjednodušený obrys ČR (lon, lat) a z něj odvozené „izotermy“ – vlastní grafika webu.
+interface Props { class?: string; dots?: boolean; highlight?: string }
+const { class: cls = '', dots = true, highlight } = Astro.props;
+
+const outline: [number, number][] = [
+  [12.09, 50.25], [12.32, 50.18], [12.5, 50.39], [12.95, 50.41], [13.2, 50.5], [13.5, 50.62],
+  [13.9, 50.75], [14.3, 50.88], [14.38, 51.03], [14.6, 51.0], [14.82, 50.87], [15.0, 51.0],
+  [15.28, 50.95], [15.4, 50.79], [15.8, 50.74], [16.08, 50.65], [16.23, 50.67], [16.44, 50.6],
+  [16.2, 50.43], [16.45, 50.32], [16.68, 50.1], [16.86, 50.2], [16.98, 50.4], [17.3, 50.3],
+  [17.7, 50.33], [17.76, 50.18], [18.0, 50.02], [18.33, 49.94], [18.58, 49.91], [18.85, 49.52],
+  [18.55, 49.47], [18.15, 49.27], [17.95, 49.05], [17.65, 48.86], [17.4, 48.83], [17.18, 48.87],
+  [16.95, 48.62], [16.75, 48.73], [16.48, 48.8], [16.1, 48.75], [15.75, 48.86], [15.32, 48.98],
+  [15.0, 49.02], [14.98, 48.78], [14.72, 48.58], [14.4, 48.6], [14.05, 48.62], [13.82, 48.77],
+  [13.55, 48.97], [13.2, 49.15], [12.93, 49.35], [12.65, 49.43], [12.5, 49.7], [12.42, 49.97],
+  [12.2, 50.11],
+];
+const k = Math.cos((49.8 * Math.PI) / 180);
+const minLon = 12.09, maxLat = 51.06, scale = 150;
+const proj = ([lon, lat]: [number, number]) => [(lon - minLon) * k * scale + 10, (maxLat - lat) * scale + 10];
+const pts = outline.map(proj);
+const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length;
+const cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+const path = (f: number, wob = 0) =>
+  'M' + pts.map(([x, y], i) => {
+    const w = 1 + wob * Math.sin(i * 1.7 + f * 9);
+    return `${(cx + (x - cx) * f * w).toFixed(1)},${(cy + (y - cy) * f * w).toFixed(1)}`;
+  }).join('L') + 'Z';
+const rings = [1, 0.84, 0.69, 0.55, 0.42, 0.3, 0.19];
+const w = Math.ceil((18.86 - minLon) * k * scale + 20);
+const h = Math.ceil((maxLat - 48.55) * scale + 20);
+const cities: { n: string; lon: number; lat: number; slug: string }[] = [
+  { n: 'Praha', lon: 14.42, lat: 50.08, slug: 'praha' },
+  { n: 'Brno', lon: 16.61, lat: 49.2, slug: 'jihomoravsky-kraj' },
+  { n: 'Ostrava', lon: 18.29, lat: 49.83, slug: 'moravskoslezsky-kraj' },
+  { n: 'Plzeň', lon: 13.38, lat: 49.75, slug: 'plzensky-kraj' },
+  { n: 'Liberec', lon: 15.06, lat: 50.77, slug: 'liberecky-kraj' },
+  { n: 'Olomouc', lon: 17.25, lat: 49.59, slug: 'olomoucky-kraj' },
+  { n: 'České Budějovice', lon: 14.47, lat: 48.97, slug: 'jihocesky-kraj' },
+  { n: 'Hradec Králové', lon: 15.83, lat: 50.21, slug: 'kralovehradecky-kraj' },
+  { n: 'Ústí nad Labem', lon: 14.03, lat: 50.66, slug: 'ustecky-kraj' },
+  { n: 'Pardubice', lon: 15.78, lat: 50.04, slug: 'pardubicky-kraj' },
+  { n: 'Zlín', lon: 17.67, lat: 49.23, slug: 'zlinsky-kraj' },
+  { n: 'Jihlava', lon: 15.59, lat: 49.4, slug: 'kraj-vysocina' },
+  { n: 'Karlovy Vary', lon: 12.87, lat: 50.23, slug: 'karlovarsky-kraj' },
+  { n: 'Kladno', lon: 14.1, lat: 50.15, slug: 'stredocesky-kraj' },
+];
+---
+<svg class={`contour ${cls}`} viewBox={`0 0 ${w} ${h}`} role="img" aria-label="Mapa České republiky – působíme ve všech krajích" preserveAspectRatio="xMidYMid meet">
+  <path d={path(1)} class="contour__land" />
+  {rings.slice(1).map((f, i) => <path d={path(f, 0.012 * (i + 1))} class="contour__ring" style={`--i:${i}`} />)}
+  <path d={path(1)} class="contour__edge" />
+  {dots && cities.map((c) => {
+    const [x, y] = proj([c.lon, c.lat]);
+    const on = highlight === c.slug;
+    return (
+      <g class={`contour__city${on ? ' is-on' : ''}`}>
+        <circle cx={x} cy={y} r={on ? 7 : 4.5} />
+        {(on || !highlight) && <text x={x + 9} y={y + 4}>{c.n}</text>}
+      </g>
+    );
+  })}
+</svg>
+
+<style>
+  .contour { width: 100%; height: auto; display: block; overflow: visible; }
+  .contour__land { fill: var(--ice); }
+  .contour__ring { fill: none; stroke: var(--contour); stroke-width: 1.1; opacity: calc(0.9 - var(--i) * 0.09); }
+  .contour__edge { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+  .contour__city circle { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+  .contour__city.is-on circle { fill: var(--sun); }
+  .contour__city text { font: 600 12px/1 var(--font-body); fill: var(--ink); paint-order: stroke; stroke: var(--ice); stroke-width: 3px; }
+</style>

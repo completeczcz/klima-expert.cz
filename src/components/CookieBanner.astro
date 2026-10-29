@@ -1,0 +1,88 @@
+---
+---
+<div class="cc" id="cc" hidden role="dialog" aria-labelledby="cc-title" aria-describedby="cc-text">
+  <div class="cc__box">
+    <h2 id="cc-title">Cookies na tomto webu</h2>
+    <p id="cc-text">
+      Nezbytné cookies potřebujeme, aby web a formulář fungovaly. S vaším souhlasem použijeme i analytické cookies (měření návštěvnosti)
+      a marketingové cookies (měření a cílení reklam Google). Souhlas můžete kdykoli změnit v patičce webu.
+      <a href="/cookies/">Více o cookies</a>
+    </p>
+    <form class="cc__opts" id="cc-opts" hidden>
+      <label><input type="checkbox" checked disabled /> <span><strong>Nezbytné</strong> – vždy aktivní</span></label>
+      <label><input type="checkbox" name="analytics" /> <span><strong>Analytické</strong> – Google Analytics</span></label>
+      <label><input type="checkbox" name="marketing" /> <span><strong>Marketingové</strong> – Google Ads</span></label>
+    </form>
+    <div class="cc__btns">
+      <button type="button" class="btn btn--sun" data-cc="all">Přijmout vše</button>
+      <button type="button" class="btn btn--ghost" data-cc="none">Odmítnout</button>
+      <button type="button" class="btn btn--ghost" data-cc="custom" id="cc-custom">Nastavit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  type Consent = { analytics: boolean; marketing: boolean; ts: string };
+  const box = document.getElementById('cc') as HTMLElement;
+  const opts = document.getElementById('cc-opts') as HTMLFormElement;
+  const customBtn = document.getElementById('cc-custom') as HTMLButtonElement;
+
+  function read(): Consent | null {
+    try { return JSON.parse(localStorage.getItem('ke-consent') || 'null'); } catch { return null; }
+  }
+  function apply(c: Consent) {
+    try { localStorage.setItem('ke-consent', JSON.stringify(c)); } catch {}
+    const g = (window as any).gtag;
+    if (g) {
+      g('consent', 'update', {
+        analytics_storage: c.analytics ? 'granted' : 'denied',
+        ad_storage: c.marketing ? 'granted' : 'denied',
+        ad_user_data: c.marketing ? 'granted' : 'denied',
+        ad_personalization: c.marketing ? 'granted' : 'denied',
+      });
+      (window as any).dataLayer.push({ event: 'consent_update' });
+    }
+    box.hidden = true;
+  }
+  function open(withOptions = false) {
+    const c = read();
+    (opts.elements.namedItem('analytics') as HTMLInputElement).checked = !!c?.analytics;
+    (opts.elements.namedItem('marketing') as HTMLInputElement).checked = !!c?.marketing;
+    opts.hidden = !withOptions;
+    customBtn.textContent = withOptions ? 'Uložit výběr' : 'Nastavit';
+    box.hidden = false;
+  }
+  if (!read()) open();
+  box.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest('[data-cc]') as HTMLElement | null;
+    if (!t) return;
+    const ts = new Date().toISOString();
+    if (t.dataset.cc === 'all') apply({ analytics: true, marketing: true, ts });
+    if (t.dataset.cc === 'none') apply({ analytics: false, marketing: false, ts });
+    if (t.dataset.cc === 'custom') {
+      if (opts.hidden) { opts.hidden = false; customBtn.textContent = 'Uložit výběr'; return; }
+      apply({
+        analytics: (opts.elements.namedItem('analytics') as HTMLInputElement).checked,
+        marketing: (opts.elements.namedItem('marketing') as HTMLInputElement).checked,
+        ts,
+      });
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('[data-open-consent]')) open(true);
+  });
+</script>
+
+<style>
+  .cc { position: fixed; z-index: 90; inset: auto 16px 16px 16px; display: flex; justify-content: flex-start; pointer-events: none; }
+  .cc[hidden] { display: none; }
+  .cc__box { pointer-events: auto; width: min(100%, 520px); background: var(--white); color: var(--ink); border-radius: var(--radius-m); padding: 22px; box-shadow: 0 20px 60px -20px rgba(19, 40, 58, 0.55); border: 1px solid var(--line); }
+  .cc h2 { font-size: var(--step-1); margin-bottom: 0.4em; }
+  .cc p { font-size: var(--step--1); margin-bottom: 0.9em; }
+  .cc__opts { display: grid; gap: 8px; margin-bottom: 14px; font-size: var(--step--1); }
+  .cc__opts label { display: flex; gap: 10px; align-items: flex-start; }
+  .cc__opts input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--ink); }
+  .cc__btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cc__btns .btn { min-height: 42px; padding: 0.5em 1em; font-size: 0.95rem; }
+  @media (max-width: 760px) { .cc { inset: auto 8px 84px 8px; } }
+</style>

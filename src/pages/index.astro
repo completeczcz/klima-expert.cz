@@ -1,0 +1,198 @@
+---
+import Base from '../layouts/Base.astro';
+import QuickStart from '../components/QuickStart.astro';
+import ContourMap from '../components/ContourMap.astro';
+import Steps from '../components/Steps.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PriceTeaser from '../components/PriceTeaser.astro';
+import { getCollection } from 'astro:content';
+import { site, regions } from '../data/site';
+
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.published - +a.data.published).slice(0, 3);
+
+const uses = [
+  { href: '/klimatizace/do-bytu/', t: 'Klimatizace do bytu', d: 'Tichá nástěnná jednotka do ložnice nebo obýváku, řešení pro panelák i novostavbu včetně souhlasu SVJ.' },
+  { href: '/klimatizace/do-domu/', t: 'Klimatizace do domu', d: 'Chlazení podkroví a více místností jednou venkovní jednotkou. V zimě úsporné přitápění.' },
+  { href: '/klimatizace/do-kancelare/', t: 'Klimatizace do kanceláře', d: 'Nástěnné, kazetové i kanálové jednotky pro kanceláře, ordinace a obchody.' },
+  { href: '/tepelna-cerpadla/', t: 'Tepelné čerpadlo vzduch-voda', d: 'Vytápění a ohřev vody pro rodinný dům. Novostavba i výměna starého kotle.' },
+];
+
+const faq = [
+  { q: 'Kolik stojí klimatizace s montáží?', a: 'Nástěnná klimatizace do jedné místnosti se standardní montáží vyjde v bytě nebo rodinném domě orientačně na 30 000 až 60 000 Kč včetně 12% DPH, podle výkonu a řady. Přesnou cenu určí až zaměření, protože záleží na délce potrubí, umístění venkovní jednotky a elektroinstalaci. Orientační výpočet najdete v <a href="/cena-klimatizace/">kalkulačce</a>.' },
+  { q: 'Kdo klimatizaci namontuje?', a: 'Poptávku předáme ověřené partnerské montážní firmě z vašeho kraje, která s jednotkami Mitsubishi Heavy Industries a Hisense dlouhodobě pracuje a má osvědčení pro práci s chladivy (F-plyny).' },
+  { q: 'Je poptávka zpoplatněná nebo závazná?', a: 'Ne. Poptávka i zaměření jsou zdarma a k ničemu vás nezavazují. Rozhodnete se až podle konkrétní nabídky.' },
+  { q: 'Jak dlouho trvá montáž?', a: 'Běžná montáž jedné nástěnné klimatizace trvá 4 až 6 hodin. Multisplit pro více místností obvykle jeden až dva dny. Termín závisí na sezóně, na jaře a v létě bývají čekací doby delší.' },
+  { q: 'Můžu klimatizací i topit?', a: 'Ano. Moderní invertorové klimatizace jsou tepelná čerpadla vzduch-vzduch a umí efektivně topit i při mrazech. Pro přechodné období nebo jako doplněk k hlavnímu vytápění jsou velmi úsporné.' },
+  { q: 'Působíte i v mém kraji?', a: 'Ano, poptávky přijímáme z celé České republiky. Seznam krajů najdete níže na této stránce.' },
+];
+---
+<Base
+  title="Klimatizace a tepelná čerpadla s montáží po celé ČR"
+  description="Klimatizace a tepelná čerpadla Mitsubishi Heavy Industries a Hisense s montáží ve všech krajích ČR. Nezávazná poptávka, zaměření a nabídka zdarma."
+>
+  <section class="hero">
+    <div class="wrap hero__in">
+      <div class="hero__txt">
+        <h1>Klimatizace a tepelná čerpadla s montáží po celé ČR</h1>
+        <p class="lead">
+          Pomůžeme vybrat jednotku Mitsubishi Heavy Industries nebo Hisense a poptávku předáme ověřené montážní firmě
+          ve vašem kraji. Zaměření i cenová nabídka jsou zdarma.
+        </p>
+        <ul class="checks hero__checks">
+          <li>Produkty z oficiální distribuce, záruka až {site.warranty.mhi} let</li>
+          <li>Certifikovaní technici s osvědčením pro F-plyny</li>
+          <li>Ozveme se {site.responseTime}</li>
+        </ul>
+        <div class="hero__map" aria-hidden="false"><ContourMap /></div>
+      </div>
+      <div class="hero__form" id="poptavka-rychla">
+        <QuickStart />
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap trust__in">
+      <p><strong>Od roku 2007</strong><span>výhradní distribuce Mitsubishi Heavy Industries v ČR přes partnera COMPLETE CZ</span></p>
+      <p><strong>{site.warranty.mhi} let záruka</strong><span>na jednotky MHI, {site.warranty.hisense} roky na Hisense</span></p>
+      <p><strong>14 krajů</strong><span>montážní partneři po celé České republice</span></p>
+      <p><strong>0 Kč</strong><span>za poptávku, zaměření a cenovou nabídku</span></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Co potřebujete vychladit nebo vytopit?</h2>
+        <p class="lead">Každý prostor má jiné nároky na výkon, hlučnost i umístění jednotek. Vyberte, co řešíte, a ukážeme vám vhodné možnosti.</p>
+      </div>
+      <div class="uses">
+        {uses.map((u) => (
+          <a class="uses__item" href={u.href}>
+            <h3>{u.t}</h3>
+            <p>{u.d}</p>
+            <span class="uses__more">Zobrazit možnosti</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ice">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Dvě značky, které známe do posledního šroubku</h2>
+        <p class="lead">Nenabízíme všechno. Pracujeme se dvěma výrobci, u kterých máme přímou technickou podporu distributora v ČR a montážníky, kteří s jejich jednotkami dlouhodobě pracují.</p>
+      </div>
+      <div class="brands">
+        <a class="brands__item panel" href="/znacky/mitsubishi-heavy-industries/">
+          <p class="badge badge--sun">Prémiová japonská technika</p>
+          <h3>Mitsubishi Heavy Industries</h3>
+          <p>Japonský průmyslový koncern s více než stoletou tradicí. Klimatizace MHI vynikají tichým chodem, vysokou účinností a topením i v silných mrazech. Záruka {site.warranty.mhi} let.</p>
+          <span class="brands__more">Řady Diamond, Premium a další</span>
+        </a>
+        <a class="brands__item panel" href="/znacky/hisense/">
+          <p class="badge">Výhodný poměr ceny a výkonu</p>
+          <h3>Hisense</h3>
+          <p>Globální výrobce elektroniky a klimatizací. Moderní jednotky s Wi-Fi ovládáním za dostupnou cenu a tepelná čerpadla vzduch-voda pro rodinné domy. Záruka {site.warranty.hisense} roky.</p>
+          <span class="brands__more">Klimatizace i tepelná čerpadla</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <PriceTeaser />
+
+  <section class="section section--ink">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Jak to funguje</h2>
+        <p class="lead">Od poptávky ke spuštěné klimatizaci obvykle uplynou jeden až tři týdny, v hlavní sezóně o něco déle.</p>
+      </div>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap regions">
+      <div>
+        <h2>Montáž ve všech krajích</h2>
+        <p class="lead">Spolupracujeme s montážními firmami po celé republice. Poptávku vždy předáme firmě, která to má k vám co nejblíž.</p>
+        <ul class="regions__list">
+          {regions.map((r) => <li><a href={`/montaz-klimatizace/${r.slug}/`}>{r.name}</a></li>)}
+        </ul>
+      </div>
+      <div class="regions__map"><ContourMap /></div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section section--ice">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>Poradna</h2>
+          <p class="lead">Praktické rady k výběru, montáži a provozu klimatizací a tepelných čerpadel.</p>
+        </div>
+        <div class="grid grid--3">
+          {posts.map((p) => (
+            <a class="post panel" href={`/blog/${p.id}/`}>
+              <h3>{p.data.h1 ?? p.data.title}</h3>
+              <p class="muted">{p.data.perex}</p>
+            </a>
+          ))}
+        </div>
+        <p style="margin-top:28px"><a class="btn btn--ghost" href="/blog/">Všechny články</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap"><Faq items={faq} /></div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero { padding: clamp(32px, 5vw, 64px) 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper) 0%, var(--ice) 100%); }
+  .hero__in { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .hero h1 { max-width: 15ch; }
+  .hero__checks { margin-top: 1.4em; font-weight: 600; }
+  .hero__map { max-width: 540px; margin-top: 12px; opacity: 0.95; }
+  .hero__form { position: sticky; top: 96px; }
+  .trust { background: var(--ink); color: var(--paper); }
+  .trust__in { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .trust p { margin: 0; padding: 22px 20px; border-left: 1px solid #2c4559; display: grid; gap: 4px; font-size: var(--step--1); color: #c4d6df; }
+  .trust p:first-child { border-left: 0; padding-left: 0; }
+  .trust strong { font: 800 var(--step-1)/1.1 var(--font-head); color: var(--paper); }
+  .uses { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
+  .uses__item { padding: 24px 22px 26px 0; text-decoration: none; display: flex; flex-direction: column; border-right: 1px solid var(--line); padding-left: 22px; transition: background 0.15s; }
+  .uses__item:first-child { padding-left: 0; }
+  .uses__item:last-child { border-right: 0; }
+  .uses__item:hover { background: var(--ice); }
+  .uses__item p { color: var(--ink-soft); flex: 1; }
+  .uses__more, .brands__more { font-weight: 700; text-decoration: underline; text-decoration-color: var(--sun); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .brands { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .brands__item { text-decoration: none; display: flex; flex-direction: column; }
+  .brands__item h3 { font-size: var(--step-2); font-weight: 800; }
+  .brands__item p:not(.badge) { color: var(--ink-soft); flex: 1; }
+  .brands__item .badge { align-self: flex-start; }
+  .regions { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+  .regions__list { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 24px; }
+  .regions__list li { padding: 6px 0; break-inside: avoid; border-bottom: 1px solid var(--line); }
+  .regions__list a { text-decoration: none; font-weight: 600; }
+  .regions__list a:hover { text-decoration: underline; }
+  .post { text-decoration: none; }
+  .post h3 { font-size: var(--step-1); }
+  @media (max-width: 980px) {
+    .hero__in, .regions, .brands { grid-template-columns: 1fr; }
+    .hero__form { position: static; }
+    .hero__map { display: none; }
+    .uses { grid-template-columns: 1fr 1fr; }
+    .uses__item { padding-left: 0 !important; border-right: 0; border-bottom: 1px solid var(--line); padding-right: 16px; }
+    .trust__in { grid-template-columns: 1fr 1fr; }
+    .trust p:nth-child(3) { border-left: 0; padding-left: 0; }
+  }
+  @media (max-width: 560px) { .uses { grid-template-columns: 1fr; } .regions__list { columns: 1; } }
+</style>

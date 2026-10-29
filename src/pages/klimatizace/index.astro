@@ -1,0 +1,72 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products } from '../../data/products';
+const series = ['mhi-diamond-zsx', 'mhi-premium-zt', 'hisense-air-master', 'mhi-premium-zs', 'hisense-uni-pure', 'hisense-wings-comfort', 'hisense-hi-smart']
+  .map((id) => products.find((p) => p.id === id)!).filter(Boolean);
+const types = [
+  { href: '/klimatizace/do-bytu/', t: 'Do bytu', d: 'Tiché nástěnné jednotky do ložnice a obýváku, řešení pro paneláky a SVJ.' },
+  { href: '/klimatizace/do-domu/', t: 'Do rodinného domu', d: 'Podkroví, více místností, skryté jednotky a úsporné přitápění.' },
+  { href: '/klimatizace/do-kancelare/', t: 'Do kanceláře a provozovny', d: 'Kazetové, kanálové a podstropní jednotky pro firmy.' },
+  { href: '/klimatizace/multisplit/', t: 'Multisplit', d: 'Jedna venkovní jednotka pro dvě až pět místností.' },
+];
+const faq = [
+  { q: 'Jaký je rozdíl mezi klimatizací Mitsubishi Heavy Industries a Hisense?', a: 'Mitsubishi Heavy Industries je japonská prémiová značka s velmi tichými a účinnými jednotkami a zárukou 5 let. Hisense nabízí moderní jednotky s Wi-Fi a chytrými funkcemi za příznivější cenu, se zárukou 3 roky. Obě značky mají řady pro náročné i pro ty, kdo hledají rozumnou cenu.' },
+  { q: 'Co je invertorová klimatizace?', a: 'Invertor plynule mění výkon kompresoru podle potřeby místo toho, aby se zapínal a vypínal. Klimatizace je tak tišší, drží stabilnější teplotu a spotřebuje méně elektřiny. Všechny jednotky v naší nabídce jsou invertorové. Více v článku <a href="/blog/invertorova-klimatizace/">invertorová klimatizace</a>.' },
+  { q: 'Jaké chladivo jednotky používají?', a: 'Klimatizace v naší nabídce používají chladivo R32, které má výrazně nižší dopad na klima než starší R410A. Více o pravidlech pro chladiva v článku <a href="/blog/chladivo-r32-f-plyny/">chladivo R32 a F-plyny</a>.' },
+];
+---
+<Landing
+  title="Klimatizace s montáží – Mitsubishi Heavy a Hisense"
+  description="Klimatizace s montáží do bytu, domu i kanceláře po celé ČR. Nástěnné, multisplit, parapetní a kazetové jednotky Mitsubishi Heavy Industries a Hisense."
+  h1="Klimatizace s montáží po celé ČR"
+  lead="Pomůžeme vybrat správný typ a výkon klimatizace a poptávku předáme ověřené montážní firmě ve vašem kraji. Zaměření i cenová nabídka jsou zdarma."
+  points={['Invertorové jednotky s chladivem R32', 'Chlazení v létě, úsporné topení v zimě', `Záruka 5 let na Mitsubishi Heavy, 3 roky na Hisense`]}
+  preset="klimatizace-byt"
+  crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }]}
+  series={series}
+  seriesTitle="Nejoblíbenější nástěnné klimatizace"
+  seriesLead="Od cenově dostupných jednotek pro chlazení ložnice po prémiové modely s pohybovým čidlem a provozem do −20 °C."
+  faq={faq}
+  ctaTitle="Vyberte si klimatizaci s námi"
+>
+  <section class="copy">
+    <div class="wrap">
+      <h2>Kam klimatizaci potřebujete?</h2>
+      <div class="kt">
+        {types.map((t) => (
+          <a class="kt__i" href={t.href}><h3>{t.t}</h3><p>{t.d}</p></a>
+        ))}
+      </div>
+    </div>
+    <div class="wrap copy__grid" style="margin-top:48px">
+      <div>
+        <h2>Typy klimatizací</h2>
+        <p><strong>Nástěnná split klimatizace</strong> je nejrozšířenější. Vnitřní jednotka visí na stěně pod stropem a s venkovní jednotkou ji spojuje potrubí. Je cenově nejdostupnější a nejsnáze se montuje.</p>
+        <p><strong>Parapetní a konzolové jednotky</strong> stojí u podlahy, hodí se pod okno a do podkroví a výborně topí.</p>
+        <p><strong>Kazetové a kanálové jednotky</strong> se montují do podhledu. Kazeta je vidět jako mřížka ve stropě, kanálová jednotka je zcela skrytá.</p>
+        <p><strong>Multisplit</strong> připojí k jedné venkovní jednotce dvě až pět vnitřních.</p>
+        <p>Všechny řady s výkony a výbavou najdete v <a href="/produkty/">přehledu produktů</a>.</p>
+      </div>
+      <div>
+        <h2>Proč přes Klima Expert</h2>
+        <ul class="checks">
+          <li>Pracujeme jen se dvěma značkami, které dobře známe, a s podporou jejich distributora v ČR</li>
+          <li>Poptávku předáme jedné ověřené firmě z vašeho kraje, ne desítce firem najednou</li>
+          <li>Montážníci mají osvědčení pro práci s chladivy (F-plyny)</li>
+          <li>Orientační ceny ukazujeme předem, ať víte, s čím počítat</li>
+        </ul>
+        <p>Než se rozhodnete, přečtěte si, <a href="/blog/kolik-stoji-klimatizace-do-bytu/">kolik stojí klimatizace do bytu</a> nebo jak <a href="/blog/jak-probiha-montaz-klimatizace/">probíhá montáž</a>.</p>
+      </div>
+    </div>
+  </section>
+</Landing>
+<style>
+  .kt { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
+  .kt__i { padding: 20px 18px 20px 0; text-decoration: none; border-right: 1px solid var(--line); }
+  .kt__i + .kt__i { padding-left: 18px; }
+  .kt__i:last-child { border-right: 0; }
+  .kt__i:hover h3 { text-decoration: underline; text-decoration-color: var(--sun); }
+  .kt__i p { color: var(--ink-soft); margin: 0; }
+  @media (max-width: 860px) { .kt { grid-template-columns: 1fr 1fr; } .kt__i { border-right: 0; padding-left: 0 !important; border-bottom: 1px solid var(--line); } }
+  @media (max-width: 520px) { .kt { grid-template-columns: 1fr; } }
+</style>

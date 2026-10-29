@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { catNames, readingTime } from '../../data/blog';
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.published - +a.data.published || a.data.title.localeCompare(b.data.title, 'cs'));
+const cats = Object.entries(catNames).filter(([k]) => posts.some((p) => p.data.category === k));
+---
+<Base
+  title="Poradna – klimatizace a tepelná čerpadla"
+  description="Praktické rady k výběru, montáži a provozu klimatizací a tepelných čerpadel: ceny, výkon, povolení, hluk, dotace, servis a srovnání značek."
+  crumbs={[{ name: 'Poradna', href: '/blog/' }]}
+>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap">
+      <div class="section__head">
+        <h1>Poradna</h1>
+        <p class="lead">Všechno, co potřebujete vědět před pořízením klimatizace nebo tepelného čerpadla. Píšeme věcně, s aktuálními cenami a pravidly pro rok 2026.</p>
+      </div>
+      {cats.map(([k, name]) => (
+        <section class="bc" id={k}>
+          <h2>{name}</h2>
+          <ul class="bl">
+            {posts.filter((p) => p.data.category === k).map((p) => (
+              <li>
+                <a href={`/blog/${p.id}/`}>
+                  <h3>{p.data.h1 ?? p.data.title}</h3>
+                  <p>{p.data.perex}</p>
+                  <span class="small muted">{readingTime(p.body)} min čtení</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .bc { padding-top: 36px; }
+  .bc h2 { font-size: var(--step-2); border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+  .bl { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+  .bl li { border-bottom: 1px solid var(--line); }
+  .bl a { display: block; padding: 18px 0; text-decoration: none; }
+  .bl h3 { font-size: var(--step-1); margin-bottom: 0.35em; }
+  .bl a:hover h3 { text-decoration: underline; text-decoration-color: var(--sun); }
+  .bl p { color: var(--ink-soft); margin: 0 0 6px; }
+  @media (max-width: 800px) { .bl { grid-template-columns: 1fr; } }
+</style>

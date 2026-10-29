@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { products, kw } from '../../data/products';
+const mhi = products.find((p) => p.id === 'mhi-multisplit-scm')!;
+const his = products.find((p) => p.id === 'hisense-multi-split')!;
+const series = [mhi, his];
+const faq = [
+  { q: 'Kolik místností zvládne jeden multisplit?', a: 'Podle venkovní jednotky dvě až pět. Mitsubishi Heavy Industries i Hisense mají venkovní jednotky pro 2, 3, 4 a 5 vnitřních jednotek.' },
+  { q: 'Můžou různé místnosti zároveň chladit a topit?', a: 'Ne. Všechny vnitřní jednotky jednoho multisplitu pracují ve stejném režimu, tedy buď chladí, nebo topí. Teplotu a výkon si ale každá místnost nastavuje sama.' },
+  { q: 'Je multisplit levnější než samostatné klimatizace?', a: 'Pořizovací cena bývá podobná. Multisplit ušetří místo na fasádě a hodí se tam, kde je povolena jen jedna venkovní jednotka. Samostatné jednotky jsou nezávislé a při poruše jedné ostatní běží dál.' },
+  { q: 'Můžu přidat vnitřní jednotku později?', a: 'Ano, pokud to venkovní jednotka kapacitou a počtem přípojek dovolí. Proto se vyplatí zvolit venkovní jednotku s rezervou a rozvody připravit při první montáži.' },
+];
+---
+<Landing
+  title="Multisplit klimatizace pro více místností – cena"
+  description="Multisplit: jedna venkovní jednotka pro 2 až 5 místností. Mitsubishi Heavy Industries a Hisense, orientační ceny s montáží a návrh rozmístění zdarma."
+  h1="Multisplit klimatizace pro více místností"
+  lead="Jedna venkovní jednotka a dvě až pět vnitřních. Ideální pro byty a domy, kde chcete klimatizovat víc pokojů a nechcete mít na fasádě několik zařízení."
+  points={['2 až 5 místností s jednou venkovní jednotkou', 'Kombinace nástěnných, parapetních i skrytých jednotek', 'Každá místnost má vlastní ovládání a teplotu']}
+  preset="klimatizace-byt"
+  crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }, { name: 'Multisplit', href: '/klimatizace/multisplit/' }]}
+  series={series}
+  seriesTitle="Multisplit systémy v naší nabídce"
+  faq={faq}
+  ctaTitle="Navrhneme vám multisplit"
+>
+  <section class="copy">
+    <div class="wrap copy__grid">
+      <div>
+        <h2>Jak multisplit funguje</h2>
+        <p>Venkovní jednotka multisplitu má několik okruhů a ke každému se připojí jedna vnitřní jednotka. Vnitřní jednotky mohou mít různý výkon i typ: do ložnice malou tichou nástěnnou, do obýváku výkonnější, pod okno v podkroví parapetní. Venkovní jednotka podle potřeby rozděluje výkon tam, kde je zrovna potřeba.</p>
+        <h3>Kdy se multisplit vyplatí</h3>
+        <ul class="checks">
+          <li>V bytovém domě, kde SVJ povolí jen jednu venkovní jednotku</li>
+          <li>Když jsou klimatizované místnosti blízko u sebe</li>
+          <li>Když chcete na fasádě co nejméně zařízení</li>
+        </ul>
+        <h3>Kdy raději samostatné jednotky</h3>
+        <p>Pokud jsou místnosti na opačných stranách domu, vycházejí u multisplitu dlouhé trasy potrubí. Samostatné jednotky pak bývají jednodušší a nezávislé na sobě.</p>
+      </div>
+      <div>
+        <h2>Venkovní jednotky a ceny</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Počet místností</th><th>Mitsubishi Heavy</th><th>Hisense</th></tr></thead>
+            <tbody>
+              {[2, 3, 4, 5].map((n) => {
+                const a = mhi.outdoorUnits.filter((o) => o.maxIndoor === n).map((o) => kw(o.coolKw));
+                const b = his.outdoorUnits.filter((o) => o.maxIndoor === n).map((o) => kw(o.coolKw));
+                return <tr><td><strong>{n}</strong></td><td>{a.join(', ') || '–'}</td><td>{b.join(', ') || '–'}</td></tr>;
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p>Multisplit pro dvě místnosti vychází s montáží orientačně na 65 000 až 110 000 Kč, pro tři místnosti na 90 000 až 150 000 Kč včetně 12% DPH. Cena záleží na zvolených vnitřních jednotkách a délce rozvodů. Spočítejte si orientační cenu v <a href="/cena-klimatizace/">kalkulačce</a>.</p>
+      </div>
+    </div>
+  </section>
+</Landing>
