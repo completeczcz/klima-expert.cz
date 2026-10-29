@@ -1,0 +1,78 @@
+---
+import Base from '../../../layouts/Base.astro';
+import QuickStart from '../../../components/QuickStart.astro';
+import SeriesRow from '../../../components/SeriesRow.astro';
+import Steps from '../../../components/Steps.astro';
+import Faq from '../../../components/Faq.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import PriceTeaser from '../../../components/PriceTeaser.astro';
+import { cities } from '../../../data/cities';
+import { regions, site } from '../../../data/site';
+import { products } from '../../../data/products';
+
+export function getStaticPaths() {
+  return cities.map((c) => ({ params: { kraj: c.kraj, mesto: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+const r = regions.find((x) => x.slug === c.kraj)!;
+const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-premium-zt', 'hisense-multi-split'].map((id) => products.find((p) => p.id === id)!);
+const nearby = cities.filter((x) => x.slug !== c.slug).slice(0, 11);
+const faq = [
+  { q: `Kolik stojí klimatizace s montáží ${c.loc}?`, a: `Klimatizace do jedné místnosti vyjde ${c.loc} včetně standardní montáže orientačně na 30 000 až 60 000 Kč s 12% DPH. Přesnou cenu připraví partnerská firma po zaměření, které je zdarma.` },
+  { q: `Montujete i v okolí města ${c.name}?`, a: `Ano, například v obcích ${c.okoli.join(', ')} a v celém kraji (${r.name}).` },
+  { q: 'Jak rychle se ozvete?', a: `Ozveme se ${site.responseTime}. Termín zaměření domluví partnerská firma, mimo hlavní sezónu obvykle do týdne.` },
+];
+---
+<Base
+  title={`Klimatizace ${c.name} – montáž klimatizace s nabídkou zdarma`.slice(0, 65)}
+  description={`Montáž klimatizace a tepelného čerpadla ${c.loc} a okolí (${c.okoli.slice(0, 3).join(', ')}). Mitsubishi Heavy a Hisense, zaměření a nabídka zdarma.`.slice(0, 158)}
+  crumbs={[{ name: r.name, href: `/montaz-klimatizace/${r.slug}/` }, { name: c.name, href: `/montaz-klimatizace/${r.slug}/${c.slug}/` }]}
+  schema={[{ '@context': 'https://schema.org', '@type': 'Service', name: `Montáž klimatizace ${c.loc}`, provider: { '@id': 'https://klima-expert.cz/#firma' }, areaServed: { '@type': 'City', name: c.name } }]}
+>
+  <section class="ch">
+    <div class="wrap ch__in">
+      <div>
+        <h1>Klimatizace s montáží {c.loc}</h1>
+        <p class="lead">{c.note}</p>
+        <ul class="checks ch__pts">
+          <li>Partnerská montážní firma z okolí</li>
+          <li>Zaměření a cenová nabídka zdarma</li>
+          <li>Ozveme se {site.responseTime}</li>
+        </ul>
+      </div>
+      <div><QuickStart heading={`Poptávka ${c.loc}`} /></div>
+    </div>
+  </section>
+  <PriceTeaser />
+  <section class="section section--ice">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Oblíbené klimatizace {c.loc}</h2>
+        <p class="lead">Tiché a úsporné řady, které se hodí do bytů i rodinných domů. Celou nabídku najdete v <a href="/produkty/">přehledu produktů</a>.</p>
+      </div>
+      {series.map((s) => <SeriesRow s={s} />)}
+    </div>
+  </section>
+  <section class="section section--ink"><div class="wrap"><div class="section__head"><h2>Jak to probíhá</h2></div><Steps /></div></section>
+  <section class="section"><div class="wrap"><Faq items={faq} /></div></section>
+  <section class="section section--ice">
+    <div class="wrap">
+      <h2>Montujeme i v dalších městech</h2>
+      <ul class="ok">
+        {nearby.map((x) => <li><a href={`/montaz-klimatizace/${x.kraj}/${x.slug}/`}>{x.name}</a></li>)}
+        <li><a href={`/montaz-klimatizace/${r.slug}/`}>Celý kraj: {r.name}</a></li>
+      </ul>
+    </div>
+  </section>
+  <CtaBand title={`Klimatizace ${c.loc}`} />
+</Base>
+<style>
+  .ch { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
+  .ch__in { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .ch__in > * { min-width: 0; }
+  .ch__pts { font-weight: 600; margin-top: 1.4em; }
+  .ok { list-style: none; padding: 0; margin: 0; columns: 3; column-gap: 28px; }
+  .ok li { padding: 6px 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+  .ok a { text-decoration: none; font-weight: 600; }
+  @media (max-width: 900px) { .ch__in { grid-template-columns: 1fr; } .ok { columns: 2; } }
+</style>

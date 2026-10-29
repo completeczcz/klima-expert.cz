@@ -12,8 +12,18 @@ const FIELDS = {
   servis: 40, servis_zarizeni: 200,
   psc: 10, obec: 80, kraj: 40, termin: 40,
   jmeno: 100, telefon: 25, email: 120, poznamka: 2000, souhlas: 5,
-  zdroj_stranky: 300, kampan: 300, gclid: 200,
+  zdroj_stranky: 300, kampan: 300, gclid: 200, zkraceny: 2,
 };
+
+// PSČ → kraj (orientačně, pro krátký formulář z reklamních stránek)
+const PSC_KRAJ = [
+  [/^1/, 'praha'], [/^2[5-9]/, 'stredocesky-kraj'], [/^3[0-4]/, 'plzensky-kraj'], [/^3[56]/, 'karlovarsky-kraj'],
+  [/^39[3-6]/, 'kraj-vysocina'], [/^3[7-9]/, 'jihocesky-kraj'], [/^4[0-4]/, 'ustecky-kraj'], [/^4[67]/, 'liberecky-kraj'],
+  [/^51[2-3]/, 'liberecky-kraj'], [/^5[0145]/, 'kralovehradecky-kraj'], [/^5[367]/, 'pardubicky-kraj'], [/^5[89]/, 'kraj-vysocina'],
+  [/^67[45]/, 'kraj-vysocina'], [/^6/, 'jihomoravsky-kraj'], [/^7[0-4]/, 'moravskoslezsky-kraj'], [/^7[56]/, 'zlinsky-kraj'],
+  [/^7[7-9]/, 'olomoucky-kraj'],
+];
+const guessKraj = (psc) => (PSC_KRAJ.find(([re]) => re.test(psc.replace(/\s/g, ''))) || [])[1] || '';
 const TYPES = ['klimatizace-byt', 'klimatizace-dum', 'klimatizace-kancelar', 'tepelne-cerpadlo', 'servis'];
 const TYPE_LABEL = {
   'klimatizace-byt': 'Klimatizace do bytu', 'klimatizace-dum': 'Klimatizace do domu',
@@ -56,9 +66,11 @@ export async function onRequestPost({ request, env }) {
   // Validace
   if (!TYPES.includes(d.typ)) return fail('typ');
   if (!/^\d{3}\s?\d{2}$/.test(d.psc)) return fail('psc');
-  if (!d.obec || !d.kraj || !d.jmeno) return fail('povinne');
+  const short = d.zkraceny === '1';
+  if (!d.kraj) d.kraj = guessKraj(d.psc);
+  if ((!short && !d.obec) || !d.kraj || !d.jmeno) return fail('povinne');
   if (!/^\+?[\d\s]{9,17}$/.test(d.telefon)) return fail('telefon');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return fail('email');
+  if ((!short || d.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return fail('email');
   if (d.souhlas !== 'ano') return fail('souhlas');
 
   const ip = request.headers.get('cf-connecting-ip') || '';
@@ -120,7 +132,7 @@ export async function onRequestPost({ request, env }) {
     const from = env.NOTIFY_FROM || 'Klima Expert <poptavky@klima-expert.cz>';
     await Promise.all([
       send({ from, to: env.NOTIFY_TO.split(',').map((s) => s.trim()), reply_to: d.email, subject: `Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`, html }),
-      send({
+      d.email && send({
         from, to: [d.email], subject: 'Děkujeme za poptávku – Klima Expert',
         html: `<p>Dobrý den, ${esc(d.jmeno)},</p><p>děkujeme za poptávku (${esc(TYPE_LABEL[d.typ])}, ${esc(d.obec)}). Ozveme se vám do 1 pracovního dne a domluvíme další postup. Poptávku předáme jedné partnerské montážní firmě z vašeho kraje, která připraví zaměření a cenovou nabídku zdarma.</p><p>S pozdravem<br>Klima Expert<br>klima-expert.cz</p>`,
       }),

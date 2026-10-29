@@ -7,7 +7,7 @@ export default defineConfig({
   build: { format: 'directory', inlineStylesheets: 'auto' },
   integrations: [
     sitemap({
-      filter: (page) => !/\/(dekujeme|404)\/?$/.test(page),
+      filter: (page) => !/\/(dekujeme|404)\/?$/.test(page) && !page.includes('/nabidka/') && !page.includes('/admin/'),
       changefreq: 'weekly',
     }),
   ],

@@ -88,7 +88,7 @@ Nezateplený dům ze 70. let a novostavba se zateplením se stejnou plochou mís
 
 Moderní invertorové klimatizace dokážou výkon plynule snižovat, takže mírná rezerva nevadí. Výrazné předimenzování ale přináší problémy:
 
-- **Horší odvlhčování.** Jednotka místnost rychle zchladí a sníží výkon dřív, než stihne z vzduchu odebrat vlhkost. Vzduch je pak chladný, ale lepkavý.
+- **Horší odvlhčování.** Jednotka místnost rychle zchladí a sníží výkon dřív, než stihne ze vzduchu odebrat vlhkost. Vzduch je pak chladný, ale lepkavý.
 - **Častější cyklování.** Když jednotka nemůže snížit výkon dostatečně nízko, zapíná se a vypíná, což zhoršuje komfort i účinnost.
 - **Vyšší pořizovací cena** bez reálného přínosu.
 

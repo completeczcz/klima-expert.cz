@@ -5,7 +5,7 @@ h1: "Kolik stojí klimatizace do bytu: ceny s montáží pro rok 2026"
 category: klimatizace
 keywords: ["kolik stojí klimatizace do bytu", "cena klimatizace s montáží", "klimatizace do bytu cena", "cena montáže klimatizace 2026", "klimatizace 3+kk cena"]
 published: 2026-10-30
-perex: "Splitová klimatizace do jedné místnosti bytu vyjde v roce 2026 orientačně na 30 000–60 000 Kč vč. 12 % DPH včetně standardní montáže. Klimatizace pro dvě místnosti stojí zhruba 65 000–100 000 Kč, pro tři místnosti 90 000–150 000 Kč."
+perex: "Splitová klimatizace do jedné místnosti bytu vyjde v roce 2026 orientačně na 30 000–60 000 Kč vč. 12 % DPH včetně standardní montáže. Klimatizace pro dvě místnosti stojí zhruba 65 000–110 000 Kč, pro tři místnosti 90 000–150 000 Kč."
 faq:
   - q: "Kolik stojí klimatizace do bytu i s montáží?"
     a: "Jedna nástěnná jednotka 2,5 kW se standardní montáží stojí v roce 2026 orientačně od 30 000 Kč, 3,5 kW od 33 000 Kč vč. 12 % DPH. Prémiové řady vycházejí zhruba na 40 000–60 000 Kč."
@@ -27,7 +27,7 @@ sources:
 related: ["jaky-vykon-klimatizace-na-m2", "single-split-nebo-multisplit", "jak-probiha-montaz-klimatizace"]
 ---
 
-Kolik stojí klimatizace do bytu, záleží hlavně na tom, kolik místností chcete chladit, jak dlouhá bude trasa potrubí a jakou řadu zařízení zvolíte. Pro rychlou orientaci: **jedna splitová klimatizace do jedné místnosti vyjde v roce 2026 včetně standardní montáže zhruba na 30 000–60 000 Kč vč. 12 % DPH**. Pokud chcete klimatizovat dvě místnosti, dostanete se orientačně na 65 000–100 000 Kč, u tří místností na 90 000–150 000 Kč.
+Kolik stojí klimatizace do bytu, záleží hlavně na tom, kolik místností chcete chladit, jak dlouhá bude trasa potrubí a jakou řadu zařízení zvolíte. Pro rychlou orientaci: **jedna splitová klimatizace do jedné místnosti vyjde v roce 2026 včetně standardní montáže zhruba na 30 000–60 000 Kč vč. 12 % DPH**. Pokud chcete klimatizovat dvě místnosti, dostanete se orientačně na 65 000–110 000 Kč, u tří místností na 90 000–150 000 Kč.
 
 Níže najdete, z čeho se cena skládá, za co se běžně platí navíc a jak poznat, že je nabídka férová.
 
@@ -40,7 +40,7 @@ Ceny vycházejí z veřejných ceníků českých montážních firem platných 
 | Single split 2,0–2,5 kW | ložnice, dětský pokoj do cca 25 m² | od 30 000 Kč (prémiové řady 40 000–60 000 Kč) |
 | Single split 3,5 kW | obývací pokoj 25–35 m² | od 33 000 Kč (prémiové řady 40 000–60 000 Kč) |
 | Single split 5,0 kW | velký obývák s kuchyní | od 45 000 Kč |
-| Multisplit pro 2 místnosti | obývák + ložnice | 65 000–100 000 Kč |
+| Multisplit pro 2 místnosti | obývák + ložnice | 65 000–110 000 Kč |
 | Multisplit pro 3 místnosti | byt 3+kk | 90 000–150 000 Kč |
 
 Spodní hranice odpovídá běžným řadám a jednoduché montáži, horní hranice prémiovým řadám s vyšší účinností, tišším provozem nebo lepším designem. U velmi náročných instalací (dlouhé trasy, montáž z plošiny, designové jednotky) může cena rozpětí přesáhnout. Rychlý odhad pro váš byt můžete získat v [kalkulačce ceny klimatizace](/cena-klimatizace/).
@@ -98,7 +98,7 @@ Jedna nástěnná jednotka kolem 2,5 kW v obytném prostoru, venkovní jednotka 
 
 ### Byt 2+kk, 55 m², chlazení obýváku a ložnice
 
-Možnosti jsou dvě: dva samostatné single splity, nebo multisplit se dvěma vnitřními jednotkami. **Orientačně 65 000–100 000 Kč vč. 12 % DPH.** Co je výhodnější, záleží na dispozici a umístění venkovních jednotek – srovnání najdete v článku [single split nebo multisplit](/blog/single-split-nebo-multisplit/).
+Možnosti jsou dvě: dva samostatné single splity, nebo multisplit se dvěma vnitřními jednotkami. **Orientačně 65 000–110 000 Kč vč. 12 % DPH.** Co je výhodnější, záleží na dispozici a umístění venkovních jednotek – srovnání najdete v článku [single split nebo multisplit](/blog/single-split-nebo-multisplit/).
 
 ### Byt 3+kk, 75 m², tři místnosti
 
@@ -127,7 +127,7 @@ Pokud chcete mít jistotu, že nabídka odpovídá vašemu bytu, můžete [odesl
 ## Shrnutí
 
 - Jedna splitová klimatizace do bytu stojí v roce 2026 orientačně 30 000–60 000 Kč vč. 12 % DPH včetně standardní montáže.
-- Klimatizace pro dvě místnosti vyjde zhruba na 65 000–100 000 Kč, pro tři místnosti na 90 000–150 000 Kč.
+- Klimatizace pro dvě místnosti vyjde zhruba na 65 000–110 000 Kč, pro tři místnosti na 90 000–150 000 Kč.
 - Standardní montáž stojí přibližně 8 000–16 000 Kč, každý metr trasy navíc 300–1 000 Kč.
 - Při dodávce s montáží do bytu se obvykle uplatní DPH 12 %.
 - Porovnávejte jen položkové nabídky po zaměření se stejným výkonem a třídou jednotky.

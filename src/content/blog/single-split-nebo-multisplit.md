@@ -38,7 +38,7 @@ Single split nebo multisplit – tuhle otázku řeší skoro každý, kdo chce k
 | Topení a chlazení zároveň v různých místnostech | ano | ne, všechny jednotky ve stejném režimu |
 | Délka tras potrubí | krátké (jednotka za zdí) | často delší, všechny vedou k jedné jednotce |
 | Rozšíření později | snadné, přidáte další set | jen pokud venkovní jednotka má volný výstup |
-| Orientační cena pro 2 místnosti vč. 12 % DPH | cca 60 000–100 000 Kč (2 sety) | cca 65 000–100 000 Kč |
+| Orientační cena pro 2 místnosti vč. 12 % DPH | cca 60 000–110 000 Kč (2 sety) | cca 65 000–110 000 Kč |
 
 Ceny jsou orientační rozpětí z ceníků montážních firem pro rok 2026, pro byt a rodinný dům. Detailní rozpis najdete v článku [kolik stojí klimatizace do bytu](/blog/kolik-stoji-klimatizace-do-bytu/).
 
@@ -128,7 +128,7 @@ Na podrobnosti k multisplitovým sestavám se můžete podívat na stránce [mul
 
 - Single split je jednodušší, nezávislý a při chlazení jedné místnosti účinnější.
 - Multisplit obslouží 2–5 místností z jedné venkovní jednotky a šetří místo na fasádě.
-- Cenově vycházejí dva single splity a multisplit pro dvě místnosti podobně, kolem 60 000–100 000 Kč vč. 12 % DPH.
+- Cenově vycházejí dva single splity a multisplit pro dvě místnosti podobně, kolem 60 000–110 000 Kč vč. 12 % DPH.
 - U multisplitu běží všechny jednotky ve stejném režimu a porucha venkovní jednotky vyřadí celý systém.
 - U větších bytů a domů bývá nejlepší kombinace obou řešení.
 

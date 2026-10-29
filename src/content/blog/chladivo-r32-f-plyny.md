@@ -80,7 +80,7 @@ R32 má zhruba třetinové GWP oproti R410A, menší náplň a dobrou účinnost
 Od **1. 1. 2029** už se nové splitové klimatizace vzduch-vzduch do 12 kW s R32 nesmějí uvádět na trh (pokud to nevyžadují bezpečnostní předpisy). Pro vás jako zákazníka to znamená:
 
 - jednotku s R32 koupenou a nainstalovanou v letech 2026–2028 smíte **používat a servisovat po celou životnost**,
-- výrobci (včetně [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) a [Hisense](/znacky/hisense/)) postupně uvádějí řady s chladivy s nízkým GWP; konkrétní nabídku průběžně aktualizujeme v [přehledu produktů](/produkty/),
+- výrobci (včetně Mitsubishi Heavy Industries a Hisense) postupně uvádějí řady s chladivy s nízkým GWP; konkrétní nabídku průběžně aktualizujeme v [přehledu produktů](/produkty/),
 - na trhu se po roce 2029 může ještě nějakou dobu prodávat zboží, které bylo na trh uvedeno dřív – rozhoduje okamžik prvního uvedení na trh EU.
 
 ### Vyplatí se čekat na R290?
@@ -96,6 +96,23 @@ Pro vás z toho plyne jednoduché pravidlo: **ptejte se montážní firmy na č�
 ### Kontroly těsnosti
 
 Povinná pravidelná kontrola úniků se týká zařízení s náplní od **5 tun CO₂ ekvivalentu** – u R32 to je zhruba **7,4 kg** chladiva. Bytové a domovní split klimatizace mají náplň zpravidla do 2 kg, takže pod povinnost nespadají; těsnost okruhu se u nich kontroluje v rámci běžného [servisu klimatizace](/blog/cisteni-a-servis-klimatizace/). Větší systémy v kancelářích a provozovnách mohou mít povinnost kontrol jednou ročně a provozovatel zařízení s náplní od 3 kg musí podle českého zákona vést evidenční knihu.
+
+## Co pravidla o F-plynech znamenají při výběru nové klimatizace
+
+Pro běžného zákazníka se z dlouhého nařízení dají vytáhnout čtyři praktické body:
+
+1. **Neřešte R410A.** Nová malá klimatizace s tímto chladivem se už legálně uvádět na trh nesmí. Pokud vám ji někdo nabízí jako „skladovou zásobu za výhodnou cenu“, ověřte, kdy byla uvedena na trh, a hlavně se ptejte, proč je tak levná.
+2. **R32 je dnes rozumná volba.** Jde o osvědčené chladivo s dobrou účinností a širokou dostupností servisu. Jednotku nainstalovanou před rokem 2029 smíte používat i opravovat bez omezení vyplývajících ze zákazu uvádění na trh.
+3. **Ptejte se na množství náplně a délku tras.** Delší trasy znamenají dopouštění chladiva. U větších multisplitů to může mít vliv na povinnost kontrol těsnosti a evidence.
+4. **Chtějte doklad o montáži certifikovanou osobou.** V předávacím protokolu by mělo být uvedeno, kdo zařízení instaloval, množství a typ chladiva a výsledek tlakové zkoušky.
+
+### Co se děje se starou klimatizací
+
+Při demontáži staré jednotky musí certifikovaný technik **chladivo odčerpat** – vypustit ho do ovzduší je nezákonné. Odčerpané chladivo se předává k recyklaci nebo zneškodnění. Pokud měníte starou klimatizaci za novou, montážní firma obvykle demontáž a odčerpání zajistí v rámci zakázky; dejte si to do nabídky jako samostatnou položku.
+
+### Příklad
+
+Majitel bytu má klimatizaci s R410A z roku 2012. Jednotka chladí, ale v posledních letech je hlučnější a v zimě skoro netopí. Technik při servisu zjistí, že okruh je těsný. Doporučení: dokud jednotka funguje, není povinnost ji měnit. Pokud ale majitel chce topit v přechodném období a snížit spotřebu, vyplatí se plánovaná výměna za invertorovou jednotku s R32 – nejlépe mimo sezónu. Nabídku na výměnu včetně odčerpání a likvidace staré jednotky můžete získat přes [nezávaznou poptávku](/poptavka/).
 
 ## Shrnutí
 

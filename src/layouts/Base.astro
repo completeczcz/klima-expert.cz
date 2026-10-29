@@ -4,6 +4,7 @@ import { site } from '../data/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import Logo from '../components/Logo.astro';
 
 interface Crumb { name: string; href: string }
 interface Props {
@@ -15,10 +16,11 @@ interface Props {
   schema?: Record<string, unknown>[];
   crumbs?: Crumb[];
   hideStickyCta?: boolean;
+  minimal?: boolean;
 }
-const { title, description, ogType = 'website', noindex = false, schema = [], crumbs = [], hideStickyCta = false } = Astro.props;
+const { title, description, ogType = 'website', noindex = false, schema = [], crumbs = [], hideStickyCta = false, minimal = false } = Astro.props;
 const canonical = Astro.props.canonical ?? new URL(Astro.url.pathname, site.url).href;
-const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const fullTitle = title.includes(site.name) || `${title} | ${site.name}`.length > 65 ? title : `${title} | ${site.name}`;
 const ogImage = new URL('/og.png', site.url).href;
 
 const orgSchema = {
@@ -117,7 +119,9 @@ const { gtmId, ga4Id, adsId } = site.analytics;
   </head>
   <body>
     <a class="skip" href="#obsah">Přeskočit na obsah</a>
-    <Header />
+    {minimal ? (
+      <header class="mini wrap"><Logo /><a class="mini__tel" href={site.phoneHref}>{site.phone}</a></header>
+    ) : <Header />}
     <main id="obsah">
       {crumbs.length > 0 && (
         <nav class="crumbs wrap" aria-label="Drobečková navigace">
@@ -132,7 +136,9 @@ const { gtmId, ga4Id, adsId } = site.analytics;
       )}
       <slot />
     </main>
-    <Footer />
+    {minimal ? (
+      <footer class="mini-f"><div class="wrap">{site.name} – provozuje {site.company.name}, IČO {site.company.ico}. <a href="/ochrana-osobnich-udaju/">Ochrana osobních údajů</a> <a href="/cookies/">Cookies</a> <button type="button" data-open-consent>Nastavení cookies</button></div></footer>
+    ) : <Footer />}
     {!hideStickyCta && (
       <div class="sticky-cta" aria-label="Rychlý kontakt">
         <a class="btn btn--ghost" href={site.phoneHref} data-track="phone">Zavolat</a>
@@ -141,6 +147,17 @@ const { gtmId, ga4Id, adsId } = site.analytics;
     )}
     <CookieBanner />
     <script is:inline>
+      (function () {
+        var bar = document.querySelector('.sticky-cta');
+        var forms = document.querySelectorAll('.qs, .pf, .sf, .ctab');
+        if (!bar || !forms.length || !('IntersectionObserver' in window)) return;
+        var vis = new Set();
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { e.isIntersecting ? vis.add(e.target) : vis.delete(e.target); });
+          bar.classList.toggle('is-off', vis.size > 0);
+        }, { threshold: 0.15 });
+        forms.forEach(function (f) { io.observe(f); });
+      })();
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
         if (a && window.gtag) gtag('event', a.href.indexOf('tel:') === 0 ? 'phone_click' : 'email_click');
@@ -152,6 +169,10 @@ const { gtmId, ga4Id, adsId } = site.analytics;
 <style>
   .crumbs { display: flex; flex-wrap: wrap; gap: 0.5em; padding-top: 18px; font-size: var(--step--1); color: var(--ink-soft); }
   .crumbs a { color: var(--ink-soft); }
+  .mini { display: flex; justify-content: space-between; align-items: center; min-height: 68px; }
+  .mini__tel { font-weight: 800; text-decoration: none; font-size: var(--step-1); }
+  .mini-f { background: var(--ink); color: #c4d6df; padding: 24px 0; font-size: var(--step--1); }
+  .mini-f a, .mini-f button { color: #e7f0f4; margin-left: 14px; background: none; border: 0; font: inherit; cursor: pointer; text-decoration: underline; }
   .sticky-cta { display: none; }
   @media (max-width: 760px) {
     .sticky-cta {
@@ -160,6 +181,8 @@ const { gtmId, ga4Id, adsId } = site.analytics;
       border-top: 1px solid var(--line); backdrop-filter: blur(8px);
     }
     .sticky-cta .btn { min-height: 46px; padding-inline: 0.8em; }
+    .sticky-cta { transition: transform 0.25s; }
+    .sticky-cta.is-off { transform: translateY(110%); }
     :global(body) { padding-bottom: 70px; }
   }
 </style>

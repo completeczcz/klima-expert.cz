@@ -55,7 +55,7 @@ Servis dvakrát ročně (jaro a podzim) má smysl, když:
 
 Zanesený výměník a ventilátor znamenají méně proudícího vzduchu. Klimatizace pak musí běžet déle a na vyšší výkon, což zvyšuje **spotřebu** (podrobněji v článku [spotřeba klimatizace](/blog/spotreba-klimatizace/)) i **hluk**. Ve vlhkém prostředí výparníku a vany na kondenzát se navíc mohou množit plísně a bakterie – typickým příznakem je zatuchlý zápach po zapnutí. Zanedbaný odvod kondenzátu zase končí kapáním vody na zeď nebo podlahu.
 
-Druhým důvodem je **záruka**. Výrobci a dovozci v záručních podmínkách zpravidla požadují pravidelný odborný servis doložený záznamem. U značek, které zprostředkováváme – [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) s 5letou zárukou a [Hisense](/znacky/hisense/) se 3letou zárukou – si přesné podmínky nechte vysvětlit od montážní firmy a servisní záznamy schovávejte.
+Druhým důvodem je **záruka**. Výrobci a dovozci v záručních podmínkách zpravidla požadují pravidelný odborný servis doložený záznamem. U značek, které zprostředkováváme – Mitsubishi Heavy Industries s 5letou zárukou a Hisense se 3letou zárukou – si přesné podmínky nechte vysvětlit od montážní firmy a servisní záznamy schovávejte.
 
 ## Čištění klimatizace svépomocí: co zvládnete sami
 
@@ -104,11 +104,32 @@ Orientační ceny na českém trhu k roku 2026, s DPH:
 | Každá další vnitřní jednotka (multisplit) | + 250 – 800 Kč |
 | Doprava | obvykle 10 – 15 Kč/km nebo paušál |
 
-Ceny se liší podle regionu, přístupnosti venkovní jednotky (výšky, plošina) a toho, zda servis děláte u firmy, která jednotku montovala. Řada firem servisuje přednostně vlastní instalace. Při výběru montážní firmy se proto rovnou ptejte, jestli nabízí i pravidelný servis – partnerské firmy z naší sítě ho zajišťují. Přehled najdete na stránce [servis klimatizace](/servis-klimatizace/).
+Ceny se liší podle regionu, přístupnosti venkovní jednotky (výšky, plošina) a toho, zda servis děláte u firmy, která jednotku montovala. Řada firem servisuje přednostně vlastní instalace. Při výběru montážní firmy se proto rovnou ptejte, jestli nabízí i pravidelný servis – partnerské firmy z naší sítě ho zajišťují. Přehled najdete na stránce [servis klimatizace](/servis-klimatizace/), novou klimatizaci i se servisem můžete poptat přes [nezávaznou poptávku](/poptavka/).
+
+### Jak poznáte, že klimatizace potřebuje servis dřív
+
+Nečekejte na pravidelný termín, pokud si všimnete některého z těchto příznaků:
+
+- **zatuchlý nebo kyselý zápach** po zapnutí – typicky mikroorganismy ve výparníku nebo vaně kondenzátu,
+- **kapání vody** z vnitřní jednotky – ucpaný nebo nedostatečně spádovaný odvod kondenzátu,
+- **slabší chlazení** při stejném nastavení – zanesený výměník nebo málo chladiva,
+- **námraza** na potrubí nebo na venkovní jednotce v létě,
+- **nový zvuk** – drnčení, pískání nebo cvakání, které dřív nebylo,
+- **chybový kód** na displeji nebo blikající kontrolka.
+
+U většiny těchto příznaků platí, že čím dřív se řeší, tím levnější oprava. Provoz se zamrzlým výparníkem nebo s únikem chladiva může poškodit kompresor.
+
+### Servis po zimě a před zimou
+
+Před letní sezónou se servis soustředí na hygienu – čištění a dezinfekci vnitřní jednotky, protože v létě vzniká nejvíc kondenzátu. Pokud klimatizací topíte, má smysl i podzimní kontrola: technik ověří, že venkovní jednotka správně odmrazuje, že odvod kondenzátu z venkovní jednotky nezamrzá a že kolem ní zůstane volný prostor i při sněhu.
 
 ### Příklad ročních nákladů
 
 Byt 3+kk, multisplit s dvěma vnitřními jednotkami, servis jednou ročně: zhruba 2 000–3 000 Kč s DPH včetně dopravy v rámci města. Rozpočítáno na měsíc je to pár stovek korun – výrazně méně než oprava zamrzlého výparníku nebo výměna kompresoru po letech provozu se zaneseným výměníkem.
+
+### Servis po stěhování nebo koupi bytu s klimatizací
+
+Pokud jste koupili byt nebo dům s již nainstalovanou klimatizací, nechte ji před první sezónou zkontrolovat a vyčistit. Nevíte, kdy byl poslední servis, jestli je okruh těsný ani v jakém stavu je odvod kondenzátu. Technik zároveň zjistí typ chladiva a stáří jednotky, což se hodí pro rozhodnutí, zda ji dál provozovat, nebo plánovat výměnu.
 
 ## Shrnutí
 

@@ -97,6 +97,10 @@ Partnerská firma, kterou vám zprostředkujeme přes [nezávaznou poptávku](/p
 
 Byt 3+kk, 75 m², ve druhém patře panelového domu, lodžie do vnitrobloku. Vlastník chce jednu vnitřní jednotku do obýváku a druhou do ložnice, tedy [multisplit](/klimatizace/multisplit/) s jednou venkovní jednotkou. Stanovy SVJ svěřují rozhodování výboru. Žádost obsahuje fotku lodžie se zakreslenou venkovní jednotkou na podlaze v rohu, technický list (hladina akustického tlaku pod 50 dB(A) na 1 m), popis jednoho prostupu o průměru 60 mm a svod kondenzátu do dešťového svodu. Výbor žádost schválí na nejbližší schůzi a do souhlasu doplní podmínku antivibračních podložek. Celý proces trvá několik týdnů – proto je dobré začít dřív než v červnu.
 
+### Co když SVJ souhlas odmítne?
+
+Nejdřív se zeptejte na důvod. Často jde o konkrétní umístění (uliční fasáda, okno souseda), ne o klimatizaci jako takovou. Nabídněte alternativu – jednotku na podlahu lodžie místo na fasádu, umístění do dvora nebo na střechu, tišší model či protihlukovou clonu. Pokud rozhodoval výbor, můžete požádat, aby věc projednalo shromáždění vlastníků. Pokud vás přehlasovalo shromáždění a máte pro to důležitý důvod (například zdravotní), zákon umožňuje obrátit se do tří měsíců na soud. To je ale krajní řešení – dohoda se sousedy bývá rychlejší i levnější a vztahy v domě vám vydrží déle než klimatizace.
+
 ## Na co si dát pozor
 
 - **Ústní souhlas nestačí.** Chtějte písemný souhlas s popisem umístění. Při prodeji bytu nebo sporu se sousedem je to jediný doklad.

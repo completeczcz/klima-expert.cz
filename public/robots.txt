@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /dekujeme/
+Disallow: /admin/
 
 Sitemap: https://klima-expert.cz/sitemap-index.xml

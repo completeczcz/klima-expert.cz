@@ -108,7 +108,7 @@ Byt 2+kk, 55 m², v zatepleném bytovém domě se dnes vytápí elektrickými p�
 - **Přímotopy:** 4 000 kWh elektřiny × 6,6 Kč = cca **26 400 Kč ročně**.
 - **Klimatizace se SCOP 4,5** v obýváku a ložnici (multisplit nebo dva single splity): 4 000 ÷ 4,5 ≈ 890 kWh × 6,6 Kč = cca **5 900 Kč ročně**.
 
-Rozdíl přesahuje 20 000 Kč za rok. V praxi část tepla dál zajistí přímotop v koupelně a v nejmrazivějších dnech může klimatizace potřebovat dopomoc, takže skutečná úspora bude o něco nižší. Pořízení klimatizace pro dvě místnosti (orientačně 65 000–100 000 Kč vč. 12 % DPH) se tak může vrátit během několika let. V létě navíc získáte chlazení.
+Rozdíl přesahuje 20 000 Kč za rok. V praxi část tepla dál zajistí přímotop v koupelně a v nejmrazivějších dnech může klimatizace potřebovat dopomoc, takže skutečná úspora bude o něco nižší. Pořízení klimatizace pro dvě místnosti (orientačně 65 000–110 000 Kč vč. 12 % DPH) se tak může vrátit během několika let. V létě navíc získáte chlazení.
 
 Výpočet je modelový. Skutečná potřeba tepla závisí na zateplení, poloze bytu a nastavené teplotě.
 

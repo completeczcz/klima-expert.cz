@@ -37,7 +37,7 @@ Klimatizace do kanceláře se navrhuje jinak než do bytu. Na stejné ploše sed
 | Kancelář 25–35 m², 3–5 lidí | nástěnná nebo kazetová jednotka | 3,5–5 kW |
 | Zasedačka 30 m², až 12 lidí | kazetová jednotka | 5–7 kW |
 | Open space 80–150 m² | více kazet, kanálové jednotky, případně VRF | dle výpočtu |
-| Více kanceláří na jedné fasádě | [multisplit](/klimatizace/multisplit/) | součet místností |
+| Více kanceláří na jedné fasádě | multisplit | součet místností |
 
 Čísla jsou orientační – reálný výkon spočítá montážní firma po zaměření podle oslunění, izolace, počtu lidí a techniky.
 
@@ -70,7 +70,7 @@ Schovává se nad podhled a vzduch rozvádí krátkým potrubím do vyústek. Ho
 
 ### Multisplit a VRF
 
-Pro několik kanceláří s jednou venkovní jednotkou je řešením [multisplit](/klimatizace/multisplit/). U větších objektů s desítkami místností se používají systémy **VRF**, které umějí regulovat každou místnost zvlášť a u některých verzí současně chladit i topit. Obě značky, které zprostředkováváme – [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) i [Hisense](/znacky/hisense/) – nabízejí komerční řady včetně kazetových, kanálových a VRF jednotek. Přehled najdete v sekci [produkty](/produkty/) a na stránce [klimatizace do kanceláře](/klimatizace/do-kancelare/).
+Pro několik kanceláří s jednou venkovní jednotkou je řešením multisplit. U větších objektů s desítkami místností se používají systémy **VRF**, které umějí regulovat každou místnost zvlášť a u některých verzí současně chladit i topit. Obě značky, které zprostředkováváme – Mitsubishi Heavy Industries i Hisense – nabízejí komerční řady včetně kazetových, kanálových a VRF jednotek. Přehled najdete v sekci produkty a na stránce [klimatizace do kanceláře](/klimatizace/do-kancelare/).
 
 Rozhodování mezi samostatnými jednotkami a jednou společnou podrobně rozebírá článek [single split nebo multisplit](/blog/single-split-nebo-multisplit/).
 
@@ -78,7 +78,7 @@ Rozhodování mezi samostatnými jednotkami a jednou společnou podrobně rozeb�
 
 Nařízení vlády č. 361/2007 Sb. stanoví pro kancelářskou práci (třída práce I) **operativní teplotu zhruba 20–27 °C**. Zákon zaměstnavateli **neukládá povinnost instalovat klimatizaci**. Pokud ale teplota na pracovišti překročí limity, musí zaměstnavatel přijmout opatření – zajistit pitný režim, při vyšších teplotách ochranné nápoje, přestávky nebo střídání práce.
 
-Klimatizace je tak nejjednodušší cestou, jak limity dodržet a zároveň udržet výkonnost lidí. Pro komfort a zdraví platí stejné zásady jako doma – rozdíl oproti venkovní teplotě maximálně kolem 5–6 °C a žádný proud studeného vzduchu přímo na pracovní místo. Víc v článku [klimatizace a zdraví](/blog/klimatizace-a-zdravi/).
+Klimatizace je tak nejjednodušší cestou, jak limity dodržet a zároveň udržet výkonnost lidí. Pro komfort a zdraví platí stejné zásady jako doma – rozdíl oproti venkovní teplotě maximálně kolem 5–6 °C a žádný proud studeného vzduchu přímo na pracovní místo. Víc v článku klimatizace a zdraví.
 
 ## Kolik stojí klimatizace do kanceláře
 
@@ -96,11 +96,28 @@ Cenu zvyšují dlouhé trasy, montáž ve výšce, prostupy požárními stěnam
 
 ## Na co nezapomenout u firemní klimatizace
 
-- **Nájemní prostory** – montáž musí schválit pronajímatel, u budov s více nájemci i správce. Postup je obdobný jako u [souhlasu SVJ](/blog/povoleni-klimatizace-svj/).
-- **Provoz o víkendech** – časovač nebo Wi-Fi ovládání zabrání tomu, aby klimatizace chladila prázdnou kancelář (víc v článku [chytré ovládání klimatizace](/blog/chytre-ovladani-klimatizace-wifi/)).
+- **Nájemní prostory** – montáž musí schválit pronajímatel, u budov s více nájemci i správce. Postup je obdobný jako u souhlasu SVJ.
+- **Provoz o víkendech** – časovač nebo Wi-Fi ovládání zabrání tomu, aby klimatizace chladila prázdnou kancelář (víc v článku chytré ovládání klimatizace).
 - **Servisní smlouva** – v kancelářích je vhodný servis dvakrát ročně kvůli většímu počtu lidí.
 - **Kontrola klimatizačního systému** – u velkých systémů ukládá zákon o hospodaření energií pravidelnou kontrolu energetickým specialistou (podle vyhlášky č. 284/2022 Sb. nejméně jednou za 5 let). Běžná malá kancelář s jednou či dvěma split jednotkami se pod tuto povinnost nedostane, u celých budov to ale prověřte.
 - **Serverovna** – vyžaduje jednotku určenou pro celoroční chlazení, ne kancelářský split.
+
+## Jak probíhá realizace v kanceláři
+
+Firemní instalace má oproti bytu několik specifik, se kterými je dobré počítat předem:
+
+1. **Zaměření a výpočet zátěže.** Technik projde prostory, zjistí orientaci oken, stínění, počet pracovních míst a techniku. U open space a zasedaček je výpočet tepelné zátěže nutností, odhad podle metrů nestačí.
+2. **Souhlas pronajímatele nebo správce.** Bez písemného souhlasu nezačínejte – týká se umístění venkovní jednotky, prostupů i vedení tras ve společných prostorách.
+3. **Koordinace s provozem.** Vrtání a montáž kazet do podhledu je hlučné a prašné. Většina firem proto volí montáž o víkendu nebo po pracovní době, případně po etapách.
+4. **Odvod kondenzátu.** V kancelářích často chybí kanalizace v blízkosti jednotky. Řešením je kondenzační čerpadlo, které u kazetových jednotek bývá součástí.
+5. **Elektroinstalace.** Větší jednotky potřebují samostatný jištěný přívod, u výkonnějších venkovních jednotek i třífázový.
+6. **Předání a zaškolení.** Nastavení rozvrhů, zamezení „válkám o ovladač“ (blokace rozsahu teplot) a domluva servisu.
+
+### Příklad: malá účetní kancelář
+
+Tři místnosti po 18–22 m² ve druhém patře administrativní budovy, okna na jih, šest pracovních míst. Montážní firma navrhne multisplit se třemi nástěnnými jednotkami po 2,5–3,5 kW a jednou venkovní jednotkou na střeše se souhlasem správce. Montáž proběhne o víkendu, v pondělí se pracuje už v chladu. Pokud by jedna z místností byla zasedačka pro deset lidí, dostala by místo nástěnné jednotky kazetu s vyšším výkonem.
+
+Pro rychlou orientaci v cenách a typech jednotek pro firmy vám partnerská firma připraví nabídku na míru přes [nezávaznou poptávku](/poptavka/).
 
 ## Shrnutí
 

@@ -86,7 +86,29 @@ Pokud plánujete vytápět celý dům tepelným čerpadlem, podívejte se na [te
 - **Výkon klimatizace navrhujte podle domu, ne podle FVE.** Předimenzovaná jednotka bude cyklovat, poddimenzovaná nestačí.
 - **Jistič a rozvody.** Klimatizace potřebuje vlastní jištěný okruh; při kombinaci s FVE a bateriovým systémem ověřte zapojení s elektrikářem.
 - **Ostrovní provoz.** Pokud chcete klimatizaci provozovat při výpadku sítě z baterie, musí to umět váš hybridní měnič – běžná FVE připojená do sítě při výpadku nevyrábí.
-- **Účinnost se stále počítá.** Úspornější jednotka (vyšší SEER) spotřebuje méně i z vlastní elektřiny a více přetoků zbude na jiné spotřebiče. Princip vysvětlujeme v článku [invertorová klimatizace](/blog/invertorova-klimatizace/).
+- **Účinnost se stále počítá.** Úspornější jednotka (vyšší SEER) spotřebuje méně i z vlastní elektřiny a více přetoků zbude na jiné spotřebiče. Princip vysvětlujeme v článku invertorová klimatizace.
+
+## Jak velkou fotovoltaiku a klimatizaci kombinovat
+
+Neexistuje univerzální poměr, ale orientačně platí:
+
+| Situace | Co obvykle stačí |
+|---|---|
+| Byt nebo pokoj, 1 vnitřní jednotka 2,5–3,5 kW | i menší FVE pokryje chlazení za slunečného dne |
+| Rodinný dům, 2–3 vnitřní jednotky | FVE 5–10 kWp pokryje denní chlazení s rezervou |
+| Dům s FVE, klimatizací i tepelným čerpadlem | vyplatí se řízení spotřeby (měnič, chytrá domácnost) |
+
+Pozor na jednu věc: výkon klimatizace se navrhuje podle **tepelné zátěže domu**, ne podle velikosti fotovoltaiky. Přetoky vás nemají svádět k předimenzované jednotce.
+
+### Bytové domy a sdílení elektřiny
+
+V bytovém domě se společnou fotovoltaikou na střeše záleží na tom, jak je výroba mezi byty rozdělena. Pokud se vyrobená elektřina sdílí do jednotlivých bytů, platí stejná logika – chlazení přes den spotřebuje sdílenou elektřinu nejefektivněji. Pro byt v SVJ ale nezapomeňte, že montáž venkovní jednotky na fasádu nebo lodžii vyžaduje souhlas společenství.
+
+### Návratnost
+
+Klimatizace se nepořizuje kvůli návratnosti, ale kvůli komfortu. Fotovoltaika ale výrazně snižuje její provozní náklady: místo nákupu elektřiny ze sítě spotřebujete vlastní výrobu, kterou byste jinak prodali levně. U domů s FVE tak klimatizace často vychází jako jeden z nejlevnějších způsobů, jak zvýšit komfort v létě.
+
+Pokud máte fotovoltaiku a zvažujete klimatizaci, partnerská firma vám při zaměření pomůže navrhnout výkon i ovládání – stačí [nezávazná poptávka](/poptavka/).
 
 ## Shrnutí
 

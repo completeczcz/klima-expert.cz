@@ -71,7 +71,7 @@ Pro nejvyšší třídu A+++ je potřeba SEER alespoň 8,5 a SCOP alespoň 5,1. 
 
 ### Tišší provoz
 
-Většinu času běží kompresor i ventilátor venkovní jednotky na snížené otáčky, takže invertorová jednotka je tišší – což oceníte hlavně v noci a ocení to i sousedé. Limity a umístění venkovní jednotky rozebíráme v článku [hluk venkovní jednotky](/blog/hluk-venkovni-jednotky/), výběr tichého modelu do spaní v článku [tichá klimatizace do ložnice](/blog/ticha-klimatizace-do-loznice/).
+Většinu času běží kompresor i ventilátor venkovní jednotky na snížené otáčky, takže invertorová jednotka je tišší – což oceníte hlavně v noci a ocení to i sousedé. Limity a umístění venkovní jednotky rozebíráme v článku hluk venkovní jednotky, výběr tichého modelu do spaní v článku tichá klimatizace do ložnice.
 
 ### Delší životnost
 
@@ -86,14 +86,28 @@ Invertor je klíčový pro **topení klimatizací**. Při nízkých venkovních 
 - **Rozsah výkonu (min–max).** Katalogy uvádějí jmenovitý výkon a rozsah, např. 0,9–3,5 kW. Nízké minimum znamená, že jednotka v mírných dnech nebude zbytečně cyklovat ani u invertoru.
 - **SEER a SCOP**, ne jen třída. Dvě jednotky ve stejné třídě se mohou lišit o desetiny, což se za deset let provozu projeví.
 - **Hlučnost vnitřní i venkovní jednotky** v nejnižším stupni a v tichém režimu.
-- **Správné dimenzování.** Předimenzovaná jednotka se ani s invertorem nedostane dost nízko a začne cyklovat; poddimenzovaná běží pořád naplno. Výkon pomůže odhadnout článek [výkon klimatizace na m²](/blog/jaky-vykon-klimatizace-na-m2/), přesně ho určí montážní firma.
-- **Chladivo.** Nové split jednotky na evropském trhu používají R32 nebo R290; víc o změnách pravidel v článku [chladivo R32 a F-plyny](/blog/chladivo-r32-f-plyny/).
+- **Správné dimenzování.** Předimenzovaná jednotka se ani s invertorem nedostane dost nízko a začne cyklovat; poddimenzovaná běží pořád naplno. Výkon pomůže odhadnout článek výkon klimatizace na m², přesně ho určí montážní firma.
+- **Chladivo.** Nové split jednotky na evropském trhu používají R32 nebo R290; víc o změnách pravidel v článku chladivo R32 a F-plyny.
 
-Invertorové řady nabízejí obě značky, se kterými pracujeme – [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) i [Hisense](/znacky/hisense/). Porovnání řad najdete v [přehledu produktů](/produkty/).
+Invertorové řady nabízejí obě značky, se kterými pracujeme – Mitsubishi Heavy Industries i Hisense. Porovnání řad najdete v [přehledu produktů](/produkty/).
 
 ### Mobilní klimatizace a invertor
 
 Pokud zvažujete levnou mobilní klimatizaci, počítejte s tím, že většina z nich invertor nemá a účinností se split jednotkám nevyrovná. Srovnání najdete v článku [mobilní klimatizace nebo split](/blog/mobilni-klimatizace-nebo-split/).
+
+## Časté mýty o invertorových klimatizacích
+
+**„Invertor je nejúspornější, když ho pořád vypínám.“** Spíš naopak. Invertorová jednotka je nejefektivnější, když místnost udržuje na stabilní teplotě s nízkým výkonem. Opakované vypínání a zapínání ji nutí znovu dohánět rozdíl teplot na plný výkon. Pokud odcházíte na pár hodin, je často rozumnější teplotu jen zvýšit (v létě) nebo snížit (v zimě), než jednotku vypnout. Při delší nepřítomnosti ji vypněte a zapněte s předstihem – například přes časovač nebo aplikaci.
+
+**„Invertor se vyplatí jen při celodenním provozu.“** Výhody se projeví i při několika hodinách denně: tišší chod, stabilnější teplota a menší opotřebení kompresoru. Úspora elektřiny je ale skutečně vyšší, čím víc hodin jednotka běží v částečném zatížení.
+
+**„Všechny invertory jsou stejné.“** Neplatí. Liší se rozsahem regulace (jak nízko jednotka umí jít), kvalitou elektroniky, účinností výměníků a chováním při topení v mrazu. Proto má smysl porovnávat SEER, SCOP a minimální výkon, nejen nápis „inverter“ na krabici.
+
+**„Invertor je náchylnější na poruchy.“** Elektronika je složitější, ale kvalitní jednotky od zavedených výrobců jsou dlouhodobě spolehlivé. Důležitější než samotný invertor je správná montáž (vakuování, tlaková zkouška, kvalitní spoje) a pravidelný servis. U značek, se kterými pracujeme, navíc máte prodlouženou záruku – 5 let u MHI, 3 roky u Hisense.
+
+### Příklad
+
+Byt 2+kk, ložnice 14 m² a obývací pokoj 25 m². Pro obývák stačí invertorová jednotka 3,5 kW s minimálním výkonem kolem 1 kW, pro ložnici 2,5 kW s co nejtišším nočním režimem. Obě jednotky v létě většinu dne běží na zlomek svého výkonu a v noci je venkovní jednotka u souseda sotva slyšet. Přesný návrh vám připraví partnerská firma po zaměření – stačí poslat [nezávaznou poptávku](/poptavka/).
 
 ## Shrnutí
 

@@ -55,7 +55,7 @@ Evropská pobočka MHI uvádí, že aplikace **Smart M-Air** umožňuje ovládá
 
 Hisense ovládá své chytré spotřebiče, včetně klimatizací, aplikací **ConnectLife**. Klimatizaci v ní zapnete na dálku, nastavíte režim a teplotu a aplikace podle výrobce nabízí i přehled spotřeby energie a tipy na úsporu. Hisense v roce 2025 oznámil propojení ConnectLife s platformou Google Home.
 
-Které konkrétní řady mají Wi-Fi zabudovanou a u kterých se modul dokupuje, najdete v [přehledu produktů](/produkty/) nebo u značek [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) a [Hisense](/znacky/hisense/). Výbava se mezi modelovými roky mění, proto se při objednávce vždy ptejte.
+Které konkrétní řady mají Wi-Fi zabudovanou a u kterých se modul dokupuje, najdete v [přehledu produktů](/produkty/) nebo u značek Mitsubishi Heavy Industries a Hisense. Výbava se mezi modelovými roky mění, proto se při objednávce vždy ptejte.
 
 ## Jak ovládání přes mobil pomůže ušetřit
 
@@ -69,7 +69,7 @@ Aplikace sama elektřinu nešetří, ale mění to, **jak klimatizaci používá
 
 ### Příklad z praxe
 
-Byt 2+kk v podkroví, oba partneři pracují mimo domov. Dřív nechávali klimatizaci v létě běžet celý den, aby se večer neudusili. S Wi-Fi ovládáním nastaví týdenní časovač na start v 15:30 a v dny, kdy se vracejí později, start posunou z mobilu. Klimatizace tak běží zhruba o polovinu kratší dobu, a přesto přicházejí do vychlazeného bytu. V podkroví navíc pomáhá venkovní stínění oken – víc v článku o [klimatizaci do podkroví](/blog/klimatizace-do-podkrovi/).
+Byt 2+kk v podkroví, oba partneři pracují mimo domov. Dřív nechávali klimatizaci v létě běžet celý den, aby se večer neudusili. S Wi-Fi ovládáním nastaví týdenní časovač na start v 15:30 a v dny, kdy se vracejí později, start posunou z mobilu. Klimatizace tak běží zhruba o polovinu kratší dobu, a přesto přicházejí do vychlazeného bytu. V podkroví navíc pomáhá venkovní stínění oken – víc v článku o klimatizaci do podkroví.
 
 ## Chytrá domácnost a hlasové ovládání
 
@@ -90,6 +90,28 @@ Ve firmách a větších budovách se místo aplikací pro domácnosti použív�
 - **Ovladač nevyhazujte.** Bez internetu ovládáte klimatizaci klasickým dálkovým ovladačem.
 - **Sdílení v rodině.** Domluvte se, kdo co nastavuje. Dva lidé měnící teplotu z různých telefonů je častý zdroj „poruch“.
 - **Pronájem a Airbnb.** Wi-Fi ovládání umožní hlídat provoz a omezit plýtvání, nastavení ale řešte v souladu s pravidly pro hosty.
+
+## Dodatečná montáž Wi-Fi modulu
+
+Pokud vaše klimatizace Wi-Fi nemá, u řady modelů ji lze doplnit. Postup bývá jednoduchý:
+
+1. Ověřte podle typového štítku vnitřní jednotky, jaký Wi-Fi modul je kompatibilní. U starších modelů nemusí žádný existovat.
+2. Modul se připojí do konektoru ve vnitřní jednotce. Práce je na pár minut, ale vyžaduje sejmutí krytu – pokud si nejste jistí, nechte to na servisním technikovi, třeba při pravidelném servisu.
+3. Modul připojíte k Wi-Fi a spárujete s aplikací.
+
+Orientačně počítejte u přídavného modulu s cenou v řádu nižších tisíců korun podle výrobce a modelu. Pokud kupujete klimatizaci novou, vyplatí se rovnou vybírat řadu, která má Wi-Fi ve výbavě.
+
+### Co Wi-Fi ovládání neumí
+
+- **Nenahradí správný výkon.** Poddimenzovanou jednotku aplikace nezrychlí.
+- **Neopraví špatné umístění.** Pokud jednotka fouká přímo na postel, pomůže jen jiné nastavení lamel nebo přemístění.
+- **Nehlídá filtry.** Některé jednotky připomenou čištění filtru, ale vyčistit ho musíte sami. Zanedbaný filtr zvyšuje spotřebu víc, než ušetří chytrý časovač.
+
+Chcete poradit s výběrem modelu s Wi-Fi? Pošlete [nezávaznou poptávku](/poptavka/) a partnerská firma vám doporučí vhodnou řadu MHI nebo Hisense.
+
+### Chytré ovládání v pronajímaných a rekreačních objektech
+
+U chat, apartmánů a pronajímaných bytů je Wi-Fi ovládání praktické dvojnásob. Na chatě můžete v zimě udržovat temperování na nízké teplotě a před příjezdem ji zvýšit, takže nedorazíte do vymrzlého domu. U krátkodobého pronájmu zase vidíte, jestli klimatizace neběží v prázdném apartmánu, a můžete ji po odjezdu hostů vypnout na dálku.
 
 ## Shrnutí
 

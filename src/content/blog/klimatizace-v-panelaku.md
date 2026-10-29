@@ -62,7 +62,7 @@ Samotná klimatizační jednotka obvykle není stavbou, takže v panelovém dom�
 
 ### Vrtání do panelu
 
-Obvodové panely jsou ze železobetonu, často vícevrstvé (beton – izolace – beton). Prostup pro potrubí se dělá **jádrovým vrtáním** o průměru zhruba 50–65 mm. Proti vrtání do cihly je pomalejší a dražší – v ceníkích montážních firem se příplatek za prostup betonem pohybuje orientačně od 500 do 2 300 Kč vč. DPH. Zkušený technik volí místo prostupu tak, aby se vyhnul výztuži v okolí okenních otvorů a elektrickým rozvodům ve stěně.
+Obvodové panely jsou ze železobetonu, často vícevrstvé (beton – izolace – beton). Prostup pro potrubí se dělá **jádrovým vrtáním** o průměru zhruba 50–65 mm. Proti vrtání do cihly je pomalejší a dražší – v cenících montážních firem se příplatek za prostup betonem pohybuje orientačně od 500 do 2 300 Kč vč. DPH. Zkušený technik volí místo prostupu tak, aby se vyhnul výztuži v okolí okenních otvorů a elektrickým rozvodům ve stěně.
 
 ### Zateplená fasáda
 

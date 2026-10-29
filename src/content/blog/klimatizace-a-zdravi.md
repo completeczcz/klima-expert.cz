@@ -79,6 +79,27 @@ Zatuchlý zápach po zapnutí klimatizace je signál, že ve výparníku nebo va
 
 Často zmiňované **legionely** se podle Státního zdravotního ústavu množí ve vodě o teplotě 20–45 °C a k nákaze dochází vdechnutím **vodního aerosolu**. Rizikové jsou proto zejména chladicí věže, zvlhčovače a klimatizační systémy se zvlhčováním vzduchu. Běžná domácí split klimatizace vodní aerosol nevytváří – kondenzát z ní odtéká hadičkou. To ale neznamená, že na čistotu odvodu kondenzátu můžete zapomenout.
 
+## Jak nastavit klimatizaci šetrně ke zdraví
+
+Prakticky to vypadá takto:
+
+| Situace | Doporučené nastavení |
+|---|---|
+| Venku 30 °C, přes den doma | 25–26 °C, ventilátor auto, lamely ke stropu |
+| Venku 35 °C | 28–29 °C a postupně níž, ne rovnou na 22 °C |
+| Noc v ložnici | 25–27 °C, tichý/noční režim, vzduch mimo postel |
+| Dusno, ale ne vedro | režim odvlhčení místo chlazení |
+| Příchod z venku | nejdřív mírnější teplota, po chvíli upravit |
+
+Několik zásad navíc:
+
+- **Nezapínejte klimatizaci na nejnižší teplotu, aby „chladila rychleji“.** Invertorová jednotka chladí plným výkonem, dokud nedosáhne nastavené hodnoty – nižší číslo jen znamená větší přechlazení a vyšší spotřebu.
+- **Režim odvlhčení** je dobrá volba pro dusné dny bez extrémního horka. Snižuje vlhkost, aniž by místnost výrazně ochladil.
+- **Větrejte krátce a intenzivně**, ideálně ráno nebo večer, kdy je venku chladněji. Klimatizace typu split vzduch neobměňuje – jen ho chladí a filtruje v místnosti.
+- **V autě a v práci** platí totéž: velký teplotní skok mezi venkem a interiérem tělo zatěžuje.
+
+Pokud se rozhodujete o umístění jednotek a typu klimatizace, partnerská firma vám při zaměření poradí, kam jednotku dát, aby nefoukala na postel ani pracovní stůl. Stačí poslat [nezávaznou poptávku](/poptavka/).
+
 ## Klimatizace pro citlivé skupiny
 
 - **Senioři a lidé s onemocněním srdce** – vedra jsou pro ně zátěží, mírné chlazení (25–27 °C) je ochrana zdraví. Pozor na příliš nízké nastavení.
@@ -86,6 +107,10 @@ Zatuchlý zápach po zapnutí klimatizace je signál, že ve výparníku nebo va
 - **Lidé pracující doma** – pomůže nastavení časovače, aby klimatizace začala chladit ještě před nejteplejší částí dne a nemusela pak běžet naplno.
 
 Pokud uvažujete o klimatizaci i kvůli zdraví, vyplatí se rovnou řešit **tichý chod**, vhodné umístění a možnost **topení** v přechodném období – invertorová klimatizace s tepelným čerpadlem dokáže na jaře a na podzim levně přitápět (viz [topení klimatizací](/blog/topeni-klimatizaci/)).
+
+### Kdy se poradit s lékařem
+
+Pokud máte astma, chronické onemocnění dýchacích cest nebo výrazné alergie a po pobytu v klimatizovaném prostředí se vám potíže opakovaně zhoršují, proberte to s lékařem. Často pomůže jiné nastavení nebo častější údržba, někdy je ale příčina jinde – třeba v plísni v bytě nebo v nedostatečném větrání. Klimatizace sama o sobě nemoc neléčí ani nezpůsobuje; je to nástroj, který buď pomáhá, nebo škodí podle toho, jak se používá a udržuje.
 
 ## Shrnutí
 

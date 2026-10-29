@@ -49,7 +49,7 @@ Podzim je z pohledu zákazníka ideální:
 
 1. **Termíny.** Montážníci mají kapacitu a mohou si na instalaci vyhradit dost času.
 2. **Slevy.** Na podzim prodejci často doprodávají letošní modely, aby uvolnili sklady pro novinky – slevy bývají i desítky procent z ceníkové ceny.
-3. **Topení.** Moderní invertorová klimatizace je tepelné čerpadlo vzduch-vzduch. V září, říjnu a na jaře dokáže levně přitápět, než se rozjede hlavní topení – víc v článku [topení klimatizací](/blog/topeni-klimatizaci/).
+3. **Topení.** Moderní invertorová klimatizace je tepelné čerpadlo vzduch-vzduch. V září, říjnu a na jaře dokáže levně přitápět, než se rozjede hlavní topení – víc v článku topení klimatizací.
 4. **Klid na SVJ.** Pokud bydlíte v bytovém domě, potřebujete [souhlas SVJ](/blog/povoleni-klimatizace-svj/). Výbor nebo shromáždění se schází v intervalech a vyřízení může trvat týdny.
 
 ### Montáž klimatizace v zimě
@@ -62,7 +62,7 @@ Komplikace mohou nastat jen výjimečně – silný mráz, náledí nebo sníh p
 
 Pokud chcete mít klimatizaci hotovou do června, počítejte zhruba s tímto harmonogramem:
 
-1. **Leden – březen: ujasnění potřeb.** Kolik místností, jaký výkon, single split nebo [multisplit](/klimatizace/multisplit/), budete i topit? Orientační ceny najdete na stránce [cena klimatizace](/cena-klimatizace/) a v článku [kolik stojí klimatizace do bytu](/blog/kolik-stoji-klimatizace-do-bytu/).
+1. **Leden – březen: ujasnění potřeb.** Kolik místností, jaký výkon, single split nebo multisplit, budete i topit? Orientační ceny najdete na stránce cena klimatizace a v článku [kolik stojí klimatizace do bytu](/blog/kolik-stoji-klimatizace-do-bytu/).
 2. **Únor – březen: poptávka a zaměření.** Montážní firma prostor zaměří, navrhne umístění jednotek a připraví nabídku.
 3. **Březen – duben: souhlas SVJ** (u bytových domů) nebo pronajímatele, případně památkářů v historických centrech.
 4. **Duben – květen: montáž.** Termín je zpravidla snadné domluvit.
@@ -81,7 +81,26 @@ Evropské nařízení o F-plynech zakazuje od **1. 1. 2029** uvádět na trh nov
 - **Neberte zboží bez montáže.** Klimatizaci koupenou ve výprodeji bez certifikované montáže nesmí nainstalovat laik, a pokud ji montážní firma nedodávala, může odmítnout záruku na celé dílo.
 - **Hlídejte výkon, ne slevu.** Levná jednotka s nevhodným výkonem vás bude stát víc na provozu.
 - **Ptejte se na servis.** Kdo klimatizaci montuje, by ji měl i servisovat.
-- **Ověřte značku a zázemí.** U značek, které zprostředkováváme – [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) (záruka 5 let) a [Hisense](/znacky/hisense/) (záruka 3 roky) – je technickým zázemím český distributor s dostupností náhradních dílů.
+- **Ověřte značku a zázemí.** U značek, které zprostředkováváme – Mitsubishi Heavy Industries (záruka 5 let) a Hisense (záruka 3 roky) – je technickým zázemím český distributor s dostupností náhradních dílů.
+
+## Kdy se nákup naopak nevyplatí odkládat
+
+Jsou situace, kdy je nejlepší čas „hned“, bez ohledu na sezónu:
+
+- **Rekonstrukce bytu nebo domu.** Pokud se bude bourat, malovat nebo dělat podhledy, je ideální připravit trasy klimatizace teď. Montáž do hotového interiéru je dražší a trasy jsou vidět. Stačí i takzvaná předinstalace – položení potrubí a kabelů do zdi, samotné jednotky se doplní později.
+- **Zateplování fasády.** Prostupy a kotvení venkovní jednotky je lepší vyřešit před zateplením, ne po něm. Totéž platí pro výměnu oken.
+- **Nemocný nebo starší člen domácnosti.** Pokud vedra zhoršují zdravotní stav, čekání na podzimní slevy nedává smysl.
+- **Podkrovní byt.** Pod střechou bývá v létě nejhůř; pokud už minulé léto bylo nesnesitelné, nečekejte na další.
+
+### Kolik času montáž zabere
+
+Samotná montáž single splitu trvá obvykle jeden pracovní den, multisplit se třemi až čtyřmi vnitřními jednotkami jeden až dva dny. Delší je spíš cesta k ní: zaměření, nabídka, případný souhlas SVJ, objednání zboží. Mimo sezónu se celý proces běžně vejde do několika týdnů, v létě se může protáhnout.
+
+Pokud chcete mít jistotu, že bude hotovo včas, ozvěte se co nejdřív přes [nezávaznou poptávku](/poptavka/) – zaměření ani nabídka vás nic nestojí a termín si můžete rezervovat dopředu.
+
+### Kupujete do nového bytu?
+
+U novostaveb se vyplatí řešit klimatizaci ještě před dokončením, ideálně v rámci klientských změn. Developer může připravit trasy ve zdech a určit místo pro venkovní jednotky, které bude platit pro celý dům. Dodatečná montáž do hotového bytu pak bývá dražší a SVJ nově postaveného domu často chce jednotné umístění všech venkovních jednotek. Zeptejte se proto developera na pravidla dřív, než podepíšete předávací protokol.
 
 ## Shrnutí
 

@@ -1,0 +1,62 @@
+---
+// Krátký formulář pro reklamní vstupní stránky (4 pole) – odesílá rovnou na /api/poptavka
+import { site } from '../data/site';
+interface Props { typ: string; heading?: string; note?: string; id?: string }
+const { typ, heading = 'Získejte nabídku zdarma', note = '', id = 'sf' } = Astro.props;
+---
+<form class="sf panel" id={id} action="/api/poptavka" method="post" data-shortform>
+  <p class="sf__h">{heading}</p>
+  <input type="hidden" name="typ" value={typ} />
+  <input type="hidden" name="zkraceny" value="1" />
+  <input type="hidden" name="poznamka" value={note} />
+  <label><span>Jméno a příjmení</span><input name="jmeno" required autocomplete="name" maxlength="100" /></label>
+  <label><span>Telefon</span><input name="telefon" type="tel" required autocomplete="tel" inputmode="tel" pattern="[+0-9 ]{9,17}" placeholder="+420 …" /></label>
+  <label><span>PSČ místa montáže</span><input name="psc" required inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{3} ?[0-9]{2}" placeholder="např. 602 00" /></label>
+  <label><span>E-mail <span class="muted">(nepovinné)</span></span><input name="email" type="email" autocomplete="email" maxlength="120" /></label>
+  <label class="sf__c"><input type="checkbox" name="souhlas" value="ano" required /><span>Beru na vědomí, že poptávku předáte jedné partnerské montážní firmě. <a href="/ochrana-osobnich-udaju/" target="_blank">Ochrana údajů</a></span></label>
+  <div style="position:absolute;left:-9999px" aria-hidden="true"><input name="web" tabindex="-1" autocomplete="off" /></div>
+  <button class="btn btn--sun" type="submit">Chci nezávaznou nabídku</button>
+  <p class="sf__msg small" role="alert" hidden></p>
+  <p class="small muted sf__n">Zdarma a nezávazně. Ozveme se {site.responseTime}.</p>
+</form>
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-shortform]').forEach((f) => {
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = f.querySelector('.sf__msg') as HTMLElement;
+      if (!f.reportValidity()) return;
+      const btn = f.querySelector('button[type=submit]') as HTMLButtonElement;
+      btn.disabled = true; btn.textContent = 'Odesílám…';
+      const data: Record<string, string> = {};
+      new FormData(f).forEach((v, k) => (data[k] = String(v)));
+      try {
+        data.kampan = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map((k) => sessionStorage.getItem('ke-' + k)).filter(Boolean).join(' / ');
+        data.gclid = sessionStorage.getItem('ke-gclid') || sessionStorage.getItem('ke-gbraid') || sessionStorage.getItem('ke-wbraid') || '';
+        data.zdroj_stranky = location.pathname;
+      } catch {}
+      try {
+        const r = await fetch('/api/poptavka', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+        const o = await r.json().catch(() => ({}));
+        if (!r.ok || !o.ok) throw 0;
+        try { sessionStorage.setItem('ke-lead', JSON.stringify({ id: o.id, typ: data.typ })); } catch {}
+        location.href = '/dekujeme/';
+      } catch {
+        msg.hidden = false;
+        msg.textContent = 'Odeslání se nepodařilo. Zkontrolujte údaje nebo nám zavolejte.';
+        btn.disabled = false; btn.textContent = 'Chci nezávaznou nabídku';
+      }
+    });
+  });
+</script>
+<style>
+  .sf { display: grid; gap: 12px; }
+  .sf__h { font: 800 var(--step-1)/1.2 var(--font-head); margin: 0 0 4px; }
+  .sf label:not(.sf__c) { display: grid; gap: 5px; font-weight: 700; font-size: var(--step--1); }
+  .sf input:not([type=checkbox]) { font: inherit; font-size: var(--step-0); font-weight: 400; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); }
+  .sf input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px var(--ice-deep); }
+  .sf__c { display: flex; gap: 10px; align-items: flex-start; font-size: var(--step--1); }
+  .sf__c input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--ink); flex: none; }
+  .sf .btn { width: 100%; }
+  .sf__msg { color: var(--warn); font-weight: 600; margin: 0; }
+  .sf__n { text-align: center; margin: 0; }
+</style>

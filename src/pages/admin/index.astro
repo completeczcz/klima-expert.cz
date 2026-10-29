@@ -1,0 +1,103 @@
+---
+// Jednoduchá správa poptávek. Chraňte /admin/* a /api/admin/* přes Cloudflare Access.
+import { regions } from '../../data/site';
+const krajName = Object.fromEntries(regions.map((r) => [r.slug, r.name]));
+---
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Poptávky | Klima Expert admin</title>
+  <style>
+    :root { --ink:#13283a; --line:#c9dbe3; --ice:#dcebf1; --sun:#f4b43a; --paper:#f4f7f8; }
+    body { margin:0; font:15px/1.45 system-ui, sans-serif; color:var(--ink); background:var(--paper); }
+    header { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:14px 20px; background:var(--ink); color:#fff; }
+    header h1 { font-size:18px; margin:0 auto 0 0; }
+    select, input, button, textarea { font:inherit; padding:7px 9px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); }
+    button { cursor:pointer; background:var(--sun); border-color:var(--sun); font-weight:600; }
+    main { padding:16px 20px; }
+    .stats { display:flex; gap:18px; flex-wrap:wrap; margin-bottom:12px; }
+    .lead { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:12px; display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:14px; }
+    .lead h2 { font-size:16px; margin:0 0 4px; }
+    .muted { color:#4a5e6d; font-size:13px; }
+    .tag { display:inline-block; padding:1px 8px; border-radius:99px; background:var(--ice); font-size:12px; font-weight:600; }
+    .tag.nová { background:var(--sun); }
+    dl { margin:0; display:grid; grid-template-columns:auto 1fr; gap:2px 10px; font-size:13px; }
+    dt { color:#4a5e6d; }
+    dd { margin:0; }
+    .act { display:grid; gap:6px; align-content:start; }
+    @media (max-width:800px) { .lead { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Poptávky Klima Expert</h1>
+    <select id="f-stav"><option value="">Všechny stavy</option></select>
+    <select id="f-kraj"><option value="">Všechny kraje</option>{regions.map((r) => <option value={r.slug}>{r.name}</option>)}</select>
+    <button id="reload">Obnovit</button>
+  </header>
+  <main>
+    <div id="auth" hidden>
+      <p>Přístup není ověřený. Zadejte administrátorský token (ADMIN_TOKEN), nebo nastavte Cloudflare Access.</p>
+      <input id="token" type="password" placeholder="Token" size="40" /> <button id="save-token">Přihlásit</button>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div id="list"></div>
+  </main>
+  <script define:vars={{ krajName }}>
+    const $ = (s) => document.querySelector(s);
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    let STAVY = [];
+    const hdr = () => { const t = sessionStorage.getItem('ke-admin'); return t ? { Authorization: 'Bearer ' + t } : {}; };
+    async function load() {
+      const q = new URLSearchParams({ stav: $('#f-stav').value, kraj: $('#f-kraj').value });
+      const r = await fetch('/api/admin/leads?' + q, { headers: hdr() });
+      if (r.status === 401) { $('#auth').hidden = false; return; }
+      const o = await r.json();
+      $('#auth').hidden = true;
+      if (!STAVY.length) { STAVY = o.stavy; STAVY.forEach((s) => $('#f-stav').insertAdjacentHTML('beforeend', `<option>${s}</option>`)); }
+      const cnt = {}; o.leads.forEach((l) => (cnt[l.stav] = (cnt[l.stav] || 0) + 1));
+      $('#stats').innerHTML = `<strong>${o.leads.length} poptávek</strong>` + Object.entries(cnt).map(([k, v]) => `<span class="tag ${k}">${k}: ${v}</span>`).join(' ');
+      $('#list').innerHTML = o.leads.map(card).join('') || '<p>Žádné poptávky.</p>';
+    }
+    function partnerText(l) {
+      const d = JSON.parse(l.detail || '{}');
+      return [`Poptávka #${l.id} (${l.typ})`, `${l.jmeno}, tel. ${l.telefon}${l.email ? ', ' + l.email : ''}`, `Místo: ${l.psc} ${l.obec || ''} (${krajName[l.kraj] || l.kraj})`, `Termín: ${l.termin || '-'}`,
+        ...Object.entries(d).map(([k, v]) => `${k}: ${v}`), l.poznamka ? `Poznámka: ${l.poznamka}` : ''].filter(Boolean).join('\n');
+    }
+    function card(l) {
+      const d = JSON.parse(l.detail || '{}');
+      return `<article class="lead" data-id="${l.id}">
+        <div><h2>#${l.id} ${esc(l.typ)} <span class="tag ${esc(l.stav)}">${esc(l.stav)}</span></h2>
+          <div class="muted">${esc(l.created_at)} UTC · ${esc(krajName[l.kraj] || l.kraj)} · ${esc(l.psc)} ${esc(l.obec)}</div>
+          <p><strong>${esc(l.jmeno)}</strong><br><a href="tel:${esc(l.telefon)}">${esc(l.telefon)}</a> ${l.email ? `· <a href="mailto:${esc(l.email)}">${esc(l.email)}</a>` : ''}</p>
+          ${l.poznamka ? `<p>${esc(l.poznamka)}</p>` : ''}</div>
+        <dl>${Object.entries(d).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}<dt>termín</dt><dd>${esc(l.termin)}</dd><dt>zdroj</dt><dd>${esc(l.zdroj_stranky)}</dd><dt>kampaň</dt><dd>${esc(l.kampan)}${l.gclid ? ' (gclid)' : ''}</dd></dl>
+        <div class="act">
+          <select data-k="stav">${STAVY.map((s) => `<option ${s === l.stav ? 'selected' : ''}>${s}</option>`).join('')}</select>
+          <input data-k="partner" placeholder="Předáno firmě…" value="${esc(l.partner)}">
+          <textarea data-k="poznamka_interni" rows="2" placeholder="Interní poznámka">${esc(l.poznamka_interni)}</textarea>
+          <button data-copy>Kopírovat text pro partnera</button>
+        </div></article>`;
+    }
+    document.addEventListener('change', async (e) => {
+      const el = e.target.closest('[data-k]'); if (!el) return;
+      const id = +el.closest('.lead').dataset.id;
+      await fetch('/api/admin/leads', { method: 'POST', headers: { 'Content-Type': 'application/json', ...hdr() }, body: JSON.stringify({ id, [el.dataset.k]: el.value }) });
+      el.style.borderColor = '#2f7d5b';
+    });
+    document.addEventListener('click', async (e) => {
+      if (e.target.matches('[data-copy]')) {
+        const id = +e.target.closest('.lead').dataset.id;
+        const r = await fetch('/api/admin/leads', { headers: hdr() }); const o = await r.json();
+        const l = o.leads.find((x) => x.id === id);
+        await navigator.clipboard.writeText(partnerText(l)); e.target.textContent = 'Zkopírováno';
+      }
+    });
+    $('#reload').onclick = load; $('#f-stav').onchange = load; $('#f-kraj').onchange = load;
+    $('#save-token').onclick = () => { sessionStorage.setItem('ke-admin', $('#token').value); load(); };
+    load();
+  </script>
+</body>
+</html>

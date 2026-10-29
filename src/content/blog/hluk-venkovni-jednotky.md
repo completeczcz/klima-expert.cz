@@ -63,7 +63,11 @@ Moderní invertorové jednotky pro byty (2–5 kW) mají podle katalogů výrobc
 - **Poddimenzovaná jednotka** běží naplno, a je proto hlasitější. Vyšší výkon s rezervou bývá paradoxně tišší volbou.
 - **Noční nebo tichý režim** (u řady modelů MHI i Hisense) omezí otáčky ventilátoru a kompresoru venkovní jednotky na úkor maximálního výkonu.
 
-Konkrétní hodnoty pro jednotlivé řady najdete v [přehledu produktů](/produkty/) nebo u značek [Mitsubishi Heavy Industries](/znacky/mitsubishi-heavy-industries/) a [Hisense](/znacky/hisense/).
+Konkrétní hodnoty pro jednotlivé řady Mitsubishi Heavy Industries a Hisense najdete v [přehledu produktů](/produkty/).
+
+### Akustický výkon vs. akustický tlak
+
+V technických listech narazíte na dvě různá čísla. **Akustický výkon** (LWA) popisuje, kolik zvukové energie jednotka vyzařuje, a nezávisí na vzdálenosti – bývá o několik dB vyšší. **Akustický tlak** (LpA) je to, co naměříte v určité vzdálenosti, typicky 1 m. Při srovnávání modelů porovnávejte vždy stejný údaj. Pro hrubý odhad platí, že při volném šíření klesá hladina hluku se zdvojnásobením vzdálenosti zhruba o 6 dB – jednotka, která má na 1 m 48 dB, by na 4 m měla kolem 36 dB. Odrazy od zdí a lodžie ale tento pokles zmenšují, proto přesný odhad pro vaše místo udělá technik.
 
 ## Jak umístit venkovní jednotku, aby nerušila sousedy
 
@@ -79,6 +83,12 @@ Nejlevnější protihlukové opatření je dobré umístění. Montážní firma
 ### Příklad: rodinný dům v řadové zástavbě
 
 Řadový dům, štítová zeď bez oken, soused má ložnici v patře na opačné straně. Montér navrhuje jednotku na zem k zadní fasádě na podstavec s gumovými podložkami, 6 m od nejbližšího sousedního okna, se zídkou mezi. Alternativa „na konzoli pod okno do zahrady“, kde je sousedovo okno ložnice jen 3 m vedle, by byla montážně jednodušší, ale v letních nocích rizikovější.
+
+Pokud si nejste jistí, kam jednotku dát, nechte si místo posoudit při zaměření – přes [nezávaznou poptávku](/poptavka/) vám ho zajistí partnerská firma z vašeho kraje.
+
+### Když už jednotka visí a hlučí
+
+Ne vždy je nutné jednotku přemisťovat. Nejprve zkuste levnější kroky: nechte technika zkontrolovat upevnění, doplnit nebo vyměnit antivibrační podložky a vyčistit ventilátor a lamely kondenzátoru. Pomoci může i nastavení tichého nočního režimu nebo časovače, aby jednotka v noci nemusela běžet na vysoký výkon. Dalším krokem je **protihluková clona** – pohltivá stěnka mezi jednotkou a oknem souseda, která ale nesmí bránit proudění vzduchu. Teprve když nic z toho nestačí, přichází na řadu přemístění na jiné místo.
 
 ## Stížnost souseda: jak to probíhá
 

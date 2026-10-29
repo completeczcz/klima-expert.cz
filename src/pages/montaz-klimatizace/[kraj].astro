@@ -9,6 +9,7 @@ import CtaBand from '../../components/CtaBand.astro';
 import { regions, site } from '../../data/site';
 import { regionContent } from '../../data/regions-content';
 import { products } from '../../data/products';
+import { cities } from '../../data/cities';
 
 export function getStaticPaths() {
   return regions.map((r) => ({ params: { kraj: r.slug }, props: { r } }));
@@ -19,6 +20,7 @@ const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-diamond-zsx', 'hisens
 const short = r.name.replace(' kraj', '').replace('Kraj ', '');
 const others = regions.filter((x) => x.slug !== r.slug);
 const isPraha = r.slug === 'praha';
+const cityPages = cities.filter((x) => x.kraj === r.slug);
 const title = isPraha ? 'Montáž klimatizace Praha – klimatizace s montáží' : `Montáž klimatizace ${r.name} – ${r.cities[0]}`;
 const faq = [
   { q: `Kolik stojí montáž klimatizace ${r.locative}?`, a: `Klimatizace do jedné místnosti včetně standardní montáže vyjde ${r.locative} orientačně na 30 000 až 60 000 Kč s 12% DPH, multisplit pro tři místnosti na 90 000 až 150 000 Kč. Přesnou cenu připraví partnerská firma po zaměření zdarma.` },
@@ -67,6 +69,7 @@ const faq = [
         <h3>Kde montujeme</h3>
         <p><strong>{isPraha ? 'Městské části' : 'Okresy'}:</strong> {r.okresy.join(', ')}</p>
         <p><strong>Města:</strong> {r.cities.join(', ')} a okolní obce</p>
+        {cityPages.length > 0 && <p>{cityPages.map((x) => <a class="btn btn--ghost" style="min-height:40px;margin:0 8px 8px 0" href={`/montaz-klimatizace/${r.slug}/${x.slug}/`}>Klimatizace {x.loc}</a>)}</p>}
       </div>
     </div>
   </section>
