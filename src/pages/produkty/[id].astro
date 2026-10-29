@@ -25,6 +25,11 @@ const kwRange = (() => {
   const v = s.models.map((m) => (isTc ? m.heatKw : m.coolKw)).filter((n): n is number => n != null);
   return v.length ? `${kw(Math.min(...v))} – ${kw(Math.max(...v))}` : null;
 })();
+const sceneCap: Record<string, string> = {
+  'outdoor-terracotta': 'Venkovní jednotka, která se k domu hodí.', 'room-bedroom-dark': 'Klidný spánek i v tropických nocích.', 'his-bedroom-mountains': 'Klidný spánek i v tropických nocích.',
+  'room-bedroom-concrete': 'Klidný spánek i v tropických nocích.', 'room-living-titan': 'Ladí s každým interiérem.', 'room-living': 'Ladí s každým interiérem.', 'his-wall-minimal': 'Ladí s každým interiérem.',
+  'airflow-render': 'Chlad dosáhne do celé místnosti.', 'his-winter-living': 'Příjemné teplo i v mrazivé zimě.', 'room-overhead': 'Příjemný vzduch v celém prostoru.', 'his-office': 'Příjemné prostředí pro práci.',
+};
 const shortName = s.title.replace(/^(Mitsubishi Heavy Industries|Hisense) /, '');
 
 // Ikona podle obsahu vlastnosti
@@ -131,7 +136,7 @@ const faq = isTc
   {pi.scene && (
     <section class="scene" data-scrub="pass" data-reduce-p="0.5">
       <Img name={pi.scene} alt={`${s.title} v interiéru`} sizes="100vw" />
-      <div class="scene__cap wrap"><p class="display">{isTc ? 'Teplo pro celý dům.' : s.uses.includes('loznice') ? 'Klidný spánek i v tropických nocích.' : 'Příjemný vzduch, kde ho potřebujete.'}</p></div>
+      <div class="scene__cap wrap"><p class="display">{isTc ? 'Teplo pro celý dům.' : sceneCap[pi.scene] ?? 'Příjemný vzduch, kde ho potřebujete.'}</p></div>
     </section>
   )}
 

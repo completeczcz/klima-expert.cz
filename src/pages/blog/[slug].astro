@@ -4,7 +4,8 @@ import QuickStart from '../../components/QuickStart.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { getCollection, render } from 'astro:content';
-import { catNames, readingTime, fmtDate } from '../../data/blog';
+import { catNames, readingTime, fmtDate, postImage } from '../../data/blog';
+import Img from '../../components/Img.astro';
 import { site } from '../../data/site';
 
 export async function getStaticPaths() {
@@ -45,6 +46,7 @@ const articleSchema = {
       <h1>{d.h1 ?? d.title}</h1>
       <p class="lead">{d.perex}</p>
     </header>
+    <div class="art__hero" data-reveal="scale"><Img name={postImage(post.id, d.category)} alt="" sizes="(max-width: 1180px) 92vw, 1180px" eager /></div>
     <div class="art__grid">
       <div class="art__body">
         {toc.length > 3 && (
@@ -81,6 +83,9 @@ const articleSchema = {
   .art__head h1 { font-size: var(--step-4); }
   .art__meta { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: var(--step--1); color: var(--ink-soft); }
   .art__meta a { font-weight: 700; color: var(--ink); }
+  .art__hero { border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 21 / 9; margin-bottom: clamp(28px, 4vw, 48px); background: var(--ice); }
+  .art__hero :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .art__head h1 { letter-spacing: -0.03em; }
   .art__grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 72px); align-items: start; }
   .art__sticky { position: sticky; top: 96px; }
   .toc { background: var(--ice); border-radius: var(--radius-m); padding: 18px 22px; margin-bottom: 28px; max-width: 70ch; }

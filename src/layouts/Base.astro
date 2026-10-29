@@ -17,8 +17,9 @@ interface Props {
   crumbs?: Crumb[];
   hideStickyCta?: boolean;
   minimal?: boolean;
+  darkHeader?: boolean;
 }
-const { title, description, ogType = 'website', noindex = false, schema = [], crumbs = [], hideStickyCta = false, minimal = false } = Astro.props;
+const { title, description, ogType = 'website', noindex = false, schema = [], crumbs = [], hideStickyCta = false, minimal = false, darkHeader = false } = Astro.props;
 const canonical = Astro.props.canonical ?? new URL(Astro.url.pathname, site.url).href;
 const fullTitle = title.includes(site.name) || `${title} | ${site.name}`.length > 65 ? title : `${title} | ${site.name}`;
 const ogImage = new URL('/og.png', site.url).href;
@@ -122,7 +123,7 @@ const { gtmId, ga4Id, adsId } = site.analytics;
     <a class="skip" href="#obsah">Přeskočit na obsah</a>
     {minimal ? (
       <header class="mini wrap"><Logo /><a class="mini__tel" href={site.phoneHref}>{site.phone}</a></header>
-    ) : <Header />}
+    ) : <Header dark={darkHeader} />}
     <main id="obsah">
       {crumbs.length > 0 && (
         <nav class="crumbs wrap" aria-label="Drobečková navigace">

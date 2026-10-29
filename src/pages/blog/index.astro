@@ -2,7 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
-import { catNames, readingTime } from '../../data/blog';
+import { catNames, readingTime, postImage } from '../../data/blog';
+import Img from '../../components/Img.astro';
 const posts = (await getCollection('blog')).sort((a, b) => +b.data.published - +a.data.published || a.data.title.localeCompare(b.data.title, 'cs'));
 const cats = Object.entries(catNames).filter(([k]) => posts.some((p) => p.data.category === k));
 ---
@@ -14,7 +15,7 @@ const cats = Object.entries(catNames).filter(([k]) => posts.some((p) => p.data.c
   <section class="section" style="padding-top:24px">
     <div class="wrap">
       <div class="section__head">
-        <h1>Poradna</h1>
+        <h1 class="display">Poradna</h1>
         <p class="lead">Všechno, co potřebujete vědět před pořízením klimatizace nebo tepelného čerpadla. Píšeme věcně, s aktuálními cenami a pravidly pro rok 2026.</p>
       </div>
       {cats.map(([k, name]) => (
@@ -24,6 +25,7 @@ const cats = Object.entries(catNames).filter(([k]) => posts.some((p) => p.data.c
             {posts.filter((p) => p.data.category === k).map((p) => (
               <li>
                 <a href={`/blog/${p.id}/`}>
+                  <span class="bl__img"><Img name={postImage(p.id, p.data.category)} alt="" sizes="(max-width: 800px) 92vw, 560px" /></span>
                   <h3>{p.data.h1 ?? p.data.title}</h3>
                   <p>{p.data.perex}</p>
                   <span class="small muted">{readingTime(p.body)} min čtení</span>
@@ -40,8 +42,11 @@ const cats = Object.entries(catNames).filter(([k]) => posts.some((p) => p.data.c
 <style>
   .bc { padding-top: 36px; }
   .bc h2 { font-size: var(--step-2); border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
-  .bl { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
-  .bl li { border-bottom: 1px solid var(--line); }
+  .bl { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 28px 24px; }
+  .bl__img { display: block; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; margin-bottom: 14px; background: var(--ice); }
+  .bl__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
+  .bl a:hover .bl__img :global(img) { transform: scale(1.05); }
+  .bl li { }
   .bl a { display: block; padding: 18px 0; text-decoration: none; }
   .bl h3 { font-size: var(--step-1); margin-bottom: 0.35em; }
   .bl a:hover h3 { text-decoration: underline; text-decoration-color: var(--sun); }
