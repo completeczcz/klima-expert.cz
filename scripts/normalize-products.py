@@ -146,6 +146,35 @@ for fname, brand_slug in [('mhi.json', 'mitsubishi-heavy-industries'), ('hisense
             'priceFromBezDph': min(prices) if prices else None,
         })
 
+# --- Úklid interních poznámek z ceníku, aby se nedostaly na web ---
+INTERNAL = re.compile(r'nejist|ceník|ceniku|str\.|Kč|katalog|viz |dle přehledu', re.I)
+def clean(t):
+    if not isinstance(t, str): return t
+    t = re.sub(r'\s*\([^)]*\)', lambda m: '' if INTERNAL.search(m.group()) else m.group(), t)
+    t = re.sub(r';\s*[^;]*viz [^;]*$', '', t)
+    return t.strip(' ;,')
+def clean_wifi(w):
+    if not w: return None
+    wl = w.lower()
+    if 'neuveden' in wl or 'neuvedeno' in wl: return None
+    if wl.startswith('ano') or wl.startswith('vestavěná'): return 'vestavěná'
+    if '-wf' in wl and 'volitel' in wl: return 'vestavěná ve verzích -WF, k verzi -W volitelný Wi-Fi modul'
+    if 'dle vnitřní' in wl: return 'podle zvolené vnitřní jednotky, jinak volitelný Wi-Fi modul'
+    if wl.startswith('volitel'): return 'volitelný Wi-Fi modul' + (', aplikace Hi-Mit II' if 'hi-mit' in wl else '')
+    return clean(w)
+for p in out:
+    p['wifi'] = clean_wifi(p['wifi'])
+    if p['cat'] == 'multisplit': p['energy'] = 'podle kombinace venkovní a vnitřních jednotek'
+    p['energy'] = clean(p['energy'])
+    p['colours'] = [clean(c) for c in p['colours'] if c and 'nejist' not in c.lower()]
+    p['features'] = [clean(f) for f in p['features']]
+    for m in p['models'] + p['outdoorUnits']:
+        if isinstance(m.get('energy'), str):
+            m['energy'] = None if 'nejist' in m['energy'].lower() else clean(m['energy'])
+    if p.get('status'): p['status'] = 'připravujeme'
+    for k in ('intro', 'title'):
+        assert not INTERNAL.search(p[k]), p[k]
+
 OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1))
 print('OK', len(out), 'řad →', OUT)
 for p in out:

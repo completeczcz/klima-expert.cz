@@ -30,12 +30,12 @@
   "energy": "A+++/A+++ (2,0–3,5 kW), A++/A++ (5,0–6,1 kW)",
   "heatMin": -20,
   "refrigerant": "R32",
-  "wifi": "-WF/-WFB/-WFT vestavěná; -W volitelně modulem WF-RAC (2 912 Kč bez DPH)",
+  "wifi": "vestavěná ve verzích -WF, k verzi -W volitelný Wi-Fi modul",
   "colours": [
    "čistě bílá",
    "černobílá",
    "titanová",
-   "bílá (dle ceníku multi split, str. 30)"
+   "bílá"
   ],
   "flowTemp": null,
   "status": null,
@@ -142,7 +142,7 @@
   "energy": "A++/A++ (6,3 kW), A++/A+ (7,1–9,6 kW)",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "-WF vestavěná; -W volitelně modulem WF-RAC",
+  "wifi": "vestavěná ve verzích -WF, k verzi -W volitelný Wi-Fi modul",
   "colours": [
    "bílá",
    "bílá"
@@ -241,7 +241,7 @@
   "energy": "A+++/A+++ (2,0–2,5 kW), A+++/A++ (3,5 kW), A++/A++ (5,0 kW)",
   "heatMin": -20,
   "refrigerant": "R32",
-  "wifi": "vestavěná (týdenní časovač jen přes aplikaci Smart M-Air)",
+  "wifi": "vestavěná",
   "colours": [
    "bílá",
    "černá",
@@ -341,7 +341,7 @@
   "energy": "A+++/A++ (2,0–2,5 kW), A++/A++ (3,5–5,0 kW)",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "-WF/-WFB/-WFT vestavěná; -W volitelně modulem WF-RAC",
+  "wifi": "vestavěná ve verzích -WF, k verzi -W volitelný Wi-Fi modul",
   "colours": [
    "čistě bílá",
    "černobílá",
@@ -441,7 +441,7 @@
   "energy": "chlazení A++ u všech, vytápění A++ nebo A+ dle modelu",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "vestavěná / součást dodávky (týdenní časovač jen přes aplikaci Smart M-Air)",
+  "wifi": "vestavěná",
   "colours": [
    "bílá"
   ],
@@ -570,14 +570,14 @@
    "Energetická třída A++ v chlazení a A+ ve vytápění u všech jednotek",
    "Kompaktní a lehká venkovní jednotka pro flexibilní instalaci",
    "Program samočištění pro čistší vzduch v místnosti",
-   "Tichý proud vzduchu díky tryskové technologii (dle přehledu funkcí str. 11)"
+   "Tichý proud vzduchu díky tryskové technologii"
   ],
   "noiseMin": 21,
   "indoorUnitsMin": null,
   "energy": "A++/A+ u všech",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "v ceníku neuvedena (modul WF-RAC není pro ZSP uveden jako kompatibilní; v přehledu funkcí bez bezdrátového ovládání)",
+  "wifi": null,
   "colours": [
    "bílá"
   ],
@@ -673,7 +673,7 @@
   "energy": "A++/A+ (2,5 kW), A++/A++ (3,5 a 5,0 kW)",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "volitelně modulem WF-RAC (2 912 Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [
    "bílá"
   ],
@@ -754,7 +754,7 @@
   "energy": "A++/A+ u všech",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "volitelně modulem WF-RAC (2 912 Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [],
   "flowTemp": null,
   "status": null,
@@ -845,7 +845,7 @@
   "energy": "A++/A+ (25, 40, 50, 60), A++/A++ (35)",
   "heatMin": -20,
   "refrigerant": "R32",
-  "wifi": "v ceníku neuvedena (WF-RAC není pro FDTC uveden jako kompatibilní)",
+  "wifi": null,
   "colours": [],
   "flowTemp": null,
   "status": null,
@@ -949,10 +949,10 @@
   ],
   "noiseMin": null,
   "indoorUnitsMin": 6612,
-  "energy": "energetická třída závisí na připojených vnitřních jednotkách; štítkové hodnoty viz outdoor_units",
+  "energy": "podle kombinace venkovní a vnitřních jednotek",
   "heatMin": -15,
   "refrigerant": "R32",
-  "wifi": "podle zvolené vnitřní jednotky (-WF vestavěná, -W/SRF/SRR volitelně WF-RAC)",
+  "wifi": "vestavěná ve verzích -WF, k verzi -W volitelný Wi-Fi modul",
   "colours": [],
   "flowTemp": null,
   "status": null,
@@ -1064,7 +1064,7 @@
   "energy": "A+++ / A+++ (2,6 a 3,5 kW); A+++ / A++ (5,0 kW)",
   "heatMin": -22.0,
   "refrigerant": "R32",
-  "wifi": "ano, v základní výbavě",
+  "wifi": "vestavěná",
   "colours": [
    "bílá",
    "černá"
@@ -1191,7 +1191,7 @@
   "energy": "A+++ / A+++",
   "heatMin": -22.0,
   "refrigerant": "R32",
-  "wifi": "ano, v základní výbavě",
+  "wifi": "vestavěná",
   "colours": [
    "bílá",
    "černá"
@@ -1286,10 +1286,10 @@
   ],
   "noiseMin": 19,
   "indoorUnitsMin": null,
-  "energy": "A+++ / A++ (2,6 a 3,5 kW); 5,0 kW viz model",
+  "energy": "A+++ / A++ (2,6 a 3,5 kW)",
   "heatMin": -22.0,
   "refrigerant": "R32",
-  "wifi": "ano (dle přehledu funkcí součást výbavy)",
+  "wifi": "vestavěná",
   "colours": [
    "bílá"
   ],
@@ -1329,7 +1329,7 @@
     "outdoor": "AS50BP0EW",
     "coolKw": 5.0,
     "heatKw": 5.4,
-    "energy": "nejisté: tabulka ceníku A+++ / A++, poznámka pod tabulkou A++ / A++, technické parametry SEER 8,5 = A+++ chlazení, A++ topení",
+    "energy": null,
     "seer": null,
     "scop": null,
     "noise": null,
@@ -1371,7 +1371,7 @@
   "energy": "A++ / A+",
   "heatMin": -20.0,
   "refrigerant": "R32",
-  "wifi": "ano (dle přehledu funkcí součást výbavy)",
+  "wifi": "vestavěná",
   "colours": [
    "bílá"
   ],
@@ -1466,7 +1466,7 @@
   "energy": "A++ / A+",
   "heatMin": -15.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul AEH-W4G2 (1 500,- Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [
    "bílá"
   ],
@@ -1530,10 +1530,10 @@
   ],
   "noiseMin": 18,
   "indoorUnitsMin": 7905,
-  "energy": "A++ / A+ (dle ceníku, pro uvedený počet připojených jednotek)",
+  "energy": "podle kombinace venkovní a vnitřních jednotek",
   "heatMin": -20.0,
   "refrigerant": "R32",
-  "wifi": "dle vnitřní jednotky; jinak modul AEH-W4G2 (1 500,- Kč bez DPH)",
+  "wifi": "podle zvolené vnitřní jednotky, jinak volitelný Wi-Fi modul",
   "colours": [
    "dle zvolených vnitřních jednotek"
   ],
@@ -1594,7 +1594,7 @@
     "maxIndoor": 5,
     "coolKw": 12.5,
     "heatKw": 13.5,
-    "energy": "A++ / A+ (dle ceníku; technická tabulka výrobce třídu neuvádí – nejisté)",
+    "energy": null,
     "priceBezDph": 74646
    }
   ],
@@ -1628,10 +1628,10 @@
   ],
   "noiseMin": 30,
   "indoorUnitsMin": null,
-  "energy": "A++ / A+ (2,6–10 kW dle ceníku); modely 12,1 kW a více bez energetického štítku",
+  "energy": "A++ / A+; modely 12,1 kW a více bez energetického štítku",
   "heatMin": -20.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul AEH-W4G2 (1 500,- Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [
    "bílý dekorační panel"
   ],
@@ -1785,7 +1785,7 @@
   "energy": "A++ / A+ (2,6–10 kW); modely 12,1 kW a více bez energetického štítku",
   "heatMin": -20.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul AEH-W4G2 (1 500,- Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [
    "skrytá instalace – viditelné jen mřížky"
   ],
@@ -1964,7 +1964,7 @@
   "energy": "A++ / A+ (7,0 a 9,5 kW); větší modely bez energetického štítku",
   "heatMin": -20.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul AEH-W4G2 (1 500,- Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [
    "bílá"
   ],
@@ -2074,7 +2074,7 @@
   "energy": "A++ / A+",
   "heatMin": -20.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul AEH-W4G2 (1 500,- Kč bez DPH)",
+  "wifi": "volitelný Wi-Fi modul",
   "colours": [
    "bílá"
   ],
@@ -2162,7 +2162,7 @@
   "energy": "A+++ (35 °C) / A++ (55 °C); ohřev TV A+ (4,4–12 kW), A (14–16 kW)",
   "heatMin": -25.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul HCCS-H64H2C1M#01 (5 744,- Kč bez DPH), aplikace Hi-Mit II",
+  "wifi": "volitelný Wi-Fi modul, aplikace Hi-Mit II",
   "colours": [
    "venkovní jednotka šedý panel"
   ],
@@ -2307,10 +2307,8 @@
   "energy": "A+++ (35 °C) / A++ (55 °C) – dle venkovních jednotek AHW",
   "heatMin": -25.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul HCCS-H64H2C1M#01 (5 744,- Kč bez DPH), aplikace Hi-Mit II",
-  "colours": [
-   "vnitřní jednotka bílá (nejisté – barva v katalogu neuvedena)"
-  ],
+  "wifi": "volitelný Wi-Fi modul, aplikace Hi-Mit II",
+  "colours": [],
   "flowTemp": "60 °C (4,4–8 kW), 65 °C (10–16 kW); TV až 75 °C s el. dohřevem",
   "status": null,
   "models": [
@@ -2452,7 +2450,7 @@
   "energy": "A+++ (35 °C) / A++ (55 °C)",
   "heatMin": -25.0,
   "refrigerant": "R32",
-  "wifi": "volitelně – modul HCCS-H64H2C1M#01 (5 744,- Kč bez DPH), aplikace Hi-Mit II",
+  "wifi": "volitelný Wi-Fi modul, aplikace Hi-Mit II",
   "colours": [
    "šedý přední panel"
   ],
@@ -2574,10 +2572,10 @@
   "energy": "A+++ (35 °C); A++ / A+++ (55 °C dle modelu)",
   "heatMin": -25.0,
   "refrigerant": "R290",
-  "wifi": "neuvedeno",
+  "wifi": null,
   "colours": [],
   "flowTemp": 75,
-  "status": "již brzy – není skladem, není součástí ceníku, cena neuvedena",
+  "status": "připravujeme",
   "models": [
    {
     "code": "AHZ-050HCPB1A",
