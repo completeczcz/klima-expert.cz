@@ -1,201 +1,227 @@
 ---
 import Base from '../layouts/Base.astro';
+import HeroUnit from '../components/HeroUnit.astro';
 import QuickStart from '../components/QuickStart.astro';
+import ProductRail from '../components/ProductRail.astro';
+import ExplodedUnit from '../components/ExplodedUnit.astro';
+import SeasonScene from '../components/SeasonScene.astro';
+import QuietMeter from '../components/QuietMeter.astro';
+import ColdSection from '../components/ColdSection.astro';
+import UseTiles from '../components/UseTiles.astro';
+import AppSection from '../components/AppSection.astro';
 import ContourMap from '../components/ContourMap.astro';
 import Steps from '../components/Steps.astro';
 import Faq from '../components/Faq.astro';
-import CtaBand from '../components/CtaBand.astro';
-import PriceTeaser from '../components/PriceTeaser.astro';
+import Icon from '../components/Icon.astro';
 import { getCollection } from 'astro:content';
 import { site, regions } from '../data/site';
 import { cities } from '../data/cities';
+import { products } from '../data/products';
+import { catNames } from '../data/blog';
 
-const posts = (await getCollection('blog')).sort((a, b) => +b.data.published - +a.data.published).slice(0, 3);
-
-const uses = [
-  { href: '/klimatizace/do-bytu/', t: 'Klimatizace do bytu', d: 'Tichá nástěnná jednotka do ložnice nebo obýváku, řešení pro panelák i novostavbu včetně souhlasu SVJ.' },
-  { href: '/klimatizace/do-domu/', t: 'Klimatizace do domu', d: 'Chlazení podkroví a více místností jednou venkovní jednotkou. V zimě úsporné přitápění.' },
-  { href: '/klimatizace/do-kancelare/', t: 'Klimatizace do kanceláře', d: 'Nástěnné, kazetové i kanálové jednotky pro kanceláře, ordinace a obchody.' },
-  { href: '/tepelna-cerpadla/', t: 'Tepelné čerpadlo vzduch-voda', d: 'Vytápění a ohřev vody pro rodinný dům. Novostavba i výměna starého kotle.' },
-];
+const railIds = ['mhi-premium-zt', 'hisense-air-master', 'mhi-diamond-zsx', 'hisense-energy-pro-x', 'mhi-premium-zs', 'hisense-uni-pure', 'mhi-standard-plus-ztl', 'hisense-wings-comfort', 'mhi-multisplit-scm', 'hisense-hi-therma-integra'];
+const rail = railIds.map((id) => products.find((p) => p.id === id)!).filter(Boolean);
+const posts = (await getCollection('blog')).filter((p) => ['kolik-stoji-klimatizace-do-bytu', 'ticha-klimatizace-do-loznice', 'dotace-na-tepelne-cerpadlo'].includes(p.id));
 
 const faq = [
-  { q: 'Kolik stojí klimatizace s montáží?', a: 'Nástěnná klimatizace do jedné místnosti se standardní montáží vyjde v bytě nebo rodinném domě orientačně na 30 000 až 60 000 Kč včetně 12% DPH, podle výkonu a řady. Přesnou cenu určí až zaměření, protože záleží na délce potrubí, umístění venkovní jednotky a elektroinstalaci. Orientační výpočet najdete v <a href="/cena-klimatizace/">kalkulačce</a>.' },
-  { q: 'Kdo klimatizaci namontuje?', a: 'Poptávku předáme ověřené partnerské montážní firmě z vašeho kraje, která s jednotkami Mitsubishi Heavy Industries a Hisense dlouhodobě pracuje a má osvědčení pro práci s chladivy (F-plyny).' },
-  { q: 'Je poptávka zpoplatněná nebo závazná?', a: 'Ne. Poptávka i zaměření jsou zdarma a k ničemu vás nezavazují. Rozhodnete se až podle konkrétní nabídky.' },
-  { q: 'Jak dlouho trvá montáž?', a: 'Běžná montáž jedné nástěnné klimatizace trvá 4 až 6 hodin. Multisplit pro více místností obvykle jeden až dva dny. Termín závisí na sezóně, na jaře a v létě bývají čekací doby delší.' },
-  { q: 'Můžu klimatizací i topit?', a: 'Ano. Moderní invertorové klimatizace jsou tepelná čerpadla vzduch-vzduch a umí efektivně topit i při mrazech. Pro přechodné období nebo jako doplněk k hlavnímu vytápění jsou velmi úsporné.' },
-  { q: 'Působíte i v mém kraji?', a: 'Ano, poptávky přijímáme z celé České republiky. Seznam krajů najdete níže na této stránce.' },
+  { q: 'Kolik stojí klimatizace s montáží?', a: 'Záleží hlavně na výkonu, řadě jednotky a délce potrubí. Orientační rozpětí najdete v článku <a href="/blog/kolik-stoji-klimatizace-do-bytu/">kolik stojí klimatizace do bytu</a>, přesnou cenu pro vás připraví partnerská firma po zaměření zdarma.' },
+  { q: 'Kdo klimatizaci namontuje?', a: 'Ověřená partnerská montážní firma z vašeho kraje, která s jednotkami Mitsubishi Heavy Industries a Hisense dlouhodobě pracuje a má osvědčení pro práci s chladivy (F-plyny).' },
+  { q: 'Je poptávka zpoplatněná nebo závazná?', a: 'Ne. Poptávka, zaměření i cenová nabídka jsou zdarma a k ničemu vás nezavazují.' },
+  { q: 'Jak dlouho trvá montáž?', a: 'Jedna nástěnná klimatizace 4 až 6 hodin, multisplit pro více místností obvykle jeden až dva dny.' },
+  { q: 'Můžu klimatizací i topit?', a: 'Ano. Invertorová klimatizace je tepelné čerpadlo vzduch-vzduch a topí úsporně i v mrazech. Více v článku <a href="/blog/topeni-klimatizaci/">topení klimatizací</a>.' },
+  { q: 'Působíte i v mém kraji?', a: 'Ano, poptávky přijímáme z celé České republiky a předáváme je firmě, která to má k vám nejblíž.' },
+];
+const why = [
+  { i: 'shield', t: `Záruka až ${site.warranty.mhi} let`, d: `Mitsubishi Heavy Industries ${site.warranty.mhi} let, Hisense ${site.warranty.hisense} roky.` },
+  { i: 'check', t: 'Oficiální distribuce', d: 'Jednotky s podporou distributora pro ČR.' },
+  { i: 'wrench', t: 'Certifikovaní technici', d: 'Osvědčení pro práci s chladivy.' },
+  { i: 'pin', t: 'Firma z vašeho kraje', d: 'Krátký dojezd, rychlý servis.' },
+  { i: 'chat', t: 'Jedna firma, žádný spam', d: 'Poptávku nerozesíláme hromadně.' },
+  { i: 'clock', t: `Ozveme se ${site.responseTime}`, d: 'Zaměření a nabídka zdarma.' },
 ];
 ---
 <Base
   title="Klimatizace a tepelná čerpadla s montáží po celé ČR"
-  description="Klimatizace a tepelná čerpadla Mitsubishi Heavy Industries a Hisense s montáží ve všech krajích ČR. Nezávazná poptávka, zaměření a nabídka zdarma."
+  description="Klimatizace a tepelná čerpadla Mitsubishi Heavy Industries a Hisense s montáží ve všech krajích ČR. Tichý chod, topení v zimě. Nabídka a zaměření zdarma."
 >
-  <section class="hero">
-    <div class="wrap hero__in">
-      <div class="hero__txt">
-        <h1>Klimatizace a tepelná čerpadla s montáží po celé ČR</h1>
-        <p class="lead">
-          Pomůžeme vybrat jednotku Mitsubishi Heavy Industries nebo Hisense a poptávku předáme ověřené montážní firmě
-          ve vašem kraji. Zaměření i cenová nabídka jsou zdarma.
-        </p>
-        <ul class="checks hero__checks">
-          <li>Produkty z oficiální distribuce, záruka až {site.warranty.mhi} let</li>
-          <li>Certifikovaní technici s osvědčením pro F-plyny</li>
-          <li>Ozveme se {site.responseTime}</li>
+  <HeroUnit />
+
+  <section class="section qband" id="poptavka-rychla">
+    <div class="wrap qband__in">
+      <div data-reveal>
+        <p class="kicker">Nezávazně a zdarma</p>
+        <h2 class="display">Řekněte nám, co potřebujete. Zbytek zařídíme.</h2>
+        <ul class="qband__steps">
+          <li><Icon name="chat" /><span><strong>Pošlete poptávku</strong>Za dvě minuty, bez registrace.</span></li>
+          <li><Icon name="ruler" /><span><strong>Zaměření zdarma</strong>Technik z vašeho kraje navrhne řešení.</span></li>
+          <li><Icon name="ac" /><span><strong>Montáž za den</strong>Čistá práce, spuštění a zaškolení.</span></li>
         </ul>
-        <div class="hero__map" aria-hidden="false"><ContourMap /></div>
       </div>
-      <div class="hero__form" id="poptavka-rychla">
-        <QuickStart />
-      </div>
+      <div data-reveal data-reveal-delay="1"><QuickStart /></div>
     </div>
   </section>
 
-  <section class="trust">
-    <div class="wrap trust__in">
-      <p><strong>Od roku 2007</strong><span>výhradní distribuce Mitsubishi Heavy Industries v ČR přes partnera COMPLETE CZ</span></p>
-      <p><strong>{site.warranty.mhi} let záruka</strong><span>na jednotky MHI, {site.warranty.hisense} roky na Hisense</span></p>
-      <p><strong>14 krajů</strong><span>montážní partneři po celé České republice</span></p>
-      <p><strong>0 Kč</strong><span>za poptávku, zaměření a cenovou nabídku</span></p>
+  <section class="section section--stage pick" id="vyber" aria-labelledby="pick-h">
+    <div class="wrap pick__head" data-reveal>
+      <div>
+        <p class="kicker">Mitsubishi Heavy Industries a Hisense</p>
+        <h2 id="pick-h" class="display">Vyberte si svou.</h2>
+      </div>
+      <a class="link-arrow" href="/produkty/">Všechny řady <Icon name="arrow" size={20} /></a>
+    </div>
+    <ProductRail items={rail} />
+  </section>
+
+  <ExplodedUnit />
+  <SeasonScene />
+  <QuietMeter />
+  <ColdSection />
+
+  <section class="section" aria-labelledby="use-h">
+    <div class="wrap">
+      <div class="center" data-reveal style="margin-bottom:40px">
+        <p class="kicker">Pro každý prostor</p>
+        <h2 id="use-h" class="display">Kam ji potřebujete?</h2>
+      </div>
+      <UseTiles />
+    </div>
+  </section>
+
+  <AppSection />
+
+  <section class="section section--night why" aria-labelledby="why-h">
+    <div class="wrap">
+      <div class="why__nums" data-reveal>
+        <p><strong><span data-count="2007" data-from="1990" data-plain>2007</span></strong><span>od tohoto roku výhradní distribuce MHI v ČR přes partnera COMPLETE CZ</span></p>
+        <p><strong><span data-count="14">14</span></strong><span>krajů s montážními partnery</span></p>
+        <p><strong><span data-count="5">5</span> let</strong><span>záruka na Mitsubishi Heavy Industries</span></p>
+        <p><strong><span data-count="0">0</span> Kč</strong><span>za poptávku, zaměření a nabídku</span></p>
+      </div>
+      <h2 id="why-h" class="display why__h" data-reveal>Proč přes Klima Expert</h2>
+      <div class="feats" data-reveal>
+        {why.map((w) => <div class="feat"><Icon name={w.i} /><strong>{w.t}</strong><span>{w.d}</span></div>)}
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="section__head">
-        <h2>Co potřebujete vychladit nebo vytopit?</h2>
-        <p class="lead">Každý prostor má jiné nároky na výkon, hlučnost i umístění jednotek. Vyberte, co řešíte, a ukážeme vám vhodné možnosti.</p>
+      <div class="center" data-reveal style="margin-bottom:44px">
+        <p class="kicker">Jak to probíhá</p>
+        <h2 class="display">Od poptávky ke chladu za pár dní.</h2>
       </div>
-      <div class="uses">
-        {uses.map((u) => (
-          <a class="uses__item" href={u.href}>
-            <h3>{u.t}</h3>
-            <p>{u.d}</p>
-            <span class="uses__more">Zobrazit možnosti</span>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="section section--stage" id="kraje">
+    <div class="wrap regions">
+      <div data-reveal>
+        <p class="kicker">Celá Česká republika</p>
+        <h2 class="display">Montujeme ve všech krajích.</h2>
+        <ul class="regions__list">
+          {regions.map((r) => <li><a href={`/montaz-klimatizace/${r.slug}/`}>{r.name}</a></li>)}
+        </ul>
+        <p class="regions__cities small">Města: {cities.map((c, i) => <>{i > 0 && ', '}<a href={`/montaz-klimatizace/${c.kraj}/${c.slug}/`}>{c.name}</a></>)}</p>
+      </div>
+      <div class="regions__map" data-reveal="scale"><ContourMap /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="pick__head" data-reveal>
+        <div><p class="kicker">Poradna</p><h2 class="display">Než se rozhodnete.</h2></div>
+        <a class="link-arrow" href="/blog/">Všechny články <Icon name="arrow" size={20} /></a>
+      </div>
+      <div class="posts">
+        {posts.map((p, i) => (
+          <a class="post" href={`/blog/${p.id}/`} data-reveal data-reveal-delay={String(i)}>
+            <span class="post__cat">{catNames[p.data.category]}</span>
+            <h3>{p.data.h1 ?? p.data.title}</h3>
+            <p>{p.data.perex}</p>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section section--ice">
-    <div class="wrap">
-      <div class="section__head">
-        <h2>Dvě značky, které známe do posledního šroubku</h2>
-        <p class="lead">Nenabízíme všechno. Pracujeme se dvěma výrobci, u kterých máme přímou technickou podporu distributora v ČR a montážníky, kteří s jejich jednotkami dlouhodobě pracují.</p>
-      </div>
-      <div class="brands">
-        <a class="brands__item panel" href="/znacky/mitsubishi-heavy-industries/">
-          <p class="badge badge--sun">Prémiová japonská technika</p>
-          <h3>Mitsubishi Heavy Industries</h3>
-          <p>Japonský průmyslový koncern s více než stoletou tradicí. Klimatizace MHI vynikají tichým chodem, vysokou účinností a topením i v silných mrazech. Záruka {site.warranty.mhi} let.</p>
-          <span class="brands__more">Řady Diamond, Premium a další</span>
-        </a>
-        <a class="brands__item panel" href="/znacky/hisense/">
-          <p class="badge">Výhodný poměr ceny a výkonu</p>
-          <h3>Hisense</h3>
-          <p>Globální výrobce elektroniky a klimatizací. Moderní jednotky s Wi-Fi ovládáním za dostupnou cenu a tepelná čerpadla vzduch-voda pro rodinné domy. Záruka {site.warranty.hisense} roky.</p>
-          <span class="brands__more">Klimatizace i tepelná čerpadla</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <PriceTeaser />
-
-  <section class="section section--ink">
-    <div class="wrap">
-      <div class="section__head">
-        <h2>Jak to funguje</h2>
-        <p class="lead">Od poptávky ke spuštěné klimatizaci obvykle uplynou jeden až tři týdny, v hlavní sezóně o něco déle.</p>
-      </div>
-      <Steps />
-    </div>
-  </section>
-
-  <section class="section" id="kraje">
-    <div class="wrap regions">
-      <div>
-        <h2>Montáž ve všech krajích</h2>
-        <p class="lead">Spolupracujeme s montážními firmami po celé republice. Poptávku vždy předáme firmě, která to má k vám co nejblíž.</p>
-        <ul class="regions__list">
-          {regions.map((r) => <li><a href={`/montaz-klimatizace/${r.slug}/`}>{r.name}</a></li>)}
-        </ul>
-        <p class="regions__cities small">Města: {cities.map((c, i) => <>{i > 0 && ', '}<a href={`/montaz-klimatizace/${c.kraj}/${c.slug}/`}>{c.name}</a></>)}</p>
-      </div>
-      <div class="regions__map"><ContourMap /></div>
-    </div>
-  </section>
-
-  {posts.length > 0 && (
-    <section class="section section--ice">
-      <div class="wrap">
-        <div class="section__head">
-          <h2>Poradna</h2>
-          <p class="lead">Praktické rady k výběru, montáži a provozu klimatizací a tepelných čerpadel.</p>
-        </div>
-        <div class="grid grid--3">
-          {posts.map((p) => (
-            <a class="post panel" href={`/blog/${p.id}/`}>
-              <h3>{p.data.h1 ?? p.data.title}</h3>
-              <p class="muted">{p.data.perex}</p>
-            </a>
-          ))}
-        </div>
-        <p style="margin-top:28px"><a class="btn btn--ghost" href="/blog/">Všechny články</a></p>
-      </div>
-    </section>
-  )}
-
-  <section class="section">
+  <section class="section section--stage">
     <div class="wrap"><Faq items={faq} /></div>
   </section>
 
-  <CtaBand />
+  <section class="section final">
+    <div class="wrap final__in">
+      <div data-reveal>
+        <h2 class="display">Chcete mít doma klid a příjemný vzduch?</h2>
+        <p class="sub">Pošlete nezávaznou poptávku. Ozveme se {site.responseTime} a partnerská firma připraví nabídku zdarma.</p>
+        <p class="final__tel">Raději telefonicky? <a href={site.phoneHref}>{site.phone}</a></p>
+      </div>
+      <div data-reveal data-reveal-delay="1"><QuickStart heading="Začněte tady" /></div>
+    </div>
+  </section>
+
+  <section class="section seo">
+    <div class="wrap">
+      <details class="more">
+        <summary>Klimatizace s montáží: jak vybrat a na co se připravit</summary>
+        <div class="prose">
+          <p>Klima Expert pomáhá vybrat klimatizaci nebo tepelné čerpadlo značek Mitsubishi Heavy Industries a Hisense a zajišťuje montáž prostřednictvím ověřených partnerských firem ve všech krajích České republiky. Poptávka, zaměření i cenová nabídka jsou zdarma.</p>
+          <h2>Jaký typ klimatizace vybrat</h2>
+          <p>Do bytů a rodinných domů se nejčastěji montují nástěnné split klimatizace. Pro více místností s jednou venkovní jednotkou slouží <a href="/klimatizace/multisplit/">multisplit</a>, do podkroví a pod okna parapetní jednotky a do kanceláří kazetové nebo kanálové jednotky skryté v podhledu. Přehled najdete v sekci <a href="/produkty/">produkty</a>.</p>
+          <h2>Jaký výkon potřebuji</h2>
+          <p>Pro běžnou místnost se počítá zhruba 100 W chladicího výkonu na m², pro slunné místnosti a podkroví více. Ložnice do 20 m² obvykle vystačí s jednotkou 2,0 až 2,5 kW. Podrobně v článku <a href="/blog/jaky-vykon-klimatizace-na-m2/">jaký výkon klimatizace na m²</a> nebo v <a href="/cena-klimatizace/">kalkulačce výkonu</a>.</p>
+          <h2>Klimatizace v bytovém domě</h2>
+          <p>Umístění venkovní jednotky na fasádu bytového domu vyžaduje souhlas SVJ nebo družstva. Moderní invertorové jednotky při správném umístění splní noční hlukový limit 40 dB před okny sousedů. Více v článku <a href="/blog/povoleni-klimatizace-svj/">povolení klimatizace a SVJ</a>.</p>
+          <h2>Topení klimatizací a tepelná čerpadla</h2>
+          <p>Klimatizace umí v zimě úsporně topit. Pro vytápění celého domu a ohřev vody slouží <a href="/tepelna-cerpadla/">tepelná čerpadla vzduch-voda</a> Hisense Hi-Therma, na která lze čerpat podporu z programu Nová zelená úsporám.</p>
+        </div>
+      </details>
+    </div>
+  </section>
 </Base>
 
 <style>
-  .hero { padding: clamp(32px, 5vw, 64px) 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper) 0%, var(--ice) 100%); }
-  .hero__in { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
-  .hero h1 { max-width: 15ch; }
-  .hero__checks { margin-top: 1.4em; font-weight: 600; }
-  .hero__map { max-width: 540px; margin-top: 12px; opacity: 0.95; }
-  .hero__form { position: sticky; top: 96px; }
-  .trust { background: var(--ink); color: var(--paper); }
-  .trust__in { display: grid; grid-template-columns: repeat(4, 1fr); }
-  .trust p { margin: 0; padding: 22px 20px; border-left: 1px solid #2c4559; display: grid; gap: 4px; font-size: var(--step--1); color: #c4d6df; }
-  .trust p:first-child { border-left: 0; padding-left: 0; }
-  .trust strong { font: 800 var(--step-1)/1.1 var(--font-head); color: var(--paper); }
-  .uses { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
-  .uses__item { padding: 24px 22px 26px 0; text-decoration: none; display: flex; flex-direction: column; border-right: 1px solid var(--line); padding-left: 22px; transition: background 0.15s; }
-  .uses__item:first-child { padding-left: 0; }
-  .uses__item:last-child { border-right: 0; }
-  .uses__item:hover { background: var(--ice); }
-  .uses__item p { color: var(--ink-soft); flex: 1; }
-  .uses__more, .brands__more { font-weight: 700; text-decoration: underline; text-decoration-color: var(--sun); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-  .brands { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .brands__item { text-decoration: none; display: flex; flex-direction: column; }
-  .brands__item h3 { font-size: var(--step-2); font-weight: 800; }
-  .brands__item p:not(.badge) { color: var(--ink-soft); flex: 1; }
-  .brands__item .badge { align-self: flex-start; }
+  .qband { background: var(--white); }
+  .qband__in { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .qband__in > * { min-width: 0; }
+  .qband .display { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); }
+  .qband__steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 18px; }
+  .qband__steps li { display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: center; color: var(--ink-soft); }
+  .qband__steps :global(.ico) { width: 52px; height: 52px; padding: 12px; border-radius: 16px; background: var(--ice); color: var(--ink); }
+  .qband__steps strong { display: block; font: 700 var(--step-1)/1.2 var(--font-head); color: var(--ink); }
+  .pick { padding-bottom: 48px; }
+  .pick__head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+  .pick__head .display { margin: 0; }
+  .why__nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 72px; }
+  .why__nums p { margin: 0; display: grid; gap: 6px; align-content: start; }
+  .why__nums strong { font: 800 clamp(2.4rem, 1.4rem + 3.5vw, 4.4rem)/1 var(--font-head); letter-spacing: -0.04em; color: #fff; }
+  .why__nums p > span { color: #a9bfcc; font-size: var(--step--1); max-width: 26ch; }
+  .why__h { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.4rem); margin-bottom: 36px; }
   .regions { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
-  .regions__list { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 24px; }
+  .regions .display { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); }
+  .regions__list { list-style: none; padding: 0; margin: 24px 0 0; columns: 2; column-gap: 24px; }
   .regions__list li { padding: 6px 0; break-inside: avoid; border-bottom: 1px solid var(--line); }
   .regions__list a { text-decoration: none; font-weight: 600; }
   .regions__list a:hover { text-decoration: underline; }
   .regions__cities { margin-top: 18px; color: var(--ink-soft); }
-  .post { text-decoration: none; }
-  .post h3 { font-size: var(--step-1); }
-  @media (max-width: 980px) {
-    .hero__in, .regions, .brands { grid-template-columns: 1fr; }
-    .hero__form { position: static; }
-    .hero__map { display: none; }
-    .uses { grid-template-columns: 1fr 1fr; }
-    .uses__item { padding-left: 0 !important; border-right: 0; border-bottom: 1px solid var(--line); padding-right: 16px; }
-    .trust__in { grid-template-columns: 1fr 1fr; }
-    .trust p:nth-child(3) { border-left: 0; padding-left: 0; }
+  .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .post { display: grid; gap: 10px; align-content: start; padding: 28px; border-radius: 26px; background: var(--stage); text-decoration: none; transition: transform 0.4s var(--ease), background 0.3s; }
+  .post:hover { transform: translateY(-4px); background: var(--ice); }
+  .post__cat { font-size: var(--step--1); font-weight: 700; color: var(--sun-deep); }
+  .post h3 { font-size: var(--step-1); font-weight: 800; margin: 0; }
+  .post p { color: var(--ink-soft); margin: 0; font-size: var(--step--1); }
+  .final { background: linear-gradient(180deg, var(--white), var(--ice)); }
+  .final__in { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .final__in > * { min-width: 0; }
+  .final .display { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); }
+  .final__tel { font-weight: 600; }
+  .final__tel a { font-weight: 800; }
+  .seo { padding-block: 24px 64px; }
+  @media (max-width: 900px) {
+    .qband__in, .regions, .final__in { grid-template-columns: 1fr; }
+    .why__nums { grid-template-columns: 1fr 1fr; }
+    .posts { grid-template-columns: 1fr; }
   }
-  @media (max-width: 560px) { .uses { grid-template-columns: 1fr; } .regions__list { columns: 1; } }
+  @media (max-width: 560px) { .regions__list { columns: 1; } }
 </style>

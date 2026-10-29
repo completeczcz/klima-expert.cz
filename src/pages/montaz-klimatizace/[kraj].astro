@@ -1,8 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Img from '../../components/Img.astro';
 import QuickStart from '../../components/QuickStart.astro';
 import ContourMap from '../../components/ContourMap.astro';
-import SeriesRow from '../../components/SeriesRow.astro';
+import ProductCard from '../../components/ProductCard.astro';
 import Steps from '../../components/Steps.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -22,8 +23,9 @@ const others = regions.filter((x) => x.slug !== r.slug);
 const isPraha = r.slug === 'praha';
 const cityPages = cities.filter((x) => x.kraj === r.slug);
 const title = isPraha ? 'Montáž klimatizace Praha – klimatizace s montáží' : `Montáž klimatizace ${r.name} – ${r.cities[0]}`;
+const heroImg = ['room-living','room-bedroom-dark','his-winter-living','airflow-render','room-bedroom-concrete','his-wall-minimal','room-overhead','his-bedroom-mountains','room-living-titan','house-snow','his-office','his-therma-stairs','house-family','room-living'][regions.findIndex((x) => x.slug === r.slug) % 14];
 const faq = [
-  { q: `Kolik stojí montáž klimatizace ${r.locative}?`, a: `Klimatizace do jedné místnosti včetně standardní montáže vyjde ${r.locative} orientačně na 30 000 až 60 000 Kč s 12% DPH, multisplit pro tři místnosti na 90 000 až 150 000 Kč. Přesnou cenu připraví partnerská firma po zaměření zdarma.` },
+  { q: `Kolik stojí montáž klimatizace ${r.locative}?`, a: `Cena závisí na výkonu, řadě jednotky a délce potrubí. Přesnou nabídku vám ${r.locative} připraví partnerská firma po zaměření, zdarma a nezávazně.` },
   { q: `Jak rychle se mi ozvete?`, a: `Na každou poptávku ${r.locative} reagujeme ${site.responseTime}. Zaměření pak partnerská firma domluví podle vašich možností, mimo hlavní sezónu obvykle do týdne.` },
   { q: `Montujete i mimo ${r.cities[0]}?`, a: `Ano. Poptávky přijímáme z celého kraje, včetně okresů ${r.okresy.slice(0, 4).join(', ')}${r.okresy.length > 4 ? ' a dalších' : ''}.` },
 ];
@@ -39,6 +41,7 @@ const faq = [
   }]}
 >
   <section class="rh">
+    <div class="rh__bg"><Img name={heroImg} alt="" sizes="100vw" eager /></div>
     <div class="wrap rh__in">
       <div>
         <h1>Montáž klimatizace {r.locative}</h1>
@@ -80,7 +83,7 @@ const faq = [
         <h2>Co {r.locative} montujeme nejčastěji</h2>
         <p class="lead">Výběr řad, které se osvědčily do bytů i rodinných domů. Celou nabídku najdete v <a href="/produkty/">přehledu produktů</a>.</p>
       </div>
-      {series.map((s) => <SeriesRow s={s} showCat />)}
+      <div class="rgrid">{series.map((s) => <div data-reveal><ProductCard s={s} /></div>)}</div>
     </div>
   </section>
 
@@ -102,7 +105,15 @@ const faq = [
   <CtaBand title={`Klimatizace ${r.locative}`} />
 </Base>
 <style>
-  .rh { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
+  .rh { position: relative; overflow: hidden; color: #fff; background: var(--night); padding: clamp(48px, 8vw, 104px) 0; }
+  .rh__bg { position: absolute; inset: 0; }
+  .rh__bg :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .rh::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 34, 51, 0.9), rgba(14, 34, 51, 0.5)); }
+  .rh__in { position: relative; z-index: 1; }
+  .rh h1 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 4.2rem); letter-spacing: -0.03em; }
+  .rh .lead { color: #dbe7ed; }
+  .rh :global(.checks li::before) { box-shadow: none; }
+  .rgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 20px; }
   .rh__in { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
   .rh__pts { font-weight: 600; margin-top: 1.4em; }
   .rg { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }

@@ -3,7 +3,7 @@ import Landing from '../../layouts/Landing.astro';
 import { products } from '../../data/products';
 const series = products.filter((p) => p.cat === 'tepelne-cerpadlo');
 const faq = [
-  { q: 'Kolik stojí tepelné čerpadlo vzduch-voda?', a: 'Pro běžný rodinný dům orientačně 250 000 až 450 000 Kč včetně instalace a 12% DPH. Podrobný rozpis podle výkonu najdete na stránce <a href="/cena-tepelneho-cerpadla/">cena tepelného čerpadla</a>.' },
+  { q: 'Kolik stojí tepelné čerpadlo vzduch-voda?', a: 'Cena závisí na tepelné ztrátě domu, otopné soustavě a zásobníku teplé vody. Přesnou nabídku připraví partnerská firma po prohlídce domu, zdarma. Orientační rozpětí najdete na stránce <a href="/cena-tepelneho-cerpadla/">cena tepelného čerpadla</a>.' },
   { q: 'Jaký výkon tepelného čerpadla potřebuji?', a: 'Výkon se navrhuje podle tepelné ztráty domu. Novostavba o 140 m² často vystačí s 6 až 8 kW, starší nezateplený dům stejné velikosti potřebuje 12 kW i víc. Více v článku <a href="/blog/vykon-tepelneho-cerpadla/">jak dimenzovat tepelné čerpadlo</a>.' },
   { q: 'Monoblok, nebo split?', a: 'Monoblok má vše ve venkovní jednotce a do domu vede jen voda. Instalace je jednodušší a nepracuje se s chladivem. Split má část techniky v domě a je vhodný tam, kde chcete mít hydrauliku uvnitř. Verze Integra má navíc vestavěný zásobník teplé vody 230 l.' },
   { q: 'Lze tepelné čerpadlo použít s radiátory?', a: 'Ano, pokud radiátory zvládnou nižší teplotu topné vody, typicky do 50 až 55 °C. Hisense Hi-Therma ohřeje vodu až na 60 až 65 °C podle výkonu. Více v článku <a href="/blog/tepelne-cerpadlo-do-starsiho-domu/">tepelné čerpadlo do staršího domu</a>.' },
@@ -16,6 +16,8 @@ const faq = [
   h1="Tepelné čerpadlo vzduch-voda pro rodinný dům"
   lead="Vytápění, ohřev teplé vody a v létě i chlazení z jednoho zařízení. Navrhneme výkon podle vašeho domu a partnerská firma tepelné čerpadlo nainstaluje."
   points={['Vytápí až do −25 °C venkovní teploty', 'Pro novostavby i výměnu starého kotle', 'Pomoc s dotací Nová zelená úsporám']}
+  image="house-family"
+  feats={[{"i": "heatpump", "t": "Vytápění a teplá voda", "d": "Jedno zařízení pro celý dům."}, {"i": "snow", "t": "Do −25 °C", "d": "Spolehlivě i v mrazech."}, {"i": "leaf", "t": "Úspora oproti kotli", "d": "3 až 5 kWh tepla z 1 kWh."}, {"i": "euro", "t": "Pomoc s dotací", "d": "Nová zelená úsporám."}]}
   preset="tepelne-cerpadlo"
   crumbs={[{ name: 'Tepelná čerpadla', href: '/tepelna-cerpadla/' }]}
   series={series}

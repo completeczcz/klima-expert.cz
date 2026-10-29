@@ -1,0 +1,84 @@
+---
+// Léto → zima při posouvání: stejná místnost, klimatizace nejdřív chladí, pak topí.
+import Img from './Img.astro';
+const flows = [
+  'M520 200 C470 330 380 420 260 560', 'M580 205 C560 340 520 460 470 620', 'M645 205 C650 350 660 470 690 640',
+  'M710 205 C750 340 820 450 930 580', 'M770 200 C850 310 960 380 1100 470', 'M545 205 C500 300 430 360 330 420',
+];
+---
+<section class="ss" data-scrub data-reduce-p="0.2" aria-labelledby="ss-h">
+  <div class="ss__sticky">
+    <div class="wrap ss__head">
+      <h2 id="ss-h" class="display ss__title">
+        <span class="ss__t ss__t--s">V létě příjemně chladí.</span>
+        <span class="ss__t ss__t--w" aria-hidden="true">V zimě úsporně topí.</span>
+      </h2>
+      <p class="sub center ss__sub">
+        <span class="ss__t ss__t--s">Tichý proud vzduchu bez průvanu, i když je venku tropický den.</span>
+        <span class="ss__t ss__t--w" aria-hidden="true">Z 1 kWh elektřiny vyrobí 4 až 5 kWh tepla. I když venku mrzne.</span>
+      </p>
+    </div>
+    <div class="ss__card">
+      <Img name="room-living-titan" alt="Obývací pokoj s nástěnnou klimatizací Mitsubishi Heavy Industries" sizes="(max-width: 1100px) 92vw, 1100px" />
+      <div class="ss__tint ss__tint--s"></div>
+      <div class="ss__tint ss__tint--w"></div>
+      <svg class="ss__flow" viewBox="0 0 1280 935" preserveAspectRatio="none" aria-hidden="true">
+        <g class="ss__fl ss__fl--s">{flows.map((d, i) => <path d={d} style={`--d:${i * 0.35}s`} />)}</g>
+        <g class="ss__fl ss__fl--w">{flows.map((d, i) => <path d={d} style={`--d:${i * 0.35}s`} />)}</g>
+      </svg>
+      <div class="ss__chip ss__chip--out">
+        <span>Venku</span>
+        <strong><span class="ss__t ss__t--s">34 °C</span><span class="ss__t ss__t--w">−12 °C</span></strong>
+      </div>
+      <div class="ss__chip ss__chip--in">
+        <span>Doma</span>
+        <strong><span class="ss__t ss__t--s">23 °C</span><span class="ss__t ss__t--w">22 °C</span></strong>
+      </div>
+      <div class="ss__mode" aria-hidden="true">
+        <span class="ss__m ss__m--s">Chlazení</span><span class="ss__m ss__m--w">Topení</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ss { --p: 0; --w: clamp(0, calc((var(--p) - 0.47) * 16), 1); height: 280vh; position: relative; background: var(--stage); }
+  .ss__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; grid-template-rows: auto 1fr; align-content: center; gap: 18px; padding-block: 76px 24px; overflow: hidden; }
+  .ss__head { text-align: center; }
+  .ss__title { display: grid; font-size: clamp(2rem, 1.2rem + 3.6vw, 4.4rem); margin-bottom: 0.2em; }
+  .ss__sub { display: grid; }
+  .ss__title > *, .ss__sub > * { grid-area: 1 / 1; }
+  .ss__t--s { opacity: calc(1 - var(--w)); }
+  .ss__t--w { opacity: var(--w); }
+  .ss__title .ss__t--s { color: #1f6f97; }
+  .ss__title .ss__t--w { color: #b8641c; }
+  .ss__card { position: relative; justify-self: center; width: min(92vw, 1100px, calc((100svh - 260px) * 1.369)); aspect-ratio: 1280 / 935; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 30px 80px -40px rgba(14, 34, 51, 0.6); transform: scale(calc(0.94 + min(var(--p) * 3, 1) * 0.06)); }
+  .ss__card :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ss__tint { position: absolute; inset: 0; mix-blend-mode: multiply; pointer-events: none; }
+  .ss__tint--s { background: linear-gradient(180deg, rgba(111, 195, 236, 0.55), rgba(111, 195, 236, 0.08) 70%); opacity: calc((1 - var(--w)) * 0.75); }
+  .ss__tint--w { background: linear-gradient(180deg, rgba(255, 174, 92, 0.6), rgba(255, 174, 92, 0.1) 70%); opacity: calc(var(--w) * 0.8); }
+  .ss__flow { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ss__fl path { fill: none; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 26 34; animation: ss-flow 2.4s linear infinite; animation-delay: calc(var(--d) * -1); }
+  .ss__fl--s { stroke: rgba(111, 195, 236, 0.85); opacity: calc(1 - var(--w)); }
+  .ss__fl--w { stroke: rgba(255, 160, 70, 0.85); opacity: var(--w); }
+  @keyframes ss-flow { to { stroke-dashoffset: -120; } }
+  .ss__chip { position: absolute; top: 4%; display: grid; gap: 2px; padding: 10px 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.78); backdrop-filter: blur(10px); }
+  .ss__chip--out { left: 3%; }
+  .ss__chip--in { right: 3%; text-align: right; }
+  .ss__chip > span { font-size: var(--step--1); color: var(--ink-soft); }
+  .ss__chip strong { display: grid; font: 800 clamp(1.2rem, 0.9rem + 1.5vw, 2rem)/1 var(--font-head); }
+  .ss__chip strong > * { grid-area: 1 / 1; }
+  .ss__mode { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); display: flex; padding: 5px; border-radius: 999px; background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(10px); font-weight: 700; font-size: 0.95rem; }
+  .ss__m { padding: 8px 18px; border-radius: 999px; }
+  .ss__m--s { background: rgba(111, 195, 236, calc((1 - var(--w)) * 0.45)); }
+  .ss__m--w { background: rgba(255, 174, 92, calc(var(--w) * 0.55)); }
+  @media (max-width: 700px) {
+    .ss { height: 240vh; }
+    .ss__sticky { padding-top: 84px; }
+    .ss__card { width: 94vw; border-radius: 22px; }
+    .ss__chip { padding: 6px 10px; border-radius: 12px; }
+  }
+  :global(html.reduce) .ss { height: auto; }
+  :global(html.reduce) .ss__sticky { position: static; height: auto; padding-block: 72px; }
+  :global(html.reduce) .ss__fl path { animation: none; }
+</style>

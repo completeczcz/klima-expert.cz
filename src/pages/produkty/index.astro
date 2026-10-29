@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import SeriesRow from '../../components/SeriesRow.astro';
+import ProductCard from '../../components/ProductCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { products, catLabel } from '../../data/products';
 
@@ -23,8 +23,8 @@ const tierOrder = { premium: 0, stredni: 1, zakladni: 2 };
   <section class="section" style="padding-top:24px">
     <div class="wrap">
       <div class="section__head">
-        <h1>Přehled klimatizací a tepelných čerpadel</h1>
-        <p class="lead">Všechny řady Mitsubishi Heavy Industries a Hisense, které montují naši partneři. U každé řady najdete výkony, hlučnost, výbavu a orientační cenu včetně montáže a DPH.</p>
+        <h1 class="display">Klimatizace a tepelná čerpadla</h1>
+        <p class="lead">Všechny řady Mitsubishi Heavy Industries a Hisense, které montují naši partneři. Vyberte si podle prostoru, hlučnosti a výbavy, nabídku vám připravíme zdarma.</p>
       </div>
       <div class="flt" role="group" aria-label="Filtrovat podle značky">
         <button type="button" class="flt__b is-on" data-brand="">Všechny značky</button>
@@ -40,11 +40,11 @@ const tierOrder = { premium: 0, stredni: 1, zakladni: 2 };
           <section class="grp" id={g.id}>
             <h2>{g.h}</h2>
             <p class="muted">{g.p}</p>
-            {list.map((s) => <div data-brand={s.brandSlug}><SeriesRow s={s} /></div>)}
+            <div class="pgrid">{list.map((s) => <div data-brand={s.brandSlug} data-reveal><ProductCard s={s} /></div>)}</div>
           </section>
         ) : null;
       })}
-      <p class="small muted" style="margin-top:32px">Ceny jsou orientační, včetně DPH a standardní montáže. Vycházejí z doporučených cen distributora. Konečnou cenu určí partnerská firma po zaměření.</p>
+      
     </div>
   </section>
   <CtaBand title="Nevíte, kterou řadu vybrat?" text="Napište nám, co chcete chladit nebo vytápět. Doporučíme vhodnou řadu a partnerská firma připraví nabídku zdarma." />
@@ -67,4 +67,6 @@ const tierOrder = { premium: 0, stredni: 1, zakladni: 2 };
   .jump { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--step--1); margin-bottom: 24px; }
   .grp { padding-top: 40px; }
   .grp h2 { font-size: var(--step-2); }
+  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; margin-top: 18px; }
+  .pgrid > div[hidden] { display: none; }
 </style>

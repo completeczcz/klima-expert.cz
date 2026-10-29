@@ -4,9 +4,10 @@ import Base from '../../layouts/Base.astro';
 import ShortForm from '../../components/ShortForm.astro';
 import Steps from '../../components/Steps.astro';
 import Faq from '../../components/Faq.astro';
+import Img from '../../components/Img.astro';
+import Icon from '../../components/Icon.astro';
 import { pages } from '../../data/ad-pages';
-
-
+import { site } from '../../data/site';
 
 export function getStaticPaths() {
   return Object.keys(pages).map((slug) => ({ params: { slug } }));
@@ -15,47 +16,43 @@ const p = pages[Astro.params.slug as keyof typeof pages];
 ---
 <Base title={p.title} description={p.lead.slice(0, 155)} noindex minimal hideStickyCta>
   <section class="ad">
+    <div class="ad__glow" aria-hidden="true"></div>
     <div class="wrap ad__in">
       <div class="ad__txt">
-        <h1>{p.h1}</h1>
-        <p class="lead">{p.lead}</p>
-        <ul class="checks ad__pts">{p.points.map((x) => <li>{x}</li>)}</ul>
+        <h1 class="display">{p.h1}</h1>
+        <p class="sub">{p.lead}</p>
+        <ul class="ad__pts">{p.points.map((x) => <li><Icon name="check" size={20} />{x}</li>)}</ul>
+        <div class="ad__img" data-reveal="scale"><Img name={p.img} alt={p.title} sizes="(max-width: 860px) 90vw, 560px" eager /></div>
       </div>
       <div class="ad__form"><ShortForm typ={p.typ} note={`Reklamní stránka: ${p.title}`} /></div>
-      <div class="ad__prices">
-        <dl class="ad__pr">
-          {p.prices.map((x) => <div><dt>{x.label}</dt><dd>{x.range}</dd></div>)}
-        </dl>
-        <p class="small muted">Orientační ceny vč. montáže a 12% DPH (byt, rodinný dům).</p>
-      </div>
     </div>
   </section>
-  <section class="trust-s">
-    <div class="wrap trust-s__in">
-      <p><strong>Od roku 2007</strong> výhradní distribuce Mitsubishi Heavy Industries v ČR přes partnera COMPLETE CZ</p>
-      <p><strong>14 krajů</strong> montážní partneři po celé ČR</p>
-      <p><strong>1 firma</strong> poptávku nerozesíláme hromadně</p>
+  <section class="section ad-why">
+    <div class="wrap feats">
+      <div class="feat"><Icon name="shield" /><strong>Záruka až {site.warranty.mhi} let</strong><span>Oficiální distribuce v ČR</span></div>
+      <div class="feat"><Icon name="pin" /><strong>Firma z vašeho kraje</strong><span>Montáž ve všech 14 krajích</span></div>
+      <div class="feat"><Icon name="chat" /><strong>Jen jedna firma</strong><span>Poptávku nerozesíláme hromadně</span></div>
+      <div class="feat"><Icon name="clock" /><strong>Rychlá odpověď</strong><span>Ozveme se {site.responseTime}</span></div>
     </div>
   </section>
-  <section class="section section--ink"><div class="wrap"><div class="section__head"><h2>Jak to probíhá</h2></div><Steps /></div></section>
+  <section class="section section--night"><div class="wrap"><div class="section__head"><h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.6vw,3.4rem)">Jak to probíhá</h2></div><Steps /></div></section>
   <section class="section"><div class="wrap ad__faq"><Faq items={[...p.faq]} /><div><ShortForm typ={p.typ} id="sf2" heading="Pošlete poptávku" note={`Reklamní stránka: ${p.title}`} /></div></div></section>
 </Base>
 <style>
-  .ad { padding: 16px 0 clamp(36px, 5vw, 64px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
-  .ad__in { display: grid; grid-template-columns: 1.25fr 1fr; grid-template-areas: 'txt form' 'pr form'; gap: 0 clamp(24px, 5vw, 64px); align-items: start; }
-  .ad__txt { grid-area: txt; } .ad__form { grid-area: form; } .ad__prices { grid-area: pr; }
+  .ad { position: relative; overflow: hidden; background: var(--night); color: #fff; padding: 24px 0 clamp(40px, 6vw, 72px); }
+  .ad__glow { position: absolute; inset: 0; background: radial-gradient(60% 50% at 30% 75%, rgba(111, 195, 236, 0.25), transparent 70%); pointer-events: none; }
+  .ad__in { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
   .ad__in > * { min-width: 0; }
-  .ad h1 { font-size: var(--step-3); max-width: 20ch; }
-  .ad__pts { font-weight: 600; }
-  .ad__pr { margin: 20px 0 6px; border-top: 2px solid var(--ink); }
-  .ad__pr div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
-  .ad__pr dt { font-weight: 600; }
-  .ad__pr dd { margin: 0; font: 800 var(--step-0)/1.3 var(--font-head); white-space: nowrap; }
-  .trust-s { background: var(--white); border-block: 1px solid var(--line); }
-  .trust-s__in { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-block: 20px; font-size: var(--step--1); color: var(--ink-soft); }
-  .trust-s p { margin: 0; }
-  .trust-s strong { display: block; font: 800 var(--step-1)/1.2 var(--font-head); color: var(--ink); }
+  .ad .display { font-size: clamp(2.2rem, 1.3rem + 3.4vw, 4.2rem); max-width: 16ch; }
+  .ad .sub { color: #d3e2ea; }
+  .ad__pts { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; font-weight: 600; }
+  .ad__pts li { display: flex; gap: 10px; align-items: center; }
+  .ad__pts :global(.ico) { color: var(--sun); }
+  .ad__img { margin-top: 24px; max-width: 560px; }
+  .ad__img :global(img) { width: 100%; height: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.5)); }
   .ad__faq { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
-  @media (max-width: 860px) { .ad__in { grid-template-columns: 1fr; grid-template-areas: 'txt' 'form' 'pr'; gap: 20px; } .ad__faq, .trust-s__in { grid-template-columns: 1fr; } }
-  @media (max-width: 480px) { .ad__pr div { flex-direction: column; gap: 2px; } }
+  @media (max-width: 860px) {
+    .ad__in, .ad__faq { grid-template-columns: 1fr; }
+    .ad__img { display: none; }
+  }
 </style>

@@ -1,96 +1,144 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import SeriesRow from '../../components/SeriesRow.astro';
+import ProductCard from '../../components/ProductCard.astro';
 import Faq from '../../components/Faq.astro';
-import { products, fromPrice, tierLabel, catLabel, useLabel, kw, type Series } from '../../data/products';
-import { czk, montaz } from '../../data/pricing';
+import Img from '../../components/Img.astro';
+import Icon from '../../components/Icon.astro';
+import QuickStart from '../../components/QuickStart.astro';
+import { products, tierLabel, catLabel, useLabel, kw, type Series } from '../../data/products';
+import { imgFor } from '../../data/product-images';
 import { site } from '../../data/site';
 
 export function getStaticPaths() {
   return products.map((s) => ({ params: { id: s.id }, props: { s } }));
 }
 const { s } = Astro.props as { s: Series };
+const pi = imgFor(s.id);
 const isTc = s.cat === 'tepelne-cerpadlo';
 const isMulti = s.cat === 'multisplit';
-const price = fromPrice(s);
 const typ = isTc ? 'tepelne-cerpadlo' : s.uses.includes('kancelar') && !s.uses.includes('byt') ? 'klimatizace-kancelar' : s.uses.includes('byt') ? 'klimatizace-byt' : 'klimatizace-dum';
 const q = new URLSearchParams({ typ, znacka: s.brand, poznamka: `Mám zájem o řadu ${s.title}.` });
-const related = products.filter((p) => p.id !== s.id && p.cat === s.cat && !p.status).slice(0, 4);
+const related = products.filter((p) => p.id !== s.id && p.cat === s.cat && !p.status).slice(0, 3);
 const minus = (n: number) => String(n).replace('-', '−');
 const kwRange = (() => {
   const v = s.models.map((m) => (isTc ? m.heatKw : m.coolKw)).filter((n): n is number => n != null);
   return v.length ? `${kw(Math.min(...v))} – ${kw(Math.max(...v))}` : null;
 })();
+const shortName = s.title.replace(/^(Mitsubishi Heavy Industries|Hisense) /, '');
 
+// Ikona podle obsahu vlastnosti
+const iconFor = (f: string) => {
+  const t = f.toLowerCase();
+  if (/wi-?fi|aplikac|hlasov/.test(t)) return 'wifi';
+  if (/samočišt/.test(t)) return 'spark';
+  if (/filtr|alergen|ioniz|nano/.test(t)) return 'filter';
+  if (/db\(a\)|tich/.test(t)) return 'moon';
+  if (/−\d+|mráz|topen|vytáp/.test(t)) return 'snow';
+  if (/a\+\+\+|účinn|scop|seer|úspor/.test(t)) return 'leaf';
+  if (/senzor|oko|eye|čidl/.test(t)) return 'spark';
+  if (/barv|design|award/.test(t)) return 'star';
+  if (/proud|lamel|vzduch|3d|4d|coand/.test(t)) return 'wind';
+  if (/zásobník|teplou vodu|ohřev/.test(t)) return 'drop';
+  return 'check';
+};
+const feats = s.features.slice(0, 6).map((f) => {
+  const [head, ...rest] = f.split(/\s[–-]\s/);
+  return { ico: iconFor(f), t: head.length > 70 ? head.slice(0, 67) + '…' : head, d: rest.join(' – ') };
+});
 const stats = [
-  kwRange && { k: isTc ? 'Topný výkon' : 'Chladicí výkon', v: kwRange },
-  !isTc && s.noiseMin && { k: 'Hlučnost vnitřní jednotky od', v: `${s.noiseMin} dB(A)` },
-  s.heatMin != null && { k: 'Topí do venkovní teploty', v: `${minus(s.heatMin)} °C` },
-  isMulti && s.outdoorUnits.length && { k: 'Počet místností', v: `2 až ${Math.max(...s.outdoorUnits.map((o) => o.maxIndoor ?? 0))}` },
-  s.refrigerant && { k: 'Chladivo', v: s.refrigerant },
-].filter(Boolean) as { k: string; v: string }[];
+  kwRange && { i: isTc ? 'heatpump' : 'ac', k: isTc ? 'Topný výkon' : 'Výkon', v: kwRange },
+  !isTc && s.noiseMin && { i: 'moon', k: 'Hlučnost od', v: `${s.noiseMin} dB(A)` },
+  s.heatMin != null && { i: 'snow', k: 'Topí do', v: `${minus(s.heatMin)} °C` },
+  isMulti && s.outdoorUnits.length && { i: 'home', k: 'Místností', v: `2 až ${Math.max(...s.outdoorUnits.map((o) => o.maxIndoor ?? 0))}` },
+  { i: 'shield', k: 'Záruka', v: s.brandSlug === 'hisense' ? `${site.warranty.hisense} roky` : `${site.warranty.mhi} let` },
+].filter(Boolean) as { i: string; k: string; v: string }[];
 
-const desc = `${s.title}: ${s.intro.split('. ')[0]}. Parametry, výkony a orientační cena s montáží${price ? ` od ${czk(price)}` : ''}.`.slice(0, 158);
-const titleTag = `${s.title}${isTc ? ' – tepelné čerpadlo' : ''}`.slice(0, 60);
-
+const desc = `${s.title}: ${s.intro.split('. ')[0]}. Výkony, výbava a montáž po celé ČR, nabídka zdarma.`.slice(0, 158);
 const faq = isTc
   ? [
-      { q: `Kolik stojí ${s.title} s instalací?`, a: price ? `Orientačně od ${czk(price)} včetně DPH a základní instalace. Konečná cena závisí na výkonu, zásobníku teplé vody, úpravách otopné soustavy a elektroinstalaci. Přesnou nabídku připraví partnerská firma po prohlídce domu.` : 'Cenu zatím výrobce nezveřejnil. Pošlete poptávku a ozveme se, jakmile bude řada dostupná.' },
-      { q: 'Lze na tepelné čerpadlo získat dotaci?', a: 'Tepelná čerpadla vzduch-voda bývají podporovaná programem Nová zelená úsporám. Aktuální podmínky a výši podpory najdete v článku <a href="/blog/dotace-na-tepelne-cerpadlo/">Dotace na tepelné čerpadlo</a>.' },
-      { q: 'Jaký výkon potřebuji?', a: 'Výkon se určuje podle tepelné ztráty domu, ne podle plochy. Orientačně pomůže <a href="/blog/vykon-tepelneho-cerpadla/">náš průvodce dimenzováním</a>, přesný návrh udělá technik.' },
+      { q: `Kolik stojí ${s.title} s instalací?`, a: 'Cena závisí na výkonu, zásobníku teplé vody, úpravách otopné soustavy a elektroinstalaci. Přesnou nabídku připraví partnerská firma po prohlídce domu, zdarma. Orientační rozpětí najdete na stránce <a href="/cena-tepelneho-cerpadla/">cena tepelného čerpadla</a>.' },
+      { q: 'Lze na tepelné čerpadlo získat dotaci?', a: 'Tepelná čerpadla vzduch-voda podporuje program Nová zelená úsporám. Aktuální podmínky najdete v článku <a href="/blog/dotace-na-tepelne-cerpadlo/">dotace na tepelné čerpadlo</a>.' },
+      { q: 'Jaký výkon potřebuji?', a: 'Výkon se určuje podle tepelné ztráty domu, ne podle plochy. Přesný návrh udělá technik, orientačně pomůže <a href="/blog/vykon-tepelneho-cerpadla/">náš průvodce</a>.' },
     ]
   : [
-      { q: `Kolik stojí klimatizace ${s.title} s montáží?`, a: price ? `Orientačně od ${czk(price)} včetně DPH a standardní montáže${isMulti ? ' pro dvě místnosti' : ''}. Standardní montáž počítá s krátkou trasou potrubí (kolem 3 m) a venkovní jednotkou na konzoli. Delší trasa, montáž ve výšce nebo čerpadlo kondenzátu cenu navýší.` : 'Cenu připraví partnerská firma po zaměření.' },
-      { q: 'Jaký výkon zvolit?', a: 'Pro běžnou obytnou místnost se počítá zhruba 100 W chladicího výkonu na m², pro slunné místnosti a podkroví více. Vyzkoušejte <a href="/cena-klimatizace/">kalkulačku</a> nebo si přečtěte <a href="/blog/jaky-vykon-klimatizace-na-m2/">jak spočítat výkon klimatizace</a>.' },
-      { q: 'Kdo klimatizaci namontuje a jaká je záruka?', a: `Montáž provede partnerská firma z vašeho kraje s osvědčením pro práci s chladivy. Záruka na jednotky ${s.brand} je ${s.brandSlug === 'hisense' ? site.warranty.hisense + ' roky' : site.warranty.mhi + ' let'}.` },
+      { q: `Kolik stojí ${shortName} s montáží?`, a: 'Cena závisí na výkonu, barevném provedení, délce potrubí a umístění venkovní jednotky. Přesnou nabídku připraví partnerská firma po zaměření, zdarma a nezávazně.' },
+      { q: 'Jaký výkon zvolit?', a: 'Pro běžnou místnost se počítá zhruba 100 W chladicího výkonu na m², pro slunné místnosti a podkroví víc. Výkon vám doporučí <a href="/cena-klimatizace/">kalkulačka výkonu</a>.' },
+      { q: 'Kdo ji namontuje a jaká je záruka?', a: `Montáž provede partnerská firma z vašeho kraje s osvědčením pro práci s chladivy. Záruka na jednotky ${s.brand} je ${s.brandSlug === 'hisense' ? site.warranty.hisense + ' roky' : site.warranty.mhi + ' let'}.` },
     ];
 ---
 <Base
-  title={titleTag}
+  title={`${s.title}${isTc ? ' – tepelné čerpadlo' : ''}`.slice(0, 60)}
   description={desc}
   crumbs={[{ name: 'Produkty', href: '/produkty/' }, { name: s.title, href: `/produkty/${s.id}/` }]}
 >
   <section class="ph">
     <div class="wrap ph__in">
-      <div>
-        <p class="ph__meta"><a href={`/znacky/${s.brandSlug}/`}>{s.brand}</a><span>{catLabel[s.cat]}</span><span>{tierLabel[s.tier]}</span></p>
-        <h1>{s.title}</h1>
-        <p class="lead">{s.intro}</p>
-        {s.status && <p class="badge badge--sun">Připravovaná novinka – cena zatím není zveřejněna</p>}
-        <p class="ph__uses">Vhodné pro: {s.uses.map((u) => useLabel[u]).join(', ')}</p>
-        <div class="ph__cta">
-          <a class="btn btn--sun" href={`/poptavka/?${q}`} data-track="cta-product">Poptat montáž této řady</a>
-          <a class="btn btn--ghost" href="/cena-klimatizace/">Spočítat cenu</a>
+      <div class="ph__txt" data-reveal>
+        <p class="ph__meta"><a href={`/znacky/${s.brandSlug}/`}>{s.brand}</a><span>{catLabel[s.cat]}</span>{s.tier === 'premium' && <span class="ph__tier">{tierLabel.premium}</span>}</p>
+        <h1 class="display">{shortName}</h1>
+        <p class="sub">{s.intro}</p>
+        {s.status && <p class="badge badge--sun">Připravovaná novinka</p>}
+        <div class="btn-row" style="margin-top:24px">
+          <a class="btn btn--sun" href={`/poptavka/?${q}`} data-track="cta-product">Chci nabídku na tuto řadu</a>
+          <a class="btn btn--ghost" href="#parametry">Parametry</a>
         </div>
       </div>
-      <aside class="ph__box panel">
-        <p class="ph__price-label">Orientační cena vč. {isTc ? 'instalace' : 'standardní montáže'} a 12% DPH</p>
-        <p class="ph__price">{price ? `od ${czk(price)}` : 'na dotaz'}</p>
-        <dl class="ph__stats">
-          {stats.map((x) => <div><dt>{x.k}</dt><dd>{x.v}</dd></div>)}
-        </dl>
-        <p class="small muted">Cena je orientační. Konečnou cenu určí partnerská firma po zaměření podle délky potrubí, umístění jednotek a elektroinstalace.</p>
-      </aside>
+      <div class="ph__media" data-reveal="scale">
+        {pi.img ? (
+          <div class="ph__stage">
+            {(pi.variants ?? [{ label: '', img: pi.img, swatch: '' }]).map((v, i) => (
+              <div class="ph__v" data-v={i} hidden={i > 0}><Img name={v.img} alt={`${s.title}${v.label ? ' – ' + v.label.toLowerCase() : ''}`} sizes="(max-width: 900px) 90vw, 600px" eager={i === 0} /></div>
+            ))}
+          </div>
+        ) : (
+          <div class="ph__stage ph__stage--ico"><Icon name={isTc ? 'heatpump' : 'ac'} size={120} /></div>
+        )}
+        {pi.variants && (
+          <div class="ph__sw" role="radiogroup" aria-label="Barevné provedení">
+            {pi.variants.map((v, i) => (
+              <button type="button" role="radio" aria-checked={i === 0 ? 'true' : 'false'} data-sw={i} title={v.label}>
+                <i style={`background:${v.swatch}`}></i><span>{v.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
+    <ul class="wrap ph__stats" data-reveal>
+      {stats.map((x) => <li><Icon name={x.i} size={24} /><span>{x.k}</span><strong>{x.v}</strong></li>)}
+    </ul>
   </section>
 
   <section class="section">
-    <div class="wrap pd">
-      <div>
-        <h2>Výbava a přednosti</h2>
-        <ul class="checks pd__feat">{s.features.map((f) => <li>{f}</li>)}</ul>
-        {s.colours.length > 0 && !isMulti && <p><strong>Barevná provedení:</strong> {s.colours.join(', ')}</p>}
-        {s.wifi && <p><strong>Wi-Fi ovládání:</strong> {s.wifi.replace(/\([^)]*Kč[^)]*\)/g, '').replace(/\s+/g, ' ').trim()}</p>}
-        {s.energy && <p><strong>Energetická třída:</strong> {s.energy}</p>}
+    <div class="wrap">
+      <div class="center" data-reveal style="margin-bottom:40px">
+        <p class="kicker">Co umí</p>
+        <h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">Přednosti řady {shortName}</h2>
+      </div>
+      <div class="pf">
+        {feats.map((f, i) => (
+          <div class="pf__i" data-reveal data-reveal-delay={String(i % 3)}>
+            <span class="pf__ico"><Icon name={f.ico} size={26} /></span>
+            <strong>{f.t}</strong>
+            {f.d && <span>{f.d}</span>}
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
+  {pi.scene && (
+    <section class="scene" data-scrub="pass" data-reduce-p="0.5">
+      <Img name={pi.scene} alt={`${s.title} v interiéru`} sizes="100vw" />
+      <div class="scene__cap wrap"><p class="display">{isTc ? 'Teplo pro celý dům.' : s.uses.includes('loznice') ? 'Klidný spánek i v tropických nocích.' : 'Příjemný vzduch, kde ho potřebujete.'}</p></div>
+    </section>
+  )}
+
   {s.models.length > 0 && (
-    <section class="section section--ice">
+    <section class="section section--stage" id="parametry">
       <div class="wrap">
-        <h2>Dostupné výkony</h2>
+        <h2 class="display" style="font-size:clamp(1.8rem,1.2rem + 2vw,2.8rem)">Dostupné výkony</h2>
         <div class="table-wrap">
           <table>
             <thead>
@@ -98,14 +146,14 @@ const faq = isTc
                 <th>Model</th>
                 {!isTc && <th>Chlazení</th>}
                 <th>Topení</th>
-                {isTc ? <th>Max. teplota vody</th> : <th>Třída chlazení / topení</th>}
-                {isTc ? <th>SCOP (35 °C)</th> : <th>Doporučeno pro místnost</th>}
+                {isTc ? <th>Max. teplota vody</th> : <th>Energetická třída</th>}
+                {isTc ? <th>SCOP (35 °C)</th> : <th>Vhodné pro místnost</th>}
               </tr>
             </thead>
             <tbody>
               {s.models.map((m) => (
                 <tr>
-                  <td>{m.code}{m.line && s.cat !== 'nastenna' ? <span class="small muted"> ({m.line})</span> : null}</td>
+                  <td>{m.code}</td>
                   {!isTc && <td>{kw(m.coolKw)}</td>}
                   <td>{kw(m.heatKw)}</td>
                   {isTc ? <td>{m.flowTemp ? `${m.flowTemp} °C` : '–'}</td> : <td>{m.energy ?? '–'}</td>}
@@ -115,39 +163,44 @@ const faq = isTc
             </tbody>
           </table>
         </div>
-        {!isTc && <p class="small muted">Doporučená plocha je orientační pro běžnou místnost s výškou stropu do 2,7 m. Slunné místnosti a podkroví potřebují vyšší výkon.</p>}
+        <p class="small muted">Vhodná plocha je orientační pro běžnou místnost do výšky stropu 2,7 m. Slunné místnosti a podkroví potřebují vyšší výkon.</p>
+        <p class="small muted">Vhodné pro: {s.uses.map((u) => useLabel[u]).join(', ')}.{s.wifi && ` Wi-Fi: ${s.wifi}.`}</p>
       </div>
     </section>
   )}
 
   {isMulti && s.outdoorUnits.length > 0 && (
-    <section class="section section--ice">
+    <section class="section section--stage" id={s.models.length ? undefined : 'parametry'}>
       <div class="wrap">
-        <h2>Venkovní jednotky</h2>
+        <h2 class="display" style="font-size:clamp(1.8rem,1.2rem + 2vw,2.8rem)">Venkovní jednotky</h2>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Venkovní jednotka</th><th>Až místností</th><th>Chlazení</th><th>Topení</th><th>Třída</th></tr></thead>
-            <tbody>
-              {s.outdoorUnits.map((o) => (
-                <tr><td>{o.code}</td><td>{o.maxIndoor ?? '–'}</td><td>{kw(o.coolKw)}</td><td>{kw(o.heatKw)}</td><td>{o.energy ?? '–'}</td></tr>
-              ))}
-            </tbody>
+            <tbody>{s.outdoorUnits.map((o) => <tr><td>{o.code}</td><td>{o.maxIndoor ?? '–'}</td><td>{kw(o.coolKw)}</td><td>{kw(o.heatKw)}</td><td>{o.energy ?? '–'}</td></tr>)}</tbody>
           </table>
         </div>
-        <p class="small muted">Montáž multisplitu stojí orientačně {czk(montaz.multisplit[0])} až {czk(montaz.multisplit[1])} za každou vnitřní jednotku podle délky rozvodů.</p>
       </div>
     </section>
   )}
 
-  <section class="section">
-    <div class="wrap"><Faq items={faq} /></div>
+  <section class="section offer">
+    <div class="wrap offer__in">
+      <div data-reveal>
+        <p class="kicker">Cena na míru</p>
+        <h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.4rem)">Nabídku vám připravíme zdarma.</h2>
+        <p class="sub">Cena záleží na výkonu, barvě a hlavně na montáži u vás doma. Partnerská firma z vašeho kraje vše zaměří a pošle přesnou nabídku. Nezávazně.</p>
+      </div>
+      <div data-reveal data-reveal-delay="1"><QuickStart heading={`Poptávka: ${shortName}`} preset={typ} /></div>
+    </div>
   </section>
 
+  <section class="section section--stage"><div class="wrap"><Faq items={faq} /></div></section>
+
   {related.length > 0 && (
-    <section class="section section--ice">
+    <section class="section">
       <div class="wrap">
-        <h2>Podobné řady</h2>
-        {related.map((r) => <SeriesRow s={r} />)}
+        <h2 class="display" style="font-size:clamp(1.8rem,1.2rem + 2vw,2.8rem)">Mohlo by vás zajímat</h2>
+        <div class="rel">{related.map((r) => <ProductCard s={r} />)}</div>
       </div>
     </section>
   )}
@@ -155,21 +208,54 @@ const faq = isTc
   <CtaBand title={`Chcete ${isTc ? 'tepelné čerpadlo' : 'klimatizaci'} ${s.brand}?`} />
 </Base>
 
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-sw]').forEach((b) => b.addEventListener('click', () => {
+    const i = b.dataset.sw;
+    document.querySelectorAll<HTMLElement>('.ph__v').forEach((v) => (v.hidden = v.dataset.v !== i));
+    document.querySelectorAll<HTMLButtonElement>('[data-sw]').forEach((x) => x.setAttribute('aria-checked', String(x === b)));
+  }));
+</script>
+
 <style>
-  .ph { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
-  .ph__in { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
-  .ph h1 { font-size: var(--step-4); }
-  .ph__meta { font-size: var(--step--1); color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .ph { padding: 24px 0 0; background: radial-gradient(90% 70% at 75% 40%, #ffffff, var(--stage) 55%, var(--ice)); }
+  .ph__in { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(20px, 4vw, 48px); }
+  .ph__in > * { min-width: 0; }
+  .ph .display { font-size: clamp(2.6rem, 1.4rem + 4.4vw, 5.2rem); margin-top: 8px; }
+  .ph__meta { font-size: var(--step--1); color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 4px 16px; }
   .ph__meta a { font-weight: 700; color: var(--ink); }
-  .ph__uses { font-weight: 600; }
-  .ph__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-  .ph__price-label { font-size: var(--step--1); color: var(--ink-soft); margin: 0; }
-  .ph__price { font: 800 var(--step-3)/1.1 var(--font-head); margin: 4px 0 18px; }
-  .ph__stats { margin: 0 0 16px; border-top: 1px solid var(--line); }
-  .ph__stats div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: var(--step--1); }
-  .ph__stats dt { color: var(--ink-soft); }
-  .ph__stats dd { margin: 0; font-weight: 700; text-align: right; }
-  .pd__feat { columns: 2; column-gap: 40px; }
-  .pd__feat li { break-inside: avoid; }
-  @media (max-width: 900px) { .ph__in { grid-template-columns: 1fr; } .pd__feat { columns: 1; } }
+  .ph__tier { color: var(--sun-deep); font-weight: 700; }
+  .ph__stage { display: grid; place-items: center; min-height: 260px; }
+  .ph__stage--ico { color: var(--contour); }
+  .ph__v { grid-area: 1 / 1; width: 100%; display: grid; place-items: center; }
+  .ph__v :global(img) { width: 100%; max-height: 420px; height: auto; object-fit: contain; filter: drop-shadow(0 34px 34px rgba(14, 34, 51, 0.22)); animation: ph-in 0.7s var(--ease); }
+  @keyframes ph-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
+  .ph__sw { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .ph__sw button { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); font: 600 0.9rem/1 var(--font-body); color: var(--ink); cursor: pointer; }
+  .ph__sw button[aria-checked='true'] { border-color: var(--ink); }
+  .ph__sw i { width: 20px; height: 20px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2); }
+  .ph__stats { list-style: none; padding: 22px 0 28px; margin-top: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; border-top: 1px solid var(--line); }
+  .ph__stats li { display: grid; grid-template-columns: auto 1fr; gap: 0 10px; align-items: center; }
+  .ph__stats :global(.ico) { grid-row: span 2; color: var(--sun-deep); }
+  .ph__stats span { font-size: var(--step--1); color: var(--ink-soft); }
+  .ph__stats strong { font: 800 var(--step-1)/1.1 var(--font-head); }
+  .pf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pf__i { padding: 28px; border-radius: 26px; background: var(--stage); display: grid; gap: 10px; align-content: start; }
+  .pf__ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--white); color: var(--sun-deep); box-shadow: 0 8px 20px -14px rgba(14, 34, 51, 0.5); }
+  .pf__i strong { font: 700 var(--step-1)/1.25 var(--font-head); }
+  .pf__i span { color: var(--ink-soft); font-size: var(--step--1); }
+  .scene { --p: 0.5; position: relative; height: min(80vh, 720px); overflow: hidden; }
+  .scene :global(img) { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; transform: translateY(calc((var(--p) - 0.5) * -10%)); }
+  .scene::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14, 34, 51, 0.65), transparent 50%); }
+  .scene__cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding-bottom: clamp(24px, 5vw, 56px); color: #fff; }
+  .scene__cap .display { max-width: 16ch; font-size: clamp(2rem, 1.2rem + 3.2vw, 4rem); margin: 0; }
+  .offer { background: linear-gradient(180deg, var(--white), var(--ice)); }
+  .offer__in { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .offer__in > * { min-width: 0; }
+  .rel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  @media (max-width: 900px) {
+    .ph__in, .offer__in { grid-template-columns: 1fr; }
+    .ph__media { order: -1; }
+    .pf, .rel { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 560px) and (max-width: 900px) { .pf { grid-template-columns: 1fr 1fr; } }
 </style>

@@ -2,106 +2,108 @@
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { products, kw } from '../data/products';
-import { montaz, czk, DPH } from '../data/pricing';
+import ProductCard from '../components/ProductCard.astro';
+import QuickStart from '../components/QuickStart.astro';
+import Img from '../components/Img.astro';
+import Icon from '../components/Icon.astro';
+import { products } from '../data/products';
 
-const tc = products.filter((p) => p.cat === 'tepelne-cerpadlo' && p.priceFromBezDph);
-const sizes = [4.4, 6, 8, 10, 12, 14, 16];
-const rows = sizes.map((k) => ({
-  kw: kw(k),
-  cells: tc.map((s) => {
-    const m = s.models.find((x) => x.heatKw === k && x.priceBezDph);
-    return m ? `${czk(Math.round((m.priceBezDph! * DPH + montaz['tepelne-cerpadlo'][0]) / 1000) * 1000)} – ${czk(Math.round((m.priceBezDph! * DPH + montaz['tepelne-cerpadlo'][1]) / 1000) * 1000)}` : '–';
-  }),
-}));
+const tc = products.filter((p) => p.cat === 'tepelne-cerpadlo' && !p.status);
 const houses = [
-  { h: 'Menší novostavba do 120 m²', kw: '4–6 kW', p: '250 000 – 330 000 Kč' },
-  { h: 'Rodinný dům 120–160 m²', kw: '6–10 kW', p: '300 000 – 400 000 Kč' },
-  { h: 'Větší nebo starší dům 160–220 m²', kw: '10–16 kW', p: '370 000 – 480 000 Kč' },
+  { i: 'leaf', h: 'Novostavba do 120 m²', kw: 'obvykle 4–6 kW' },
+  { i: 'home', h: 'Rodinný dům 120–160 m²', kw: 'obvykle 6–10 kW' },
+  { i: 'building', h: 'Větší nebo starší dům', kw: 'obvykle 10–16 kW' },
+];
+const factors = [
+  { i: 'thermo', t: 'Tepelná ztráta domu', d: 'Rozhoduje o potřebném výkonu. Zateplený dům vystačí s menším čerpadlem.' },
+  { i: 'drop', t: 'Zásobník teplé vody', d: 'Verze Integra ho má vestavěný, u ostatních se volí podle počtu osob.' },
+  { i: 'wind', t: 'Otopná soustava', d: 'Podlahové topení je ideální, radiátory je potřeba posoudit.' },
+  { i: 'wrench', t: 'Hydraulika a elektro', d: 'Napojení na stávající rozvody, jistič a regulace.' },
 ];
 const faq = [
-  { q: 'Kolik stojí tepelné čerpadlo vzduch-voda na klíč?', a: 'Pro běžný rodinný dům počítejte orientačně s 250 000 až 450 000 Kč včetně 12% DPH. Cena zahrnuje jednotku, zásobník teplé vody, hydraulické napojení, elektroinstalaci a uvedení do provozu.' },
-  { q: 'Je na tepelné čerpadlo dotace?', a: 'Od června 2026 běží nová etapa programu Nová zelená úsporám. Domácnosti s nižšími příjmy mohou získat přímou dotaci v NZÚ Light, ostatní mohou využít bezúročný úvěr. Podrobnosti najdete v článku <a href="/blog/dotace-na-tepelne-cerpadlo/">Dotace na tepelné čerpadlo</a>.' },
-  { q: 'Co prodraží instalaci?', a: 'Nutná úprava otopné soustavy, výměna radiátorů ve starším domě, delší trasa mezi venkovní a vnitřní jednotkou, posílení elektrického přívodu nebo betonový základ pro venkovní jednotku.' },
-  { q: 'Hodí se tepelné čerpadlo do staršího domu s radiátory?', a: 'Často ano, pokud je dům alespoň částečně zateplený a radiátory zvládnou nižší teplotu vody. Vhodné jsou jednotky s vyšší výstupní teplotou vody. Více v článku <a href="/blog/tepelne-cerpadlo-do-starsiho-domu/">Tepelné čerpadlo do staršího domu</a>.' },
+  { q: 'Kolik stojí tepelné čerpadlo vzduch-voda na klíč?', a: 'Pro běžný rodinný dům začíná instalace na klíč zhruba na 250 tisících korun. Přesnou cenu určí návrh podle tepelné ztráty a otopné soustavy, který partnerská firma připraví zdarma.' },
+  { q: 'Je na tepelné čerpadlo dotace?', a: 'Od června 2026 běží nová etapa programu Nová zelená úsporám. Domácnosti s nižšími příjmy mohou získat přímou dotaci v NZÚ Light, ostatní mohou využít bezúročný úvěr. Podrobnosti v článku <a href="/blog/dotace-na-tepelne-cerpadlo/">dotace na tepelné čerpadlo</a>.' },
+  { q: 'Hodí se tepelné čerpadlo do staršího domu s radiátory?', a: 'Často ano, pokud je dům alespoň částečně zateplený a radiátory zvládnou nižší teplotu vody. Více v článku <a href="/blog/tepelne-cerpadlo-do-starsiho-domu/">tepelné čerpadlo do staršího domu</a>.' },
+  { q: 'Co prodraží instalaci?', a: 'Úprava otopné soustavy, výměna radiátorů, delší trasa mezi jednotkami, posílení elektrického přívodu nebo základ pro venkovní jednotku.' },
 ];
 ---
 <Base
-  title="Kolik stojí tepelné čerpadlo vzduch-voda v roce 2026"
-  description="Orientační ceny tepelných čerpadel vzduch-voda s instalací podle velikosti domu a výkonu. Co ovlivňuje cenu, dotace NZÚ a jak získat přesnou nabídku."
+  title="Kolik stojí tepelné čerpadlo vzduch-voda"
+  description="Na čem závisí cena tepelného čerpadla vzduch-voda pro rodinný dům, jaký výkon zvolit a jak získat dotaci. Návrh a nabídka od partnerské firmy zdarma."
   crumbs={[{ name: 'Tepelná čerpadla', href: '/tepelna-cerpadla/' }, { name: 'Cena tepelného čerpadla', href: '/cena-tepelneho-cerpadla/' }]}
 >
-  <section class="section" style="padding-top:24px">
-    <div class="wrap">
-      <div class="section__head">
-        <h1>Kolik stojí tepelné čerpadlo vzduch-voda</h1>
-        <p class="lead">Tepelné čerpadlo pro rodinný dům vyjde včetně instalace orientačně na 250 000 až 450 000 Kč s 12% DPH. Rozhoduje hlavně tepelná ztráta domu, typ otopné soustavy a to, jestli potřebujete nový zásobník teplé vody.</p>
+  <section class="tch">
+    <div class="tch__bg"><Img name="house-family" alt="" sizes="100vw" eager /></div>
+    <div class="wrap tch__in">
+      <div data-reveal>
+        <h1 class="display">Kolik stojí tepelné čerpadlo vzduch-voda</h1>
+        <p class="sub">Instalace na klíč pro rodinný dům začíná zhruba na 250 tisících korun. Kolik to bude u vás, záleží na domě. Návrh výkonu i nabídku připraví partnerská firma zdarma.</p>
       </div>
-      <div class="hs">
-        {houses.map((h) => (
-          <div class="hs__item">
-            <h2>{h.h}</h2>
-            <p class="muted">Obvyklý výkon {h.kw}</p>
-            <p class="hs__p">{h.p}</p>
-          </div>
-        ))}
-      </div>
-      <p class="small muted">Rozpětí vychází z cen na českém trhu v roce 2026 a doporučených cen jednotek Hisense Hi-Therma. Konečnou cenu určí technik po prohlídce domu.</p>
+      <div data-reveal data-reveal-delay="1"><QuickStart preset="tepelne-cerpadlo" heading="Chci návrh a nabídku" /></div>
     </div>
   </section>
 
-  <section class="section section--ice">
+  <section class="section">
     <div class="wrap">
-      <div class="section__head">
-        <h2>Ceny podle výkonu a typu jednotky</h2>
-        <p class="lead">Orientační cena jednotky Hisense Hi-Therma včetně typické instalace a 12% DPH. U verzí Monoblok a Split se zásobník teplé vody řeší zvlášť, Integra ho má vestavěný.</p>
+      <div class="hs">
+        {houses.map((h, i) => (
+          <div class="hs__i" data-reveal data-reveal-delay={String(i)}>
+            <Icon name={h.i} size={30} />
+            <strong>{h.h}</strong>
+            <span>{h.kw}</span>
+          </div>
+        ))}
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Topný výkon</th>{tc.map((s) => <th><a href={`/produkty/${s.id}/`}>{s.title.replace('Hisense ', '')}</a></th>)}</tr></thead>
-          <tbody>{rows.map((r) => <tr><td><strong>{r.kw}</strong></td>{r.cells.map((c) => <td>{c}</td>)}</tr>)}</tbody>
-        </table>
+      <p class="small muted center" style="margin-top:14px">Orientační výkony. Přesný výkon se navrhuje podle tepelné ztráty domu.</p>
+    </div>
+  </section>
+
+  <section class="section section--stage">
+    <div class="wrap">
+      <div class="center" data-reveal style="margin-bottom:40px">
+        <p class="kicker">Co ovlivní cenu</p>
+        <h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">Každý dům je jiný.</h2>
+      </div>
+      <div class="fx">
+        {factors.map((f, i) => (
+          <div class="fx__i" data-reveal data-reveal-delay={String(i % 2)}>
+            <span class="fx__ico"><Icon name={f.i} size={26} /></span>
+            <strong>{f.t}</strong><span>{f.d}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap two">
-      <div>
-        <h2>Co je v ceně instalace</h2>
-        <ul class="checks">
-          <li>Venkovní jednotka na konzoli nebo základ a napojení</li>
-          <li>Hydraulický modul nebo vnitřní jednotka, oběhové čerpadlo, expanzní nádoba</li>
-          <li>Napojení na otopnou soustavu a zásobník teplé vody</li>
-          <li>Elektroinstalace, regulace a ekvitermní čidlo</li>
-          <li>Napuštění, odvzdušnění, uvedení do provozu a zaškolení</li>
-        </ul>
-      </div>
-      <div>
-        <h2>Jak ušetřit</h2>
-        <ul class="checks">
-          <li>Nechte si spočítat tepelnou ztrátu. Předimenzované čerpadlo je dražší a hůř pracuje.</li>
-          <li>Využijte dotaci nebo bezúročný úvěr z programu Nová zelená úsporám.</li>
-          <li>Požádejte distributora elektřiny o tarif pro tepelná čerpadla.</li>
-          <li>Kombinace s fotovoltaikou sníží náklady na provoz.</li>
-        </ul>
-        <p><a href="/blog/tepelne-cerpadlo-vzduch-voda-cena/">Podrobný rozpis cen tepelného čerpadla</a></p>
-      </div>
+    <div class="wrap">
+      <h2 class="display" style="font-size:clamp(1.8rem,1.2rem + 2vw,2.8rem)">Tepelná čerpadla Hisense Hi-Therma</h2>
+      <div class="rel">{tc.map((s) => <div data-reveal><ProductCard s={s} /></div>)}</div>
     </div>
   </section>
 
-  <section class="section section--ice"><div class="wrap"><Faq items={faq} /></div></section>
+  <section class="section section--stage"><div class="wrap"><Faq items={faq} /></div></section>
   <CtaBand title="Chcete nabídku na tepelné čerpadlo?" text="Pošlete základní údaje o domě. Partnerská firma připraví návrh výkonu, cenovou nabídku a poradí s dotací." />
 </Base>
 <style>
-  .hs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); margin-bottom: 12px; }
-  .hs__item { padding: 22px 20px 18px 0; border-right: 1px solid var(--line); }
-  .hs__item + .hs__item { padding-left: 20px; }
-  .hs__item:last-child { border-right: 0; }
-  .hs__item h2 { font-size: var(--step-1); margin-bottom: 0.3em; }
-  .hs__item .muted { margin: 0; }
-  .hs__p { font: 800 var(--step-2)/1.1 var(--font-head); margin: 12px 0 0; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-  .two h2 { font-size: var(--step-2); }
-  @media (max-width: 860px) { .hs, .two { grid-template-columns: 1fr; } .hs__item { padding-left: 0 !important; border-right: 0; border-bottom: 1px solid var(--line); } }
+  .tch { position: relative; overflow: hidden; color: #fff; background: var(--night); }
+  .tch__bg { position: absolute; inset: 0; }
+  .tch__bg :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .tch::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 34, 51, 0.9), rgba(14, 34, 51, 0.45)); }
+  .tch__in { position: relative; z-index: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(56px, 9vw, 120px); }
+  .tch__in > * { min-width: 0; }
+  .tch .display { font-size: clamp(2.4rem, 1.3rem + 4vw, 4.6rem); max-width: 15ch; }
+  .tch .sub { color: #dbe7ed; }
+  .hs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .hs__i { padding: 28px; border-radius: 26px; background: var(--stage); display: grid; gap: 8px; }
+  .hs__i :global(.ico) { color: var(--sun-deep); }
+  .hs__i strong { font: 800 var(--step-1)/1.2 var(--font-head); }
+  .hs__i span { color: var(--ink-soft); }
+  .fx { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .fx__i { padding: 28px; border-radius: 26px; background: var(--white); display: grid; gap: 8px; align-content: start; }
+  .fx__i strong { font: 700 var(--step-1)/1.25 var(--font-head); }
+  .fx__i > span:last-child { color: var(--ink-soft); font-size: var(--step--1); }
+  .fx__ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--ice); color: var(--ink); }
+  .rel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  @media (max-width: 900px) { .tch__in, .hs, .fx, .rel { grid-template-columns: 1fr; } }
 </style>

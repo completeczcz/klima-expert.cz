@@ -1,0 +1,11 @@
+---
+import manifest from '../data/images.json';
+interface Props { name: string; alt: string; sizes?: string; class?: string; eager?: boolean; style?: string }
+const { name, alt, sizes = '100vw', class: cls, eager = false, style } = Astro.props;
+const m = (manifest as Record<string, { w: number; h: number; widths: number[] }>)[name];
+if (!m) throw new Error(`Obrázek ${name} neexistuje`);
+const srcset = m.widths.map((w) => `/img/${name}-${w}.webp ${Math.min(w, m.w)}w`).join(', ');
+const src = `/img/${name}-${m.widths[Math.min(1, m.widths.length - 1)]}.webp`;
+---
+<img src={src} srcset={srcset} sizes={sizes} alt={alt} width={m.w} height={m.h} class={cls} style={style}
+  loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />

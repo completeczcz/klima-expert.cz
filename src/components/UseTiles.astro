@@ -1,0 +1,35 @@
+---
+import Img from './Img.astro';
+import Icon from './Icon.astro';
+const tiles = [
+  { href: '/klimatizace/do-bytu/', t: 'Do bytu', d: 'Tichá ložnice a chladný obývák, i v paneláku.', img: 'room-bedroom-dark', ico: 'bed' },
+  { href: '/klimatizace/do-domu/', t: 'Do rodinného domu', d: 'Podkroví, celé patro i úsporné přitápění.', img: 'his-winter-living', ico: 'home' },
+  { href: '/klimatizace/do-kancelare/', t: 'Do kanceláře', d: 'Kazety, skryté jednotky, montáž mimo provoz.', img: 'his-office', ico: 'briefcase' },
+  { href: '/tepelna-cerpadla/', t: 'Tepelné čerpadlo', d: 'Vytápění a teplá voda pro celý dům.', img: 'house-family', ico: 'heatpump' },
+];
+---
+<div class="ut">
+  {tiles.map((t, i) => (
+    <a class="ut__t" href={t.href} data-reveal data-reveal-delay={String(i % 2)}>
+      <Img name={t.img} alt="" sizes="(max-width: 700px) 92vw, 50vw" />
+      <span class="ut__shade"></span>
+      <span class="ut__txt">
+        <span class="ut__ico"><Icon name={t.ico} size={22} /></span>
+        <strong>{t.t}</strong>
+        <span>{t.d}</span>
+      </span>
+    </a>
+  ))}
+</div>
+<style>
+  .ut { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .ut__t { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: var(--radius-xl); overflow: hidden; color: #fff; text-decoration: none; isolation: isolate; }
+  .ut__t :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); z-index: -2; }
+  .ut__t:hover :global(img) { transform: scale(1.06); }
+  .ut__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(14, 34, 51, 0.82), rgba(14, 34, 51, 0.1) 55%, transparent); }
+  .ut__txt { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(18px, 3vw, 32px); display: grid; gap: 6px; }
+  .ut__txt strong { font: 800 var(--step-3)/1.05 var(--font-head); letter-spacing: -0.02em; }
+  .ut__txt > span:last-child { color: #dfe9ee; max-width: 34ch; }
+  .ut__ico { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(6px); margin-bottom: 6px; }
+  @media (max-width: 700px) { .ut { grid-template-columns: 1fr; } .ut__t { aspect-ratio: 5 / 4; } }
+</style>

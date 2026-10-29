@@ -1,0 +1,46 @@
+---
+// Srovnání hlučnosti – sloupce se „naplní“ při zobrazení
+const rows = [
+  { l: 'Klimatizace v nočním režimu', v: 19, hi: true },
+  { l: 'Šelest listí', v: 20 },
+  { l: 'Šepot', v: 30 },
+  { l: 'Tichá kancelář', v: 40 },
+  { l: 'Běžný rozhovor', v: 60 },
+];
+---
+<section class="section section--stage qm" aria-labelledby="qm-h">
+  <div class="wrap qm__in">
+    <div data-reveal>
+      <p class="kicker">Hlučnost</p>
+      <h2 id="qm-h" class="display">Tišší než šepot.</h2>
+      <p class="sub">Nejtišší jednotky Mitsubishi Heavy Industries a Hisense běží v nočním režimu kolem 18 až 19 dB(A). Spánku v ložnici nevadí.</p>
+      <p class="qm__big"><span data-count="19" data-plain>19</span><small> dB(A)</small></p>
+    </div>
+    <ul class="qm__bars" data-reveal data-reveal-delay="1">
+      {rows.map((r) => (
+        <li class:list={['qm__row', { 'is-hi': r.hi }]} style={`--v:${r.v / 60}`}>
+          <span class="qm__l">{r.l}</span>
+          <span class="qm__bar"><span></span></span>
+          <span class="qm__v">{r.hi ? '' : 'cca '}{r.v} dB</span>
+        </li>
+      ))}
+      <li class="small muted qm__note">Orientační hladiny akustického tlaku pro srovnání.</li>
+    </ul>
+  </div>
+</section>
+<style>
+  .qm__in { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .qm__big { font: 800 clamp(4rem, 2rem + 9vw, 9rem)/0.9 var(--font-head); letter-spacing: -0.05em; margin: 18px 0 0; color: var(--ink); }
+  .qm__big small { font-size: 0.28em; letter-spacing: 0; color: var(--ink-soft); }
+  .qm__bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .qm__row { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; }
+  .qm__l { font-weight: 600; }
+  .qm__v { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .qm__bar { grid-column: 1 / -1; height: 12px; border-radius: 999px; background: var(--ice); overflow: hidden; }
+  .qm__bar span { display: block; height: 100%; width: calc(var(--v) * 100%); border-radius: inherit; background: var(--contour); transform-origin: left; transition: transform 1.4s var(--ease) 0.2s; }
+  .qm__row.is-hi .qm__bar span { background: linear-gradient(90deg, var(--cool), #2f9fd6); }
+  .qm__row.is-hi .qm__l { color: #1f6f97; }
+  :global(html.js:not(.reduce)) .qm__bars:not(.is-in) .qm__bar span { transform: scaleX(0); }
+  .qm__note { margin-top: 4px; }
+  @media (max-width: 860px) { .qm__in { grid-template-columns: 1fr; } }
+</style>

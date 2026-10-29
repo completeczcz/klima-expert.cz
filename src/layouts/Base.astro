@@ -61,6 +61,7 @@ const { gtmId, ga4Id, adsId } = site.analytics;
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#13283a" />
+    <script is:inline>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reduce');</script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content={ogType} />
@@ -146,6 +147,7 @@ const { gtmId, ga4Id, adsId } = site.analytics;
       </div>
     )}
     <CookieBanner />
+    <script>import '../scripts/motion.ts';</script>
     <script is:inline>
       (function () {
         var bar = document.querySelector('.sticky-cta');

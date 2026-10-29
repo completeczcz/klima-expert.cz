@@ -1,0 +1,33 @@
+---
+// Vodorovně posuvná přehlídka řad (scroll-snap) s tlačítky
+import ProductCard from './ProductCard.astro';
+import type { Series } from '../data/products';
+interface Props { items: Series[]; id?: string }
+const { items, id = 'rail' } = Astro.props;
+---
+<div class="rail" data-rail>
+  <div class="rail__track" id={id} tabindex="0" aria-label="Přehled řad, posuňte do strany">
+    {items.map((s) => <div class="rail__item"><ProductCard s={s} /></div>)}
+  </div>
+  <div class="rail__nav">
+    <button type="button" class="rail__b" data-dir="-1" aria-label="Předchozí">‹</button>
+    <button type="button" class="rail__b" data-dir="1" aria-label="Další">›</button>
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-rail]').forEach((r) => {
+    const t = r.querySelector<HTMLElement>('.rail__track')!;
+    r.querySelectorAll<HTMLButtonElement>('.rail__b').forEach((b) => b.addEventListener('click', () => {
+      t.scrollBy({ left: Number(b.dataset.dir) * t.clientWidth * 0.8, behavior: 'smooth' });
+    }));
+  });
+</script>
+<style>
+  .rail { position: relative; }
+  .rail__track { display: grid; grid-auto-flow: column; grid-auto-columns: min(78vw, 340px); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px max(16px, calc((100vw - var(--wrap)) / 2)) 28px; scrollbar-width: none; }
+  .rail__track::-webkit-scrollbar { display: none; }
+  .rail__item { scroll-snap-align: start; }
+  .rail__nav { display: flex; justify-content: flex-end; gap: 10px; width: min(100% - 2 * var(--gutter), var(--wrap)); margin: 0 auto; }
+  .rail__b { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--white); color: var(--ink); font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 6px 18px -10px rgba(14, 34, 51, 0.5); }
+  .rail__b:hover { background: var(--ice); }
+</style>

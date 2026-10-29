@@ -2,12 +2,15 @@
 // Šablona vstupních stránek služeb (klimatizace do bytu, domu, kanceláře, TČ…)
 import Base from './Base.astro';
 import QuickStart from '../components/QuickStart.astro';
-import SeriesRow from '../components/SeriesRow.astro';
+import ProductCard from '../components/ProductCard.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Steps from '../components/Steps.astro';
+import Img from '../components/Img.astro';
+import Icon from '../components/Icon.astro';
 import type { Series } from '../data/products';
 
+interface Feat { i: string; t: string; d: string }
 interface Props {
   title: string;
   description: string;
@@ -16,14 +19,17 @@ interface Props {
   points: string[];
   preset: string;
   crumbs: { name: string; href: string }[];
+  image?: string;
+  feats?: Feat[];
   series?: Series[];
   seriesTitle?: string;
   seriesLead?: string;
   faq?: { q: string; a: string }[];
   ctaTitle?: string;
+  moreTitle?: string;
   schema?: Record<string, unknown>[];
 }
-const { title, description, h1, lead, points, preset, crumbs, series = [], seriesTitle = 'Doporučené řady', seriesLead, faq = [], ctaTitle, schema = [] } = Astro.props;
+const { title, description, h1, lead, points, preset, crumbs, image = 'room-living', feats = [], series = [], seriesTitle = 'Doporučené řady', seriesLead, faq = [], ctaTitle, moreTitle, schema = [] } = Astro.props;
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -34,54 +40,90 @@ const serviceSchema = {
 };
 ---
 <Base title={title} description={description} crumbs={crumbs} schema={[serviceSchema, ...schema]}>
-  <section class="lh">
+  <section class="lh" data-scrub="pass" data-reduce-p="0.5">
+    <div class="lh__bg"><Img name={image} alt="" sizes="100vw" eager /></div>
     <div class="wrap lh__in">
-      <div>
-        <h1>{h1}</h1>
-        <p class="lead">{lead}</p>
-        <ul class="checks lh__pts">{points.map((p) => <li>{p}</li>)}</ul>
+      <div class="lh__txt" data-reveal>
+        <h1 class="display">{h1}</h1>
+        <p class="sub">{lead}</p>
+        <ul class="lh__pts">{points.map((p) => <li><Icon name="check" size={20} />{p}</li>)}</ul>
       </div>
-      <div><QuickStart preset={preset} /></div>
+      <div data-reveal data-reveal-delay="1"><QuickStart preset={preset} /></div>
     </div>
   </section>
 
-  <div class="lc">
-    <slot />
-  </div>
+  <slot name="top" />
 
-  {series.length > 0 && (
-    <section class="section section--ice">
-      <div class="wrap">
-        <div class="section__head">
-          <h2>{seriesTitle}</h2>
-          {seriesLead && <p class="lead">{seriesLead}</p>}
-        </div>
-        {series.map((s) => <SeriesRow s={s} />)}
-        <p style="margin-top:24px"><a class="btn btn--ghost" href="/produkty/">Všechny řady</a></p>
+  {feats.length > 0 && (
+    <section class="section">
+      <div class="wrap feats" data-reveal>
+        {feats.map((f) => <div class="feat"><Icon name={f.i} size={30} /><strong>{f.t}</strong><span>{f.d}</span></div>)}
       </div>
     </section>
   )}
 
-  <section class="section section--ink">
+  {series.length > 0 && (
+    <section class="section section--stage">
+      <div class="wrap">
+        <div class="lser__head" data-reveal>
+          <div>
+            <h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">{seriesTitle}</h2>
+            {seriesLead && <p class="sub">{seriesLead}</p>}
+          </div>
+          <a class="link-arrow" href="/produkty/">Všechny řady <Icon name="arrow" size={20} /></a>
+        </div>
+        <div class="lser">{series.map((s) => <div data-reveal><ProductCard s={s} /></div>)}</div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
     <div class="wrap">
-      <div class="section__head"><h2>Jak to probíhá</h2></div>
+      <div class="center" data-reveal style="margin-bottom:44px">
+        <p class="kicker">Jak to probíhá</p>
+        <h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">Od poptávky k montáži bez starostí.</h2>
+      </div>
       <Steps />
     </div>
   </section>
 
-  {faq.length > 0 && <section class="section"><div class="wrap"><Faq items={faq} /></div></section>}
+  {faq.length > 0 && <section class="section section--stage"><div class="wrap"><Faq items={faq} /></div></section>}
+
+  <section class="section lmore">
+    <div class="wrap">
+      <details class="more">
+        <summary>{moreTitle ?? `Více o tématu: ${h1.toLowerCase()}`}</summary>
+        <div class="lc"><slot /></div>
+      </details>
+    </div>
+  </section>
+
   <CtaBand title={ctaTitle} />
 </Base>
 
 <style>
-  .lh { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
-  .lh__in { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
-  .lh h1 { max-width: 17ch; }
-  .lh__pts { font-weight: 600; margin-top: 1.4em; }
-  .lc :global(.copy) { padding-block: clamp(48px, 7vw, 88px); }
-  .lc :global(.copy__grid) { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); }
+  .lh { --p: 0.5; position: relative; overflow: hidden; color: #fff; background: var(--night); }
+  .lh__bg { position: absolute; inset: 0; }
+  .lh__bg :global(img) { width: 100%; height: 112%; object-fit: cover; transform: translateY(calc((var(--p) - 0.5) * -8%)); }
+  .lh::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 34, 51, 0.88), rgba(14, 34, 51, 0.55) 55%, rgba(14, 34, 51, 0.25)); }
+  .lh__in { position: relative; z-index: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(56px, 9vw, 120px); }
+  .lh__in > * { min-width: 0; }
+  .lh .display { font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); max-width: 14ch; }
+  .lh .sub { color: #dbe7ed; }
+  .lh__pts { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; font-weight: 600; }
+  .lh__pts li { display: flex; gap: 10px; align-items: center; }
+  .lh__pts :global(.ico) { color: var(--sun); flex: none; }
+  .lser__head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+  .lser { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; }
+  .lmore { padding-block: 32px 64px; }
+  .lc :global(.copy) { padding-block: 8px 16px; }
+  .lc :global(.copy > .wrap) { width: 100%; }
+  .lc :global(.copy__grid) { display: grid; grid-template-columns: 1fr; gap: 24px; }
   .lc :global(.copy h2) { font-size: var(--step-2); }
   .lc :global(.copy h3) { margin-top: 1.4em; }
-  .lc :global(.copy p), .lc :global(.copy li) { max-width: 66ch; }
-  @media (max-width: 900px) { .lh__in, .lc :global(.copy__grid) { grid-template-columns: 1fr; } }
+  .lc :global(.copy p), .lc :global(.copy li) { max-width: 70ch; }
+  @media (max-width: 900px) {
+    .lh__in { grid-template-columns: 1fr; }
+    .lh::after { background: linear-gradient(180deg, rgba(14, 34, 51, 0.85), rgba(14, 34, 51, 0.7)); }
+  }
 </style>

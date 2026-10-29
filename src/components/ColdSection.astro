@@ -1,0 +1,29 @@
+---
+import Img from './Img.astro';
+---
+<section class="cs" aria-labelledby="cs-h">
+  <div class="cs__media" data-scrub="pass" data-reduce-p="0.5">
+    <Img name="outdoor-terracotta" alt="Černá venkovní jednotka Mitsubishi Heavy Industries u domu" sizes="100vw" class="cs__img" />
+  </div>
+  <div class="wrap cs__text">
+    <div data-reveal>
+      <p class="kicker">Topení</p>
+      <h2 id="cs-h" class="display">Topí i&nbsp;při <span class="cs__num"><span data-count="-20" data-from="5" data-plain>−20</span>&nbsp;°C</span></h2>
+      <p class="sub">Invertorová klimatizace je tepelné čerpadlo vzduch-vzduch. Na jaře a na podzim vytopí dům levněji než kotel a v zimě spolehlivě přitápí.</p>
+      <a class="link-arrow" href="/blog/topeni-klimatizaci/">Jak se topí klimatizací <svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+<style>
+  .cs { position: relative; background: #2a1d17; color: #fff; overflow: hidden; display: grid; min-height: min(92vh, 860px); }
+  .cs__media { --p: 0.5; position: absolute; inset: 0; }
+  .cs__media :global(.cs__img) { width: 100%; height: 118%; object-fit: cover; object-position: 60% 50%; transform: translateY(calc((var(--p) - 0.5) * -14%)); display: block; }
+  .cs::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 14, 10, 0.78), rgba(20, 14, 10, 0.25) 55%, transparent); }
+  .cs__text { position: relative; z-index: 1; align-self: center; padding-block: 80px; }
+  .cs__text > div { max-width: 560px; }
+  .cs .kicker { color: var(--warm); }
+  .cs .sub { color: #f1e4da; }
+  .cs__num { color: #bfe7fb; white-space: nowrap; }
+  .cs .link-arrow { color: #fff; margin-top: 8px; }
+  @media (max-width: 700px) { .cs::after { background: linear-gradient(0deg, rgba(20, 14, 10, 0.85) 30%, rgba(20, 14, 10, 0.2)); } .cs__text { align-self: end; } }
+</style>

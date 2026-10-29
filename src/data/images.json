@@ -1,0 +1,482 @@
+{
+ "mhi-zsx-white": {
+  "w": 915,
+  "h": 341,
+  "widths": [
+   480,
+   915
+  ],
+  "alpha": true
+ },
+ "mhi-zsx-titan": {
+  "w": 432,
+  "h": 165,
+  "widths": [
+   432
+  ],
+  "alpha": true
+ },
+ "mhi-zsx-black": {
+  "w": 630,
+  "h": 215,
+  "widths": [
+   480,
+   630
+  ],
+  "alpha": true
+ },
+ "mhi-zt-white": {
+  "w": 969,
+  "h": 375,
+  "widths": [
+   480,
+   969
+  ],
+  "alpha": true
+ },
+ "mhi-zt-black": {
+  "w": 535,
+  "h": 208,
+  "widths": [
+   480,
+   535
+  ],
+  "alpha": true
+ },
+ "mhi-zt-titan": {
+  "w": 533,
+  "h": 204,
+  "widths": [
+   480,
+   533
+  ],
+  "alpha": true
+ },
+ "mhi-zs-white": {
+  "w": 898,
+  "h": 325,
+  "widths": [
+   480,
+   898
+  ],
+  "alpha": true
+ },
+ "mhi-zs-titan": {
+  "w": 437,
+  "h": 201,
+  "widths": [
+   437
+  ],
+  "alpha": true
+ },
+ "mhi-zr": {
+  "w": 1071,
+  "h": 334,
+  "widths": [
+   480,
+   960,
+   1071
+  ],
+  "alpha": true
+ },
+ "mhi-ztl": {
+  "w": 881,
+  "h": 349,
+  "widths": [
+   480,
+   881
+  ],
+  "alpha": true
+ },
+ "mhi-zsp": {
+  "w": 866,
+  "h": 322,
+  "widths": [
+   480,
+   866
+  ],
+  "alpha": true
+ },
+ "mhi-srf": {
+  "w": 476,
+  "h": 342,
+  "widths": [
+   476
+  ],
+  "alpha": true
+ },
+ "mhi-srr": {
+  "w": 562,
+  "h": 199,
+  "widths": [
+   480,
+   562
+  ],
+  "alpha": true
+ },
+ "mhi-fdtc": {
+  "w": 407,
+  "h": 312,
+  "widths": [
+   407
+  ],
+  "alpha": true
+ },
+ "mhi-outdoor-white": {
+  "w": 269,
+  "h": 214,
+  "widths": [
+   269
+  ],
+  "alpha": true
+ },
+ "mhi-outdoor-black": {
+  "w": 371,
+  "h": 253,
+  "widths": [
+   371
+  ],
+  "alpha": true
+ },
+ "mhi-multi-outdoor": {
+  "w": 251,
+  "h": 192,
+  "widths": [
+   251
+  ],
+  "alpha": true
+ },
+ "mhi-remote": {
+  "w": 260,
+  "h": 501,
+  "widths": [
+   260
+  ],
+  "alpha": true
+ },
+ "app-phone": {
+  "w": 273,
+  "h": 293,
+  "widths": [
+   273
+  ],
+  "alpha": true
+ },
+ "his-airmaster-white": {
+  "w": 1061,
+  "h": 392,
+  "widths": [
+   480,
+   960,
+   1061
+  ],
+  "alpha": true
+ },
+ "his-airmaster-black": {
+  "w": 1062,
+  "h": 423,
+  "widths": [
+   480,
+   960,
+   1062
+  ],
+  "alpha": true
+ },
+ "his-energyprox-black": {
+  "w": 991,
+  "h": 326,
+  "widths": [
+   480,
+   991
+  ],
+  "alpha": true
+ },
+ "his-energyprox-white": {
+  "w": 993,
+  "h": 337,
+  "widths": [
+   480,
+   993
+  ],
+  "alpha": true
+ },
+ "his-unipure": {
+  "w": 871,
+  "h": 292,
+  "widths": [
+   480,
+   871
+  ],
+  "alpha": true
+ },
+ "his-wings": {
+  "w": 1130,
+  "h": 368,
+  "widths": [
+   480,
+   960,
+   1130
+  ],
+  "alpha": true
+ },
+ "his-hismart": {
+  "w": 1108,
+  "h": 350,
+  "widths": [
+   480,
+   960,
+   1108
+  ],
+  "alpha": true
+ },
+ "his-outdoor": {
+  "w": 392,
+  "h": 266,
+  "widths": [
+   392
+  ],
+  "alpha": true
+ },
+ "his-multi-outdoor": {
+  "w": 466,
+  "h": 318,
+  "widths": [
+   466
+  ],
+  "alpha": true
+ },
+ "his-therma-monoblok": {
+  "w": 855,
+  "h": 760,
+  "widths": [
+   480,
+   855
+  ],
+  "alpha": true
+ },
+ "his-therma-set": {
+  "w": 1719,
+  "h": 1133,
+  "widths": [
+   480,
+   960,
+   1440,
+   1719
+  ],
+  "alpha": true
+ },
+ "his-therma-integra": {
+  "w": 1537,
+  "h": 1719,
+  "widths": [
+   480,
+   960,
+   1440,
+   1537
+  ],
+  "alpha": true
+ },
+ "room-living-titan": {
+  "w": 1431,
+  "h": 1045,
+  "widths": [
+   640,
+   1280,
+   1431
+  ],
+  "alpha": false
+ },
+ "room-living": {
+  "w": 1431,
+  "h": 1008,
+  "widths": [
+   640,
+   1280,
+   1431
+  ],
+  "alpha": false
+ },
+ "room-bedroom-dark": {
+  "w": 1431,
+  "h": 1018,
+  "widths": [
+   640,
+   1280,
+   1431
+  ],
+  "alpha": false
+ },
+ "room-bedroom-concrete": {
+  "w": 1431,
+  "h": 1046,
+  "widths": [
+   640,
+   1280,
+   1431
+  ],
+  "alpha": false
+ },
+ "room-living-navy": {
+  "w": 796,
+  "h": 494,
+  "widths": [
+   640,
+   796
+  ],
+  "alpha": false
+ },
+ "room-dining": {
+  "w": 729,
+  "h": 968,
+  "widths": [
+   640,
+   729
+  ],
+  "alpha": false
+ },
+ "room-window": {
+  "w": 729,
+  "h": 968,
+  "widths": [
+   640,
+   729
+  ],
+  "alpha": false
+ },
+ "room-cafe": {
+  "w": 776,
+  "h": 1031,
+  "widths": [
+   640,
+   776
+  ],
+  "alpha": false
+ },
+ "room-lounge": {
+  "w": 729,
+  "h": 968,
+  "widths": [
+   640,
+   729
+  ],
+  "alpha": false
+ },
+ "outdoor-terracotta": {
+  "w": 961,
+  "h": 573,
+  "widths": [
+   640,
+   961
+  ],
+  "alpha": false
+ },
+ "airflow-render": {
+  "w": 2132,
+  "h": 1034,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2132
+  ],
+  "alpha": false
+ },
+ "room-overhead": {
+  "w": 3506,
+  "h": 2338,
+  "widths": [
+   640,
+   1280,
+   1920,
+   3506
+  ],
+  "alpha": false
+ },
+ "office-meeting": {
+  "w": 876,
+  "h": 657,
+  "widths": [
+   640,
+   876
+  ],
+  "alpha": false
+ },
+ "his-bedroom-mountains": {
+  "w": 1982,
+  "h": 1116,
+  "widths": [
+   640,
+   1280,
+   1982
+  ],
+  "alpha": false
+ },
+ "his-winter-living": {
+  "w": 2000,
+  "h": 1748,
+  "widths": [
+   640,
+   1280,
+   2000
+  ],
+  "alpha": false
+ },
+ "his-wall-minimal": {
+  "w": 1602,
+  "h": 596,
+  "widths": [
+   640,
+   1280,
+   1602
+  ],
+  "alpha": false
+ },
+ "his-office": {
+  "w": 1583,
+  "h": 1214,
+  "widths": [
+   640,
+   1280,
+   1583
+  ],
+  "alpha": false
+ },
+ "house-family": {
+  "w": 1191,
+  "h": 1065,
+  "widths": [
+   640,
+   1191
+  ],
+  "alpha": false
+ },
+ "house-snow": {
+  "w": 1515,
+  "h": 760,
+  "widths": [
+   640,
+   1280,
+   1515
+  ],
+  "alpha": false
+ },
+ "his-therma-green": {
+  "w": 1032,
+  "h": 1076,
+  "widths": [
+   640,
+   1032
+  ],
+  "alpha": false
+ },
+ "his-therma-stairs": {
+  "w": 2000,
+  "h": 1569,
+  "widths": [
+   640,
+   1280,
+   2000
+  ],
+  "alpha": false
+ }
+}

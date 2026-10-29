@@ -1,11 +1,11 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import Img from '../../../components/Img.astro';
 import QuickStart from '../../../components/QuickStart.astro';
-import SeriesRow from '../../../components/SeriesRow.astro';
+import ProductCard from '../../../components/ProductCard.astro';
 import Steps from '../../../components/Steps.astro';
 import Faq from '../../../components/Faq.astro';
 import CtaBand from '../../../components/CtaBand.astro';
-import PriceTeaser from '../../../components/PriceTeaser.astro';
 import { cities } from '../../../data/cities';
 import { regions, site } from '../../../data/site';
 import { products } from '../../../data/products';
@@ -17,8 +17,9 @@ const { c } = Astro.props;
 const r = regions.find((x) => x.slug === c.kraj)!;
 const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-premium-zt', 'hisense-multi-split'].map((id) => products.find((p) => p.id === id)!);
 const nearby = cities.filter((x) => x.slug !== c.slug).slice(0, 11);
+const heroImg = ['room-living','room-bedroom-dark','his-winter-living','airflow-render','room-bedroom-concrete','his-wall-minimal','room-overhead','his-bedroom-mountains','room-living-titan','house-snow','his-office','his-therma-stairs','house-family','room-living'][cities.findIndex((x) => x.slug === c.slug) % 14];
 const faq = [
-  { q: `Kolik stojí klimatizace s montáží ${c.loc}?`, a: `Klimatizace do jedné místnosti vyjde ${c.loc} včetně standardní montáže orientačně na 30 000 až 60 000 Kč s 12% DPH. Přesnou cenu připraví partnerská firma po zaměření, které je zdarma.` },
+  { q: `Kolik stojí klimatizace s montáží ${c.loc}?`, a: `Cena závisí na výkonu, řadě jednotky a délce potrubí. Přesnou nabídku vám ${c.loc} připraví partnerská firma po zaměření, zdarma a nezávazně.` },
   { q: `Montujete i v okolí města ${c.name}?`, a: `Ano, například v obcích ${c.okoli.join(', ')} a v celém kraji (${r.name}).` },
   { q: 'Jak rychle se ozvete?', a: `Ozveme se ${site.responseTime}. Termín zaměření domluví partnerská firma, mimo hlavní sezónu obvykle do týdne.` },
 ];
@@ -30,6 +31,7 @@ const faq = [
   schema={[{ '@context': 'https://schema.org', '@type': 'Service', name: `Montáž klimatizace ${c.loc}`, provider: { '@id': 'https://klima-expert.cz/#firma' }, areaServed: { '@type': 'City', name: c.name } }]}
 >
   <section class="ch">
+    <div class="ch__bg"><Img name={heroImg} alt="" sizes="100vw" eager /></div>
     <div class="wrap ch__in">
       <div>
         <h1>Klimatizace s montáží {c.loc}</h1>
@@ -43,14 +45,13 @@ const faq = [
       <div><QuickStart heading={`Poptávka ${c.loc}`} /></div>
     </div>
   </section>
-  <PriceTeaser />
   <section class="section section--ice">
     <div class="wrap">
       <div class="section__head">
         <h2>Oblíbené klimatizace {c.loc}</h2>
         <p class="lead">Tiché a úsporné řady, které se hodí do bytů i rodinných domů. Celou nabídku najdete v <a href="/produkty/">přehledu produktů</a>.</p>
       </div>
-      {series.map((s) => <SeriesRow s={s} />)}
+      <div class="rgrid">{series.map((s) => <div data-reveal><ProductCard s={s} /></div>)}</div>
     </div>
   </section>
   <section class="section section--ink"><div class="wrap"><div class="section__head"><h2>Jak to probíhá</h2></div><Steps /></div></section>
@@ -67,7 +68,15 @@ const faq = [
   <CtaBand title={`Klimatizace ${c.loc}`} />
 </Base>
 <style>
-  .ch { padding: 24px 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, var(--paper), var(--ice)); }
+  .ch { position: relative; overflow: hidden; color: #fff; background: var(--night); padding: clamp(48px, 8vw, 104px) 0; }
+  .ch__bg { position: absolute; inset: 0; }
+  .ch__bg :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ch::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 34, 51, 0.9), rgba(14, 34, 51, 0.5)); }
+  .ch__in { position: relative; z-index: 1; }
+  .ch h1 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 4.2rem); letter-spacing: -0.03em; }
+  .ch .lead { color: #dbe7ed; }
+  .ch :global(.checks li::before) { box-shadow: none; }
+  .rgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 20px; }
   .ch__in { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
   .ch__in > * { min-width: 0; }
   .ch__pts { font-weight: 600; margin-top: 1.4em; }

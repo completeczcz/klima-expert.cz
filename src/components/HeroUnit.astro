@@ -1,0 +1,89 @@
+---
+import Img from './Img.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="hu" data-scrub data-reduce-p="0" aria-labelledby="hu-h">
+  <div class="hu__sticky">
+    <div class="hu__glow" aria-hidden="true"></div>
+    <div class="wrap hu__text">
+      <h1 id="hu-h" class="hu__h1">Klimatizace a tepelná čerpadla s montáží po celé ČR</h1>
+      <p class="display display--xl hu__claim">Chladno v létě.<br />Teplo v zimě.<br /><span>Ticho pořád.</span></p>
+      <div class="btn-row hu__cta">
+        <a class="btn btn--sun" href="/poptavka/" data-track="cta-hero">Chci nabídku zdarma</a>
+        <a class="btn btn--ghost" href="#vyber">Vybrat klimatizaci</a>
+      </div>
+    </div>
+    <div class="hu__unit">
+      <Img name="mhi-zsx-white" alt="Nástěnná klimatizace Mitsubishi Heavy Industries Diamond ZSX" sizes="(max-width: 700px) 90vw, 720px" eager />
+      <canvas class="hu__air" aria-hidden="true"></canvas>
+    </div>
+    <ul class="hu__facts wrap">
+      <li><Icon name="moon" size={22} /> Od 18 dB(A)</li>
+      <li><Icon name="snow" size={22} /> Topí do −20 °C</li>
+      <li><Icon name="shield" size={22} /> Záruka až {site.warranty.mhi} let</li>
+      <li><Icon name="pin" size={22} /> Montáž ve všech krajích</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+  // Proudění vzduchu pod jednotkou (lehké částice, pauza mimo obrazovku)
+  const cv = document.querySelector<HTMLCanvasElement>('.hu__air');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (cv && !reduce) {
+    const ctx = cv.getContext('2d')!;
+    let w = 0, h = 0, dpr = Math.min(2, devicePixelRatio || 1), run = true;
+    type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; ph: number };
+    let ps: P[] = [];
+    const size = () => { const r = cv.getBoundingClientRect(); w = r.width; h = r.height; cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    size(); addEventListener('resize', size);
+    const spawn = () => ({ x: w * (0.14 + Math.random() * 0.72), y: 0, vx: (Math.random() - 0.5) * 0.25, vy: 0.55 + Math.random() * 0.7, life: 0, max: 140 + Math.random() * 120, ph: Math.random() * 6.28 });
+    const tick = () => {
+      if (!run) return;
+      ctx.clearRect(0, 0, w, h);
+      if (ps.length < 90) for (let i = 0; i < 2; i++) ps.push(spawn());
+      ctx.lineCap = 'round';
+      ps = ps.filter((p) => {
+        p.life++; p.ph += 0.035;
+        const nx = p.x + p.vx + Math.sin(p.ph) * 0.35 + (p.x - w / 2) * 0.0018, ny = p.y + p.vy;
+        const a = Math.sin((p.life / p.max) * Math.PI) * 0.55;
+        ctx.strokeStyle = `rgba(159, 220, 246, ${a})`; ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny + 6); ctx.stroke();
+        p.x = nx; p.y = ny;
+        return p.life < p.max && p.y < h;
+      });
+      requestAnimationFrame(tick);
+    };
+    new IntersectionObserver((es) => { run = es[0].isIntersecting; if (run) requestAnimationFrame(tick); }).observe(cv);
+  }
+</script>
+
+<style>
+  .hu { --p: 0; height: 160vh; position: relative; background: var(--night); color: #f2f6f8; }
+  .hu__sticky { position: sticky; top: 72px; height: calc(100vh - 72px); height: calc(100svh - 72px); min-height: 540px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; padding-top: clamp(20px, 4.5vh, 52px); }
+  .hu__glow { position: absolute; inset: -20% -10% auto; height: 120%; background:
+      radial-gradient(50% 40% at 50% 62%, rgba(111, 195, 236, 0.28), transparent 70%),
+      radial-gradient(40% 30% at 80% 10%, rgba(244, 180, 58, 0.12), transparent 70%); pointer-events: none; }
+  .hu__text { position: relative; z-index: 2; text-align: center; opacity: calc(1 - var(--p) * 1.6); transform: translateY(calc(var(--p) * -60px)); }
+  .hu__h1 { font: 600 var(--step-0)/1.4 var(--font-body); letter-spacing: 0; color: #a9bfcc; margin: 0 auto 14px; max-width: 40ch; }
+  .hu__claim { margin: 0 auto; max-width: 14ch; font-size: clamp(2.4rem, 0.6rem + 5.4vh + 1.8vw, 6rem); }
+  .hu__claim span { background: linear-gradient(90deg, var(--cool), #c9eefc 60%, var(--sun)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hu__cta { justify-content: center; margin-top: 26px; }
+  .hu__cta .btn--ghost { color: #fff; }
+  .hu__unit { position: relative; z-index: 1; align-self: center; justify-self: center; width: min(86vw, 640px, (100svh - 470px) * 2.4); margin-top: 4px;
+    transform: translateY(calc(var(--p) * -14vh)) scale(calc(1 + var(--p) * 0.22)) perspective(1200px) rotateX(calc(12deg - var(--p) * 12deg)); transform-origin: 50% 30%; }
+  .hu__unit :global(img) { width: 100%; height: auto; display: block; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55)); }
+  .hu__air { position: absolute; left: 0; right: 0; top: 88%; width: 100%; height: 34vh; pointer-events: none; }
+  .hu__facts { position: relative; z-index: 2; list-style: none; margin: 0 auto; padding: 18px 0 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; color: #cfe0e8; font-weight: 600; font-size: var(--step--1); opacity: calc(1 - var(--p) * 2); }
+  .hu__facts li { display: inline-flex; align-items: center; gap: 8px; }
+  .hu__facts :global(.ico) { color: var(--sun); }
+  @media (max-width: 700px) {
+    .hu { height: 140vh; }
+    .hu__sticky { padding-top: 24px; }
+    .hu__claim { font-size: clamp(2.3rem, 1.2rem + 7vw, 3.3rem); }
+    .hu__facts { gap: 8px 16px; }
+  }
+  :global(html.reduce) .hu { height: auto; }
+  :global(html.reduce) .hu__sticky { position: relative; height: auto; padding-bottom: 24px; }
+</style>
