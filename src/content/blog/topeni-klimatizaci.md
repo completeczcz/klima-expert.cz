@@ -10,7 +10,7 @@ faq:
   - q: "Vyplatí se topit klimatizací?"
     a: "Ve srovnání s přímotopy nebo elektrokotlem ano: díky sezónnímu topnému faktoru SCOP 4–5 spotřebuje na stejné teplo zhruba čtvrtinu až pětinu elektřiny. Nejvíc se vyplatí v přechodném období a v dobře zateplených domech."
   - q: "Do kolika stupňů topí klimatizace?"
-    a: "Běžné nástěnné jednotky mají podle výrobců provozní rozsah pro topení zhruba do −15 °C, specializované řady pro chladné klima až do −25 °C. S klesající teplotou ale klesá výkon i účinnost."
+    a: "Běžné nástěnné jednotky mají podle výrobců provozní rozsah pro topení zhruba do −15 °C, jednotky v naší nabídce do −20 °C (Mitsubishi Heavy Diamond ZSX, Premium ZT) a do −22 °C (Hisense Air Master, Energy Pro X, Uni Pure). S klesající teplotou ale klesá výkon i účinnost."
   - q: "Kolik stojí topení klimatizací?"
     a: "Při SCOP 4 a ceně elektřiny kolem 6,6 Kč/kWh vyjde 1 kWh tepla zhruba na 1,7 Kč. Přímotop stejné teplo vyrobí za cenu 1 kWh elektřiny, tedy čtyřikrát dráž."
   - q: "Proč klimatizace při topení přestane foukat?"
@@ -18,8 +18,6 @@ faq:
 sources:
   - title: "Bosch Home Comfort – Topení pomocí klimatizace (COP, SCOP, provoz do −15 °C)"
     url: "https://www.bosch-homecomfort.com/cz/cs/rodinne-domy-a-byty/rady-a-informace/rady-a-tipy-klimatizace/topeni-pomoci-klimatizace/"
-  - title: "Mitsubishi Heavy Industries Air-Conditioning Europe – SRK35ZTX-WA (topení do −25 °C, SCOP)"
-    url: "https://mhiae.com/splits/srk35ztx-wa-src35ztx-wa/"
   - title: "Technický list SRK35ZS-WF / SRC35ZS-W2 (provozní rozsah topení −15 °C)"
     url: "https://cdn.estg.eu/p/6/5/2/5/6525e3a0d1ecd01aabf1ba50185fde620db19ca2_SRK35ZS_WF___SRC35ZS_W2.pdf"
   - title: "Skrblík.cz – Cena elektřiny 2026: z čeho se skládá"
@@ -59,7 +57,7 @@ Ceny elektřiny se liší podle dodavatele, distribuční oblasti a sazby. Pro v
 Každá jednotka má výrobcem udaný **provozní rozsah venkovních teplot**. Příklady z technických listů nástěnných jednotek Mitsubishi Heavy Industries 3,5 kW:
 
 - standardní řada: topení do **−15 °C**,
-- řada určená pro chladnější klima: topení do **−25 °C**.
+- vyšší řady (Diamond ZSX, Premium ZT): topení do **−20 °C**.
 
 Důležité je, že **s klesající venkovní teplotou klesá topný výkon i účinnost**. Jmenovitý topný výkon se udává při venkovní teplotě +7 °C. V mrazu pod −10 °C může jednotka dodávat jen část tohoto výkonu. Pokud chcete klimatizací vytápět jako hlavním zdrojem, je proto potřeba dimenzovat výkon podle tepelné ztráty místnosti při nejnižších venkovních teplotách ve vaší lokalitě, ne podle jmenovitého údaje.
 
@@ -126,7 +124,7 @@ Chcete vědět, zda vaše místnosti zvládne klimatizace i vytápět? Partnersk
 
 - Klimatizace topí jako tepelné čerpadlo vzduch-vzduch se sezónním topným faktorem zhruba 4–5.
 - Na 1 000 kWh tepla spotřebuje kolem 200–250 kWh elektřiny, přímotop 1 000 kWh.
-- Běžné nástěnné jednotky topí do cca −15 °C, řady pro chladné klima až do −25 °C, výkon v mrazu ale klesá.
+- Běžné nástěnné jednotky topí do cca −15 °C, vybrané řady MHI do −20 °C a Hisense do −22 °C, výkon v mrazu ale klesá.
 - Odmrazování venkovní jednotky je normální, při montáži je potřeba vyřešit odtok vody.
 - Nejlépe se hodí jako doplněk a v přechodném období, jako jediný zdroj jen po výpočtu tepelné ztráty.
 

@@ -53,7 +53,7 @@ Podrobněji o topení klimatizací v zimě píšeme v článku [topení klimatiz
 | Jak předává teplo | přímo do vzduchu v místnosti | do topné vody (radiátory, podlahovka) |
 | Ohřev teplé vody | ne | ano |
 | Chlazení | ano, standardně | jen některé typy a soustavy |
-| Pořízení pro rodinný dům (s DPH, 2026) | orientačně 60 000–200 000 Kč podle počtu jednotek | orientačně 250 000–450 000 Kč |
+| Pořízení pro rodinný dům (s DPH, 2026) | orientačně 65 000–200 000 Kč podle počtu jednotek | orientačně 250 000–450 000 Kč |
 | Náročnost montáže | nižší, bez zásahu do otopné soustavy | vyšší, napojení na otopnou soustavu |
 | Rozložení tepla | po místnostech s jednotkou | rovnoměrně celým domem |
 | Hluk v místnosti | ventilátor vnitřní jednotky | prakticky žádný |

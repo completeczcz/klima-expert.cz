@@ -103,7 +103,7 @@ Jednotka zapojená v síti spotřebovává malé množství elektřiny i ve vypn
 
 ## Jak snížit náklady na provoz klimatizace
 
-1. **Nastavte rozumnou teplotu.** Každý stupeň níž znamená vyšší spotřebu. V létě stačí obvykle 24–26 °C; rozdíl proti venkovní teplotě kolem 6–8 °C je i zdravější.
+1. **Nastavte rozumnou teplotu.** Každý stupeň níž znamená vyšší spotřebu. V létě stačí obvykle 24–26 °C; rozdíl proti venkovní teplotě nejvýše kolem 5 °C je i zdravější.
 2. **Stiňte okna zvenku.** Venkovní žaluzie nebo markýza zachytí slunce dřív, než se dostane do místnosti. Sníží tepelnou zátěž víc než jakékoli nastavení jednotky.
 3. **Nechte invertor pracovat plynule.** Opakované vypínání a prudké dochlazování přehřáté místnosti spotřebuje víc než mírný stálý provoz.
 4. **Zavírejte okna a dveře** v klimatizované místnosti.

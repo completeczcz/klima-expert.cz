@@ -10,7 +10,7 @@ faq:
   - q: "Jaké jsou zkušenosti s klimatizacemi Hisense?"
     a: "Hisense patří k velkým světovým výrobcům elektroniky a klimatizacím se věnuje od 90. let. Vyšší řady mají parametry srovnatelné s japonskými značkami, u základních řad počítejte s vyšší hlučností a horším topením v mrazu. Spokojenost nejvíc ovlivní správný výkon a kvalitní montáž."
   - q: "Odkud je značka Hisense?"
-    a: "Hisense je čínská firma se sídlem v Čching-tau (Qingdao). Začínala v roce 1969 jako výrobce rádií a dnes působí ve více než 160 zemích."
+    a: "Hisense je čínská firma se sídlem v Čching-tao (Qingdao). Začínala v roce 1969 jako výrobce rádií a dnes působí ve více než 160 zemích."
   - q: "Jaká je záruka na klimatizace Hisense?"
     a: "Na klimatizace Hisense dodávané přes naše partnerské montážní firmy je záruka 3 roky. Podmínky, například pravidelný servis, uvede montážní firma v nabídce."
   - q: "Která klimatizace Hisense je nejtišší?"
@@ -34,7 +34,7 @@ Rychlé shrnutí, co od Hisense čekat:
 
 ## Kdo je Hisense
 
-Hisense je čínský výrobce se sídlem v Čching-tau (Qingdao). Začínal v roce 1969 jako továrna na rádia, dnes je jedním z největších světových výrobců televizí a vyrábí i ledničky, pračky a klimatizace. Podle vlastních údajů působí ve více než 160 zemích.
+Hisense je čínský výrobce se sídlem v Čching-tao (Qingdao). Začínal v roce 1969 jako továrna na rádia, dnes je jedním z největších světových výrobců televizí a vyrábí i ledničky, pračky a klimatizace. Podle vlastních údajů působí ve více než 160 zemích.
 
 Klimatizace jsou pro Hisense dlouhodobý obor: v 90. letech založila vlastní klimatizační společnost a v roce 2003 společný podnik s japonským Hitachi pro větší komerční systémy. V Evropě je Hisense známá i jako sponzor velkých fotbalových turnajů, což ale o kvalitě klimatizací nic neříká – rozhodují parametry konkrétního modelu.
 
@@ -102,7 +102,7 @@ Cenu ovlivní řada, výkon, počet místností a náročnost montáže (délka 
 
 ## Shrnutí
 
-- Hisense je čínský výrobce z Čching-tau, klimatizacím se věnuje od 90. let a působí ve více než 160 zemích.
+- Hisense je čínský výrobce z Čching-tao, klimatizacím se věnuje od 90. let a působí ve více než 160 zemích.
 - Vyšší řady Air Master, Energy Pro X a Uni Pure běží od 18–19 dB(A) v tichém režimu, mají třídu A+++ v chlazení a topí do −22 °C.
 - Wings Comfort a Hi-Smart jsou levnější, ale hlučnější (od 24 dB(A)); Hi-Smart topí jen do −15 °C a Wi-Fi má za příplatek.
 - K dispozici je multisplit pro 2–5 místností, konzolové a komerční jednotky i tepelná čerpadla Hi-Therma.

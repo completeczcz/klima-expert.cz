@@ -12,7 +12,7 @@ faq:
   - q: "Co obsahuje standardní montáž klimatizace?"
     a: "Obvykle osazení vnitřní a venkovní jednotky, jeden průraz zdí, zhruba 3 m izolovaného potrubí s kabeláží, odvod kondenzátu, tlakovou zkoušku, vakuování a uvedení do provozu. Rozsah se mezi firmami liší, proto si ho nechte rozepsat."
   - q: "Musí klimatizaci montovat certifikovaný technik?"
-    a: "Ano. Práce s chladivovým okruhem obsahujícím fluorované skleníkové plyny smí podle nařízení EU 2024/573 provádět jen osoba s platným certifikátem, který v ČR vydává Ministerstvo životního prostředí nebo pověřený subjekt."
+    a: "Ano. Práce s chladivovým okruhem obsahujícím fluorované skleníkové plyny smí podle nařízení EU 2024/573 provádět jen osoba s platným certifikátem, který v ČR vydává hodnotící a certifikační subjekt pověřený Ministerstvem životního prostředí."
   - q: "Je při montáži klimatizace hodně nepořádku?"
     a: "Nejvíc prachu vzniká při vrtání průrazu zdí. Technik by měl používat odsávání a zakrýt podlahu i nábytek. Ostatní kroky jsou relativně čisté."
 sources:
@@ -102,7 +102,7 @@ Vývěvou se z potrubí odsaje vzduch a vlhkost. Vlhkost v chladivovém okruhu r
 
 Venkovní jednotka je z výroby naplněná chladivem pro určitou délku potrubí. Technik otevře servisní ventily, a pokud je trasa delší, doplní chladivo podle údajů výrobce. Pak jednotku zapne, zkontroluje chlazení i topení, odtok kondenzátu a funkci ovladače či aplikace.
 
-**Certifikace:** práce s chladivovým okruhem obsahujícím fluorované skleníkové plyny smí podle nařízení EU 2024/573 provádět jen certifikovaná osoba. Certifikát v ČR vydává Ministerstvo životního prostředí nebo pověřený subjekt. Montáž certifikovanou firmou je zároveň podmínkou záruky výrobce.
+**Certifikace:** práce s chladivovým okruhem obsahujícím fluorované skleníkové plyny smí podle nařízení EU 2024/573 provádět jen certifikovaná osoba. Certifikát v ČR vydává hodnotící a certifikační subjekt pověřený Ministerstvem životního prostředí. Montáž certifikovanou firmou je zároveň podmínkou záruky výrobce.
 
 ## 10. Předání a dokumenty
 

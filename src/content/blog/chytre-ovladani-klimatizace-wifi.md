@@ -69,7 +69,7 @@ Aplikace sama elektřinu nešetří, ale mění to, **jak klimatizaci používá
 
 ### Příklad z praxe
 
-Byt 2+kk v podkroví, oba partneři pracují mimo domov. Dřív nechávali klimatizaci v létě běžet celý den, aby se večer neudusili. S Wi-Fi ovládáním nastaví týdenní časovač na start v 15:30 a v dny, kdy se vracejí později, start posunou z mobilu. Klimatizace tak běží zhruba o polovinu kratší dobu, a přesto přicházejí do vychlazeného bytu. V podkroví navíc pomáhá venkovní stínění oken – víc v článku o klimatizaci do podkroví.
+Byt 2+kk v podkroví, oba partneři pracují mimo domov. Dřív nechávali klimatizaci v létě běžet celý den, aby se večer neudusili. S Wi-Fi ovládáním nastaví týdenní časovač na start v 15:30 a ve dnech, kdy se vracejí později, start posunou z mobilu. Klimatizace tak běží zhruba o polovinu kratší dobu, a přesto přicházejí do vychlazeného bytu. V podkroví navíc pomáhá venkovní stínění oken – víc v článku o klimatizaci do podkroví.
 
 ## Chytrá domácnost a hlasové ovládání
 

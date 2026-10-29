@@ -10,7 +10,7 @@ faq:
   - q: "Potřebuji na klimatizaci stavební povolení?"
     a: "U běžné split klimatizace v bytě nebo rodinném domě zpravidla ne. Venkovní jednotka je výrobek a drobné stavební úpravy spojené s montáží povolení nevyžadují, pokud se nezasahuje do nosných konstrukcí, nemění se užívání stavby a nejde o kulturní památku."
   - q: "Kdo v SVJ schvaluje montáž klimatizace?"
-    a: "Záleží na stanovách. Pokud si rozhodování nevyhradilo shromáždění vlastníků nebo to stanovy nesvěřují shromáždění, rozhoduje výbor SVJ. Pokud rozhoduje shromáždění, stačí obvykle většina hlasů přítomných vlastníků, pokud stanovy nestanoví jinak."
+    a: "Záleží na stanovách. Pokud stanovy rozhodování nesvěřují shromáždění a shromáždění si ho nevyhradilo, rozhoduje výbor SVJ. Pokud rozhoduje shromáždění, stačí obvykle většina hlasů přítomných vlastníků, pokud stanovy nestanoví jinak."
   - q: "Může mi SVJ nařídit klimatizaci sundat?"
     a: "Pokud jste jednotku namontovali na společnou část domu bez souhlasu, vystavujete se riziku, že po vás SVJ bude požadovat uvedení do původního stavu. Dodatečné řešení bývá dražší a složitější než souhlas předem."
   - q: "Potřebuji souhlas sousedů?"

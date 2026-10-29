@@ -78,7 +78,7 @@ Rozhodování mezi samostatnými jednotkami a jednou společnou podrobně rozeb�
 
 Nařízení vlády č. 361/2007 Sb. stanoví pro kancelářskou práci (třída práce I) **operativní teplotu zhruba 20–27 °C**. Zákon zaměstnavateli **neukládá povinnost instalovat klimatizaci**. Pokud ale teplota na pracovišti překročí limity, musí zaměstnavatel přijmout opatření – zajistit pitný režim, při vyšších teplotách ochranné nápoje, přestávky nebo střídání práce.
 
-Klimatizace je tak nejjednodušší cestou, jak limity dodržet a zároveň udržet výkonnost lidí. Pro komfort a zdraví platí stejné zásady jako doma – rozdíl oproti venkovní teplotě maximálně kolem 5–6 °C a žádný proud studeného vzduchu přímo na pracovní místo. Víc v článku klimatizace a zdraví.
+Klimatizace je tak nejjednodušší cestou, jak limity dodržet a zároveň udržet výkonnost lidí. Pro komfort a zdraví platí stejné zásady jako doma – rozdíl oproti venkovní teplotě maximálně kolem 5 °C a žádný proud studeného vzduchu přímo na pracovní místo. Víc v článku klimatizace a zdraví.
 
 ## Kolik stojí klimatizace do kanceláře
 

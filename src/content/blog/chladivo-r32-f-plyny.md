@@ -36,7 +36,7 @@ Chladivo R32 je dnes nejrozšířenější náplní nových split klimatizací v
 | Datum | Co se zakazuje uvádět na trh (nové výrobky) | Dopad |
 |---|---|---|
 | 1. 1. 2025 | single split pod 3 kg náplně s GWP ≥ 750 | **konec R410A** v malých splitech |
-| 1. 1. 2027 | splitová TČ vzduch-voda do 12 kW s GWP ≥ 150 | týká se TČ, ne klimatizací |
+| 1. 1. 2027 | splitová TČ vzduch-voda a monoblokové jednotky do 12 kW s GWP ≥ 150 | týká se hlavně TČ, ne splitových klimatizací |
 | 1. 1. 2029 | splitové systémy vzduch-vzduch do 12 kW s GWP ≥ 150* | **konec R32** v nových malých splitech |
 | 1. 1. 2029 | splitové systémy nad 12 kW s GWP ≥ 750* | větší systémy |
 | 1. 1. 2033 | splitové systémy nad 12 kW s GWP ≥ 150* | větší systémy |

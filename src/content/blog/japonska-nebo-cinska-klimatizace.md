@@ -40,7 +40,7 @@ Při výběru si ověřte hlavně tyto body:
 
 ## Japonská, nebo čínská klimatizace: proč samotný původ nestačí
 
-Představa, že japonská značka znamená výrobu v Japonsku a čínská značka levnou výrobu, už dávno neplatí. Výroba klimatizací je globální. Japonské firmy vyrábějí v Thajsku, Číně, Malajsii i Evropě. Například Mitsubishi Heavy Industries provozuje od roku 1988 se thajskou skupinou Mahajak společný podnik MACO, který v Bangkoku vyrábí klimatizace pro Japonsko, Evropu, Asii i Austrálii.
+Představa, že japonská značka znamená výrobu v Japonsku a čínská značka levnou výrobu, už dávno neplatí. Výroba klimatizací je globální. Japonské firmy vyrábějí v Thajsku, Číně, Malajsii i Evropě. Například Mitsubishi Heavy Industries provozuje od roku 1988 s thajskou skupinou Mahajak společný podnik MACO, který v Bangkoku vyrábí klimatizace pro Japonsko, Evropu, Asii i Austrálii.
 
 Z druhé strany jsou i velcí čínští výrobci s dlouhou historií a vlastním vývojem. Hisense začala v roce 1969 v čínském Čching-tao. Do segmentu velkých komerčních klimatizací vstoupila mimo jiné díky společnému podniku s japonským Hitachi.
 

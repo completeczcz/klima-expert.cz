@@ -126,7 +126,7 @@ Než podepíšete nabídku, zeptejte se:
 - Jak velký je zásobník teplé vody a s jakou spotřebou počítá?
 - Jaký je minimální výkon čerpadla a jak se bude chovat při teplotách kolem +10 °C?
 
-Pokud firma odpovídá jen „na váš dům stačí 12 kW, tak se to dělá“, chtějte výpočet. Kvalitní návrh je podložený čísly a dokáže ho vysvětlit i laikovi. Takový návrh vám připraví partnerské firmy, které oslovíte přes [nezávaznou poptávku](/poptavka/).
+Pokud firma odpovídá jen „na váš dům stačí 12 kW, tak se to dělá“, chtějte výpočet. Kvalitní návrh je podložený čísly a dokáže ho vysvětlit i laikovi. Takový návrh vám připraví partnerská firma z vašeho kraje, kterou vám zprostředkujeme přes [nezávaznou poptávku](/poptavka/).
 
 ## Shrnutí
 

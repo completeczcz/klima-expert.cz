@@ -48,7 +48,7 @@ Poptávka po klimatizacích kopíruje počasí. Jakmile přijde první týden s 
 Podzim je z pohledu zákazníka ideální:
 
 1. **Termíny.** Montážníci mají kapacitu a mohou si na instalaci vyhradit dost času.
-2. **Slevy.** Na podzim prodejci často doprodávají letošní modely, aby uvolnili sklady pro novinky – slevy bývají i desítky procent z ceníkové ceny.
+2. **Slevy.** Na podzim prodejci často doprodávají letošní modely, aby uvolnili sklady pro novinky – ceny bývají příznivější než v hlavní sezóně.
 3. **Topení.** Moderní invertorová klimatizace je tepelné čerpadlo vzduch-vzduch. V září, říjnu a na jaře dokáže levně přitápět, než se rozjede hlavní topení – víc v článku topení klimatizací.
 4. **Klid na SVJ.** Pokud bydlíte v bytovém domě, potřebujete [souhlas SVJ](/blog/povoleni-klimatizace-svj/). Výbor nebo shromáždění se schází v intervalech a vyřízení může trvat týdny.
 

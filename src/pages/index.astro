@@ -8,6 +8,7 @@ import CtaBand from '../components/CtaBand.astro';
 import PriceTeaser from '../components/PriceTeaser.astro';
 import { getCollection } from 'astro:content';
 import { site, regions } from '../data/site';
+import { cities } from '../data/cities';
 
 const posts = (await getCollection('blog')).sort((a, b) => +b.data.published - +a.data.published).slice(0, 3);
 
@@ -122,6 +123,7 @@ const faq = [
         <ul class="regions__list">
           {regions.map((r) => <li><a href={`/montaz-klimatizace/${r.slug}/`}>{r.name}</a></li>)}
         </ul>
+        <p class="regions__cities small">Města: {cities.map((c, i) => <>{i > 0 && ', '}<a href={`/montaz-klimatizace/${c.kraj}/${c.slug}/`}>{c.name}</a></>)}</p>
       </div>
       <div class="regions__map"><ContourMap /></div>
     </div>
@@ -183,6 +185,7 @@ const faq = [
   .regions__list li { padding: 6px 0; break-inside: avoid; border-bottom: 1px solid var(--line); }
   .regions__list a { text-decoration: none; font-weight: 600; }
   .regions__list a:hover { text-decoration: underline; }
+  .regions__cities { margin-top: 18px; color: var(--ink-soft); }
   .post { text-decoration: none; }
   .post h3 { font-size: var(--step-1); }
   @media (max-width: 980px) {

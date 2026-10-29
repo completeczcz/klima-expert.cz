@@ -80,7 +80,7 @@ S podlahovým topením pracuje tepelné čerpadlo s nízkou teplotou vody, a pro
 
 ### Chladivo a změny od roku 2027
 
-Evropské nařízení o F-plynech zakazuje od **1. 1. 2027** uvádět na trh nové splitové tepelné čerpadla vzduch-voda do 12 kW a monobloky do 50 kW s chladivem, jehož GWP je 150 a více. Výjimku mají případy, kdy jiné chladivo nedovolují bezpečnostní požadavky. Prakticky to znamená přechod z chladiva R32 na přírodní chladivo R290 (propan). Nainstalovaná zařízení s R32 se mohou dál provozovat i servisovat. Na cenu nových čerpadel může přechod v příštích letech působit oběma směry, proto spoléhejte na aktuální nabídku.
+Evropské nařízení o F-plynech zakazuje od **1. 1. 2027** uvádět na trh nová splitová tepelná čerpadla vzduch-voda do 12 kW a monoblokové jednotky do 12 kW s chladivem, jehož GWP je 150 a více. Výjimku mají případy, kdy jiné chladivo nedovolují bezpečnostní požadavky. Prakticky to znamená přechod z chladiva R32 na přírodní chladivo R290 (propan). Nainstalovaná zařízení s R32 se mohou dál provozovat i servisovat. Na cenu nových čerpadel může přechod v příštích letech působit oběma směry, proto spoléhejte na aktuální nabídku.
 
 ## Provozní náklady: kolik ušetříte
 

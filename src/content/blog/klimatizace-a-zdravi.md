@@ -41,7 +41,7 @@ Hygienici doporučují:
 
 Krajská hygienická stanice v Ostravě mezi možné potíže při nevhodném používání klimatizace řadí letní nachlazení, bolesti hlavy a kloubů, záněty mandlí, zhoršení alergií a syndrom suchého oka. Zároveň zdůrazňuje, že rozhodující je **správné používání** – pak má klimatizace na zdraví pozitivní vliv.
 
-Teplotní šok vzniká hlavně při přechodu z vychlazené místnosti do 33 °C venku a zpět. Proto je rozumnější mít doma 26 °C než 20 °C. Rozdíl 5–7 °C oproti venkovní teplotě tělo vnímá jako příjemné ochlazení, ne jako zimu.
+Teplotní šok vzniká hlavně při přechodu z vychlazené místnosti do 33 °C venku a zpět. Proto je rozumnější mít doma 26 °C než 20 °C. Rozdíl kolem 5 °C oproti venkovní teplotě tělo vnímá jako příjemné ochlazení, ne jako zimu.
 
 ### Studený vzduch na těle
 

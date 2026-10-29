@@ -86,8 +86,8 @@ Ani nejtišší jednotka nebude příjemná, pokud na vás celou noc fouká. Dop
 Tichá jednotka je jen polovina úspěchu. Druhou je správné nastavení. V praxi se osvědčuje:
 
 - **teplota v ložnici kolem 24–26 °C**, ne výrazně níž. Příliš studený vzduch v kombinaci s prouděním může vysušovat sliznice a zhoršovat spánek,
-- **rozdíl proti venkovní teplotě do zhruba 6–8 °C**, aby nebyl šok při odchodu z místnosti,
-- **odvlhčení** – klimatizace při chlazení odvádí z vzduchu vlhkost, takže ložnice působí příjemně i při o stupeň vyšší teplotě,
+- **rozdíl proti venkovní teplotě nejvýše zhruba 5 °C**, aby nebyl šok při odchodu z místnosti,
+- **odvlhčení** – klimatizace při chlazení odvádí ze vzduchu vlhkost, takže ložnice působí příjemně i při o stupeň vyšší teplotě,
 - **předchlazení večer** a v noci jen udržování teploty v nočním režimu.
 
 ## Příklad: ložnice 14 m² v bytě na západní straně
