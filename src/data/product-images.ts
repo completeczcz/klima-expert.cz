@@ -26,13 +26,8 @@ const uni = [
   { img: 'his-uni-easy-to-clean', t: 'Snadná údržba', d: 'Kryt a filtry vyndáte bez nářadí.' },
   { img: 'his-uni-economy-mode-operation', t: 'Úsporný provoz', d: 'Invertor drží teplotu s minimální spotřebou.' },
 ];
-const mhiZsx = [
-  { img: 'mhi-zsx-wall', t: 'Titanové provedení', d: 'Teplý odstín, který ladí s dřevem i kamenem.' },
-  { img: 'mhi-zsx-close', t: 'Japonská preciznost', d: 'Do detailu zpracovaná jednotka s vysokou účinností.' },
-  { img: 'mhi-living-green', t: 'Doma v každém interiéru', d: 'Nenápadná na stěně, výrazná ve výkonu.' },
-];
 export const productImages: Record<string, PImg> = {
-  'mhi-diamond-zsx': { img: 'mhi-zsx-white', scene: 'mhi-living-shelves', sceneCap: 'Ladí s každým interiérem.', gallery: mhiZsx, variants: [
+  'mhi-diamond-zsx': { img: 'mhi-zsx-white', scene: 'mhi-living-shelves', sceneCap: 'Ladí s každým interiérem.', variants: [
     { label: 'Bílá', img: 'mhi-zsx-white', swatch: '#f4f6f7' }, { label: 'Černobílá', img: 'mhi-zsx-wb', swatch: 'linear-gradient(180deg,#f4f6f7 55%,#1c1f22 55%)' }, { label: 'Titanová', img: 'mhi-zsx-titan', swatch: '#b9b4a1' }] },
   'mhi-premium-zt': { img: 'mhi-zt-white', scene: 'mhi-bedroom-slate', sceneCap: 'Klidný spánek i v tropických nocích.', variants: [
     { label: 'Bílá', img: 'mhi-zt-white', swatch: '#f4f6f7' }, { label: 'Černá', img: 'mhi-zt-black', swatch: '#1d2326' }, { label: 'Titanová', img: 'mhi-zt-titan', swatch: '#c4c2ac' }] },

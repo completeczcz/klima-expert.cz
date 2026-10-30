@@ -8,12 +8,12 @@ import { site } from '../data/site';
 const pick = (ids: string[]) => ids.map((id) => products.find((p) => p.id === id)!).filter(Boolean);
 const brands = [
   {
-    slug: 'mitsubishi-heavy-industries', name: 'Mitsubishi Heavy Industries', img: 'mhi-zsx-wall2',
+    slug: 'mitsubishi-heavy-industries', name: 'Mitsubishi Heavy Industries', img: 'mhi-living-green', pos: '50% 50%',
     claim: 'Japonská preciznost.', text: `Velmi tiché a úsporné jednotky s tradicí od roku 1884. Záruka ${site.warranty.mhi} let.`,
     rail: pick(['mhi-diamond-zsx', 'mhi-premium-zt', 'mhi-premium-zs', 'mhi-standard-plus-ztl', 'mhi-standard-zsp', 'mhi-diamond-zr', 'mhi-parapetni-srf']),
   },
   {
-    slug: 'hisense', name: 'Hisense', img: 'his-pxb-3d-airflow',
+    slug: 'hisense', name: 'Hisense', img: 'his-bedroom-mountains', pos: '88% 50%',
     claim: 'Chytrá a dostupná.', text: `Moderní design, ovládání z telefonu a topení až do −22 °C. Záruka ${site.warranty.hisense} roky.`,
     rail: pick(['hisense-energy-pro-x', 'hisense-air-master', 'hisense-uni-pure', 'hisense-wings-comfort', 'hisense-hi-smart', 'hisense-hi-therma-integra', 'hisense-hi-therma-monoblok']),
   },
@@ -30,7 +30,7 @@ const brands = [
         const m = brandMeta[b.slug];
         return (
           <a class="bs__tile" href={`/znacky/${b.slug}/`} style={`--brand:${m.color}`} data-reveal>
-            <Img name={b.img} alt={`Klimatizace ${b.name}`} sizes="(max-width: 800px) 92vw, 580px" />
+            <Img name={b.img} alt={`Klimatizace ${b.name}`} sizes="(max-width: 800px) 92vw, 580px" style={`object-position:${b.pos}`} />
             <span class="bs__txt">
               <img src={m.logoWhite} alt={b.name} height="30" width={Math.round(30 * m.ratio)} />
               <strong>{b.claim}</strong>

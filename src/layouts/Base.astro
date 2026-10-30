@@ -161,15 +161,26 @@ const { gtmId, ga4Id, adsId } = site.analytics;
         }, { threshold: 0.15 });
         forms.forEach(function (f) { io.observe(f); });
       })();
-      // Ve vloženém náhledu (iframe) se po prokliku zachovávala pozice posunu rodičovské stránky – nová stránka začne nahoře.
+      // Jen ve vloženém náhledu (iframe): prohlížeč náhledu drží pozici posunu mezi stránkami,
+      // takže před přechodem na jinou stránku vyjedeme nahoru a po načtení to pojistíme.
       (function () {
-        try {
-          var n = performance.getEntriesByType('navigation')[0];
-          if (window.top !== window && !location.hash && (!n || n.type === 'navigate')) {
-            window.scrollTo(0, 0);
-            document.documentElement.scrollIntoView({ block: 'start' });
-          }
-        } catch (e) {}
+        if (window.top === window) return;
+        function top() { if (!location.hash) { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } }
+        var moved = false;
+        addEventListener('wheel', function () { moved = true; }, { passive: true, once: true });
+        addEventListener('touchmove', function () { moved = true; }, { passive: true, once: true });
+        top();
+        addEventListener('DOMContentLoaded', top);
+        addEventListener('load', function () { if (!moved) top(); setTimeout(function () { if (!moved) top(); }, 120); });
+        addEventListener('pageshow', function () { if (!moved) top(); });
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href]');
+          if (!a || a.target === '_blank') return;
+          var h = a.getAttribute('href') || '';
+          if (h.charAt(0) === '#' || /^(tel|mailto):/.test(h)) return;
+          window.scrollTo(0, 0);
+        }, true);
+        document.addEventListener('submit', function () { window.scrollTo(0, 0); }, true);
       })();
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
