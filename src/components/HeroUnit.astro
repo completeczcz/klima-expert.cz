@@ -54,11 +54,14 @@ import Icon from './Icon.astro';
   .hu__cone { position: absolute; inset: 0; overflow: hidden; clip-path: polygon(34.5% 0, 65.5% 0, 100% 100%, 0 100%);
     -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 45%, transparent 96%); mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 45%, transparent 96%); }
   .hu__haze { position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 0%, rgba(214, 238, 255, 0.95), rgba(165, 214, 255, 0.55) 50%, rgba(140, 200, 255, 0.15) 80%, transparent 95%); }
-  .hu__wave { position: absolute; left: -10%; right: -10%; top: -100%; height: 200%;
-    background: repeating-linear-gradient(180deg, transparent 0 7%, rgba(225, 243, 255, 0.85) 12%, transparent 19%);
-    animation: hu-down 4.2s linear infinite; }
-  .hu__wave--b { animation-duration: 6.5s; opacity: 0.75; background-size: 100% 130%; }
+  /* Vlny: perioda gradientu dělí posun beze zbytku (50 % = 5 period / 4 periody), takže smyčka nemá viditelný šev */
+  .hu__wave { position: absolute; left: -10%; right: -10%; top: -100%; height: 200%; will-change: transform;
+    background: repeating-linear-gradient(180deg, transparent 0%, rgba(225, 243, 255, 0.75) 5%, transparent 10%);
+    animation: hu-down 6s linear infinite, hu-breathe 9s ease-in-out infinite alternate; }
+  .hu__wave--b { background: repeating-linear-gradient(180deg, transparent 0%, rgba(225, 243, 255, 0.55) 6.25%, transparent 12.5%);
+    animation-duration: 9.5s, 13s; opacity: 0.7; }
   @keyframes hu-down { from { transform: translateY(0); } to { transform: translateY(50%); } }
+  @keyframes hu-breathe { from { opacity: 0.55; } to { opacity: 1; } }
 
   .hu__chip { position: absolute; left: 63%; top: 18%; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px;
     background: rgba(255, 255, 255, 0.82); color: #1d1d1f; font: 600 0.92rem/1 var(--font-body); backdrop-filter: blur(8px); box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.4);
