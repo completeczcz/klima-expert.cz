@@ -117,7 +117,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   // Notifikace e-mailem (nezablokuje uložení poptávky)
-  if (env.RESEND_API_KEY && env.NOTIFY_TO) {
+  {
     const rows = [
       ['Typ', TYPE_LABEL[d.typ]], ...Object.entries(detail), ['Místo', `${d.psc} ${d.obec} (${d.kraj})`], ['Termín', d.termin],
       ['Jméno', d.jmeno], ['Telefon', d.telefon], ['E-mail', d.email], ['Poznámka', d.poznamka],
@@ -126,6 +126,14 @@ export async function onRequestPost({ request, env }) {
     const html = `<h2>Nová poptávka #${id} – ${esc(TYPE_LABEL[d.typ])}</h2><table cellpadding="6" style="border-collapse:collapse">${rows
       .map(([k, v]) => `<tr><td style="border-bottom:1px solid #ddd"><b>${esc(k)}</b></td><td style="border-bottom:1px solid #ddd">${esc(v)}</td></tr>`)
       .join('')}</table>`;
+    const subject = `${captchaNote ? '[ke kontrole] ' : ''}Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`;
+    // 1) Cloudflare Email Routing přes Worker klima-expert-mailer (bez dalších služeb)
+    if (env.MAILER) {
+      const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n') + `\n\nAdministrace: https://klima-expert.cz/admin/`;
+      await env.MAILER.fetch('https://mailer/send', { method: 'POST', body: JSON.stringify({ subject, html: html + '<p><a href="https://klima-expert.cz/admin/">Otevřít administraci</a></p>', text, replyTo: d.email }) }).catch(() => null);
+    }
+    // 2) Resend (volitelně): potvrzení zákazníkovi, případně upozornění, když chybí MAILER
+    if (env.RESEND_API_KEY && env.NOTIFY_TO) {
     const send = (payload) =>
       fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -134,12 +142,13 @@ export async function onRequestPost({ request, env }) {
       }).catch(() => null);
     const from = env.NOTIFY_FROM || 'Klima Expert <poptavky@klima-expert.cz>';
     await Promise.all([
-      send({ from, to: env.NOTIFY_TO.split(',').map((s) => s.trim()), reply_to: d.email, subject: `${captchaNote ? '[ke kontrole] ' : ''}Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`, html }),
+      !env.MAILER && send({ from, to: env.NOTIFY_TO.split(',').map((s) => s.trim()), reply_to: d.email, subject, html }),
       d.email && !captchaNote && send({
         from, to: [d.email], subject: 'Děkujeme za poptávku – Klima Expert',
         html: `<p>Dobrý den, ${esc(d.jmeno)},</p><p>děkujeme za poptávku (${esc(TYPE_LABEL[d.typ])}, ${esc(d.obec)}). Ozveme se vám do 1 pracovního dne a domluvíme další postup. Poptávku předáme jedné partnerské montážní firmě z vašeho kraje, která připraví zaměření a cenovou nabídku zdarma.</p><p>S pozdravem<br>Klima Expert<br>klima-expert.cz</p>`,
       }),
     ]);
+    }
   }
 
   return wantsJson ? json({ ok: true, id }) : Response.redirect(new URL('/dekujeme/', request.url), 303);

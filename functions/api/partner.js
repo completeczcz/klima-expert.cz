@@ -15,14 +15,17 @@ export async function onRequestPost({ request, env }) {
     await env.DB.prepare('INSERT INTO partners (firma, ico, jmeno, telefon, email, kraje, poznamka) VALUES (?, ?, ?, ?, ?, ?, ?)')
       .bind(d.firma, d.ico, d.jmeno, d.telefon, d.email, d.kraje, d.poznamka).run();
   }
-  if (env.RESEND_API_KEY && env.NOTIFY_TO) {
+  const html = Object.entries(d).map(([k, v]) => `<p><b>${esc(k)}:</b> ${esc(v)}</p>`).join('');
+  if (env.MAILER) {
+    await env.MAILER.fetch('https://mailer/send', { method: 'POST', body: JSON.stringify({ subject: `Zájem o spolupráci: ${d.firma}`, html, text: Object.entries(d).map(([k, v]) => `${k}: ${v}`).join('\n'), replyTo: d.email }) }).catch(() => null);
+  } else if (env.RESEND_API_KEY && env.NOTIFY_TO) {
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: env.NOTIFY_FROM || 'Klima Expert <poptavky@klima-expert.cz>', to: env.NOTIFY_TO.split(',').map((s) => s.trim()), reply_to: d.email,
         subject: `Zájem o spolupráci: ${d.firma}`,
-        html: Object.entries(d).map(([k, v]) => `<p><b>${esc(k)}:</b> ${esc(v)}</p>`).join(''),
+        html,
       }),
     }).catch(() => null);
   }

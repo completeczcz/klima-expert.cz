@@ -7,3 +7,8 @@ compatibility_date = "2026-10-01"
 binding = "DB"
 database_name = "klima-expert-db"
 database_id = "ea4ccfaf-b94f-4865-b7b3-59e1f44388a5"
+
+# Upozornění e-mailem: samostatný Worker „klima-expert-mailer“ (workers/mailer) s vazbou send_email
+[[services]]
+binding = "MAILER"
+service = "klima-expert-mailer"

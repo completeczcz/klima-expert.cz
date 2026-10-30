@@ -1,93 +1,82 @@
 ---
+// Úvod: claim + skutečný interiér s klimatizací, ze které jemně proudí chladný vzduch.
+// Fotka je ořez RAC_2025_FRONT (Mitsubishi Heavy Industries), rámeček drží její poměr stran,
+// takže proudění je umístěné v procentech přesně pod lamelami jednotky.
 import Img from './Img.astro';
 import Icon from './Icon.astro';
-import { site } from '../data/site';
-// Proudy vzduchu: z lamel dolů a do stran, jako jemné světelné závoje
-const xs = [280, 380, 470, 530, 620, 720];
-const streams = xs.map((x, i) => {
-  const k = (x - 500) / 270;
-  const d = `M${x} 0 C ${x + k * 20} 140, ${x + k * 150} 300, ${x + k * 330} 620`;
-  return { d, delay: (i * 0.71) % 3.4, dur: 3.6 + (i % 3) * 0.7 };
-});
 ---
 <section class="hu" data-scrub data-reduce-p="0" aria-labelledby="hu-h">
   <div class="hu__sticky">
-    <div class="hu__glow" aria-hidden="true"></div>
     <div class="wrap hu__text">
       <h1 id="hu-h" class="hu__h1">Klimatizace a tepelná čerpadla s montáží po celé ČR</h1>
-      <p class="display display--xl hu__claim">Chladno v létě.<br />Teplo v zimě.<br /><span>Pohodlí celý rok.</span></p>
+      <p class="display hu__claim">Chladno v létě. Teplo v zimě. <span>Pohodlí celý rok.</span></p>
       <div class="btn-row hu__cta">
         <a class="btn btn--sun" href="/poptavka/" data-track="cta-hero">Chci nabídku zdarma</a>
         <a class="btn btn--ghost" href="#vyber">Vybrat klimatizaci</a>
       </div>
     </div>
-    <div class="hu__unit">
-      <Img name="mhi-zsx-wb" alt="Nástěnná klimatizace Mitsubishi Heavy Industries Diamond ZSX v černobílém provedení" sizes="(max-width: 700px) 92vw, 760px" eager />
-      <svg class="hu__air" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="hu-fan" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#dff2ff" stop-opacity="0.55" />
-            <stop offset="0.35" stop-color="#a9dcff" stop-opacity="0.22" />
-            <stop offset="1" stop-color="#7cc4ff" stop-opacity="0" />
-          </linearGradient>
-          <linearGradient id="hu-fade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="620">
-            <stop offset="0" stop-color="#e6f5ff" stop-opacity="0.9" />
-            <stop offset="0.5" stop-color="#a9dcff" stop-opacity="0.35" />
-            <stop offset="1" stop-color="#7cc4ff" stop-opacity="0" />
-          </linearGradient>
-          <filter id="hu-blur-l" x="-30%" y="-10%" width="160%" height="130%"><feGaussianBlur stdDeviation="14" /></filter>
-          <filter id="hu-blur-m" x="-30%" y="-10%" width="160%" height="130%"><feGaussianBlur stdDeviation="7" /></filter>
-        </defs>
-        <path class="hu__fan" d="M255 0 L745 0 C 800 160, 900 380, 985 620 L 15 620 C 100 380, 200 160, 255 0 Z" fill="url(#hu-fan)" filter="url(#hu-blur-l)" />
-        <g class="hu__flow" filter="url(#hu-blur-m)" stroke="url(#hu-fade)" fill="none" stroke-linecap="round">
-          {streams.map((st) => <path d={st.d} stroke-width="16" pathLength="1000" style={`animation-delay:-${st.delay}s;animation-duration:${st.dur}s`} />)}
-        </g>
-      </svg>
+    <div class="hu__stage">
+      <div class="hu__frame">
+        <Img name="hero-room" alt="Obývací pokoj s nástěnnou klimatizací Mitsubishi Heavy Industries" sizes="(max-width: 1240px) 100vw, 1240px" eager />
+        <div class="hu__air" aria-hidden="true">
+          <div class="hu__cone">
+            <span class="hu__haze"></span>
+            <span class="hu__wave hu__wave--a"></span>
+            <span class="hu__wave hu__wave--b"></span>
+          </div>
+        </div>
+        <span class="hu__chip"><Icon name="snow" size={18} /> 22 °C</span>
+      </div>
     </div>
-    <ul class="hu__facts wrap">
-      <li><Icon name="moon" size={22} /> Od 18 dB(A)</li>
-      <li><Icon name="snow" size={22} /> Topí do −20 °C</li>
-      <li><Icon name="shield" size={22} /> Záruka až {site.warranty.mhi} let</li>
-      <li><Icon name="pin" size={22} /> Montáž ve všech krajích</li>
-    </ul>
   </div>
 </section>
 
-
-
 <style>
-  .hu { --p: 0; height: 160vh; position: relative; color: #f2f6f8;
-    /* „místnost“: stěna nasvícená shora, tmavší podlaha */
-    background: radial-gradient(60% 55% at 50% 52%, #1d3247 0%, #11202f 55%, #0a1520 100%); }
-  .hu__sticky { position: sticky; top: 72px; height: calc(100vh - 72px); height: calc(100svh - 72px); min-height: 540px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; padding-top: clamp(20px, 4.5vh, 52px); }
-  .hu__glow { position: absolute; inset: -20% -10% auto; height: 120%; background:
-      radial-gradient(42% 26% at 50% 46%, rgba(255, 255, 255, 0.09), transparent 70%),
-      radial-gradient(50% 40% at 50% 70%, rgba(111, 195, 236, 0.22), transparent 70%),
-      radial-gradient(40% 30% at 80% 10%, rgba(255, 174, 92, 0.12), transparent 70%); pointer-events: none; }
-  .hu__text { position: relative; z-index: 2; text-align: center; opacity: calc(1 - var(--p) * 1.6); transform: translateY(calc(var(--p) * -60px)); }
-  .hu__h1 { font: 600 var(--step-0)/1.4 var(--font-body); letter-spacing: 0; color: #a9bfcc; margin: 0 auto 14px; max-width: 40ch; }
-  .hu__claim { margin: 0 auto; max-width: 15ch; font-size: clamp(2.4rem, 0.6rem + 5.4vh + 1.8vw, 6rem); }
-  .hu__claim span { background: linear-gradient(90deg, #7cc8ff, #d9f0ff 45%, #ffd2a1 75%, var(--warm)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hu__cta { justify-content: center; margin-top: 26px; }
+  .hu { --p: 0; height: 165vh; position: relative; color: #f2f6f8; background: radial-gradient(70% 50% at 50% 30%, #17293b, #0b1724 70%); }
+  .hu__sticky { position: sticky; top: 72px; height: calc(100svh - 72px); min-height: 600px; display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; padding-top: clamp(18px, 4vh, 44px); }
+  .hu__text { position: relative; z-index: 2; text-align: center; opacity: calc(1 - var(--p) * 1.8); transform: translateY(calc(var(--p) * -50px)); }
+  .hu__h1 { font: 600 var(--step-0)/1.4 var(--font-body); color: #a9bfcc; margin: 0 auto 12px; max-width: 40ch; }
+  .hu__claim { margin: 0 auto; max-width: 18ch; font-size: clamp(2.2rem, 0.4rem + 4.2vh + 2vw, 5rem); line-height: 1.02; }
+  .hu__claim span { display: block; background: linear-gradient(90deg, #7cc8ff, #d9f0ff 45%, #ffd2a1 75%, var(--warm)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hu__cta { justify-content: center; margin-top: 22px; }
   .hu__cta .btn--ghost { color: #fff; }
-  .hu__unit { position: relative; z-index: 1; align-self: center; justify-self: center; width: min(84vw, 580px, (100svh - 520px) * 2.6); margin-top: 4px;
-    transform: translateY(calc(var(--p) * -14vh)) scale(calc(1 + var(--p) * 0.22)) perspective(1200px) rotateX(calc(12deg - var(--p) * 12deg)); transform-origin: 50% 30%; }
-  .hu__unit :global(img) { width: 100%; height: auto; display: block; filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.6)); }
-  .hu__air { position: absolute; left: -20%; top: 88%; width: 140%; height: 34vh; pointer-events: none; overflow: visible; mix-blend-mode: screen; }
-  .hu__fan { opacity: 0.9; animation: hu-breathe 7s ease-in-out infinite; }
-  .hu__flow path { stroke-dasharray: 380 620; animation: hu-flow linear infinite; opacity: 0.38; }
-  @keyframes hu-flow { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
-  @keyframes hu-breathe { 50% { opacity: 0.6; } }
-  :global(html.reduce) .hu__flow path { animation: none; stroke-dasharray: none; opacity: 0.25; }
-  .hu__facts { position: relative; z-index: 2; list-style: none; margin: 0 auto; padding: 18px 0 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; color: #cfe0e8; font-weight: 600; font-size: var(--step--1); opacity: calc(1 - var(--p) * 2); }
+
+  /* Fotka interiéru: při posunu se zvětší (Apple styl) */
+  .hu__stage { position: relative; display: grid; place-items: start center; padding-top: clamp(20px, 3.5vh, 40px); min-height: 0; }
+  .hu__frame { position: relative; width: min(100% - 2 * var(--gutter), 1100px);
+    aspect-ratio: 2307 / 1298; border-radius: calc(28px * (1 - var(--p))); overflow: hidden;
+    transform: translateY(calc(var(--p) * -46vh)) scale(calc(1 + var(--p) * 0.5)); transform-origin: 50% 0;
+    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7); }
+  .hu__frame > :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Proudění: kužel pod lamelami (x 39–61 %, y 29 %), rozmazaný, s pomalými vlnami vzduchu */
+  .hu__air { position: absolute; left: 14%; width: 72%; top: 29.4%; height: 66%; filter: blur(12px); mix-blend-mode: screen; pointer-events: none; opacity: 0.9; }
+  .hu__cone { position: absolute; inset: 0; overflow: hidden; clip-path: polygon(34.5% 0, 65.5% 0, 100% 100%, 0 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.55) 40%, transparent 92%); mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.55) 40%, transparent 92%); }
+  .hu__haze { position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 0%, rgba(230, 245, 255, 0.85), rgba(205, 233, 255, 0.35) 55%, transparent 88%); }
+  .hu__wave { position: absolute; left: -10%; right: -10%; top: -100%; height: 200%;
+    background: repeating-linear-gradient(180deg, transparent 0 9%, rgba(235, 247, 255, 0.55) 13%, transparent 19%);
+    animation: hu-down 5.5s linear infinite; }
+  .hu__wave--b { animation-duration: 8.5s; opacity: 0.6; background-size: 100% 130%; }
+  @keyframes hu-down { from { transform: translateY(0); } to { transform: translateY(50%); } }
+
+  .hu__chip { position: absolute; left: 63%; top: 18%; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82); color: #1d1d1f; font: 600 0.92rem/1 var(--font-body); backdrop-filter: blur(8px); box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.4);
+    opacity: calc(1 - var(--p) * 2.5); }
+  .hu__chip :global(.ico) { color: #2b7fff; }
+
+  .hu__facts { position: relative; z-index: 2; list-style: none; margin: 0 auto; padding: 16px 0 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; color: #cfe0e8; font-weight: 600; font-size: var(--step--1); opacity: calc(1 - var(--p) * 2); }
   .hu__facts li { display: inline-flex; align-items: center; gap: 8px; }
   .hu__facts :global(.ico) { color: var(--accent-dark); }
+
   @media (max-width: 700px) {
     .hu { height: 140vh; }
-    .hu__sticky { padding-top: 24px; }
-    .hu__claim { font-size: clamp(2.3rem, 1.2rem + 7vw, 3.3rem); }
+    .hu__claim { font-size: clamp(2.1rem, 1.1rem + 6vw, 3rem); }
+    .hu__frame { width: calc(100% - 2 * var(--gutter)); }
+    .hu__chip { font-size: 0.78rem; padding: 6px 10px; }
     .hu__facts { gap: 8px 16px; }
   }
   :global(html.reduce) .hu { height: auto; }
   :global(html.reduce) .hu__sticky { position: relative; height: auto; padding-bottom: 24px; }
+  :global(html.reduce) .hu__wave { animation: none; }
 </style>
