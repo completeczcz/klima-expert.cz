@@ -1,4 +1,5 @@
 ---
+import manifest from '../data/images.json';
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -11,7 +12,7 @@ import { loadPerM2, extras } from '../data/pricing';
 const wall = products.filter((p) => p.cat === 'nastenna');
 const series = wall.map((s) => ({
   id: s.id, t: s.title.replace(/^(Mitsubishi Heavy Industries|Hisense) /, ''), brand: s.brandSlug, brandName: s.brand, tier: s.tier,
-  kws: s.models.map((m) => m.coolKw).filter(Boolean), noise: s.noiseMin, img: imgFor(s.id).img,
+  kws: s.models.map((m) => m.coolKw).filter(Boolean), noise: s.noiseMin, img: imgFor(s.id).img ? `/img/${imgFor(s.id).img}-${(manifest as Record<string, { widths: number[] }>)[imgFor(s.id).img].widths[0]}.webp` : '',
 }));
 const cfg = { series, loadPerM2 };
 
@@ -163,7 +164,7 @@ const faq = [
     const picks = ['premium', 'stredni', 'zakladni'].map((t) => fit.filter((s) => s.tier === t).sort((a, b) => (a.noise || 99) - (b.noise || 99))[0]).filter(Boolean);
     results.innerHTML = '<p class="calc__rh">Vhodné řady</p>' + picks.map((s) => `
       <a class="calc__s" href="/produkty/${s.id}/">
-        ${s.img ? `<img src="/img/${s.img}-480.webp" alt="" loading="lazy">` : ''}
+        ${s.img ? `<img src="${s.img}" alt="" loading="lazy">` : ''}
         <span><small>${tierName[s.tier]} · ${s.brandName}</small><strong>${s.t}</strong>${s.noise ? `<em>od ${s.noise} dB(A)</em>` : ''}</span>
       </a>`).join('');
     const typ = total > 90 || rooms.length >= 4 ? 'klimatizace-dum' : 'klimatizace-byt';
