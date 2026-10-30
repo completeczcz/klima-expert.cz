@@ -13,7 +13,9 @@ try:
             pg = b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=1)
             for path in paths:
                 pg.goto(f'http://localhost:4399{path}', wait_until='networkidle')
-                pg.add_style_tag(content='#cc{display:none!important}')
+                pg.add_style_tag(content='#cc{display:none!important}[data-reveal]{opacity:1!important;transform:none!important}')
+                pg.evaluate("document.querySelectorAll('img[loading=lazy]').forEach(i=>i.loading='eager')")
+                pg.wait_for_timeout(1500)
                 name = (path.strip('/').replace('/', '_') or 'home') + f'-{tag}.png'
                 pg.screenshot(path=f'{OUT}/{name}', full_page=True)
                 print(f'{OUT}/{name}')

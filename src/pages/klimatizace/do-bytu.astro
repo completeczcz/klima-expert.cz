@@ -1,23 +1,23 @@
 ---
 import Landing from '../../layouts/Landing.astro';
 import { products } from '../../data/products';
-const series = ['hisense-uni-pure', 'mhi-premium-zs', 'mhi-premium-zt', 'hisense-wings-comfort', 'mhi-diamond-zsx', 'hisense-multi-split', 'mhi-multisplit-scm']
+const series = ['hisense-uni-pure', 'mhi-premium-zs', 'mhi-premium-zt', 'hisense-wings-comfort', 'mhi-diamond-zsx', 'hisense-air-master']
   .map((id) => products.find((p) => p.id === id)!).filter(Boolean);
 const faq = [
   { q: 'Potřebuji na klimatizaci v bytě souhlas SVJ?', a: 'Pokud bude venkovní jednotka na fasádě nebo jiné společné části domu, potřebujete souhlas SVJ nebo družstva. Kdo ho dává, určují stanovy, často stačí výbor. Na balkoně nebo lodžii v užívání bytu bývá situace jednodušší, i tak doporučujeme se domluvit předem. Více v článku <a href="/blog/povoleni-klimatizace-svj/">Povolení klimatizace a SVJ</a>.' },
   { q: 'Jak velkou klimatizaci do bytu potřebuji?', a: 'Pro běžný pokoj počítejte zhruba 100 W chladicího výkonu na m². Ložnice do 20 m² obvykle vystačí s jednotkou 2,0 až 2,5 kW, obývací pokoj do 35 m² s 3,5 kW. Slunné byty pod střechou potřebují víc.' },
   { q: 'Kolik stojí klimatizace do bytu s montáží?', a: 'Cena závisí hlavně na výkonu, řadě jednotky, délce potrubí a umístění venkovní jednotky. Přesnou nabídku připraví partnerská firma po zaměření, zdarma a nezávazně. Orientační rozpětí najdete v článku <a href="/blog/kolik-stoji-klimatizace-do-bytu/">kolik stojí klimatizace do bytu</a>.' },
-  { q: 'Bude klimatizace v ložnici rušit při spánku?', a: 'Kvalitní invertorové jednotky mají v nočním režimu hlučnost kolem 19 až 21 dB(A), což je méně než šepot. Do ložnice doporučujeme řady Mitsubishi Heavy Premium nebo Diamond a Hisense Uni Pure, Energy Pro X či Air Master.' },
+  { q: 'Bude klimatizace v ložnici rušit při spánku?', a: 'Kvalitní invertorové jednotky mají v nočním režimu hlučnost kolem 19 až 21 dB(A), což je méně než šepot. Do ložnice doporučujeme řady Mitsubishi Heavy Industries Premium nebo Diamond a Hisense Uni Pure, Energy Pro X či Air Master.' },
   { q: 'Jak dlouho trvá montáž v bytě?', a: 'Montáž jedné nástěnné jednotky trvá obvykle 4 až 6 hodin. Multisplit pro tři místnosti bývá hotový za jeden až dva dny. Technici vrtají jeden průraz na místnost a po sobě uklidí.' },
 ];
 ---
 <Landing
   title="Klimatizace do bytu s montáží – ceny a výběr"
-  description="Klimatizace do bytu s montáží po celé ČR. Tiché jednotky Mitsubishi Heavy a Hisense, multisplit pro více pokojů, pomoc se souhlasem SVJ. Nabídka zdarma."
+  description="Klimatizace do bytu s montáží po celé ČR. Tiché jednotky Mitsubishi Heavy Industries a Hisense, i pro více pokojů. Nabídka zdarma."
   h1="Klimatizace do bytu s montáží"
   lead="Tichá klimatizace do ložnice, obývacího pokoje nebo celého bytu. Poradíme s výběrem jednotky i s umístěním venkovní části a partnerská firma z vašeho kraje vše namontuje."
   points={['Tiché jednotky od 18 dB(A), vhodné do ložnice', 'Řešení pro panelák, cihlový dům i novostavbu', 'V zimě úsporné přitápění']}
-  image="room-bedroom-dark"
+  image="ph-couple-sofa-hug"
   feats={[{"i": "moon", "t": "Tichá do ložnice", "d": "Od 18 dB(A) v nočním režimu."}, {"i": "building", "t": "Řešení pro panelák", "d": "Pomůžeme se souhlasem SVJ."}, {"i": "sun", "t": "Topí na jaře i na podzim", "d": "Bez zapínání ústředního topení."}, {"i": "wrench", "t": "Montáž za den", "d": "Čistě, s úklidem po sobě."}]}
   preset="klimatizace-byt"
   crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }, { name: 'Do bytu', href: '/klimatizace/do-bytu/' }]}

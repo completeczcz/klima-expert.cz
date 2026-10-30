@@ -3,19 +3,20 @@ import Img from './Img.astro';
 import Icon from './Icon.astro';
 import type { Series } from '../data/products';
 import { imgFor } from '../data/product-images';
-import { tierLabel } from '../data/products';
+import { tierLabel, brandMeta } from '../data/products';
 interface Props { s: Series; dark?: boolean }
 const { s, dark = false } = Astro.props;
 const pi = imgFor(s.id);
 const tagline = s.intro.split('. ')[0].replace(/\.$/, '') + '.';
 const minus = (n: number) => String(n).replace('-', '−');
+const bm = brandMeta[s.brandSlug];
 ---
-<a class:list={['pc', { 'pc--dark': dark }]} href={`/produkty/${s.id}/`}>
+<a class:list={['pc', { 'pc--dark': dark }]} href={`/produkty/${s.id}/`} style={`--brand:${bm.color}`}>
   <div class="pc__img">
     {pi.img ? <Img name={pi.img} alt={s.title} sizes="(max-width: 700px) 80vw, 380px" /> : <span class="pc__ph"><Icon name={s.cat === 'tepelne-cerpadlo' ? 'heatpump' : 'ac'} size={64} /></span>}
   </div>
   <div class="pc__body">
-    <span class="pc__brand">{s.brand}{s.tier === 'premium' && <em> · {tierLabel.premium}</em>}</span>
+    <span class="pc__brand"><img src={dark ? bm.logoWhite : bm.logo} alt={s.brand} height="14" width={Math.round(14 * bm.ratio)} loading="lazy" />{s.tier === 'premium' && <em>{tierLabel.premium}</em>}</span>
     <h3>{s.title.replace(/^(Mitsubishi Heavy Industries|Hisense) /, '')}</h3>
     <p>{tagline}</p>
     <ul class="pc__specs">
@@ -29,18 +30,20 @@ const minus = (n: number) => String(n).replace('-', '−');
 <style>
   .pc { display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--ink); background: var(--white); border-radius: 26px; overflow: hidden; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); height: 100%; }
   .pc:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -28px rgba(14, 34, 51, 0.45); }
-  .pc__img { aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 22px; background: radial-gradient(80% 70% at 50% 60%, #ffffff, #e9f0f4); }
-  .pc__img :global(img) { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; transition: transform 0.6s var(--ease); filter: drop-shadow(0 14px 16px rgba(14, 34, 51, 0.18)); }
+  .pc__img { position: relative; aspect-ratio: 16 / 10; background: #fff; border-bottom: 1px solid #f0f0f2; overflow: hidden; }
+  .pc__img .pc__ph { position: absolute; inset: 0; display: grid; place-items: center; }
+  .pc__img :global(img) { position: absolute; top: 14%; left: 9%; width: 82%; height: 72%; object-fit: contain; transition: transform 0.6s var(--ease); filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.12)); }
   .pc:hover .pc__img :global(img) { transform: scale(1.04); }
   .pc__ph { color: var(--contour); }
   .pc__body { padding: 18px 22px 22px; display: grid; gap: 6px; align-content: start; }
-  .pc__brand { font-size: var(--step--1); color: var(--ink-soft); font-weight: 600; }
-  .pc__brand em { font-style: normal; color: var(--sun-deep); }
-  .pc h3 { font-size: var(--step-1); font-weight: 800; margin: 0; }
+  .pc__brand { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 22px; font-size: 0.78rem; font-weight: 600; }
+  .pc__brand img { height: 14px; width: auto; }
+  .pc__brand em { font-style: normal; color: var(--brand); letter-spacing: 0.02em; }
+  .pc h3 { font-size: var(--step-1); font-weight: 700; margin: 0; }
   .pc p { margin: 0; color: var(--ink-soft); font-size: var(--step--1); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .pc__specs { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--step--1); font-weight: 600; }
   .pc__specs li { display: inline-flex; align-items: center; gap: 5px; }
-  .pc__specs :global(.ico) { color: var(--sun-deep); }
+  .pc__specs :global(.ico) { color: var(--ink-soft); }
   .pc__sw { display: flex; gap: 6px; margin-top: 4px; }
   .pc__sw i { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18); }
 </style>

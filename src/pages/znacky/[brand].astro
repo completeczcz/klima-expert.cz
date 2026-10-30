@@ -15,12 +15,12 @@ const d = isMhi
       title: 'Klimatizace Mitsubishi Heavy Industries s montáží',
       description: `Klimatizace Mitsubishi Heavy Industries (MHI) s montáží po celé ČR. Řady Diamond, Premium a Standard, multisplit, záruka ${site.warranty.mhi} let. Nabídka zdarma.`,
       h1: 'Klimatizace Mitsubishi Heavy Industries',
-      lead: `Japonská technika s pověstí spolehlivosti a velmi tichého chodu. Klimatizace MHI dovážíme z oficiální distribuce a montují je proškolení partneři, se zárukou ${site.warranty.mhi} let.`,
+      lead: `Japonská technika s pověstí spolehlivosti a velmi tichého chodu. Klimatizace Mitsubishi Heavy Industries dovážíme z oficiální distribuce a montují je proškolení partneři, se zárukou ${site.warranty.mhi} let.`,
       points: ['Tichý chod od 19 dB(A), ideální do ložnice', 'Topení i při −20 °C u řad Diamond a Premium ZT', `Záruka ${site.warranty.mhi} let, výhradní distribuce v ČR od roku 2007`],
       faq: [
-        { q: 'Je Mitsubishi Heavy Industries totéž co Mitsubishi Electric?', a: 'Ne. Jde o dvě samostatné japonské společnosti, které obě vyrábějí klimatizace. Rozdíly vysvětlujeme v článku <a href="/blog/mitsubishi-heavy-vs-mitsubishi-electric/">Mitsubishi Heavy vs Mitsubishi Electric</a>.' },
-        { q: 'Kdo je distributorem MHI v České republice?', a: 'Výhradním distributorem klimatizací Mitsubishi Heavy Industries pro Českou a Slovenskou republiku je od roku 2007 společnost COMPLETE CZ, která zajišťuje i technickou podporu a servis.' },
-        { q: 'Kterou řadu MHI vybrat do ložnice?', a: 'Do ložnice doporučujeme řady s nejnižší hlučností: Diamond ZSX, Premium ZT nebo Premium ZS, které začínají na 19 dB(A).' },
+        { q: 'Je Mitsubishi Heavy Industries totéž co Mitsubishi Electric?', a: 'Ne. Jde o dvě samostatné japonské společnosti, které obě vyrábějí klimatizace. Rozdíly vysvětlujeme v článku <a href="/blog/mitsubishi-heavy-vs-mitsubishi-electric/">Mitsubishi Heavy Industries vs Mitsubishi Electric</a>.' },
+        { q: 'Kdo je distributorem Mitsubishi Heavy Industries v ČR?', a: 'Výhradním distributorem klimatizací Mitsubishi Heavy Industries pro Českou a Slovenskou republiku je od roku 2007 společnost COMPLETE CZ, která zajišťuje i technickou podporu a servis.' },
+        { q: 'Kterou řadu Mitsubishi Heavy Industries vybrat do ložnice?', a: 'Do ložnice doporučujeme řady s nejnižší hlučností: Diamond ZSX, Premium ZT nebo Premium ZS, které začínají na 19 dB(A).' },
       ],
     }
   : {
@@ -38,8 +38,9 @@ const d = isMhi
   h1={d.h1}
   lead={d.lead}
   points={d.points}
-  image={isMhi ? "room-living-titan" : "his-bedroom-mountains"}
-  feats={isMhi ? [{i:"moon",t:"Od 19 dB(A)",d:"Velmi tichý chod."},{i:"snow",t:"Topí do −20 °C",d:"Řady Diamond a Premium ZT."},{i:"leaf",t:"Až A+++",d:"Nízká spotřeba."},{i:"shield",t:"Záruka 5 let",d:"Výhradní distribuce v ČR."}] : [{i:"wifi",t:"Wi-Fi v základu",d:"U většiny řad."},{i:"spark",t:"Smart Eye",d:"Senzor polohy osob."},{i:"snow",t:"Topí do −22 °C",d:"Air Master a Uni Pure."},{i:"heatpump",t:"Hi-Therma",d:"Tepelná čerpadla vzduch-voda."}]}
+  image={isMhi ? "mhi-zsx-wall" : "his-living-man"}
+  brand={brand}
+  feats={isMhi ? [{i:"moon",t:"Od 19 dB(A)",d:"Velmi tichý chod."},{i:"snow",t:"Topí do −20 °C",d:"Řady Diamond a Premium ZT."},{i:"leaf",t:"Až A+++",d:"Nízká spotřeba."},{i:"shield",t:"Záruka 5 let",d:"Výhradní distribuce v ČR."}] : [{i:"wifi",t:"Ovládání přes Wi-Fi",d:"U většiny řad."},{i:"spark",t:"Smart Eye",d:"Senzor polohy osob."},{i:"snow",t:"Topí do −22 °C",d:"Air Master a Uni Pure."},{i:"heatpump",t:"Hi-Therma",d:"Tepelná čerpadla vzduch-voda."}]}
   preset="klimatizace-byt"
   crumbs={[{ name: isMhi ? 'Mitsubishi Heavy Industries' : 'Hisense', href: `/znacky/${brand}/` }]}
   series={series}
@@ -49,7 +50,7 @@ const d = isMhi
     { q: 'Kterou řadu Hisense vybrat?', a: 'Pro nejlepší poměr ceny a účinnosti Uni Pure, pro nejvyšší komfort Air Master se senzorem Smart Eye PRO, pro nízký rozpočet Wings Comfort nebo Hi-Smart.' },
     { q: 'Má Hisense i tepelná čerpadla?', a: 'Ano, řadu Hi-Therma ve verzích Monoblok, Split a Integra se zásobníkem teplé vody. Více na stránce <a href="/tepelna-cerpadla/">tepelná čerpadla</a>.' },
   ]}
-  ctaTitle={`Chcete ${isMhi ? 'klimatizaci Mitsubishi Heavy' : 'Hisense'}?`}
+  ctaTitle={`Chcete ${isMhi ? 'klimatizaci Mitsubishi Heavy Industries' : 'Hisense'}?`}
 >
   <section class="copy">
     <div class="wrap copy__grid">
@@ -59,7 +60,7 @@ const d = isMhi
             <h2>O značce Mitsubishi Heavy Industries</h2>
             <p>Mitsubishi Heavy Industries je japonský průmyslový koncern založený v roce 1884. Vyrábí elektrárny, lodě, letecké komponenty i kosmickou techniku a klimatizace jsou jednou z jeho klíčových divizí. Zkušenosti z náročného průmyslu se promítají do důrazu na spolehlivost, přesnost a dlouhou životnost.</p>
             <p>V Česku a na Slovensku zastupuje značku od roku 2007 společnost COMPLETE CZ jako výhradní distributor. Zajišťuje technickou podporu, školení montážníků a servisní zázemí.</p>
-            <h3>Čím se klimatizace MHI vyznačují</h3>
+            <h3>Čím se klimatizace Mitsubishi Heavy Industries vyznačují</h3>
             <ul class="checks">
               <li>Velmi tichý chod vnitřních jednotek od 19 dB(A)</li>
               <li>Vysoká účinnost až A+++ v chlazení i topení</li>
@@ -68,9 +69,9 @@ const d = isMhi
             </ul>
           </div>
           <div>
-            <h2>Jak vybrat řadu MHI</h2>
+            <h2>Jak vybrat řadu Mitsubishi Heavy Industries</h2>
             <p><strong>Diamond ZSX</strong> je vlajková loď s nejvyšší účinností a pohybovým čidlem. <strong>Premium ZT</strong> je nová tichá řada s Wi-Fi a moderním designem v několika barvách. <strong>Premium ZS</strong> nabízí nejlepší poměr výbavy a ceny. <strong>Standard Plus ZTL</strong> a <strong>Standard ZSP</strong> jsou dostupnější varianty do méně náročných místností.</p>
-            <p>Pro víc místností s jednou venkovní jednotkou slouží <a href="/produkty/mhi-multisplit-scm/">multisplit SCM</a>, pro skrytou instalaci kanálové a parapetní jednotky.</p>
+            <p>Pro víc místností s jednou venkovní jednotkou slouží <a href="/klimatizace/multisplit/">multisplit</a>, pro skrytou instalaci kanálové a parapetní jednotky.</p>
             <p>Podrobný průvodce najdete v článku <a href="/blog/klimatizace-mitsubishi-heavy-industries/">klimatizace Mitsubishi Heavy Industries</a>.</p>
           </div>
         </>

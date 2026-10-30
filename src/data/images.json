@@ -1,18 +1,23 @@
 {
  "mhi-zsx-white": {
-  "w": 915,
-  "h": 341,
+  "w": 2000,
+  "h": 744,
   "widths": [
    480,
-   915
+   960,
+   1440,
+   2000
   ],
   "alpha": true
  },
  "mhi-zsx-titan": {
-  "w": 432,
-  "h": 165,
+  "w": 2000,
+  "h": 762,
   "widths": [
-   432
+   480,
+   960,
+   1440,
+   2000
   ],
   "alpha": true
  },
@@ -246,11 +251,12 @@
   "alpha": true
  },
  "his-therma-monoblok": {
-  "w": 855,
-  "h": 760,
+  "w": 1134,
+  "h": 686,
   "widths": [
    480,
-   855
+   960,
+   1134
   ],
   "alpha": true
  },
@@ -266,13 +272,13 @@
   "alpha": true
  },
  "his-therma-integra": {
-  "w": 1537,
-  "h": 1719,
+  "w": 2000,
+  "h": 1361,
   "widths": [
    480,
    960,
    1440,
-   1537
+   2000
   ],
   "alpha": true
  },
@@ -476,6 +482,1036 @@
    640,
    1280,
    2000
+  ],
+  "alpha": false
+ },
+ "mhi-zsx-wb": {
+  "w": 2000,
+  "h": 759,
+  "widths": [
+   480,
+   960,
+   1440,
+   2000
+  ],
+  "alpha": true
+ },
+ "his-therma-integra-side": {
+  "w": 2000,
+  "h": 1336,
+  "widths": [
+   480,
+   960,
+   1440,
+   2000
+  ],
+  "alpha": true
+ },
+ "his-therma-split-idu": {
+  "w": 1329,
+  "h": 2249,
+  "widths": [
+   480,
+   960,
+   1329
+  ],
+  "alpha": true
+ },
+ "his-therma-odu": {
+  "w": 1758,
+  "h": 1484,
+  "widths": [
+   480,
+   960,
+   1440,
+   1758
+  ],
+  "alpha": true
+ },
+ "his-therma-r290": {
+  "w": 2000,
+  "h": 1531,
+  "widths": [
+   480,
+   960,
+   1440,
+   2000
+  ],
+  "alpha": true
+ },
+ "mhi-living-shelves": {
+  "w": 1153,
+  "h": 1161,
+  "widths": [
+   640,
+   1153
+  ],
+  "alpha": false
+ },
+ "mhi-living-loft": {
+  "w": 996,
+  "h": 679,
+  "widths": [
+   640,
+   996
+  ],
+  "alpha": false
+ },
+ "mhi-living-beige": {
+  "w": 1181,
+  "h": 863,
+  "widths": [
+   640,
+   1181
+  ],
+  "alpha": false
+ },
+ "mhi-living-mint": {
+  "w": 1181,
+  "h": 840,
+  "widths": [
+   640,
+   1181
+  ],
+  "alpha": false
+ },
+ "mhi-bedroom-slate": {
+  "w": 1181,
+  "h": 863,
+  "widths": [
+   640,
+   1181
+  ],
+  "alpha": false
+ },
+ "mhi-bedroom-concrete2": {
+  "w": 1181,
+  "h": 838,
+  "widths": [
+   640,
+   1181
+  ],
+  "alpha": false
+ },
+ "mhi-living-green": {
+  "w": 2307,
+  "h": 2321,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2307
+  ],
+  "alpha": false
+ },
+ "mhi-zsx-wall": {
+  "w": 2400,
+  "h": 1800,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "mhi-zsx-wall2": {
+  "w": 2400,
+  "h": 1800,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "mhi-zsx-close": {
+  "w": 2400,
+  "h": 1800,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "mhi-house-hp": {
+  "w": 1388,
+  "h": 885,
+  "widths": [
+   640,
+   1280,
+   1388
+  ],
+  "alpha": false
+ },
+ "his-living-man": {
+  "w": 2400,
+  "h": 1800,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "his-homeoffice": {
+  "w": 2400,
+  "h": 1841,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "his-terrace-office": {
+  "w": 2400,
+  "h": 1375,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "his-pxw-3d-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-4-sleep-modes": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-ai-smart": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-easy-installation": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-economy-mode-operation": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-follow-avoid-mode": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-heating-at-22": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-hi-nano": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-low-noise-of-outdoor": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-new-appearance": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-quiet-mode": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-self-cleaning": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-smart-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-various-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-voice-control": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxw-wifi-control": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-3d-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-4-sleep-modes": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-ai-smartnew": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-easy-installation": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-follow-avoid-mode": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-heating-at-8": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-smart-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-pxb-voice-control": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-anti-baeteria-drying": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-easy-to-clean": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-economy-mode-operation": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-elegant-appearance": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-heating-at-22": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-indoor-self-cleaning": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-long-distance-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-low-noise": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-smart-airflow": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "his-uni-temperaturehumidity-dual-control": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "ph-family-floor-play-1": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-floor-play-2": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-baby-floor": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-sofa-joy": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-breakfast-1": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-breakfast-2": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-sofa-toys": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-living-room-play": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-couple-reading-floor": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-couple-sofa-hug": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-couple-sofa-laughing": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-couple-sofa-relax": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-couple-home-library": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-couple-books-laughing": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-sleep-woman-peaceful": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-wake-up-stretch-1": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-wake-up-stretch-2": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-senior-couple-laughing": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-senior-couple-hug-sofa": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-senior-couple-tv-laughing": {
+  "w": 2400,
+  "h": 1350,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-home-office-window": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-home-office-sofa-laptop": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-home-office-smiling": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-office-team-bright": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-house-summer-modern-1": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-house-summer-garden": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-house-summer-lawn": {
+  "w": 2400,
+  "h": 1594,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-family-in-front-of-house": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-house-winter-1": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-house-winter-2": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-house-winter-3": {
+  "w": 2400,
+  "h": 1554,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-summer-prague-rooftops": {
+  "w": 2400,
+  "h": 1602,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-summer-sunny-window": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-summer-fans": {
+  "w": 2400,
+  "h": 1920,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-winter-fireplace-mug": {
+  "w": 2400,
+  "h": 1601,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-winter-blanket-tea": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-winter-stove-tea": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-winter-seniors-window": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-technician-install-smile": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-technician-radiator-pipe": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-misc-radiator-valve": {
+  "w": 2400,
+  "h": 1594,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-misc-bills-calculator": {
+  "w": 2400,
+  "h": 1766,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-misc-plant-sunny-window": {
+  "w": 2400,
+  "h": 1800,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-misc-bedroom-night": {
+  "w": 2400,
+  "h": 1600,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "ph-misc-ac-remote": {
+  "w": 2400,
+  "h": 1601,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
   ],
   "alpha": false
  }

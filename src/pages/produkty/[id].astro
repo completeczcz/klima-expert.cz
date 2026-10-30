@@ -6,7 +6,8 @@ import Faq from '../../components/Faq.astro';
 import Img from '../../components/Img.astro';
 import Icon from '../../components/Icon.astro';
 import QuickStart from '../../components/QuickStart.astro';
-import { products, tierLabel, catLabel, useLabel, kw, type Series } from '../../data/products';
+import { products, tierLabel, catLabel, useLabel, kw, brandMeta, type Series } from '../../data/products';
+import manifest from '../../data/images.json';
 import { imgFor } from '../../data/product-images';
 import { site } from '../../data/site';
 
@@ -15,6 +16,9 @@ export function getStaticPaths() {
 }
 const { s } = Astro.props as { s: Series };
 const pi = imgFor(s.id);
+const bm = brandMeta[s.brandSlug];
+// Jednotku nezvětšujeme nad rozlišení podkladu, aby nebyla rozmazaná.
+const maxW = (n: string) => Math.min(620, Math.round(((manifest as Record<string, { w: number }>)[n]?.w ?? 600) / 1.5));
 const isTc = s.cat === 'tepelne-cerpadlo';
 const isMulti = s.cat === 'multisplit';
 const typ = isTc ? 'tepelne-cerpadlo' : s.uses.includes('kancelar') && !s.uses.includes('byt') ? 'klimatizace-kancelar' : s.uses.includes('byt') ? 'klimatizace-byt' : 'klimatizace-dum';
@@ -48,8 +52,11 @@ const iconFor = (f: string) => {
   return 'check';
 };
 const feats = s.features.slice(0, 6).map((f) => {
-  const [head, ...rest] = f.split(/\s[–-]\s/);
-  return { ico: iconFor(f), t: head.length > 70 ? head.slice(0, 67) + '…' : head, d: rest.join(' – ') };
+  // Nadpis = první část věty, zbytek jako popis (nic neusekáváme).
+  const m = f.match(/^(.{12,75}?)(?:\s[–-]\s|:\s|,\s|\s\()(.+)$/);
+  const t = m ? m[1] : f;
+  const d = m ? (f.slice(m[1].length).replace(/^\s*[–:,-]\s*/, '').replace(/^\s/, '')) : '';
+  return { ico: iconFor(f), t, d: d.charAt(0).toUpperCase() + d.slice(1) };
 });
 const stats = [
   kwRange && { i: isTc ? 'heatpump' : 'ac', k: isTc ? 'Topný výkon' : 'Výkon', v: kwRange },
@@ -77,10 +84,10 @@ const faq = isTc
   description={desc}
   crumbs={[{ name: 'Produkty', href: '/produkty/' }, { name: s.title, href: `/produkty/${s.id}/` }]}
 >
-  <section class="ph">
+  <section class="ph" style={`--brand:${bm.color};--brand-tint:${bm.tint}`}>
     <div class="wrap ph__in">
       <div class="ph__txt" data-reveal>
-        <p class="ph__meta"><a href={`/znacky/${s.brandSlug}/`}>{s.brand}</a><span>{catLabel[s.cat]}</span>{s.tier === 'premium' && <span class="ph__tier">{tierLabel.premium}</span>}</p>
+        <p class="ph__meta"><a class="ph__logo" href={`/znacky/${s.brandSlug}/`}><img src={bm.logo} alt={s.brand} height="22" width={Math.round(22 * bm.ratio)} /></a><span>{catLabel[s.cat]}</span>{s.tier === 'premium' && <span class="ph__tier">{tierLabel.premium}</span>}</p>
         <h1 class="display">{shortName}</h1>
         <p class="sub">{s.intro}</p>
         {s.status && <p class="badge badge--sun">Připravovaná novinka</p>}
@@ -93,7 +100,7 @@ const faq = isTc
         {pi.img ? (
           <div class="ph__stage">
             {(pi.variants ?? [{ label: '', img: pi.img, swatch: '' }]).map((v, i) => (
-              <div class="ph__v" data-v={i} hidden={i > 0}><Img name={v.img} alt={`${s.title}${v.label ? ' – ' + v.label.toLowerCase() : ''}`} sizes="(max-width: 900px) 90vw, 600px" eager={i === 0} /></div>
+              <div class="ph__v" data-v={i} hidden={i > 0}><Img name={v.img} alt={`${s.title}${v.label ? ' – ' + v.label.toLowerCase() : ''}`} sizes="(max-width: 900px) 90vw, 600px" eager={i === 0} style={`max-width:${maxW(v.img)}px`} /></div>
             ))}
           </div>
         ) : (
@@ -133,10 +140,27 @@ const faq = isTc
     </div>
   </section>
 
+  {pi.gallery && (
+    <section class="section gal" aria-labelledby="gal-h">
+      <div class="wrap gal__head" data-reveal>
+        <p class="kicker">Ve skutečnosti</p>
+        <h2 id="gal-h" class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">Podívejte se zblízka.</h2>
+      </div>
+      <div class="gal__rail" tabindex="0" aria-label="Galerie fotografií">
+        {pi.gallery.map((g) => (
+          <figure class="gal__i">
+            <Img name={g.img} alt={`${shortName}: ${g.t}`} sizes="(max-width: 700px) 86vw, 640px" />
+            <figcaption><strong>{g.t}</strong>{g.d && <span>{g.d}</span>}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
   {pi.scene && (
     <section class="scene" data-scrub="pass" data-reduce-p="0.5">
       <Img name={pi.scene} alt={`${s.title} v interiéru`} sizes="100vw" />
-      <div class="scene__cap wrap"><p class="display">{isTc ? 'Teplo pro celý dům.' : sceneCap[pi.scene] ?? 'Příjemný vzduch, kde ho potřebujete.'}</p></div>
+      <div class="scene__cap wrap"><p class="display">{pi.sceneCap ?? (isTc ? 'Teplo pro celý dům.' : sceneCap[pi.scene] ?? 'Příjemný vzduch, kde ho potřebujete.')}</p></div>
     </section>
   )}
 
@@ -222,17 +246,18 @@ const faq = isTc
 </script>
 
 <style>
-  .ph { padding: 24px 0 0; background: radial-gradient(90% 70% at 75% 40%, #ffffff, var(--stage) 55%, var(--ice)); }
+  .ph { padding: 24px 0 0; background: radial-gradient(80% 70% at 75% 45%, #ffffff 30%, var(--paper)); }
   .ph__in { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(20px, 4vw, 48px); }
   .ph__in > * { min-width: 0; }
   .ph .display { font-size: clamp(2.6rem, 1.4rem + 4.4vw, 5.2rem); margin-top: 8px; }
-  .ph__meta { font-size: var(--step--1); color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 4px 16px; }
-  .ph__meta a { font-weight: 700; color: var(--ink); }
-  .ph__tier { color: var(--sun-deep); font-weight: 700; }
+  .ph__meta { font-size: var(--step--1); color: var(--ink-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+  .ph__logo { display: inline-flex; padding-right: 16px; border-right: 1px solid var(--line); }
+  .ph__logo img { height: 22px; width: auto; }
+  .ph__tier { color: var(--brand); font-weight: 600; }
   .ph__stage { display: grid; place-items: center; min-height: 260px; }
   .ph__stage--ico { color: var(--contour); }
   .ph__v { grid-area: 1 / 1; width: 100%; display: grid; place-items: center; }
-  .ph__v :global(img) { width: 100%; max-height: 420px; height: auto; object-fit: contain; filter: drop-shadow(0 34px 34px rgba(14, 34, 51, 0.22)); animation: ph-in 0.7s var(--ease); }
+  .ph__v :global(img) { width: 100%; max-height: 380px; height: auto; object-fit: contain; filter: drop-shadow(0 34px 34px rgba(14, 34, 51, 0.22)); animation: ph-in 0.7s var(--ease); }
   @keyframes ph-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
   .ph__sw { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
   .ph__sw button { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); font: 600 0.9rem/1 var(--font-body); color: var(--ink); cursor: pointer; }
@@ -240,14 +265,22 @@ const faq = isTc
   .ph__sw i { width: 20px; height: 20px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2); }
   .ph__stats { list-style: none; padding: 22px 0 28px; margin-top: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; border-top: 1px solid var(--line); }
   .ph__stats li { display: grid; grid-template-columns: auto 1fr; gap: 0 10px; align-items: center; }
-  .ph__stats :global(.ico) { grid-row: span 2; color: var(--sun-deep); }
+  .ph__stats :global(.ico) { grid-row: span 2; color: var(--brand); }
   .ph__stats span { font-size: var(--step--1); color: var(--ink-soft); }
-  .ph__stats strong { font: 800 var(--step-1)/1.1 var(--font-head); }
+  .ph__stats strong { font: 700 var(--step-1)/1.1 var(--font-head); }
   .pf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .pf__i { padding: 28px; border-radius: 26px; background: var(--stage); display: grid; gap: 10px; align-content: start; }
-  .pf__ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--white); color: var(--sun-deep); box-shadow: 0 8px 20px -14px rgba(14, 34, 51, 0.5); }
+  .pf__ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--white); color: var(--ink); box-shadow: 0 8px 20px -14px rgba(14, 34, 51, 0.5); }
   .pf__i strong { font: 700 var(--step-1)/1.25 var(--font-head); }
   .pf__i span { color: var(--ink-soft); font-size: var(--step--1); }
+  .gal { padding-bottom: clamp(40px, 6vw, 72px); }
+  .gal__head { margin-bottom: 28px; }
+  .gal__rail { display: grid; grid-auto-flow: column; grid-auto-columns: min(86vw, 640px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px max(var(--gutter), calc((100vw - var(--wrap)) / 2)) 16px; scrollbar-width: thin; }
+  .gal__i { margin: 0; scroll-snap-align: center; border-radius: 26px; overflow: hidden; background: var(--white); box-shadow: var(--shadow); }
+  .gal__i :global(img) { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .gal__i figcaption { padding: 18px 22px 22px; display: grid; gap: 4px; }
+  .gal__i strong { font: 650 var(--step-1)/1.2 var(--font-head); }
+  .gal__i span { color: var(--ink-soft); font-size: var(--step--1); }
   .scene { --p: 0.5; position: relative; height: min(80vh, 720px); overflow: hidden; }
   .scene :global(img) { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; transform: translateY(calc((var(--p) - 0.5) * -10%)); }
   .scene::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14, 34, 51, 0.65), transparent 50%); }

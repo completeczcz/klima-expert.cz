@@ -2,71 +2,100 @@
 import Base from '../../layouts/Base.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { products, catLabel } from '../../data/products';
+import Img from '../../components/Img.astro';
+import { products, brandMeta } from '../../data/products';
+import { site } from '../../data/site';
 
 const groups = [
-  { id: 'nastenna', h: 'Nástěnné klimatizace', p: 'Nejčastější volba do bytů a domů. Vnitřní jednotka visí na stěně, venkovní je na fasádě, balkoně nebo na zemi.' },
-  { id: 'multisplit', h: 'Multisplit pro více místností', p: 'Jedna venkovní jednotka a dvě až pět vnitřních. Šetří místo na fasádě a hodí se do bytů a domů.' },
-  { id: 'parapetni', h: 'Parapetní a konzolové klimatizace', p: 'Jednotky u podlahy pod oknem. Výborně topí a hodí se do podkroví se šikminami.' },
-  { id: 'kanalova', h: 'Kanálové klimatizace', p: 'Skryté v podhledu, vidět jsou jen mřížky. Pro novostavby, rekonstrukce a reprezentativní prostory.' },
-  { id: 'kazetova', h: 'Kazetové klimatizace', p: 'Do rastru podhledu v kancelářích, obchodech a ordinacích. Rozvádí vzduch rovnoměrně do všech stran.' },
-  { id: 'podstropni', h: 'Podstropní klimatizace', p: 'Pro velké místnosti bez podhledu: obchody, restaurace, dílny.' },
-  { id: 'tepelne-cerpadlo', h: 'Tepelná čerpadla vzduch-voda', p: 'Vytápění a ohřev teplé vody pro rodinné domy, včetně chlazení v létě.' },
+  { id: 'nastenna', h: 'Nástěnné klimatizace', p: 'Nejčastější volba do bytů a domů.' },
+  { id: 'parapetni', h: 'Parapetní a konzolové', p: 'U podlahy pod oknem, výborně topí. Ideální do podkroví.' },
+  { id: 'kanalova', h: 'Kanálové (skryté v podhledu)', p: 'Vidět jsou jen mřížky.' },
+  { id: 'kazetova', h: 'Kazetové', p: 'Do podhledu v kancelářích, obchodech a ordinacích.' },
+  { id: 'podstropni', h: 'Podstropní', p: 'Pro velké místnosti bez podhledu.' },
+  { id: 'tepelne-cerpadlo', h: 'Tepelná čerpadla vzduch-voda', p: 'Vytápění a teplá voda pro rodinné domy.' },
 ];
 const tierOrder = { premium: 0, stredni: 1, zakladni: 2 };
+const brands = [
+  {
+    slug: 'mitsubishi-heavy-industries', anchor: 'mitsubishi-heavy-industries', name: 'Mitsubishi Heavy Industries', img: 'mhi-zsx-wall',
+    text: `Japonská klimatizace s tradicí od roku 1884. Velmi tiché a úsporné jednotky, v ČR přes výhradního distributora od roku 2007. Záruka ${site.warranty.mhi} let.`,
+  },
+  {
+    slug: 'hisense', anchor: 'hisense', name: 'Hisense', img: 'his-living-man',
+    text: `Moderní klimatizace a tepelná čerpadla s výborným poměrem ceny a výbavy. Ovládání přes Wi-Fi, topení až do −22 °C. Záruka ${site.warranty.hisense} roky.`,
+  },
+];
 ---
 <Base
-  title="Přehled klimatizací a tepelných čerpadel MHI a Hisense"
-  description="Přehled všech řad klimatizací a tepelných čerpadel Mitsubishi Heavy Industries a Hisense: výkony, hlučnost, výbava a orientační ceny s montáží."
+  title="Klimatizace Mitsubishi Heavy Industries a Hisense – přehled řad"
+  description="Přehled řad klimatizací a tepelných čerpadel Mitsubishi Heavy Industries a Hisense rozdělený podle značky: výkony, hlučnost, výbava a montáž po celé ČR."
   crumbs={[{ name: 'Produkty', href: '/produkty/' }]}
 >
-  <section class="section" style="padding-top:24px">
+  <section class="section" style="padding-top:24px;padding-bottom:32px">
     <div class="wrap">
       <div class="section__head">
-        <h1 class="display">Klimatizace a tepelná čerpadla</h1>
-        <p class="lead">Všechny řady Mitsubishi Heavy Industries a Hisense, které montují naši partneři. Vyberte si podle prostoru, hlučnosti a výbavy, nabídku vám připravíme zdarma.</p>
+        <h1 class="display">Vyberte si značku.</h1>
+        <p class="sub">Montujeme dvě značky, kterým věříme. Každá má své přednosti, nabídku vám připravíme zdarma.</p>
       </div>
-      <div class="flt" role="group" aria-label="Filtrovat podle značky">
-        <button type="button" class="flt__b is-on" data-brand="">Všechny značky</button>
-        <button type="button" class="flt__b" data-brand="mitsubishi-heavy-industries">Mitsubishi Heavy Industries</button>
-        <button type="button" class="flt__b" data-brand="hisense">Hisense</button>
+      <div class="bpick">
+        {brands.map((b) => {
+          const m = brandMeta[b.slug];
+          return (
+            <a class="bpick__i" href={`#${b.anchor}`} style={`--brand:${m.color}`} data-reveal>
+              <Img name={b.img} alt={`Klimatizace ${b.name}`} sizes="(max-width: 800px) 92vw, 580px" />
+              <span class="bpick__body">
+                <img class="bpick__logo" src={m.logo} alt={b.name} height="30" width={Math.round(30 * m.ratio)} />
+                <span>{b.text}</span>
+                <span class="bpick__go">Zobrazit řady ↓</span>
+              </span>
+            </a>
+          );
+        })}
       </div>
-      <nav class="jump" aria-label="Typy jednotek">
-        {groups.map((g) => <a href={`#${g.id}`}>{g.h}</a>)}
-      </nav>
-      {groups.map((g) => {
-        const list = products.filter((p) => p.cat === g.id).sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
-        return list.length ? (
-          <section class="grp" id={g.id}>
-            <h2>{g.h}</h2>
-            <p class="muted">{g.p}</p>
-            <div class="pgrid">{list.map((s) => <div data-brand={s.brandSlug} data-reveal><ProductCard s={s} /></div>)}</div>
-          </section>
-        ) : null;
-      })}
-      
     </div>
   </section>
-  <CtaBand title="Nevíte, kterou řadu vybrat?" text="Napište nám, co chcete chladit nebo vytápět. Doporučíme vhodnou řadu a partnerská firma připraví nabídku zdarma." />
+
+  {brands.map((b) => {
+    const m = brandMeta[b.slug];
+    const mine = products.filter((p) => p.brandSlug === b.slug);
+    return (
+      <section class="brand" id={b.anchor} style={`--brand:${m.color};--brand-tint:${m.tint}`}>
+        <div class="wrap">
+          <header class="brand__head">
+            <img src={m.logo} alt={b.name} height="40" width={Math.round(40 * m.ratio)} />
+            <a class="link-arrow" href={`/znacky/${b.slug}/`}>O značce {b.name}</a>
+          </header>
+          {groups.map((g) => {
+            const list = mine.filter((p) => p.cat === g.id).sort((x, y) => tierOrder[x.tier] - tierOrder[y.tier]);
+            return list.length ? (
+              <div class="grp">
+                <h2>{g.h}</h2>
+                <p class="muted">{g.p}</p>
+                <div class="pgrid">{list.map((s) => <div data-reveal><ProductCard s={s} /></div>)}</div>
+              </div>
+            ) : null;
+          })}
+        </div>
+      </section>
+    );
+  })}
+  <CtaBand title="Nevíte, kterou vybrat?" text="Napište nám, kam klimatizaci chcete a kolik místností. Doporučíme vhodnou řadu a partnerská firma připraví nabídku zdarma." />
 </Base>
 
-<script>
-  const btns = document.querySelectorAll<HTMLButtonElement>('.flt__b');
-  btns.forEach((b) => b.addEventListener('click', () => {
-    btns.forEach((x) => x.classList.toggle('is-on', x === b));
-    const v = b.dataset.brand;
-    document.querySelectorAll<HTMLElement>('[data-brand]:not(button)').forEach((el) => (el.hidden = !!v && el.dataset.brand !== v));
-    document.querySelectorAll<HTMLElement>('.grp').forEach((g) => (g.hidden = !g.querySelector('[data-brand]:not([hidden])')));
-  }));
-</script>
-
 <style>
-  .flt { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-  .flt__b { font: 600 0.95rem/1 var(--font-body); padding: 10px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); cursor: pointer; color: var(--ink); }
-  .flt__b.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .jump { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--step--1); margin-bottom: 24px; }
-  .grp { padding-top: 40px; }
-  .grp h2 { font-size: var(--step-2); }
-  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; margin-top: 18px; }
-  .pgrid > div[hidden] { display: none; }
+  .bpick { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .bpick__i { display: grid; grid-template-rows: auto 1fr; border-radius: 28px; overflow: hidden; background: var(--white); text-decoration: none; color: var(--ink); box-shadow: var(--shadow); transition: transform 0.4s var(--ease); border-top: 4px solid var(--brand); }
+  .bpick__i:hover { transform: translateY(-4px); }
+  .bpick__i > :global(img) { width: 100%; height: auto; aspect-ratio: 16 / 8; object-fit: cover; display: block; }
+  .bpick__body { padding: 24px 28px 28px; display: grid; gap: 12px; align-content: start; color: var(--ink-soft); }
+  .bpick__logo { height: 30px; width: auto; }
+  .bpick__go { font-weight: 600; color: var(--brand); }
+  .brand { padding-block: clamp(48px, 6vw, 80px); background: linear-gradient(180deg, var(--brand-tint), var(--paper) 420px); border-top: 1px solid var(--line); scroll-margin-top: 72px; }
+  .brand__head { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-bottom: 8px; }
+  .brand__head img { height: 40px; width: auto; }
+  .brand__head .link-arrow { color: var(--brand); }
+  .grp { padding-top: 36px; }
+  .grp h2 { font-size: var(--step-2); margin-bottom: 0.2em; }
+  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 20px; margin-top: 18px; }
+  @media (max-width: 800px) { .bpick { grid-template-columns: 1fr; } }
 </style>

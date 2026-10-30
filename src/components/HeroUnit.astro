@@ -8,7 +8,7 @@ import { site } from '../data/site';
     <div class="hu__glow" aria-hidden="true"></div>
     <div class="wrap hu__text">
       <h1 id="hu-h" class="hu__h1">Klimatizace a tepelná čerpadla s montáží po celé ČR</h1>
-      <p class="display display--xl hu__claim">Chladno v létě.<br />Teplo v zimě.<br /><span>Ticho pořád.</span></p>
+      <p class="display display--xl hu__claim">Chladno v létě.<br />Teplo v zimě.<br /><span>Pohodlí celý rok.</span></p>
       <div class="btn-row hu__cta">
         <a class="btn btn--sun" href="/poptavka/" data-track="cta-hero">Chci nabídku zdarma</a>
         <a class="btn btn--ghost" href="#vyber">Vybrat klimatizaci</a>
@@ -64,11 +64,11 @@ import { site } from '../data/site';
   .hu__sticky { position: sticky; top: 72px; height: calc(100vh - 72px); height: calc(100svh - 72px); min-height: 540px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; padding-top: clamp(20px, 4.5vh, 52px); }
   .hu__glow { position: absolute; inset: -20% -10% auto; height: 120%; background:
       radial-gradient(50% 40% at 50% 62%, rgba(111, 195, 236, 0.28), transparent 70%),
-      radial-gradient(40% 30% at 80% 10%, rgba(244, 180, 58, 0.12), transparent 70%); pointer-events: none; }
+      radial-gradient(40% 30% at 80% 10%, rgba(255, 174, 92, 0.12), transparent 70%); pointer-events: none; }
   .hu__text { position: relative; z-index: 2; text-align: center; opacity: calc(1 - var(--p) * 1.6); transform: translateY(calc(var(--p) * -60px)); }
   .hu__h1 { font: 600 var(--step-0)/1.4 var(--font-body); letter-spacing: 0; color: #a9bfcc; margin: 0 auto 14px; max-width: 40ch; }
-  .hu__claim { margin: 0 auto; max-width: 14ch; font-size: clamp(2.4rem, 0.6rem + 5.4vh + 1.8vw, 6rem); }
-  .hu__claim span { background: linear-gradient(90deg, var(--cool), #c9eefc 60%, var(--sun)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hu__claim { margin: 0 auto; max-width: 15ch; font-size: clamp(2.4rem, 0.6rem + 5.4vh + 1.8vw, 6rem); }
+  .hu__claim span { background: linear-gradient(90deg, #7cc8ff, #d9f0ff 45%, #ffd2a1 75%, var(--warm)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hu__cta { justify-content: center; margin-top: 26px; }
   .hu__cta .btn--ghost { color: #fff; }
   .hu__unit { position: relative; z-index: 1; align-self: center; justify-self: center; width: min(86vw, 640px, (100svh - 470px) * 2.4); margin-top: 4px;
@@ -77,7 +77,7 @@ import { site } from '../data/site';
   .hu__air { position: absolute; left: 0; right: 0; top: 88%; width: 100%; height: 34vh; pointer-events: none; }
   .hu__facts { position: relative; z-index: 2; list-style: none; margin: 0 auto; padding: 18px 0 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; color: #cfe0e8; font-weight: 600; font-size: var(--step--1); opacity: calc(1 - var(--p) * 2); }
   .hu__facts li { display: inline-flex; align-items: center; gap: 8px; }
-  .hu__facts :global(.ico) { color: var(--sun); }
+  .hu__facts :global(.ico) { color: var(--accent-dark); }
   @media (max-width: 700px) {
     .hu { height: 140vh; }
     .hu__sticky { padding-top: 24px; }

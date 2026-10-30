@@ -23,5 +23,5 @@ export const cities = [
   { slug: 'kladno', name: 'Kladno', loc: 'na Kladně', kraj: 'stredocesky-kraj', okoli: ['Unhošť', 'Buštěhrad', 'Stochov', 'Slaný', 'Velvary', 'Hostouň'],
     note: 'Na Kladně montujeme do bytů v Kročehlavech a dalších sídlištích i do novostaveb v obcích směrem k Praze. U bytových domů pomůžeme s podklady pro souhlas SVJ.' },
   { slug: 'jihlava', name: 'Jihlava', loc: 'v Jihlavě', kraj: 'kraj-vysocina', okoli: ['Třešť', 'Polná', 'Brtnice', 'Batelov', 'Luka nad Jihlavou'],
-    note: 'Jihlava leží na Vysočině ve vyšší nadmořské výšce s chladnějšími zimami. Pokud chcete klimatizací i topit, doporučujeme řady s ověřeným výkonem v mrazech, například Mitsubishi Heavy Diamond nebo Hisense Air Master.' },
+    note: 'Jihlava leží na Vysočině ve vyšší nadmořské výšce s chladnějšími zimami. Pokud chcete klimatizací i topit, doporučujeme řady s ověřeným výkonem v mrazech, například Mitsubishi Heavy Industries Diamond nebo Hisense Air Master.' },
 ];

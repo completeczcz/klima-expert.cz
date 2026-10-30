@@ -15,9 +15,9 @@ export function getStaticPaths() {
 }
 const { c } = Astro.props;
 const r = regions.find((x) => x.slug === c.kraj)!;
-const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-premium-zt', 'hisense-multi-split'].map((id) => products.find((p) => p.id === id)!);
+const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-premium-zt', 'hisense-energy-pro-x'].map((id) => products.find((p) => p.id === id)!);
 const nearby = cities.filter((x) => x.slug !== c.slug).slice(0, 11);
-const heroImg = ['room-living','room-bedroom-dark','his-winter-living','airflow-render','room-bedroom-concrete','his-wall-minimal','room-overhead','his-bedroom-mountains','room-living-titan','house-snow','his-office','his-therma-stairs','house-family','room-living'][cities.findIndex((x) => x.slug === c.slug) % 14];
+const heroImg = ['ph-family-sofa-toys','ph-couple-sofa-laughing','his-living-man','ph-senior-couple-laughing','mhi-living-shelves','ph-family-baby-floor','ph-couple-home-library','mhi-living-beige','ph-wake-up-stretch-1','his-homeoffice','ph-family-breakfast-1','mhi-bedroom-slate','ph-couple-books-laughing','mhi-living-green'][cities.findIndex((x) => x.slug === c.slug) % 14];
 const faq = [
   { q: `Kolik stojí klimatizace s montáží ${c.loc}?`, a: `Cena závisí na výkonu, řadě jednotky a délce potrubí. Přesnou nabídku vám ${c.loc} připraví partnerská firma po zaměření, zdarma a nezávazně.` },
   { q: `Montujete i v okolí města ${c.name}?`, a: `Ano, například v obcích ${c.okoli.join(', ')} a v celém kraji (${r.name}).` },
@@ -26,7 +26,7 @@ const faq = [
 ---
 <Base
   title={`Klimatizace ${c.name} – montáž klimatizace s nabídkou zdarma`.slice(0, 65)}
-  description={`Montáž klimatizace a tepelného čerpadla ${c.loc} a okolí (${c.okoli.slice(0, 3).join(', ')}). Mitsubishi Heavy a Hisense, zaměření a nabídka zdarma.`.slice(0, 158)}
+  description={`Montáž klimatizace a tepelného čerpadla ${c.loc} a okolí (${c.okoli.slice(0, 3).join(', ')}). Mitsubishi Heavy Industries a Hisense, zaměření a nabídka zdarma.`.slice(0, 158)}
   crumbs={[{ name: r.name, href: `/montaz-klimatizace/${r.slug}/` }, { name: c.name, href: `/montaz-klimatizace/${r.slug}/${c.slug}/` }]}
   schema={[{ '@context': 'https://schema.org', '@type': 'Service', name: `Montáž klimatizace ${c.loc}`, provider: { '@id': 'https://klima-expert.cz/#firma' }, areaServed: { '@type': 'City', name: c.name } }]}
 >

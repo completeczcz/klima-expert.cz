@@ -161,6 +161,16 @@ const { gtmId, ga4Id, adsId } = site.analytics;
         }, { threshold: 0.15 });
         forms.forEach(function (f) { io.observe(f); });
       })();
+      // Ve vloženém náhledu (iframe) se po prokliku zachovávala pozice posunu rodičovské stránky – nová stránka začne nahoře.
+      (function () {
+        try {
+          var n = performance.getEntriesByType('navigation')[0];
+          if (window.top !== window && !location.hash && (!n || n.type === 'navigate')) {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollIntoView({ block: 'start' });
+          }
+        } catch (e) {}
+      })();
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
         if (a && window.gtag) gtag('event', a.href.indexOf('tel:') === 0 ? 'phone_click' : 'email_click');
@@ -173,7 +183,7 @@ const { gtmId, ga4Id, adsId } = site.analytics;
   .crumbs { display: flex; flex-wrap: wrap; gap: 0.5em; padding-top: 18px; font-size: var(--step--1); color: var(--ink-soft); }
   .crumbs a { color: var(--ink-soft); }
   .mini { display: flex; justify-content: space-between; align-items: center; min-height: 68px; }
-  .mini__tel { font-weight: 800; text-decoration: none; font-size: var(--step-1); }
+  .mini__tel { font-weight: 700; text-decoration: none; font-size: var(--step-1); }
   .mini-f { background: var(--ink); color: #c4d6df; padding: 24px 0; font-size: var(--step--1); }
   .mini-f a, .mini-f button { color: #e7f0f4; margin-left: 14px; background: none; border: 0; font: inherit; cursor: pointer; text-decoration: underline; }
   .sticky-cta { display: none; }

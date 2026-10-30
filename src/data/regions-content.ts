@@ -58,7 +58,7 @@ export const regionContent: Record<string, { intro: string; housing: string; cli
     intro: 'Na Vysočině montujeme do rodinných domů a bytů v Jihlavě, Třebíči, Havlíčkově Brodě, Žďáru nad Sázavou, Pelhřimově a v obcích po celém kraji.',
     housing: 'Převažují rodinné domy, často starší, kde se řeší výměna kotle na tuhá paliva. U takových domů je před návrhem tepelného čerpadla důležité posoudit zateplení a otopnou soustavu.',
     climate: 'Vysočina leží výš než většina republiky a zimy jsou tu delší a chladnější. Tepelné čerpadlo i klimatizace na topení proto musí mít dostatečný výkon v mrazech.',
-    tip: 'Pro vytápění klimatizací vybírejte řady s provozem do −20 °C a níž, například Mitsubishi Heavy Diamond nebo Hisense Air Master.',
+    tip: 'Pro vytápění klimatizací vybírejte řady s provozem do −20 °C a níž, například Mitsubishi Heavy Industries Diamond nebo Hisense Air Master.',
   },
   'jihomoravsky-kraj': {
     intro: 'V Jihomoravském kraji montujeme do bytů v Brně i do rodinných domů na Znojemsku, Břeclavsku, Hodonínsku, Vyškovsku a Blanensku.',

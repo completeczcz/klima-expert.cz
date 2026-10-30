@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 ---
 <section class="section ap" aria-labelledby="ap-h" style="background:#fff">
   <div class="wrap ap__in">
-    <div class="ap__phone" data-reveal="scale"><Img name="app-phone" alt="Ovládání klimatizace v mobilní aplikaci" sizes="(max-width: 860px) 60vw, 360px" /></div>
+    <div class="ap__phone" data-reveal="scale"><Img name="his-pxw-wifi-control" alt="Ovládání klimatizace z mobilního telefonu" sizes="(max-width: 860px) 92vw, 620px" /></div>
     <div data-reveal data-reveal-delay="1">
       <p class="kicker">Chytré ovládání</p>
       <h2 id="ap-h" class="display">Doma bude chladno dřív, než dorazíte.</h2>
@@ -18,9 +18,9 @@ import Icon from './Icon.astro';
   </div>
 </section>
 <style>
-  .ap__in { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
-  .ap__phone { justify-self: center; width: min(100%, 340px); }
+  .ap__in { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .ap__phone { width: 100%; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow); }
   .ap__phone :global(img) { width: 100%; height: auto; display: block; }
   .ap__feats { margin-top: 28px; }
-  @media (max-width: 860px) { .ap__in { grid-template-columns: 1fr; } .ap__phone { width: 56vw; } }
+  @media (max-width: 860px) { .ap__in { grid-template-columns: 1fr; } .ap__phone { width: 100%; } }
 </style>

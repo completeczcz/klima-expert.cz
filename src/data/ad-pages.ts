@@ -3,7 +3,7 @@ import { site } from './site';
 export const pages = {
   klimatizace: {
     typ: 'klimatizace-byt',
-    img: 'mhi-zt-black',
+    img: 'mhi-zsx-wb',
     title: 'Klimatizace s montáží – nabídka zdarma',
     h1: 'Klimatizace s montáží. Nezávazná nabídka zdarma.',
     lead: 'Tichá klimatizace Mitsubishi Heavy Industries nebo Hisense do bytu, domu i kanceláře. Montáž zajistí ověřená firma z vašeho kraje.',
@@ -16,7 +16,7 @@ export const pages = {
   },
   'tepelne-cerpadlo': {
     typ: 'tepelne-cerpadlo',
-    img: 'his-therma-set',
+    img: 'his-therma-integra',
     title: 'Tepelné čerpadlo vzduch-voda – nabídka zdarma',
     h1: 'Tepelné čerpadlo pro váš dům. Návrh a nabídka zdarma.',
     lead: 'Tepelná čerpadla vzduch-voda Hisense Hi-Therma pro vytápění a ohřev vody. Navrhneme výkon podle domu a pomůžeme s programem Nová zelená úsporám.',

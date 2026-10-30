@@ -1,7 +1,7 @@
 ---
 import Landing from '../../layouts/Landing.astro';
 import { products } from '../../data/products';
-const series = ['mhi-diamond-zsx', 'hisense-air-master', 'mhi-multisplit-scm', 'hisense-multi-split', 'mhi-parapetni-srf', 'mhi-kanalova-srr', 'hisense-lcac-konzolova']
+const series = ['mhi-diamond-zsx', 'hisense-air-master', 'hisense-energy-pro-x', 'mhi-parapetni-srf', 'mhi-kanalova-srr', 'hisense-lcac-konzolova']
   .map((id) => products.find((p) => p.id === id)!).filter(Boolean);
 const faq = [
   { q: 'Vyplatí se klimatizací v rodinném domě i topit?', a: 'Ano, zejména v přechodném období a jako doplněk k hlavnímu vytápění. Moderní jednotky topí ještě při −15 až −25 °C a vyrobí z 1 kWh elektřiny 4 až 5 kWh tepla. Pokud klimatizace nahrazuje hlavní zdroj tepla, může spadat i pod program Nová zelená úsporám. Více v článku <a href="/blog/topeni-klimatizaci/">topení klimatizací</a>.' },
@@ -12,11 +12,11 @@ const faq = [
 ---
 <Landing
   title="Klimatizace do rodinného domu s montáží"
-  description="Klimatizace do rodinného domu: chlazení podkroví i celého domu, multisplit nebo samostatné jednotky a úsporné přitápění. Mitsubishi Heavy a Hisense s montáží."
+  description="Klimatizace do rodinného domu: chlazení podkroví i celého domu a úsporné přitápění. Mitsubishi Heavy Industries a Hisense s montáží."
   h1="Klimatizace do rodinného domu"
   lead="Ochlaďte podkroví, ložnice i obývací pokoj a v zimě levně přitápějte. Navrhneme rozmístění jednotek pro celý dům a partnerská firma vše namontuje."
   points={['Chlazení podkroví a více místností najednou', 'V zimě topí i při mrazech do −20 °C', 'Nástěnné, parapetní i skryté kanálové jednotky']}
-  image="his-winter-living"
+  image="ph-family-floor-play-1"
   feats={[{"i": "home", "t": "Celý dům", "d": "Podkroví, patro i obývák."}, {"i": "snow", "t": "Topí v mrazu", "d": "Řady do −20 °C a níž."}, {"i": "ac", "t": "Skryté jednotky", "d": "Kanálové a parapetní varianty."}, {"i": "leaf", "t": "Úspora energie", "d": "Účinnost až A+++."}]}
   preset="klimatizace-dum"
   crumbs={[{ name: 'Klimatizace', href: '/klimatizace/' }, { name: 'Do domu', href: '/klimatizace/do-domu/' }]}
@@ -36,7 +36,7 @@ const faq = [
       </div>
       <div>
         <h2>Klimatizace jako úsporné topení</h2>
-        <p>Klimatizace v domě nemusí jen chladit. Invertorová jednotka funguje jako tepelné čerpadlo vzduch-vzduch a umí topit s nízkou spotřebou. Na jaře a na podzim tak nemusíte zapínat kotel a v zimě můžete přitápět v místnostech, kde je chladněji. Řady Mitsubishi Heavy Diamond a Premium ZT nebo Hisense Air Master topí i při −20 °C a nižších teplotách.</p>
+        <p>Klimatizace v domě nemusí jen chladit. Invertorová jednotka funguje jako tepelné čerpadlo vzduch-vzduch a umí topit s nízkou spotřebou. Na jaře a na podzim tak nemusíte zapínat kotel a v zimě můžete přitápět v místnostech, kde je chladněji. Řady Mitsubishi Heavy Industries Diamond a Premium ZT nebo Hisense Air Master topí i při −20 °C a nižších teplotách.</p>
         <h2>Kolik stojí klimatizace do domu</h2>
         <p>U domu bývá montáž jednodušší než v bytovém domě, protože je víc možností, kam umístit venkovní jednotku. Cenu ovlivní hlavně počet místností, řada jednotek a délka rozvodů. Výkon vám doporučí <a href="/cena-klimatizace/">kalkulačka výkonu</a>, nabídku připraví partnerská firma zdarma.</p>
         <p>Hledáte náhradu kotle? Podívejte se na <a href="/tepelna-cerpadla/">tepelná čerpadla vzduch-voda</a>, která vytápí celý dům a ohřívají i teplou vodu.</p>

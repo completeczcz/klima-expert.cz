@@ -1,0 +1,78 @@
+---
+// Dvě značky odděleně: velká dlaždice s logem a vlastní přehlídka řad pod každou.
+import Img from './Img.astro';
+import ProductRail from './ProductRail.astro';
+import Icon from './Icon.astro';
+import { products, brandMeta } from '../data/products';
+import { site } from '../data/site';
+const pick = (ids: string[]) => ids.map((id) => products.find((p) => p.id === id)!).filter(Boolean);
+const brands = [
+  {
+    slug: 'mitsubishi-heavy-industries', name: 'Mitsubishi Heavy Industries', img: 'mhi-zsx-wall2',
+    claim: 'Japonská preciznost.', text: `Velmi tiché a úsporné jednotky s tradicí od roku 1884. Záruka ${site.warranty.mhi} let.`,
+    rail: pick(['mhi-diamond-zsx', 'mhi-premium-zt', 'mhi-premium-zs', 'mhi-standard-plus-ztl', 'mhi-standard-zsp', 'mhi-diamond-zr', 'mhi-parapetni-srf']),
+  },
+  {
+    slug: 'hisense', name: 'Hisense', img: 'his-pxb-3d-airflow',
+    claim: 'Chytrá a dostupná.', text: `Moderní design, ovládání z telefonu a topení až do −22 °C. Záruka ${site.warranty.hisense} roky.`,
+    rail: pick(['hisense-energy-pro-x', 'hisense-air-master', 'hisense-uni-pure', 'hisense-wings-comfort', 'hisense-hi-smart', 'hisense-hi-therma-integra', 'hisense-hi-therma-monoblok']),
+  },
+];
+---
+<section class="section bs" id="vyber" aria-labelledby="bs-h">
+  <div class="wrap">
+    <div class="bs__head center" data-reveal>
+      <p class="kicker">Mitsubishi Heavy Industries a Hisense</p>
+      <h2 id="bs-h" class="display">Dvě značky, kterým věříme.</h2>
+    </div>
+    <div class="bs__tiles">
+      {brands.map((b) => {
+        const m = brandMeta[b.slug];
+        return (
+          <a class="bs__tile" href={`/znacky/${b.slug}/`} style={`--brand:${m.color}`} data-reveal>
+            <Img name={b.img} alt={`Klimatizace ${b.name}`} sizes="(max-width: 800px) 92vw, 580px" />
+            <span class="bs__txt">
+              <img src={m.logoWhite} alt={b.name} height="30" width={Math.round(30 * m.ratio)} />
+              <strong>{b.claim}</strong>
+              <span>{b.text}</span>
+              <span class="bs__go">O značce <Icon name="arrow" size={18} /></span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+  {brands.map((b, i) => {
+    const m = brandMeta[b.slug];
+    return (
+      <div class="bs__rail" style={`--brand:${m.color}`}>
+        <div class="wrap bs__railhead" data-reveal>
+          <img src={m.logo} alt={b.name} height="26" width={Math.round(26 * m.ratio)} />
+          <a class="link-arrow" href={`/produkty/#${b.slug}`}>Všechny řady <Icon name="arrow" size={18} /></a>
+        </div>
+        <ProductRail items={b.rail} id={`rail-${i}`} />
+      </div>
+    );
+  })}
+</section>
+
+<style>
+  .bs { background: var(--paper); }
+  .bs__head { margin-bottom: clamp(28px, 4vw, 48px); }
+  .bs__head .display { font-size: clamp(2.2rem, 1.3rem + 3.4vw, 4.4rem); }
+  .bs__tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .bs__tile { position: relative; display: block; aspect-ratio: 5 / 4; border-radius: var(--radius-xl); overflow: hidden; color: #fff; text-decoration: none; isolation: isolate; border-bottom: 5px solid var(--brand); }
+  .bs__tile > :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.2s var(--ease); }
+  .bs__tile:hover > :global(img) { transform: scale(1.05); }
+  .bs__tile::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.25)); }
+  .bs__txt { position: absolute; inset: auto 0 0; padding: clamp(20px, 3vw, 34px); display: grid; gap: 8px; }
+  .bs__txt img { height: 30px; width: auto; margin-bottom: 6px; }
+  .bs__txt strong { font: 700 var(--step-3)/1.05 var(--font-head); letter-spacing: -0.02em; }
+  .bs__txt > span { color: rgba(255, 255, 255, 0.85); max-width: 40ch; }
+  .bs__go { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: #fff !important; }
+  .bs__rail { padding-top: clamp(40px, 5vw, 64px); }
+  .bs__railhead { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid var(--brand); }
+  .bs__railhead img { height: 26px; width: auto; }
+  .bs__railhead .link-arrow { color: var(--brand); }
+  @media (max-width: 800px) { .bs__tiles { grid-template-columns: 1fr; } .bs__tile { aspect-ratio: 4 / 3; } }
+</style>
