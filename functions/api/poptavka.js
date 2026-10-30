@@ -76,6 +76,7 @@ export async function onRequestPost({ request, env }) {
   const ip = request.headers.get('cf-connecting-ip') || '';
 
   // Turnstile (pokud je nastaven)
+  let captchaNote = null;
   if (env.TURNSTILE_SECRET) {
     const token = raw['cf-turnstile-response'];
     const body = new FormData();
@@ -84,7 +85,9 @@ export async function onRequestPost({ request, env }) {
     body.append('remoteip', ip);
     const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
     const out = await r.json().catch(() => ({}));
-    if (!out.success) return fail('captcha', 403);
+    // Neúspěšné ověření poptávku nezahodí (některé prohlížeče a rozšíření Turnstile blokují),
+    // jen ji označí ke kontrole. Proti spamu dál chrání honeypot a limit na IP.
+    if (!out.success) captchaNote = 'Ověření Turnstile neprošlo – zkontrolovat, zda nejde o spam.';
   }
 
   // Jednoduchý limit: max 5 poptávek z jedné IP za hodinu
@@ -104,11 +107,11 @@ export async function onRequestPost({ request, env }) {
   let id = 0;
   if (env.DB) {
     const res = await env.DB.prepare(
-      `INSERT INTO leads (typ, detail, psc, obec, kraj, termin, jmeno, telefon, email, poznamka, zdroj_stranky, kampan, gclid, ip_hash, user_agent)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO leads (typ, detail, psc, obec, kraj, termin, jmeno, telefon, email, poznamka, zdroj_stranky, kampan, gclid, ip_hash, user_agent, poznamka_interni)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(d.typ, JSON.stringify(detail), d.psc, d.obec, d.kraj, d.termin, d.jmeno, d.telefon, d.email, d.poznamka,
-        d.zdroj_stranky, d.kampan, d.gclid, ipHash, (request.headers.get('user-agent') || '').slice(0, 300))
+        d.zdroj_stranky, d.kampan, d.gclid, ipHash, (request.headers.get('user-agent') || '').slice(0, 300), captchaNote)
       .run();
     id = res.meta?.last_row_id ?? 0;
   }
@@ -131,8 +134,8 @@ export async function onRequestPost({ request, env }) {
       }).catch(() => null);
     const from = env.NOTIFY_FROM || 'Klima Expert <poptavky@klima-expert.cz>';
     await Promise.all([
-      send({ from, to: env.NOTIFY_TO.split(',').map((s) => s.trim()), reply_to: d.email, subject: `Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`, html }),
-      d.email && send({
+      send({ from, to: env.NOTIFY_TO.split(',').map((s) => s.trim()), reply_to: d.email, subject: `${captchaNote ? '[ke kontrole] ' : ''}Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`, html }),
+      d.email && !captchaNote && send({
         from, to: [d.email], subject: 'Děkujeme za poptávku – Klima Expert',
         html: `<p>Dobrý den, ${esc(d.jmeno)},</p><p>děkujeme za poptávku (${esc(TYPE_LABEL[d.typ])}, ${esc(d.obec)}). Ozveme se vám do 1 pracovního dne a domluvíme další postup. Poptávku předáme jedné partnerské montážní firmě z vašeho kraje, která připraví zaměření a cenovou nabídku zdarma.</p><p>S pozdravem<br>Klima Expert<br>klima-expert.cz</p>`,
       }),
