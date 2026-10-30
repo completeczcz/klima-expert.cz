@@ -1,5 +1,15 @@
 # Klima Expert – nasazení a provoz
 
+## Aktuální stav (30. 10. 2026)
+- Cloudflare účet completeczcz, projekt **Workers & Pages → klima-expert** napojený na GitHub `completeczcz/klima-expert.cz` (větev `main`, každý push = nové nasazení).
+- Adresa projektu: https://klima-expert.pages.dev, vlastní domény `klima-expert.cz` a `www.klima-expert.cz` (www → bez www přesměrováno 301).
+- D1 databáze `klima-expert-db` (tabulky leads, partners), vazba `DB` je ve `wrangler.toml`.
+- Tajné proměnné v projektu: `NOTIFY_TO`, `IP_SALT`, `TURNSTILE_SECRET`, `ADMIN_TOKEN`, `ADMIN_EMAILS`.
+- Turnstile widget „klima-expert.cz“ (veřejný klíč v `src/data/site.ts`).
+- Doména u Forpsi: DNSSEC vypnut, nameservery přepnuty na `aldo.ns.cloudflare.com` a `meera.ns.cloudflare.com` (NSSET KLIMA-EXPERT-CF).
+- Email Routing: pravidlo `info@klima-expert.cz` → `ps@completecz.cz` (zapne se po aktivaci zóny).
+- Zbývá: e-maily o nových poptávkách (Resend: `RESEND_API_KEY`, `NOTIFY_FROM` + DNS záznamy), Google Analytics/Ads ID, Search Console.
+
 Web je statický (Astro) a běží na **Cloudflare Pages**. Formuláře zpracovávají **Pages Functions** (`functions/api/…`) a poptávky se ukládají do databáze **Cloudflare D1**. Žádný server ke správě.
 
 ## 1. Propojení s GitHubem (jednorázově, ~5 min)
