@@ -3,7 +3,7 @@ import Img from './Img.astro';
 ---
 <section class="cs" aria-labelledby="cs-h">
   <div class="cs__media" data-scrub="pass" data-reduce-p="0.5">
-    <Img name="ph-house-winter-2" alt="Rodinný dům v zimě" sizes="100vw" class="cs__img" />
+    <Img name="his-winter-living" alt="Útulný obývací pokoj, venku sníh" sizes="100vw" class="cs__img" />
   </div>
   <div class="wrap cs__text">
     <div data-reveal>
@@ -17,7 +17,7 @@ import Img from './Img.astro';
 <style>
   .cs { position: relative; background: #2a1d17; color: #fff; overflow: hidden; display: grid; min-height: min(92vh, 860px); }
   .cs__media { --p: 0.5; position: absolute; inset: 0; }
-  .cs__media :global(.cs__img) { width: 100%; height: 118%; object-fit: cover; object-position: 60% 50%; transform: translateY(calc((var(--p) - 0.5) * -14%)); display: block; }
+  .cs__media :global(.cs__img) { width: 100%; height: 118%; object-fit: cover; object-position: 50% 45%; transform: translateY(calc((var(--p) - 0.5) * -14%)); display: block; }
   .cs::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 14, 10, 0.78), rgba(20, 14, 10, 0.25) 55%, transparent); }
   .cs__text { position: relative; z-index: 1; align-self: center; padding-block: 80px; }
   .cs__text > div { max-width: 560px; }
