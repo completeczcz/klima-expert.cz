@@ -15,10 +15,12 @@ const { typ, heading = 'Získejte nabídku zdarma', note = '', id = 'sf' } = Ast
   <label><span>E-mail <span class="muted">(nepovinné)</span></span><input name="email" type="email" autocomplete="email" maxlength="120" /></label>
   <label class="sf__c"><input type="checkbox" name="souhlas" value="ano" required /><span>Beru na vědomí, že poptávku předáte jedné partnerské montážní firmě. <a href="/ochrana-osobnich-udaju/" target="_blank">Ochrana údajů</a></span></label>
   <div style="position:absolute;left:-9999px" aria-hidden="true"><input name="web" tabindex="-1" autocomplete="off" /></div>
+  {site.turnstileSiteKey && <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-language="cs" data-size="flexible"></div>}
   <button class="btn btn--sun" type="submit">Chci nezávaznou nabídku</button>
   <p class="sf__msg small" role="alert" hidden></p>
   <p class="small muted sf__n">Zdarma a nezávazně. Ozveme se {site.responseTime}.</p>
 </form>
+{site.turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
 <script>
   document.querySelectorAll<HTMLFormElement>('form[data-shortform]').forEach((f) => {
     f.addEventListener('submit', async (e) => {

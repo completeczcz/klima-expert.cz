@@ -29,7 +29,7 @@ export const site = {
     adsId: '', // AW-XXXXXXXXX
     adsLeadLabel: '', // conversion label pro odeslanou poptávku
   },
-  turnstileSiteKey: '', // Cloudflare Turnstile – veřejný klíč
+  turnstileSiteKey: '0x4AAAAAAFsZNSh4hbxF6CB7', // Cloudflare Turnstile – veřejný klíč
 };
 
 export const regions = [

@@ -6,4 +6,4 @@ compatibility_date = "2026-10-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "klima-expert-db"
-database_id = "DOPLNIT-PO-VYTVORENI-DATABAZE"
+database_id = "ea4ccfaf-b94f-4865-b7b3-59e1f44388a5"
