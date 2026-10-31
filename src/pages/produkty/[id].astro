@@ -6,10 +6,12 @@ import Faq from '../../components/Faq.astro';
 import Img from '../../components/Img.astro';
 import Icon from '../../components/Icon.astro';
 import QuickStart from '../../components/QuickStart.astro';
+import Degree from '../../components/Degree.astro';
 import { products, tierLabel, catLabel, useLabel, kw, brandMeta, type Series } from '../../data/products';
 import manifest from '../../data/images.json';
 import { imgFor } from '../../data/product-images';
 import { site } from '../../data/site';
+import { existsSync } from 'node:fs';
 
 export function getStaticPaths() {
   return products.map((s) => ({ params: { id: s.id }, props: { s } }));
@@ -43,6 +45,13 @@ const unitsOf = (m: { code: string | null; outdoor: string | null }) => {
 };
 const rows = s.models.map((m) => ({ m, ...unitsOf(m) }));
 const hasIndoor = rows.some((r) => r.ind);
+// Technický list z ceníku COMPLETE CZ (ceny odstraněné): public/ke-stazeni/technicky-list-<id>.pdf
+const sheetHref = `/ke-stazeni/technicky-list-${s.id}.pdf`;
+const hasSheet = existsSync(`public${sheetHref}`);
+// Řady, které lze zapojit i jako vnitřní jednotky multisplitu (podle ceníků)
+const multiOk = ['mhi-diamond-zsx', 'mhi-diamond-zr', 'mhi-premium-zs', 'mhi-standard-zsp', 'mhi-parapetni-srf', 'mhi-kanalova-srr', 'mhi-kazetova-fdtc',
+  'hisense-air-master', 'hisense-energy-pro-x', 'hisense-uni-pure', 'hisense-wings-comfort', 'hisense-lcac-kazetova', 'hisense-lcac-kanalova', 'hisense-lcac-konzolova', 'hisense-lcac-parapetne-podstropni'].includes(s.id);
+const multiSheet = s.brandSlug === 'hisense' ? '/ke-stazeni/technicky-list-hisense-multisplit.pdf' : '/ke-stazeni/technicky-list-mhi-multisplit.pdf';
 const shortName = s.title.replace(/^(Mitsubishi Heavy Industries|Hisense) /, '');
 
 // Ikona podle obsahu vlastnosti
@@ -227,15 +236,22 @@ const faq = isTc
         </div>
         <p class="small muted">Vhodná plocha je orientační pro běžnou místnost do výšky stropu 2,7 m. Slunné místnosti a podkroví potřebují vyšší výkon.</p>
         <p class="small muted">Vhodné pro: {s.uses.map((u) => useLabel[u]).join(', ')}.{s.wifi && ` Wi-Fi: ${s.wifi}.`}</p>
-        {pi.sheets && (
+        {multiOk && (
+          <div class="msnote">
+            <span class="msnote__ico"><Icon name="grid" size={24} /></span>
+            <div>
+              <strong>Chcete klimatizovat víc pokojů?</strong>
+              <p>Vnitřní jednotky {shortName} lze zapojit i do multisplitu: jedna venkovní jednotka {s.brand} pro 2 až 5 místností. <a href="/klimatizace/multisplit/">Jak multisplit funguje</a> · <a href={multiSheet} target="_blank" rel="noopener">technický list multisplitu {s.brand} (PDF)</a></p>
+            </div>
+          </div>
+        )}
+        {hasSheet && (
           <div class="sheets">
-            {pi.sheets.map((d) => (
-              <a class="sheet" href={d.href} target="_blank" rel="noopener" data-track="datasheet">
-                <span class="sheet__ico"><Icon name="doc" size={22} /></span>
-                <span><strong>{d.label}</strong><small>PDF · rozměry, hlučnost, účinnost</small></span>
-                <Icon name="arrow" size={18} />
-              </a>
-            ))}
+            <a class="sheet" href={sheetHref} target="_blank" rel="noopener" data-track="datasheet">
+              <span class="sheet__ico"><Icon name="doc" size={22} /></span>
+              <span><strong>Technický list {shortName}</strong><small>PDF · výkony, rozměry, hlučnost, účinnost</small></span>
+              <Icon name="arrow" size={18} />
+            </a>
           </div>
         )}
       </div>
@@ -257,6 +273,8 @@ const faq = isTc
   )}
 
   <section class="section offer">
+    <Degree rings={5} style="width:min(680px,80vw);left:-220px;bottom:-260px;opacity:.22" />
+    <Degree rings={3} style="width:260px;right:6%;top:-90px;opacity:.18" />
     <div class="wrap offer__in">
       <div data-reveal>
         <p class="kicker">Cena na míru</p>
@@ -326,6 +344,10 @@ const faq = isTc
   .story__n { display: inline-block; font: 700 0.9rem/1 var(--font-head); color: var(--brand); letter-spacing: 0.08em; margin-bottom: 14px; padding: 6px 10px; border-radius: 999px; background: var(--brand-tint); }
   .story__txt h3 { font: 700 clamp(1.6rem, 1.1rem + 1.6vw, 2.5rem)/1.1 var(--font-head); letter-spacing: -0.02em; margin: 0 0 14px; }
   .story__txt p { color: var(--ink-soft); font-size: var(--step-1); line-height: 1.5; margin: 0; max-width: 38ch; }
+  .msnote { display: flex; gap: 16px; align-items: flex-start; margin-top: 24px; padding: 18px 22px; border-radius: 20px; background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--brand); }
+  .msnote__ico { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-tint); color: var(--brand); }
+  .msnote strong { font: 700 var(--step-1)/1.2 var(--font-head); }
+  .msnote p { margin: 4px 0 0; color: var(--ink-soft); }
   .tcode { font-variant-numeric: tabular-nums; white-space: nowrap; }
   .tplus { display: none; }
   .sheets { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
@@ -347,7 +369,8 @@ const faq = isTc
   .scene::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14, 34, 51, 0.65), transparent 50%); }
   .scene__cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding-bottom: clamp(24px, 5vw, 56px); color: #fff; }
   .scene__cap .display { max-width: 16ch; font-size: clamp(2rem, 1.2rem + 3.2vw, 4rem); margin: 0; }
-  .offer { background: linear-gradient(180deg, var(--white), var(--ice)); }
+  .offer { position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, var(--white), var(--ice)); }
+  .offer__in { position: relative; z-index: 1; }
   .offer__in { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
   .offer__in > * { min-width: 0; }
   .rel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }

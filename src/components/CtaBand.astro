@@ -1,12 +1,14 @@
 ---
 import { site } from '../data/site';
+import Degree from './Degree.astro';
 interface Props { title?: string; text?: string }
 const {
   title = 'Pošlete nezávaznou poptávku',
   text = 'Popište, co potřebujete. Partnerská montážní firma z vašeho kraje se ozve, domluví zaměření a připraví cenovou nabídku zdarma.',
 } = Astro.props;
 ---
-<section class="ctab section--ink">
+<section class="ctab section--ink" data-dark>
+  <Degree tone="light" rings={5} style="width:min(620px,70vw);right:-140px;top:-200px;opacity:.16" />
   <div class="wrap ctab__in">
     <div>
       <h2>{title}</h2>
@@ -20,8 +22,6 @@ const {
 </section>
 <style>
   .ctab { padding-block: clamp(48px, 7vw, 88px); position: relative; overflow: hidden; }
-  .ctab::after { content: ''; position: absolute; right: -120px; top: -160px; width: 520px; height: 520px; border-radius: 50%;
-    background: repeating-radial-gradient(circle, transparent 0 34px, rgba(127, 166, 184, 0.28) 35px 36px); pointer-events: none; }
   .ctab__in { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: center; }
   .ctab h2 { color: var(--paper); }
   .ctab .lead { margin: 0; }

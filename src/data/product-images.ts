@@ -7,8 +7,6 @@ export interface PImg {
   gallery?: { img: string; t: string; d?: string }[];
   /** Jak to funguje: velké obrázky střídavě s textem (inspirace hisense-klima.cz). */
   story?: { img: string; t: string; d: string }[];
-  /** Technické listy bez cen (PDF v public/ke-stazeni). */
-  sheets?: { href: string; label: string }[];
 }
 const proxWhite = [
   { img: 'his-pxw-3d-airflow', t: '3D proudění', d: 'Vzduch se rozprostře do celé místnosti, ne na vás.' },
@@ -32,7 +30,6 @@ const uni = [
 ];
 const hpOne = { img: 'hk-r290-hydro', t: 'Vše v jedné venkovní jednotce.', d: 'Výměník, čerpadlo i expanzní nádoba jsou uvnitř monobloku. Doma se připojí jen voda, bez práce s chladivem, takže je montáž rychlejší.' };
 const hpApp = { img: 'hk-hp-app', t: 'Každá místnost podle vás.', d: 'Teplotu lze řídit nezávisle až v 7–8 místnostech a dvou topných okruzích (podlahovka i radiátory). Spotřebu a nastavení máte v aplikaci.' };
-const hpSheet = { href: '/ke-stazeni/hisense-tepelna-cerpadla.pdf', label: 'Brožura tepelných čerpadel Hi-Therma' };
 export const productImages: Record<string, PImg> = {
   'mhi-diamond-zsx': { img: 'mhi-zsx-white', scene: 'mhi-living-shelves', sceneCap: 'Ladí s každým interiérem.', variants: [
     { label: 'Bílá', img: 'mhi-zsx-white', swatch: '#f4f6f7' }, { label: 'Černobílá', img: 'mhi-zsx-wb', swatch: 'linear-gradient(180deg,#f4f6f7 55%,#1c1f22 55%)' }, { label: 'Titanová', img: 'mhi-zsx-titan', swatch: '#b9b4a1' }],
@@ -49,7 +46,7 @@ export const productImages: Record<string, PImg> = {
       { img: 'mhi-mother-bed', t: 'Čistý vzduch pro celou rodinu.', d: 'Filtr Allergen Clear a fotokatalytický deodorační filtr zachytí pyl, prach i pachy. Program pro odstranění alergenů navíc vyčistí vnitřek jednotky.' },
     ] },
   'mhi-premium-zs': { img: 'mhi-zs-white', scene: 'mhi-living-beige', sceneCap: 'Ladí s každým interiérem.', variants: [
-    { label: 'Bílá', img: 'mhi-zs-white', swatch: '#f4f6f7' }, { label: 'Titanová', img: 'mhi-zs-titan', swatch: '#9a958c' }] },
+    { label: 'Bílá', img: 'mhi-zs-white', swatch: '#f4f6f7' }, { label: 'Černobílá', img: 'mhi-zs-wb', swatch: 'linear-gradient(180deg,#f4f6f7 55%,#1c1f22 55%)' }, { label: 'Titanová', img: 'mhi-zs-titan', swatch: '#b9b4a1' }] },
   'mhi-diamond-zr': { img: 'mhi-zr', scene: 'mhi-living-loft', sceneCap: 'Chlad dosáhne do celé místnosti.' },
   'mhi-standard-plus-ztl': { img: 'mhi-ztl', scene: 'mhi-living-mint', sceneCap: 'Příjemný vzduch v celém bytě.' },
   'mhi-standard-zsp': { img: 'mhi-zsp', scene: 'mhi-bedroom-concrete2', sceneCap: 'Klidný spánek i v tropických nocích.' },
@@ -65,8 +62,7 @@ export const productImages: Record<string, PImg> = {
       { img: 'hk-am-quiet', t: 'Od 18 dB(A). Tišší než šepot.', d: 'Tichý ventilátor a vzduchový kanál navržený podle zákonů akustiky. Neruší při spánku ani při práci.' },
       { img: 'hk-am-voice', t: 'Ovládání hlasem i z telefonu.', d: 'Teplotu, režim i rychlost ventilátoru změníte hlasem (anglické povely), dálkovým ovladačem nebo v aplikaci ConnectLife odkudkoliv.' },
     ],
-    gallery: [{ img: 'hk-am-kitchen', t: 'V kuchyni', d: 'Příjemně i při vaření v parném létě.' }],
-    sheets: [{ href: '/ke-stazeni/hisense-air-master.pdf', label: 'Technický list Air Master' }] },
+    gallery: [{ img: 'hk-am-kitchen', t: 'V kuchyni', d: 'Příjemně i při vaření v parném létě.' }] },
   'hisense-energy-pro-x': { img: 'his-energyprox-white', scene: 'his-living-man', sceneCap: 'Pohodlí, na které si rychle zvyknete.', variants: [
     { label: 'Bílá', img: 'his-energyprox-white', swatch: '#f4f6f7' }, { label: 'Černá', img: 'his-energyprox-black', swatch: '#2a2e33' }],
     story: [
@@ -80,8 +76,7 @@ export const productImages: Record<string, PImg> = {
     gallery: [
       { img: 'hk-px-life-1', t: 'V ložnici', d: 'Klidný spánek i v tropické noci.' },
       { img: 'hk-px-life-2', t: 'Bílé provedení', d: 'Čisté linie do světlého interiéru.' },
-      ...proxWhite, ...proxBlack],
-    sheets: [{ href: '/ke-stazeni/hisense-energy-pro-x.pdf', label: 'Technický list Energy Pro X' }] },
+      ...proxWhite, ...proxBlack] },
   'hisense-uni-pure': { img: 'his-unipure', scene: 'his-uni-smart-airflow', sceneCap: 'Příjemné teplo i v mrazivé zimě.', gallery: uni,
     story: [
       { img: 'hk-uni-nano', t: 'Hi-NANO pro zdravý vzduch.', d: 'Ionizátor podle testů výrobce zachytí až 60 % částic PM2.5 a během dvou hodin výrazně sníží množství virů a bakterií ve vzduchu.' },
@@ -89,8 +84,7 @@ export const productImages: Record<string, PImg> = {
       { img: 'hk-uni-install', t: 'Promyšlená montáž.', d: 'Odnímatelný panel a montážní opěrky dávají technikovi dost místa na připojení potrubí. Montáž je rychlejší a čistší.' },
       { img: 'hk-uni-app', t: 'Spotřeba pod kontrolou.', d: 'Aplikace měří spotřebu elektřiny v reálném čase, takže víte, kolik vás chlazení nebo topení stojí.' },
       { img: 'hk-uni-pcb', t: 'Odolná venkovní jednotka.', d: 'Silnější antikorozní nátěr elektroniky, antikorozní šrouby a utěsněná skříňka chrání jednotku před vlhkem i hmyzem.' },
-    ],
-    sheets: [{ href: '/ke-stazeni/hisense-unipure.pdf', label: 'Technický list Unipure' }] },
+    ] },
   'hisense-wings-comfort': { img: 'his-wings', scene: 'hk-mc-kitchen', sceneCap: 'Ladí s každým interiérem.' },
   'hisense-hi-smart': { img: 'his-hismart', scene: 'his-homeoffice', sceneCap: 'Příjemně i při práci z domova.',
     story: [{ img: 'hk-wifi', t: 'Ovládání z telefonu.', d: 'Teplotu, režim i rychlost ventilátoru nastavíte v aplikaci ConnectLife, klidně cestou domů.' }] },
@@ -100,20 +94,18 @@ export const productImages: Record<string, PImg> = {
   'hisense-lcac-parapetne-podstropni': { img: '', scene: 'his-terrace-office', sceneCap: 'Pro velké prostory bez podhledu.' },
   'hisense-lcac-konzolova': { img: '', scene: 'his-winter-living', sceneCap: 'Teplo u podlahy, kde ho cítíte.' },
   'hisense-hi-therma-monoblok': { img: 'his-therma-monoblok', scene: 'house-snow', sceneCap: 'Teplo pro celý dům.',
-    story: [hpApp], sheets: [hpSheet] },
+    story: [hpApp] },
   'hisense-hi-therma-split': { img: 'his-therma-split-idu', scene: 'his-therma-stairs', sceneCap: 'Teplo pro celý dům.', gallery: [
     { img: 'his-therma-odu', t: 'Venkovní jednotka', d: 'Tichá, s ochranou proti povětrnostním vlivům.' }],
-    story: [hpApp], sheets: [hpSheet] },
+    story: [hpApp] },
   'hisense-hi-therma-integra': { img: 'his-therma-integra', scene: 'his-therma-stairs', sceneCap: 'Teplo i teplá voda z jednoho místa.',
     story: [
       { img: 'hk-integra-tank', t: 'Zásobník a hydrobox v jednom.', d: 'Zabere až o 30 % méně místa a hodí se i na chodbu, když nemáte technickou místnost. Zásobník z nerezové oceli DUPLEX vydrží roky bez starostí.' },
-      hpApp],
-    sheets: [hpSheet] },
+      hpApp] },
   'hisense-hi-therma-smart-r290': { img: 'his-therma-r290', scene: 'his-therma-green', sceneCap: 'Přírodní chladivo R290.',
     story: [
       { img: 'hk-r290-temp', t: 'Plný výkon i v mrazu.', d: 'Při −7 °C dává stále 100 % topného výkonu a vodu ohřeje až na 75 °C. Hodí se do novostaveb s podlahovkou i do starších domů s radiátory.' },
       { img: 'hk-r290-frost', t: 'Nezamrzne.', d: 'Spodní část výměníku i vana jsou vyhřívané, takže se na jednotce netvoří led ani v tuhé zimě.' },
-      hpOne, hpApp],
-    sheets: [{ href: '/ke-stazeni/hisense-hi-therma-r290.pdf', label: 'Technický list Hi-Therma R290' }, hpSheet] },
+      hpOne, hpApp] },
 };
 export const imgFor = (id: string) => productImages[id] ?? { img: '' };

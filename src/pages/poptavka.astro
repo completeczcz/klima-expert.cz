@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Degree from '../components/Degree.astro';
 import { site, regions } from '../data/site';
 ---
 <Base
@@ -8,7 +9,9 @@ import { site, regions } from '../data/site';
   crumbs={[{ name: 'Poptávka', href: '/poptavka/' }]}
   hideStickyCta
 >
-  <section class="section pq">
+  <section class="section pq" style="position:relative;overflow:hidden;isolation:isolate">
+    <Degree rings={5} style="width:min(720px,90vw);right:-260px;top:-240px;opacity:.18;z-index:-1" />
+    <Degree rings={3} style="width:300px;left:-120px;bottom:-80px;opacity:.14;z-index:-1" />
     <div class="wrap pq__in">
       <div class="pq__intro">
         <h1>Nezávazná poptávka</h1>

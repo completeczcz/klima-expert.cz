@@ -8,6 +8,7 @@ import CtaBand from '../components/CtaBand.astro';
 import Steps from '../components/Steps.astro';
 import Img from '../components/Img.astro';
 import Icon from '../components/Icon.astro';
+import Degree from '../components/Degree.astro';
 import { brandMeta, type Series } from '../data/products';
 
 interface Feat { i: string; t: string; d: string }
@@ -46,6 +47,7 @@ const serviceSchema = {
 <Base title={title} description={description} crumbs={crumbs} schema={[serviceSchema, ...schema]}>
   <section data-dark class:list={["lh", { "lh--brand": bm }]} data-scrub="pass" data-reduce-p="0.5" style={bstyle}>
     <div class="lh__bg"><Img name={image} alt="" sizes="100vw" eager /></div>
+    <Degree tone="light" rings={5} style="width:min(720px,90vw);right:-200px;bottom:-300px;opacity:.14" />
     <div class="wrap lh__in">
       <div class="lh__txt" data-reveal>
         {bm && <img class="lh__brand" src={bm.logoWhite} alt="" height="34" width={Math.round(34 * bm.ratio)} />}

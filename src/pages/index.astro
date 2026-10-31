@@ -103,7 +103,7 @@ const why = [
   <section class="section section--night why" aria-labelledby="why-h">
     <div class="wrap">
       <div class="why__nums" data-reveal>
-        <p><strong><span data-count="2007" data-from="1990" data-plain>2007</span></strong><span>od tohoto roku výhradní distribuce Mitsubishi Heavy Industries v ČR přes partnera COMPLETE CZ</span></p>
+        <p><strong><span data-count="1">1</span> den</strong><span>ozveme se do jednoho pracovního dne od odeslání poptávky</span></p>
         <p><strong><span data-count="14">14</span></strong><span>krajů s montážními partnery</span></p>
         <p><strong><span data-count="5">5</span> let</strong><span>záruka na Mitsubishi Heavy Industries</span></p>
         <p><strong><span data-count="0">0</span> Kč</strong><span>za poptávku, zaměření a nabídku</span></p>
@@ -159,24 +159,9 @@ const why = [
   </section>
 
   <section class="section section--stage">
-    <div class="wrap"><Faq items={faq} /></div>
-  </section>
-
-  <section class="section final">
-    <div class="wrap final__in">
-      <div data-reveal>
-        <div class="final__ph"><Img name="ph-family-sofa-joy" alt="Rodina doma na pohovce" sizes="(max-width: 900px) 92vw, 560px" /></div>
-        <h2 class="display">Chcete mít doma klid a příjemný vzduch?</h2>
-        <p class="sub">Pošlete nezávaznou poptávku. Ozveme se {site.responseTime} a partnerská firma připraví nabídku zdarma.</p>
-        <p class="final__tel">Raději telefonicky? <a href={site.phoneHref}>{site.phone}</a></p>
-      </div>
-      <div data-reveal data-reveal-delay="1"><QuickStart heading="Začněte tady" /></div>
-    </div>
-  </section>
-
-  <section class="section seo">
     <div class="wrap">
-      <details class="more">
+      <Faq items={faq} />
+      <details class="more more--faq">
         <summary><span class="more__t">Klimatizace s montáží: jak vybrat a na co se připravit</span><span class="more__b" aria-hidden="true"></span></summary>
         <div class="prose">
           <p>Klima Expert pomáhá vybrat klimatizaci nebo tepelné čerpadlo značek Mitsubishi Heavy Industries a Hisense a zajišťuje montáž prostřednictvím ověřených partnerských firem ve všech krajích České republiky. Poptávka, zaměření i cenová nabídka jsou zdarma.</p>
@@ -192,9 +177,24 @@ const why = [
       </details>
     </div>
   </section>
+
+  <section class="section final">
+    <Degree rings={5} style="width:min(700px,85vw);left:-240px;top:-200px;opacity:.18" />
+    <div class="wrap final__in">
+      <div data-reveal>
+        <div class="final__ph"><Img name="ph-family-sofa-joy" alt="Rodina doma na pohovce" sizes="(max-width: 900px) 92vw, 560px" /></div>
+        <h2 class="display">Chcete mít doma klid a příjemný vzduch?</h2>
+        <p class="sub">Pošlete nezávaznou poptávku. Ozveme se {site.responseTime} a partnerská firma připraví nabídku zdarma.</p>
+        <p class="final__tel">Raději telefonicky? <a href={site.phoneHref}>{site.phone}</a></p>
+      </div>
+      <div data-reveal data-reveal-delay="1"><QuickStart heading="Začněte tady" /></div>
+    </div>
+  </section>
+
 </Base>
 
 <style>
+  .more--faq { max-width: 78ch; margin: 28px 0 0; box-shadow: none; border: 1px solid var(--line); }
   .qband { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(60% 70% at 85% 30%, var(--ice), transparent 70%), radial-gradient(50% 60% at 0% 100%, #eef5ff, transparent 70%), var(--white); }
   .qband :global(.qband__deg) { z-index: -1; }
   .qband :global(.qband__deg--a) { width: clamp(460px, 50vw, 760px); right: -14%; top: -26%; opacity: 0.32; }
@@ -241,7 +241,8 @@ const why = [
   .post__cat { font-size: var(--step--1); font-weight: 600; color: var(--sun-deep); }
   .post h3 { font-size: var(--step-1); font-weight: 700; margin: 0; }
   .post p { color: var(--ink-soft); margin: 0; font-size: var(--step--1); }
-  .final { background: linear-gradient(180deg, var(--white), var(--ice)); }
+  .final { position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, var(--white), var(--ice)); }
+  .final__in { position: relative; z-index: 1; }
   .final__in { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
   .final__in > * { min-width: 0; }
   .final .display { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4rem); }

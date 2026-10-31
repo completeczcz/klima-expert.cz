@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Img from '../../components/Img.astro';
+import Degree from '../../components/Degree.astro';
 import { products, brandMeta } from '../../data/products';
 import { site } from '../../data/site';
 
@@ -31,7 +32,8 @@ const brands = [
   description="Přehled řad klimatizací a tepelných čerpadel Mitsubishi Heavy Industries a Hisense rozdělený podle značky: výkony, hlučnost, výbava a montáž po celé ČR."
   crumbs={[{ name: 'Produkty', href: '/produkty/' }]}
 >
-  <section class="section" style="padding-top:24px;padding-bottom:32px">
+  <section class="section" style="padding-top:24px;padding-bottom:32px;position:relative;overflow:hidden;isolation:isolate">
+    <Degree rings={5} style="width:min(640px,80vw);right:-180px;top:-220px;opacity:.2;z-index:-1" />
     <div class="wrap">
       <div class="section__head">
         <h1 class="display">Vyberte si značku.</h1>

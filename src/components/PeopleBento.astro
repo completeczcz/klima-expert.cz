@@ -2,7 +2,7 @@
 // Lidská stránka: k čemu klimatizace doma je. Fotky lidí v bento mřížce.
 import Img from './Img.astro';
 const tiles = [
-  { img: 'mhi-family-dining', t: 'Celá rodina v pohodě, i když je venku 34 °C.', big: true, pos: '50% 40%' },
+  { img: 'mhi-family-dining', t: 'Celá rodina v pohodě, i když je venku 34 °C.', big: true, pos: '78% 40%' },
   { img: 'ph-wake-up-stretch-1', t: 'Ráno odpočatí i po tropické noci.', pos: '50% 35%' },
   { img: 'ph-home-office-window', t: 'Práce z domova v klidu a chládku.', pos: '50% 50%' },
 ];
@@ -27,20 +27,19 @@ const tiles = [
 
 <style>
   .pb { background: var(--white); }
-  .pb__head { max-width: 760px; margin-bottom: clamp(28px, 4vw, 48px); }
-  .pb__head .display { font-size: clamp(2.2rem, 1.3rem + 3.4vw, 4.4rem); }
-  .pb__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .pb__t { position: relative; margin: 0; border-radius: 28px; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 3; }
-  .pb__t--big { grid-column: 1 / -1; aspect-ratio: 7 / 3; }
+  .pb__head { max-width: 760px; margin-bottom: clamp(22px, 3vw, 36px); }
+  .pb__head .display { font-size: clamp(2rem, 1.2rem + 2.8vw, 3.6rem); }
+  .pb__grid { display: grid; grid-template-columns: 1.7fr 1fr 1fr; grid-auto-rows: clamp(220px, 22vw, 300px); gap: 14px; }
+  .pb__t { position: relative; margin: 0; border-radius: 24px; overflow: hidden; isolation: isolate; }
   .pb__t :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.4s var(--ease); }
   .pb__t:hover :global(img) { transform: scale(1.04); }
   .pb__t::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent 50%); }
-  .pb__t figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 26px; color: #fff; font: 700 var(--step-1)/1.2 var(--font-head); letter-spacing: -0.01em; }
-  .pb__t--big figcaption { font-size: var(--step-3); padding: clamp(22px, 3vw, 40px); max-width: 20ch; }
+  .pb__t figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 20px; color: #fff; font: 700 var(--step-0)/1.25 var(--font-head); letter-spacing: -0.01em; }
+  .pb__t--big figcaption { font-size: var(--step-2); padding: clamp(20px, 2.4vw, 30px); max-width: 20ch; }
   @media (max-width: 800px) {
-    .pb__grid { grid-template-columns: 1fr; gap: 12px; }
-    .pb__t, .pb__t--big { aspect-ratio: 4 / 3; border-radius: 22px; }
-    .pb__t--big :global(img) { object-position: 66% 40% !important; }
-    .pb__t figcaption, .pb__t--big figcaption { font-size: var(--step-1); padding: 16px 18px; }
+    .pb__grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; gap: 10px; }
+    .pb__t--big { grid-column: 1 / -1; grid-row: span 1; }
+    .pb__t, .pb__t--big { border-radius: 18px; }
+    .pb__t figcaption, .pb__t--big figcaption { font-size: 0.92rem; padding: 12px 14px; }
   }
 </style>

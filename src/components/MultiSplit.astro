@@ -3,13 +3,17 @@
 // variant="full" = podrobně (stránka /klimatizace/multisplit/), "teaser" = pozvánka na úvodní stránce.
 import Img from './Img.astro';
 import Icon from './Icon.astro';
+import { brandMeta } from '../data/products';
+import { site } from '../data/site';
+const mhi = brandMeta['mitsubishi-heavy-industries'];
+const his = brandMeta.hisense;
 interface Props { variant?: 'full' | 'teaser' }
 const { variant = 'full' } = Astro.props;
 const cards = [
   { img: 'hk-ms-rooms', t: '2 až 5 pokojů, jedna venkovní jednotka', d: 'Obývák, ložnice, dětský pokoj i pracovna mají příjemně a na fasádě visí jediné zařízení.' },
   { img: 'hk-ms-combo', t: 'Každý pokoj podle sebe', d: 'Nástěnná, parapetní u podlahy, kazetová do podhledu nebo úplně skrytá kanálová. Jednotky libovolně kombinujete a každá má vlastní teplotu i ovladač.' },
   { img: 'hk-ms-space', t: 'Méně techniky na fasádě', d: 'Ocení to SVJ, sousedé i památkáři. Méně prostupů zdí a kratší montáž venku.' },
-  { img: 'hk-ms-heat', t: 'Topí i v zimě', d: 'Venkovní jednotky mají vyhřívanou vanu a spolehlivě topí do −20 °C. V jaru a na podzim ušetříte za plyn.' },
+  { img: 'hk-ms-heat', t: 'Topí i v zimě', d: 'Venkovní jednotky spolehlivě topí i v mrazu (podle značky do −15 až −20 °C). Na jaře a na podzim ušetříte za plyn.' },
 ];
 ---
 {variant === 'teaser' ? (
@@ -23,6 +27,7 @@ const cards = [
         <p class="kicker">Multisplit</p>
         <h2 id="mst-h" class="display">Klimatizace do více pokojů.</h2>
         <p class="sub">Jedna venkovní jednotka zvládne až pět místností. Každý pokoj má vlastní jednotku, teplotu i ovladač. Na fasádě přitom visí jen jedno zařízení.</p>
+        <div class="mst__brands"><span>Nabízíme od obou značek</span><img src={mhi.logo} alt="Mitsubishi Heavy Industries" height="20" width={Math.round(20 * mhi.ratio)} /><img src={his.logo} alt="Hisense" height="20" width={Math.round(20 * his.ratio)} /></div>
         <ul class="mst__pts">
           <li><Icon name="home" size={22} />2 až 5 místností najednou</li>
           <li><Icon name="grid" size={22} />Nástěnné, parapetní i skryté jednotky dohromady</li>
@@ -54,6 +59,22 @@ const cards = [
           </article>
         ))}
       </div>
+      <div class="msf__brands" data-reveal>
+        <h3>Multisplit od Mitsubishi Heavy Industries i Hisense</h3>
+        <p class="muted">Obě značky, které montujeme, mají vlastní multisplit. Vnitřní jednotky se vždy kombinují s venkovní jednotkou stejné značky.</p>
+        <div class="msf__bgrid">
+          <div class="msf__b" style={`--brand:${mhi.color}`}>
+            <img src={mhi.logo} alt="Mitsubishi Heavy Industries" height="26" width={Math.round(26 * mhi.ratio)} />
+            <ul><li>Venkovní jednotky SCM pro 2 až 5 místností</li><li>Nástěnné řady Diamond, Premium i Standard, parapetní, kanálové a kazetové jednotky</li><li>Záruka {site.warranty.mhi} let</li></ul>
+            <a href="/ke-stazeni/technicky-list-mhi-multisplit.pdf" target="_blank" rel="noopener"><Icon name="doc" size={18} /> Technický list (PDF)</a>
+          </div>
+          <div class="msf__b" style={`--brand:${his.color}`}>
+            <img src={his.logo} alt="Hisense" height="26" width={Math.round(26 * his.ratio)} />
+            <ul><li>Venkovní jednotky pro 2 až 5 místností, topení do −20 °C</li><li>Nástěnné Air Master, Energy Pro X, Uni Pure, Wings Comfort a kazetové, kanálové i konzolové jednotky</li><li>Záruka {site.warranty.hisense} roky</li></ul>
+            <a href="/ke-stazeni/technicky-list-hisense-multisplit.pdf" target="_blank" rel="noopener"><Icon name="doc" size={18} /> Technický list (PDF)</a>
+          </div>
+        </div>
+      </div>
       <div class="msf__how" data-reveal>
         <h3>Jak postupujeme</h3>
         <ol>
@@ -61,7 +82,7 @@ const cards = [
           <li><b>2</b><span><strong>Technik navrhne sestavu</strong>Vybere venkovní jednotku s rezervou a typ vnitřní jednotky do každého pokoje.</span></li>
           <li><b>3</b><span><strong>Montáž obvykle za 1–2 dny</strong>Rozvody vedeme co nejkratší cestou a čistě, v lištách nebo ve zdi.</span></li>
         </ol>
-        <p class="small muted">Snímky: Hisense. Multisplit montujeme od Mitsubishi Heavy Industries i Hisense. Katalogy Hisense: <a href="/ke-stazeni/hisense-multisplit.pdf" target="_blank" rel="noopener">venkovní jednotky (PDF)</a>, <a href="/ke-stazeni/hisense-multisplit-vnitrni-jednotky.pdf" target="_blank" rel="noopener">vnitřní jednotky (PDF)</a>.</p>
+        <p class="small muted">Ilustrační snímky: Hisense.</p>
       </div>
     </div>
   </section>
@@ -88,6 +109,16 @@ const cards = [
   .msf__body { padding: 22px 26px 26px; }
   .msf__body h3 { font: 700 var(--step-1)/1.2 var(--font-head); margin: 0 0 8px; }
   .msf__body p { margin: 0; color: var(--ink-soft); }
+  .mst__brands { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-top: 18px; }
+  .mst__brands span { font-size: var(--step--1); font-weight: 600; color: var(--ink-soft); }
+  .mst__brands img { height: 20px; width: auto; }
+  .msf__brands { margin-top: clamp(36px, 5vw, 56px); }
+  .msf__brands h3 { font: 700 var(--step-2)/1.15 var(--font-head); margin: 0 0 6px; }
+  .msf__bgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  .msf__b { padding: 24px 26px; border-radius: 24px; background: var(--white); box-shadow: var(--shadow); border-top: 4px solid var(--brand); display: grid; gap: 14px; align-content: start; }
+  .msf__b img { height: 26px; width: auto; }
+  .msf__b ul { margin: 0; padding-left: 1.1em; color: var(--ink-soft); display: grid; gap: 6px; }
+  .msf__b a { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--brand); text-decoration: none; }
   .msf__how { margin-top: clamp(36px, 5vw, 56px); padding: clamp(24px, 4vw, 40px); border-radius: 28px; background: var(--ice); }
   .msf__how h3 { font: 700 var(--step-2)/1.1 var(--font-head); margin: 0 0 20px; }
   .msf__how ol { list-style: none; padding: 0; margin: 0 0 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -96,6 +127,6 @@ const cards = [
   .msf__how li span { display: grid; gap: 4px; color: var(--ink-soft); }
   .msf__how li strong { color: var(--ink); }
   @media (max-width: 900px) {
-    .mst__in, .msf__grid, .msf__how ol { grid-template-columns: 1fr; }
+    .mst__in, .msf__grid, .msf__how ol, .msf__bgrid { grid-template-columns: 1fr; }
   }
 </style>

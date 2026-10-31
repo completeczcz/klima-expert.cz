@@ -58,19 +58,22 @@
   "alpha": true
  },
  "mhi-zs-white": {
-  "w": 898,
-  "h": 325,
+  "w": 1135,
+  "h": 411,
   "widths": [
    480,
-   898
+   960,
+   1135
   ],
   "alpha": true
  },
  "mhi-zs-titan": {
-  "w": 437,
-  "h": 201,
+  "w": 1087,
+  "h": 399,
   "widths": [
-   437
+   480,
+   960,
+   1087
   ],
   "alpha": true
  },
@@ -85,11 +88,12 @@
   "alpha": true
  },
  "mhi-ztl": {
-  "w": 881,
-  "h": 349,
+  "w": 1138,
+  "h": 350,
   "widths": [
    480,
-   881
+   960,
+   1138
   ],
   "alpha": true
  },
@@ -111,27 +115,30 @@
   "alpha": true
  },
  "mhi-srr": {
-  "w": 562,
-  "h": 199,
+  "w": 1136,
+  "h": 402,
   "widths": [
    480,
-   562
+   960,
+   1136
   ],
   "alpha": true
  },
  "mhi-fdtc": {
-  "w": 407,
-  "h": 312,
+  "w": 703,
+  "h": 571,
   "widths": [
-   407
+   480,
+   703
   ],
   "alpha": true
  },
  "mhi-outdoor-white": {
-  "w": 269,
-  "h": 214,
+  "w": 802,
+  "h": 636,
   "widths": [
-   269
+   480,
+   802
   ],
   "alpha": true
  },
@@ -144,10 +151,11 @@
   "alpha": true
  },
  "mhi-multi-outdoor": {
-  "w": 251,
-  "h": 192,
+  "w": 739,
+  "h": 575,
   "widths": [
-   251
+   480,
+   739
   ],
   "alpha": true
  },
@@ -1954,5 +1962,15 @@
    1400
   ],
   "alpha": false
+ },
+ "mhi-zs-wb": {
+  "w": 1106,
+  "h": 407,
+  "widths": [
+   480,
+   960,
+   1106
+  ],
+  "alpha": true
  }
 }
