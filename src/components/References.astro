@@ -18,12 +18,22 @@ const rest = references.filter((r) => r !== feat);
     </div>
 
     {reviews.length > 0 && (
-      <div class="rv" data-reveal>
-        {reviews.slice(0, 3).map((r) => (
+      <div class="rv__top" data-reveal>
+        <span class="rv__stars rv__stars--lg" aria-hidden="true">★★★★★</span>
+        <span><strong>Co říkají zákazníci</strong></span>
+        {reviews.length > 3 && (
+          <span class="rv__nav">
+            <button type="button" aria-label="Předchozí recenze" data-rv="-1"><Icon name="arrow" size={18} /></button>
+            <button type="button" aria-label="Další recenze" data-rv="1"><Icon name="arrow" size={18} /></button>
+          </span>
+        )}
+      </div>
+      <div class="rv" data-reveal tabindex="0" aria-label="Recenze zákazníků">
+        {reviews.map((r) => (
           <figure class="rv__i">
             <div class="rv__stars" aria-label={`Hodnocení ${r.stars} z 5`}>{'★★★★★'.slice(0, r.stars)}<span>{'★★★★★'.slice(r.stars)}</span></div>
             <blockquote>„{r.text}“</blockquote>
-            <figcaption><strong>{r.name}</strong><span>{r.place}{r.product ? ` · ${r.product}` : ''}</span></figcaption>
+            <figcaption><span class="rv__av" aria-hidden="true">{r.name.charAt(0)}</span><span><strong>{r.name}</strong><span>{r.place}{r.product ? ` · ${r.product}` : ''}</span></span></figcaption>
           </figure>
         ))}
       </div>
@@ -60,6 +70,13 @@ const rest = references.filter((r) => r !== feat);
   </div>
 </section>
 
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-rv]').forEach((b) => b.addEventListener('click', () => {
+    const rail = b.closest('.rf')?.querySelector<HTMLElement>('.rv');
+    if (rail) rail.scrollBy({ left: Number(b.dataset.rv) * rail.clientWidth * 0.68, behavior: 'smooth' });
+  }));
+</script>
+
 <style>
   .rf { background: var(--white); }
   .rf__head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: end; margin-bottom: clamp(28px, 4vw, 44px); }
@@ -86,19 +103,29 @@ const rest = references.filter((r) => r !== feat);
   .rf__cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; margin-top: 24px; padding: 22px 26px; border-radius: 22px; background: var(--ice); }
   .rf__cta p { margin: 0; font-size: var(--step-0); }
   .rf__cta .btn { display: inline-flex; align-items: center; gap: 8px; }
-  .rv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 26px; }
-  .rv__i { margin: 0; padding: 24px; border-radius: 22px; background: var(--paper); display: grid; gap: 12px; align-content: start; }
-  .rv__stars { color: #f5a623; letter-spacing: 2px; font-size: 1.1rem; }
+  .rv__top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: var(--step-0); }
+  .rv__nav { margin-left: auto; display: flex; gap: 8px; }
+  .rv__nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--white); display: grid; place-items: center; cursor: pointer; color: var(--ink); transition: background 0.2s; }
+  .rv__nav button:hover { background: var(--ice); }
+  .rv__nav button:first-child :global(.ico) { transform: rotate(180deg); }
+  .rv { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 36px) / 3); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; margin-bottom: 28px; scrollbar-width: thin; }
+  .rv__i { margin: 0; padding: 24px; border-radius: 22px; background: var(--paper); display: grid; gap: 14px; align-content: space-between; scroll-snap-align: start; }
+  .rv__stars { color: #f5a623; letter-spacing: 2px; font-size: 1.05rem; }
+  .rv__stars--lg { font-size: 1.3rem; }
   .rv__stars span { color: var(--line); }
-  .rv blockquote { margin: 0; font-size: var(--step-0); line-height: 1.5; }
-  .rv figcaption { display: grid; gap: 2px; font-size: var(--step--1); }
-  .rv figcaption span { color: var(--ink-soft); }
+  .rv blockquote { margin: 0; font-size: var(--step-0); line-height: 1.55; }
+  .rv figcaption { display: flex; align-items: center; gap: 12px; font-size: var(--step--1); }
+  .rv figcaption > span:last-child { display: grid; gap: 1px; }
+  .rv figcaption > span:last-child > span { color: var(--ink-soft); }
+  .rv__av { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--ice); color: var(--sun-deep); font: 700 1rem/1 var(--font-head); }
   @media (max-width: 1000px) {
+    .rv { grid-auto-columns: calc((100% - 18px) / 2); }
     .rf__grid { grid-template-columns: 1fr 1fr; }
     .rf__c--feat { grid-column: 1 / -1; }
   }
   @media (max-width: 700px) {
-    .rf__head, .rv { grid-template-columns: 1fr; }
+    .rf__head { grid-template-columns: 1fr; }
+    .rv { grid-auto-columns: 86%; }
     .rf__grid { grid-template-columns: 1fr; }
     .rf__imgs :global(img) { min-height: 200px; }
   }
