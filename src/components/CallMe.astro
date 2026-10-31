@@ -1,0 +1,103 @@
+---
+// „Zavolejte mi“: krátké okno se jménem a telefonem. Otevře ho jakýkoli prvek s atributem data-callme.
+// Odesílá na /api/poptavka jako typ „zavolat“ (bez PSČ a e-mailu).
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+---
+<dialog class="cm" id="callme" aria-labelledby="cm-h">
+  <form class="cm__f" data-callme-form novalidate>
+    <button class="cm__x" type="button" aria-label="Zavřít" data-callme-close>×</button>
+    <span class="cm__ico"><Icon name="phone" size={26} /></span>
+    <h2 id="cm-h">Zavoláme vám zpět</h2>
+    <p class="cm__lead">Nechte nám číslo a ozveme se {site.responseTime}. Poradíme a domluvíme zaměření zdarma.</p>
+    <input type="hidden" name="typ" value="zavolat" />
+    <label><span>Jméno</span><input name="jmeno" required autocomplete="name" maxlength="100" /></label>
+    <label><span>Telefon</span><input name="telefon" type="tel" required autocomplete="tel" inputmode="tel" pattern="[+0-9 ]{9,17}" placeholder="+420 …" /></label>
+    <label><span>Kdy se vám to hodí?</span>
+      <select name="termin">
+        <option>Kdykoliv</option><option>Dopoledne</option><option>Odpoledne</option><option>Po 17. hodině</option>
+      </select>
+    </label>
+    <label class="cm__c"><input type="checkbox" name="souhlas" value="ano" required /><span>Souhlasím se zpracováním kontaktu pro zpětné zavolání. <a href="/ochrana-osobnich-udaju/" target="_blank">Ochrana údajů</a></span></label>
+    <div style="position:absolute;left:-9999px" aria-hidden="true"><input name="web" tabindex="-1" autocomplete="off" /></div>
+    <div class="cm__ts"></div>
+    <button class="btn btn--sun" type="submit">Zavolejte mi</button>
+    <p class="cm__msg small" role="alert" hidden></p>
+    <p class="small muted cm__alt">Nebo volejte rovnou: <a href={site.phoneHref}>{site.phone}</a></p>
+  </form>
+  <div class="cm__ok" hidden>
+    <span class="cm__ico cm__ico--ok"><Icon name="check" size={28} /></span>
+    <h2>Děkujeme, zavoláme vám.</h2>
+    <p class="cm__lead">Ozveme se {site.responseTime}. Pokud spěcháte, volejte <a href={site.phoneHref}>{site.phone}</a>.</p>
+    <button class="btn btn--ghost" type="button" data-callme-close>Zavřít</button>
+  </div>
+</dialog>
+
+<script define:vars={{ sitekey: site.turnstileSiteKey }}>
+  (() => {
+    const dlg = document.getElementById('callme');
+    if (!dlg) return;
+    const form = dlg.querySelector('[data-callme-form]');
+    const ok = dlg.querySelector('.cm__ok');
+    const msg = dlg.querySelector('.cm__msg');
+    let tsLoaded = false;
+    const loadTs = () => {
+      if (tsLoaded || !sitekey) return; tsLoaded = true;
+      window.__cmTs = () => window.turnstile && window.turnstile.render(dlg.querySelector('.cm__ts'), { sitekey, language: 'cs', size: 'flexible' });
+      if (window.turnstile) return window.__cmTs();
+      const s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__cmTs&render=explicit'; s.async = true;
+      document.head.appendChild(s);
+    };
+    const open = (e) => { e && e.preventDefault(); form.hidden = false; ok.hidden = true; dlg.showModal(); loadTs(); setTimeout(() => form.querySelector('input[name=jmeno]').focus(), 50); };
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('[data-callme]');
+      if (t) open(e);
+      if (e.target.closest('[data-callme-close]')) dlg.close();
+    });
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = 'Odesílám…'; msg.hidden = true;
+      const data = {};
+      new FormData(form).forEach((v, k) => (data[k] = String(v)));
+      try {
+        data.zdroj_stranky = location.pathname;
+        data.kampan = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map((k) => sessionStorage.getItem('ke-' + k)).filter(Boolean).join(' / ');
+        data.gclid = sessionStorage.getItem('ke-gclid') || '';
+      } catch {}
+      try {
+        const r = await fetch('/api/poptavka', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+        const o = await r.json().catch(() => ({}));
+        if (!r.ok || !o.ok) throw 0;
+        form.hidden = true; ok.hidden = false; form.reset();
+        try { window.dataLayer && window.dataLayer.push({ event: 'lead_callback' }); } catch {}
+      } catch {
+        msg.hidden = false; msg.textContent = 'Odeslání se nepodařilo. Zkontrolujte telefon, nebo nám zavolejte.';
+      }
+      btn.disabled = false; btn.textContent = 'Zavolejte mi';
+    });
+  })();
+</script>
+
+<style>
+  .cm { width: min(440px, calc(100vw - 32px)); border: 0; border-radius: 28px; padding: 0; box-shadow: 0 40px 100px -30px rgba(11, 23, 36, 0.6); color: var(--ink); }
+  .cm::backdrop { background: rgba(11, 23, 36, 0.55); backdrop-filter: blur(4px); }
+  .cm__f, .cm__ok { position: relative; display: grid; gap: 12px; padding: 30px 28px 26px; }
+  .cm__x { position: absolute; right: 14px; top: 12px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--paper); font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--ink-soft); }
+  .cm__ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--ice); color: var(--sun); }
+  .cm__ico--ok { background: #e7f7ee; color: #1a8a4a; }
+  .cm h2 { font: 700 var(--step-2)/1.15 var(--font-head); margin: 4px 0 0; }
+  .cm__lead { margin: 0 0 4px; color: var(--ink-soft); }
+  .cm label:not(.cm__c) { display: grid; gap: 5px; font-weight: 700; font-size: var(--step--1); }
+  .cm input:not([type=checkbox]), .cm select { font: inherit; font-size: var(--step-0); font-weight: 400; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); }
+  .cm input:focus, .cm select:focus { outline: none; border-color: var(--sun); box-shadow: 0 0 0 3px var(--ice-deep); }
+  .cm__c { display: flex; gap: 10px; align-items: flex-start; font-size: var(--step--1); color: var(--ink-soft); }
+  .cm__c input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--sun); flex: none; }
+  .cm .btn { width: 100%; }
+  .cm__msg { color: var(--warn); font-weight: 600; margin: 0; }
+  .cm__alt { text-align: center; margin: 0; }
+  .cm__alt a { font-weight: 700; }
+</style>

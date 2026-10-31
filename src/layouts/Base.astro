@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { site } from '../data/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CallMe from '../components/CallMe.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import Logo from '../components/Logo.astro';
 
@@ -141,6 +142,7 @@ const { gtmId, ga4Id, adsId } = site.analytics;
     {minimal ? (
       <footer class="mini-f"><div class="wrap">{site.name} – provozuje {site.company.name}, IČO {site.company.ico}. <a href="/ochrana-osobnich-udaju/">Ochrana osobních údajů</a> <a href="/cookies/">Cookies</a> <button type="button" data-open-consent>Nastavení cookies</button></div></footer>
     ) : <Footer />}
+    <CallMe />
     {!hideStickyCta && (
       <div class="sticky-cta" aria-label="Rychlý kontakt">
         <a class="btn btn--ghost" href={site.phoneHref} data-track="phone">Zavolat</a>

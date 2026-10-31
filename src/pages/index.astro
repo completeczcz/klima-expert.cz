@@ -6,17 +6,13 @@ import PeopleBento from '../components/PeopleBento.astro';
 import BrandShowcase from '../components/BrandShowcase.astro';
 import Img from '../components/Img.astro';
 import ExplodedUnit from '../components/ExplodedUnit.astro';
-import SeasonScene from '../components/SeasonScene.astro';
-import QuietMeter from '../components/QuietMeter.astro';
-import ColdSection from '../components/ColdSection.astro';
-import UseTiles from '../components/UseTiles.astro';
-import AppSection from '../components/AppSection.astro';
 import ContourMap from '../components/ContourMap.astro';
 import Steps from '../components/Steps.astro';
 import Faq from '../components/Faq.astro';
 import Icon from '../components/Icon.astro';
 import Degree from '../components/Degree.astro';
 import MultiSplit from '../components/MultiSplit.astro';
+import References from '../components/References.astro';
 import { brandMeta } from '../data/products';
 import { getCollection } from 'astro:content';
 import { site, regions } from '../data/site';
@@ -49,32 +45,25 @@ const why = [
 >
   <HeroUnit />
 
-  <PeopleBento />
+  <References />
 
-  <section class="section qband" id="poptavka-rychla">
-    <Degree class="qband__deg qband__deg--a" rings={5} />
-    <Degree class="qband__deg qband__deg--b" rings={3} />
-    <div class="wrap qband__in">
-      <div data-reveal>
-        <p class="kicker">Nezávazně a zdarma</p>
-        <h2 class="display">Řekněte nám, co potřebujete. Zbytek zařídíme.</h2>
-        <ol class="qband__steps">
-          <li><Icon name="chat" /><span><strong>Pošlete poptávku</strong>Za dvě minuty, bez registrace.</span></li>
-          <li><Icon name="ruler" /><span><strong>Zaměření zdarma</strong>Technik z vašeho kraje navrhne řešení.</span></li>
-          <li><Icon name="ac" /><span><strong>Montáž obvykle za den</strong>Čistá práce, spuštění a zaškolení.</span></li>
-        </ol>
-        <div class="qband__brands">
-          <span>Montujeme</span>
-          <img src={brandMeta['mitsubishi-heavy-industries'].logo} alt="Mitsubishi Heavy Industries" height="22" width={Math.round(22 * brandMeta['mitsubishi-heavy-industries'].ratio)} />
-          <img src={brandMeta.hisense.logo} alt="Hisense" height="22" width={Math.round(22 * brandMeta.hisense.ratio)} />
-        </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="center" data-reveal style="margin-bottom:44px">
+        <p class="kicker">Jak to probíhá</p>
+        <h2 class="display">Od poptávky ke chladu za pár dní.</h2>
       </div>
-      <div class="qband__form" data-reveal data-reveal-delay="1">
-        <div class="qband__unit" aria-hidden="true">
-          <Img name="mhi-zsx-titan" alt="" sizes="(max-width: 900px) 70vw, 420px" />
-          <span class="qband__chip"><Icon name="snow" size={16} /> 22 °C</span>
+      <Steps center />
+      <div class="pp" data-reveal>
+        <div class="pp__head">
+          <p class="kicker">Cena bez překvapení</p>
+          <h3>Kolik to bude stát? Řekneme vám to předem a zdarma.</h3>
         </div>
-        <QuickStart />
+        <div class="pp__grid">
+          <div class="pp__i"><Icon name="clock" size={26} /><strong>Nabídka do 48 hodin</strong><span>Po zaměření dostanete přesnou cenovou nabídku obvykle do dvou pracovních dnů.</span></div>
+          <div class="pp__i"><Icon name="shield" size={26} /><strong>Bez závazku</strong><span>Zaměření i nabídka jsou zdarma. Když se vám nabídka nebude líbit, nic neplatíte.</span></div>
+          <div class="pp__i"><Icon name="check" size={26} /><strong>Žádné skryté příplatky</strong><span>V nabídce je všechno: jednotka, montáž, materiál i uvedení do provozu. Cena se po montáži nemění.</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -84,21 +73,25 @@ const why = [
   <MultiSplit variant="teaser" />
 
   <ExplodedUnit />
-  <SeasonScene />
-  <QuietMeter />
-  <ColdSection />
 
-  <section class="section" aria-labelledby="use-h">
+  <section class="section bn" aria-labelledby="bn-h">
     <div class="wrap">
-      <div class="center" data-reveal style="margin-bottom:40px">
-        <p class="kicker">Pro každý prostor</p>
-        <h2 id="use-h" class="display">Kam ji potřebujete?</h2>
+      <div class="center" data-reveal style="margin-bottom:36px">
+        <p class="kicker">Co vám klimatizace dá</p>
+        <h2 id="bn-h" class="display bn__h">Příjemně celý rok. Bez starostí.</h2>
       </div>
-      <UseTiles />
+      <div class="bn__grid" data-reveal>
+        <div class="bn__i"><Icon name="moon" size={28} /><strong>Tichá jako šepot</strong><span>Vnitřní jednotky od 18–19 dB(A). Klidný spánek i v tropické noci.</span></div>
+        <div class="bn__i"><Icon name="snow" size={28} /><strong>Topí i v mrazu</strong><span>Úsporné topení až do −20 °C. Na jaře a na podzim nemusíte zapínat kotel.</span></div>
+        <div class="bn__i"><Icon name="leaf" size={28} /><strong>Úsporná</strong><span>Třída až A+++. Z 1 kWh elektřiny vyrobí 4–5 kWh tepla.</span></div>
+        <div class="bn__i"><Icon name="wifi" size={28} /><strong>Ovládání z telefonu</strong><span>Zapnete ji cestou domů a doma už je příjemně.</span></div>
+        <div class="bn__i"><Icon name="filter" size={28} /><strong>Čistší vzduch</strong><span>Filtry zachytí prach i pyl, jednotka se po vypnutí sama vysuší.</span></div>
+        <div class="bn__i"><Icon name="wrench" size={28} /><strong>Montáž obvykle za den</strong><span>Čistá práce, spuštění a zaškolení. Servis z vašeho kraje.</span></div>
+      </div>
     </div>
   </section>
 
-  <AppSection />
+  <PeopleBento />
 
   <section class="section section--night why" aria-labelledby="why-h">
     <div class="wrap">
@@ -112,16 +105,6 @@ const why = [
       <div class="feats" data-reveal>
         {why.map((w) => <div class="feat"><Icon name={w.i} /><strong>{w.t}</strong><span>{w.d}</span></div>)}
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="center" data-reveal style="margin-bottom:44px">
-        <p class="kicker">Jak to probíhá</p>
-        <h2 class="display">Od poptávky ke chladu za pár dní.</h2>
-      </div>
-      <Steps center />
     </div>
   </section>
 
@@ -195,16 +178,32 @@ const why = [
     </div>
   </section>
 
-  <section class="section final">
-    <Degree rings={5} style="width:min(700px,85vw);left:-240px;top:-200px;opacity:.18" />
-    <div class="wrap final__in">
+  <section class="section qband" id="poptavka-rychla" aria-label="Nezávazná poptávka">
+    <Degree class="qband__deg qband__deg--a" rings={5} />
+    <Degree class="qband__deg qband__deg--b" rings={3} />
+    <div class="wrap qband__in">
       <div data-reveal>
-        <div class="final__ph"><Img name="ph-family-sofa-joy" alt="Rodina doma na pohovce" sizes="(max-width: 900px) 92vw, 560px" /></div>
-        <h2 class="display">Chcete mít doma klid a příjemný vzduch?</h2>
-        <p class="sub">Pošlete nezávaznou poptávku. Ozveme se {site.responseTime} a partnerská firma připraví nabídku zdarma.</p>
-        <p class="final__tel">Raději telefonicky? <a href={site.phoneHref}>{site.phone}</a></p>
+        <p class="kicker">Nezávazně a zdarma</p>
+        <h2 class="display">Řekněte nám, co potřebujete. Zbytek zařídíme.</h2>
+        <ol class="qband__steps">
+          <li><Icon name="chat" /><span><strong>Pošlete poptávku</strong>Za dvě minuty, bez registrace.</span></li>
+          <li><Icon name="ruler" /><span><strong>Zaměření zdarma</strong>Technik z vašeho kraje navrhne řešení.</span></li>
+          <li><Icon name="ac" /><span><strong>Montáž obvykle za den</strong>Čistá práce, spuštění a zaškolení.</span></li>
+        </ol>
+        <p class="qband__call">Nechcete vyplňovat formulář? <button type="button" data-callme data-track="cta-callme-final">Zavolejte mi zpět</button> nebo volejte <a href={site.phoneHref}>{site.phone}</a>.</p>
+        <div class="qband__brands">
+          <span>Montujeme</span>
+          <img src={brandMeta['mitsubishi-heavy-industries'].logo} alt="Mitsubishi Heavy Industries" height="22" width={Math.round(22 * brandMeta['mitsubishi-heavy-industries'].ratio)} />
+          <img src={brandMeta.hisense.logo} alt="Hisense" height="22" width={Math.round(22 * brandMeta.hisense.ratio)} />
+        </div>
       </div>
-      <div data-reveal data-reveal-delay="1"><QuickStart heading="Začněte tady" /></div>
+      <div class="qband__form" data-reveal data-reveal-delay="1">
+        <div class="qband__unit" aria-hidden="true">
+          <Img name="mhi-zsx-titan" alt="" sizes="(max-width: 900px) 70vw, 420px" />
+          <span class="qband__chip"><Icon name="snow" size={16} /> 22 °C</span>
+        </div>
+        <QuickStart />
+      </div>
     </div>
   </section>
 
@@ -237,6 +236,24 @@ const why = [
   .fq__gt small { font: 700 0.74rem/1 var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--sun-deep); }
   .fq__prose { padding: 0 24px 24px; }
   .fq__prose h2 { font-size: var(--step-1); margin-top: 1.2em; }
+  .pp { margin-top: clamp(40px, 6vw, 64px); padding: clamp(24px, 4vw, 40px); border-radius: 28px; background: var(--white); box-shadow: var(--shadow); }
+  .pp__head { text-align: center; margin-bottom: 24px; }
+  .pp__head h3 { font: 700 clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem)/1.15 var(--font-head); letter-spacing: -0.02em; margin: 0; }
+  .pp__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .pp__i { display: grid; gap: 8px; align-content: start; padding: 20px; border-radius: 20px; background: var(--ice); }
+  .pp__i :global(.ico) { color: var(--sun); }
+  .pp__i strong { font: 700 var(--step-1)/1.2 var(--font-head); }
+  .pp__i span { color: var(--ink-soft); }
+  .bn { background: var(--paper); }
+  .bn__h { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); }
+  .bn__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .bn__i { display: grid; gap: 8px; align-content: start; padding: 24px; border-radius: 22px; background: var(--white); }
+  .bn__i :global(.ico) { color: var(--sun); }
+  .bn__i strong { font: 700 var(--step-1)/1.2 var(--font-head); }
+  .bn__i span { color: var(--ink-soft); }
+  .qband__call { margin: 22px 0 0; color: var(--ink-soft); }
+  .qband__call button { background: none; border: 0; padding: 0; font: inherit; font-weight: 700; color: var(--sun-deep); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .qband__call a { font-weight: 700; }
   .qband { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(60% 70% at 85% 30%, var(--ice), transparent 70%), radial-gradient(50% 60% at 0% 100%, #eef5ff, transparent 70%), var(--white); }
   .qband :global(.qband__deg) { z-index: -1; }
   .qband :global(.qband__deg--a) { width: clamp(460px, 50vw, 760px); right: -14%; top: -26%; opacity: 0.32; }
@@ -294,7 +311,7 @@ const why = [
   .final__tel a { font-weight: 700; }
   .seo { padding-block: 24px 64px; }
   @media (max-width: 900px) {
-    .qband__in, .regions, .final__in, .fq__in { grid-template-columns: 1fr; }
+    .qband__in, .regions, .final__in, .fq__in, .pp__grid, .bn__grid { grid-template-columns: 1fr; }
     .fq__side { position: static; }
     .why__nums { grid-template-columns: 1fr 1fr; }
     .posts { grid-template-columns: 1fr; }

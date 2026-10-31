@@ -1,0 +1,105 @@
+---
+// Reference: skutečné montáže (src/data/references.ts) a recenze zákazníků (src/data/reviews.ts, jen skutečné).
+import Img from './Img.astro';
+import Icon from './Icon.astro';
+import { references } from '../data/references';
+import { reviews } from '../data/reviews';
+const feat = references.find((r) => r.featured);
+const rest = references.filter((r) => r !== feat);
+---
+<section class="section rf" aria-labelledby="rf-h">
+  <div class="wrap">
+    <div class="rf__head" data-reveal>
+      <div>
+        <p class="kicker">Reference</p>
+        <h2 id="rf-h" class="display">Montáže, za kterými si stojíme.</h2>
+      </div>
+      <p class="sub">Byty, rodinné domy, kanceláře i velké komerční objekty. Tady je pár z nich.</p>
+    </div>
+
+    {reviews.length > 0 && (
+      <div class="rv" data-reveal>
+        {reviews.slice(0, 3).map((r) => (
+          <figure class="rv__i">
+            <div class="rv__stars" aria-label={`Hodnocení ${r.stars} z 5`}>{'★★★★★'.slice(0, r.stars)}<span>{'★★★★★'.slice(r.stars)}</span></div>
+            <blockquote>„{r.text}“</blockquote>
+            <figcaption><strong>{r.name}</strong><span>{r.place}{r.product ? ` · ${r.product}` : ''}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    )}
+
+    <div class="rf__grid">
+      {feat && (
+        <article class="rf__c rf__c--feat" data-reveal="scale">
+          <div class="rf__imgs">
+            <Img name={feat.img} alt={`${feat.t}: vnitřní jednotka`} sizes="(max-width: 900px) 92vw, 420px" />
+            {feat.img2 && <Img name={feat.img2} alt={`${feat.t}: venkovní jednotka`} sizes="(max-width: 900px) 46vw, 300px" />}
+          </div>
+          <div class="rf__b">
+            <span class="rf__tag">{feat.tag}</span>
+            <h3>{feat.t}</h3>
+            <dl><dt>Zařízení</dt><dd>{feat.zarizeni}</dd><dt>Rozsah</dt><dd>{feat.rozsah}</dd></dl>
+          </div>
+        </article>
+      )}
+      {rest.map((r, i) => (
+        <article class="rf__c" data-reveal data-reveal-delay={String(i % 2)}>
+          <div class="rf__img"><Img name={r.img} alt={r.t} sizes="(max-width: 900px) 92vw, 360px" /><span class="rf__tag">{r.tag}</span></div>
+          <div class="rf__b">
+            <h3>{r.t}</h3>
+            <dl><dt>Zařízení</dt><dd>{r.zarizeni}</dd><dt>Rozsah</dt><dd>{r.rozsah}</dd></dl>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="rf__cta" data-reveal>
+      <p><strong>Chcete taky takhle?</strong> Pošlete poptávku a partnerská firma z vašeho kraje navrhne řešení na míru.</p>
+      <a class="btn btn--sun" href="/poptavka/" data-track="cta-references">Chci nabídku zdarma <Icon name="arrow" size={18} /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rf { background: var(--white); }
+  .rf__head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: end; margin-bottom: clamp(28px, 4vw, 44px); }
+  .rf__head .display { font-size: clamp(2.1rem, 1.3rem + 3vw, 3.8rem); margin: 0; }
+  .rf__head .sub { margin: 0; max-width: 46ch; }
+  .rf__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .rf__c { border-radius: 24px; overflow: hidden; background: var(--paper); display: grid; grid-template-rows: auto 1fr; transition: transform 0.4s var(--ease), box-shadow 0.4s; }
+  .rf__c:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -30px rgba(14, 34, 51, 0.45); }
+  .rf__img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+  .rf__img :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .rf__tag { display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--sun); color: #fff; font: 700 0.76rem/1 var(--font-body); letter-spacing: 0.02em; }
+  .rf__img .rf__tag { position: absolute; left: 14px; top: 14px; }
+  .rf__b { padding: 18px 20px 22px; }
+  .rf__b h3 { font: 700 var(--step-1)/1.2 var(--font-head); margin: 0 0 10px; }
+  .rf__b dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: var(--step--1); }
+  .rf__b dt { font-weight: 700; color: var(--ink); }
+  .rf__b dd { margin: 0; color: var(--ink-soft); }
+  .rf__c--feat { grid-column: span 2; grid-template-rows: 1fr auto; }
+  .rf__imgs { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4px; min-height: 0; }
+  .rf__imgs :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 240px; max-height: 300px; }
+  .rf__c--feat .rf__b { padding: 22px 26px 26px; }
+  .rf__c--feat .rf__tag { margin-bottom: 10px; }
+  .rf__c--feat h3 { font-size: var(--step-2); }
+  .rf__cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; margin-top: 24px; padding: 22px 26px; border-radius: 22px; background: var(--ice); }
+  .rf__cta p { margin: 0; font-size: var(--step-0); }
+  .rf__cta .btn { display: inline-flex; align-items: center; gap: 8px; }
+  .rv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 26px; }
+  .rv__i { margin: 0; padding: 24px; border-radius: 22px; background: var(--paper); display: grid; gap: 12px; align-content: start; }
+  .rv__stars { color: #f5a623; letter-spacing: 2px; font-size: 1.1rem; }
+  .rv__stars span { color: var(--line); }
+  .rv blockquote { margin: 0; font-size: var(--step-0); line-height: 1.5; }
+  .rv figcaption { display: grid; gap: 2px; font-size: var(--step--1); }
+  .rv figcaption span { color: var(--ink-soft); }
+  @media (max-width: 1000px) {
+    .rf__grid { grid-template-columns: 1fr 1fr; }
+    .rf__c--feat { grid-column: 1 / -1; }
+  }
+  @media (max-width: 700px) {
+    .rf__head, .rv { grid-template-columns: 1fr; }
+    .rf__grid { grid-template-columns: 1fr; }
+    .rf__imgs :global(img) { min-height: 200px; }
+  }
+</style>

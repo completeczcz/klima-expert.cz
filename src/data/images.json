@@ -1987,5 +1987,53 @@
    2400
   ],
   "alpha": false
+ },
+ "ref-dum-praha-zapad": {
+  "w": 600,
+  "h": 450,
+  "widths": [
+   600
+  ],
+  "alpha": false
+ },
+ "ref-vrf-cb": {
+  "w": 600,
+  "h": 450,
+  "widths": [
+   600
+  ],
+  "alpha": false
+ },
+ "ref-kancelar-podebrady": {
+  "w": 600,
+  "h": 450,
+  "widths": [
+   600
+  ],
+  "alpha": false
+ },
+ "ref-kavarna-praha10": {
+  "w": 600,
+  "h": 450,
+  "widths": [
+   600
+  ],
+  "alpha": false
+ },
+ "ref-zt-venku": {
+  "w": 481,
+  "h": 640,
+  "widths": [
+   481
+  ],
+  "alpha": false
+ },
+ "ref-zt-uvnitr": {
+  "w": 640,
+  "h": 480,
+  "widths": [
+   640
+  ],
+  "alpha": false
  }
 }

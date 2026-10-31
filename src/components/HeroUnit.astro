@@ -1,23 +1,56 @@
 ---
-// Úvod: claim + skutečný interiér s klimatizací, ze které jemně proudí chladný vzduch.
-// Fotka je ořez RAC_2025_FRONT (Mitsubishi Heavy Industries), rámeček drží její poměr stran,
-// takže proudění je umístěné v procentech přesně pod lamelami jednotky.
+// Úvod zaměřený na poptávku: vlevo nabídka + první krok (kam klimatizaci chcete) + důvěra,
+// vpravo skutečný interiér s jemným prouděním vzduchu (bez zdržování při posouvání).
 import Img from './Img.astro';
 import Icon from './Icon.astro';
+import Degree from './Degree.astro';
+import { brandMeta } from '../data/products';
+import { site } from '../data/site';
+const tiles = [
+  { v: 'klimatizace-byt', l: 'Byt', i: 'building' },
+  { v: 'klimatizace-dum', l: 'Rodinný dům', i: 'home' },
+  { v: 'klimatizace-kancelar', l: 'Kancelář', i: 'briefcase' },
+  { v: 'tepelne-cerpadlo', l: 'Tepelné čerpadlo', i: 'heatpump' },
+];
+const mhi = brandMeta['mitsubishi-heavy-industries'];
+const his = brandMeta.hisense;
 ---
-<section class="hu" data-dark data-scrub data-reduce-p="0" aria-labelledby="hu-h">
-  <div class="hu__sticky">
-    <div class="wrap hu__text">
-      <h1 id="hu-h" class="hu__h1">Klimatizace a tepelná čerpadla s montáží po celé ČR</h1>
-      <p class="display hu__claim">Chladno v létě. Teplo v zimě. <span>Pohodlí celý rok.</span></p>
-      <div class="btn-row hu__cta">
-        <a class="btn btn--sun" href="/poptavka/" data-track="cta-hero">Chci nabídku zdarma</a>
-        <a class="btn btn--ghost" href="#vyber">Vybrat klimatizaci</a>
+<section class="hu" data-dark aria-labelledby="hu-h">
+  <Degree tone="light" rings={5} style="width:min(760px,95vw);left:-300px;bottom:-360px;opacity:.07" />
+  <div class="wrap hu__in">
+    <div class="hu__text">
+      <p class="hu__eyebrow">Chladno v létě. Teplo v zimě.</p>
+      <h1 id="hu-h" class="display hu__h1">Klimatizace s montáží po celé ČR</h1>
+      <p class="hu__lead">Nabídku a zaměření máte zdarma, ozveme se {site.responseTime}.</p>
+
+      <div class="hu__pick" role="group" aria-labelledby="hu-q">
+        <p id="hu-q" class="hu__q">Kam ji chcete?</p>
+        <div class="hu__tiles">
+          {tiles.map((t) => (
+            <a class="hu__tile" href={`/poptavka/?typ=${t.v}`} data-track={`hero-${t.v}`}>
+              <Icon name={t.i} size={26} />
+              <span>{t.l}</span>
+              <Icon name="arrow" size={16} />
+            </a>
+          ))}
+        </div>
+        <p class="hu__alt">Servis nebo čištění? <a href="/poptavka/?typ=servis">Objednat servis</a> · Raději telefonicky? <button type="button" data-callme data-track="cta-callme-hero">Zavolejte mi</button></p>
+      </div>
+
+      <ul class="hu__trust">
+        <li><Icon name="check" size={18} />Montáž po celé ČR</li>
+        <li><Icon name="check" size={18} />Záruka až {site.warranty.mhi} let</li>
+        <li><Icon name="check" size={18} />Nabídka zdarma</li>
+      </ul>
+      <div class="hu__brands">
+        <img src={mhi.logoWhite} alt="Mitsubishi Heavy Industries" height="22" width={Math.round(22 * mhi.ratio)} />
+        <img src={his.logoWhite} alt="Hisense" height="20" width={Math.round(20 * his.ratio)} />
       </div>
     </div>
+
     <div class="hu__stage">
       <div class="hu__frame">
-        <Img name="hero-room" alt="Obývací pokoj s nástěnnou klimatizací Mitsubishi Heavy Industries" sizes="(max-width: 1240px) 100vw, 1240px" eager />
+        <Img name="hero-room" alt="Obývací pokoj s nástěnnou klimatizací Mitsubishi Heavy Industries" sizes="(max-width: 900px) 92vw, 640px" eager />
         <div class="hu__air" aria-hidden="true">
           <div class="hu__cone">
             <span class="hu__haze"></span>
@@ -25,61 +58,71 @@ import Icon from './Icon.astro';
             <span class="hu__wave hu__wave--b"></span>
           </div>
         </div>
-        <span class="hu__chip"><Icon name="snow" size={18} /> 22 °C</span>
+        <span class="hu__chip"><Icon name="snow" size={16} /> 22 °C</span>
+        <span class="hu__badge"><Icon name="clock" size={18} /><span><strong>Ozveme se {site.responseTime}</strong>Partnerská firma z vašeho kraje</span></span>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .hu { --p: 0; height: 128vh; position: relative; color: #f2f6f8; background: radial-gradient(70% 50% at 50% 30%, #17293b, #0b1724 70%); }
-  .hu__sticky { position: sticky; top: 72px; height: calc(100svh - 72px); min-height: 600px; display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; padding-top: clamp(18px, 4vh, 44px); }
-  .hu__text { position: relative; z-index: 2; text-align: center; opacity: calc(1 - var(--p) * 2.4); transform: translateY(calc(var(--p) * -70px)); }
-  .hu__h1 { font: 600 var(--step-0)/1.4 var(--font-body); color: #a9bfcc; margin: 0 auto 12px; max-width: 40ch; }
-  .hu__claim { margin: 0 auto; max-width: 18ch; font-size: clamp(2.2rem, 0.4rem + 4.2vh + 2vw, 5rem); line-height: 1.02; }
-  .hu__claim span { display: block; background: linear-gradient(90deg, #7cc8ff, #d9f0ff 45%, #ffd2a1 75%, var(--warm)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hu__cta { justify-content: center; margin-top: 22px; }
-  .hu__cta .btn--ghost { color: #fff; }
+  .hu { position: relative; overflow: hidden; isolation: isolate; color: #f2f6f8; background: radial-gradient(70% 80% at 75% 40%, #1a2f45, #0b1724 70%); }
+  .hu__in { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(36px, 6vh, 72px) clamp(40px, 7vh, 80px); min-height: min(calc(100svh - 72px), 820px); }
+  .hu__in > * { min-width: 0; }
+  .hu__eyebrow { margin: 0 0 12px; font: 700 var(--step-0)/1.2 var(--font-head); background: linear-gradient(90deg, #7cc8ff, #d9f0ff 50%, #ffd2a1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hu__h1 { margin: 0; font-size: clamp(2.3rem, 1.1rem + 3vw, 4rem); line-height: 1.03; max-width: 17ch; text-wrap: balance; }
+  .hu__lead { margin: 16px 0 0; font-size: var(--step-1); color: #c9d8e2; max-width: 34ch; }
 
-  /* Fotka interiéru: při posunu se zvětší (Apple styl) */
-  .hu__stage { position: relative; display: grid; place-items: start center; padding-top: clamp(20px, 3.5vh, 40px); min-height: 0; }
-  .hu__frame { position: relative; width: min(100% - 2 * var(--gutter), 1100px);
-    aspect-ratio: 2307 / 1298; border-radius: calc(28px * (1 - min(var(--p) * 1.35, 1))); overflow: hidden;
-    transform: translateY(calc(min(var(--p) * 1.35, 1) * -46vh)) scale(calc(1 + min(var(--p) * 1.35, 1) * 0.5)); transform-origin: 50% 0;
-    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7); }
+  .hu__pick { margin-top: clamp(22px, 3.5vh, 34px); }
+  .hu__q { margin: 0 0 10px; font: 700 var(--step-0)/1.2 var(--font-body); color: #fff; }
+  .hu__tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 600px; }
+  .hu__tile { position: relative; display: grid; justify-items: start; gap: 18px; padding: 16px 14px 14px; border-radius: 18px; background: #fff; color: var(--ink); text-decoration: none; font: 700 0.98rem/1.2 var(--font-head);
+    box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.6); transition: transform 0.2s var(--ease), box-shadow 0.2s, background 0.2s; }
+  .hu__tile > :global(.ico:first-child) { color: var(--sun); }
+  .hu__tile > :global(.ico:last-child) { position: absolute; right: 12px; top: 16px; color: var(--ink-soft); opacity: 0.5; transition: transform 0.2s, opacity 0.2s; }
+  .hu__tile:hover { transform: translateY(-3px); box-shadow: 0 20px 36px -18px rgba(0, 0, 0, 0.7); background: #f4f9ff; }
+  .hu__tile:hover > :global(.ico:last-child) { transform: translateX(3px); opacity: 1; color: var(--sun); }
+  .hu__tile:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 3px; }
+  .hu__alt { margin: 12px 0 0; font-size: var(--step--1); color: #a9bfcc; }
+  .hu__alt a, .hu__alt button { color: #fff; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; font: inherit; font-weight: 650; cursor: pointer; }
+
+  .hu__trust { list-style: none; padding: 0; margin: clamp(22px, 3.5vh, 32px) 0 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 600; color: #e6eef3; }
+  .hu__trust li { display: inline-flex; align-items: center; gap: 7px; }
+  .hu__trust :global(.ico) { color: #6fd39b; }
+  .hu__brands { display: flex; align-items: center; gap: 26px; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.12); opacity: 0.9; }
+  .hu__brands img { height: 22px; width: auto; }
+
+  .hu__frame { position: relative; aspect-ratio: 2307 / 1298; border-radius: 28px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7); }
   .hu__frame > :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-
   /* Proudění: kužel pod lamelami (x 39–61 %, y 29 %), rozmazaný, s pomalými vlnami vzduchu */
-  .hu__air { position: absolute; left: 14%; width: 72%; top: 29.4%; height: 66%; filter: blur(8px); mix-blend-mode: screen; pointer-events: none; opacity: 1; }
+  .hu__air { position: absolute; left: 14%; width: 72%; top: 29.4%; height: 66%; filter: blur(6px); mix-blend-mode: screen; pointer-events: none; }
   .hu__cone { position: absolute; inset: 0; overflow: hidden; clip-path: polygon(34.5% 0, 65.5% 0, 100% 100%, 0 100%);
     -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 45%, transparent 96%); mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 45%, transparent 96%); }
   .hu__haze { position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 0%, rgba(214, 238, 255, 0.95), rgba(165, 214, 255, 0.55) 50%, rgba(140, 200, 255, 0.15) 80%, transparent 95%); }
-  /* Vlny: perioda gradientu dělí posun beze zbytku (50 % = 5 period / 4 periody), takže smyčka nemá viditelný šev */
   .hu__wave { position: absolute; left: -10%; right: -10%; top: -100%; height: 200%; will-change: transform;
     background: repeating-linear-gradient(180deg, transparent 0%, rgba(225, 243, 255, 0.75) 5%, transparent 10%);
     animation: hu-down 6s linear infinite, hu-breathe 9s ease-in-out infinite alternate; }
-  .hu__wave--b { background: repeating-linear-gradient(180deg, transparent 0%, rgba(225, 243, 255, 0.55) 6.25%, transparent 12.5%);
-    animation-duration: 9.5s, 13s; opacity: 0.7; }
+  .hu__wave--b { background: repeating-linear-gradient(180deg, transparent 0%, rgba(225, 243, 255, 0.55) 6.25%, transparent 12.5%); animation-duration: 9.5s, 13s; opacity: 0.7; }
   @keyframes hu-down { from { transform: translateY(0); } to { transform: translateY(50%); } }
   @keyframes hu-breathe { from { opacity: 0.55; } to { opacity: 1; } }
-
-  .hu__chip { position: absolute; left: 63%; top: 18%; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82); color: #1d1d1f; font: 600 0.92rem/1 var(--font-body); backdrop-filter: blur(8px); box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.4);
-    opacity: calc(1 - var(--p) * 2.5); }
+  .hu__chip { position: absolute; left: 63%; top: 18%; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85); color: #1d1d1f; font: 600 0.85rem/1 var(--font-body); backdrop-filter: blur(8px); box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.4); }
   .hu__chip :global(.ico) { color: #2b7fff; }
+  .hu__badge { position: absolute; left: 16px; bottom: 16px; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: rgba(255, 255, 255, 0.9); color: var(--ink); backdrop-filter: blur(8px); font-size: 0.8rem; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.45); }
+  .hu__badge > :global(.ico) { color: var(--sun); flex: none; }
+  .hu__badge > span { display: grid; gap: 1px; color: var(--ink-soft); }
+  .hu__badge strong { color: var(--ink); font-size: 0.86rem; }
 
-  .hu__facts { position: relative; z-index: 2; list-style: none; margin: 0 auto; padding: 16px 0 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; color: #cfe0e8; font-weight: 600; font-size: var(--step--1); opacity: calc(1 - var(--p) * 2); }
-  .hu__facts li { display: inline-flex; align-items: center; gap: 8px; }
-  .hu__facts :global(.ico) { color: var(--accent-dark); }
-
-  @media (max-width: 700px) {
-    .hu { height: 118vh; }
-    .hu__claim { font-size: clamp(2.1rem, 1.1rem + 6vw, 3rem); }
-    .hu__frame { width: calc(100% - 2 * var(--gutter)); }
-    .hu__chip { font-size: 0.78rem; padding: 6px 10px; }
-    .hu__facts { gap: 8px 16px; }
+  @media (max-width: 900px) {
+    .hu__in { grid-template-columns: 1fr; min-height: 0; padding-block: 28px 36px; gap: 26px; }
+    .hu__h1 { font-size: clamp(2.1rem, 1.2rem + 5vw, 3rem); }
+    .hu__lead { font-size: var(--step-0); }
+    .hu__tiles { grid-template-columns: 1fr 1fr; max-width: none; }
+    .hu__tile { grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 14px 12px; }
+    .hu__tile > :global(.ico:last-child) { position: static; }
+    .hu__frame { border-radius: 20px; }
+    .hu__badge { display: none; }
   }
-  :global(html.reduce) .hu { height: auto; }
-  :global(html.reduce) .hu__sticky { position: relative; height: auto; padding-bottom: 24px; }
+  @media (max-width: 380px) { .hu__tile { font-size: 0.9rem; } }
   :global(html.reduce) .hu__wave { animation: none; }
 </style>

@@ -102,6 +102,7 @@ const simple = [
 
     <div class="hdr__act">
       <a class="hdr__tel" href={site.phoneHref}><Icon name="phone" size={18} /><span>{site.phone}</span></a>
+      <button type="button" class="hdr__call" data-callme data-track="cta-callme-header">Zavolejte mi</button>
       <a class="btn btn--sun hdr__cta" href="/poptavka/" data-track="cta-header">Poptávka zdarma</a>
       <details class="hdr__menu">
         <summary aria-label="Otevřít menu"><span></span><span></span><span></span></summary>
@@ -199,9 +200,13 @@ const simple = [
   .mega__pick small { color: var(--ink-soft); font-size: 0.74rem; }
   .mega__pick strong { font: 650 0.98rem/1.2 var(--font-head); }
 
-  .hdr__act { display: flex; align-items: center; justify-content: flex-end; gap: 16px; }
+  .hdr__act { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+  .hdr__tel { margin-right: 6px; }
   .hdr__tel { display: inline-flex; align-items: center; gap: 7px; font-weight: 650; font-size: 0.95rem; text-decoration: none; white-space: nowrap; color: inherit; }
   .hdr__tel :global(.ico) { color: var(--sun); }
+  .hdr__call { white-space: nowrap; min-height: 42px; padding: 0.5em 1.05em; border-radius: 999px; border: 1.5px solid currentColor; background: transparent; color: inherit; font: 600 0.93rem/1 var(--font-body); cursor: pointer; transition: background 0.2s; }
+  .hdr__call:hover { background: rgba(0, 0, 0, 0.05); }
+  .hdr--dark .hdr__call:hover { background: rgba(255, 255, 255, 0.1); }
   .hdr__cta { white-space: nowrap; min-height: 42px; padding: 0.5em 1.15em; font-size: 0.93rem; }
 
   .hdr__menu { display: none; position: relative; }
@@ -233,5 +238,7 @@ const simple = [
     .hdr__nav { display: none; }
     .hdr__menu { display: block; }
   }
+  @media (max-width: 1360px) and (min-width: 1081px) { .hdr__tel span { display: none; } .hdr__tel { width: 42px; height: 42px; justify-content: center; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line); margin-right: 0; } }
+  @media (max-width: 640px) { .hdr__call { display: none; } }
   @media (max-width: 460px) { .hdr__cta { display: none; } }
 </style>

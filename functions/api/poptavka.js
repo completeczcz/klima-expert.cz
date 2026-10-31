@@ -24,11 +24,11 @@ const PSC_KRAJ = [
   [/^7[7-9]/, 'olomoucky-kraj'],
 ];
 const guessKraj = (psc) => (PSC_KRAJ.find(([re]) => re.test(psc.replace(/\s/g, ''))) || [])[1] || '';
-const TYPES = ['klimatizace-byt', 'klimatizace-dum', 'klimatizace-kancelar', 'tepelne-cerpadlo', 'servis'];
+const TYPES = ['klimatizace-byt', 'klimatizace-dum', 'klimatizace-kancelar', 'tepelne-cerpadlo', 'servis', 'zavolat'];
 const TYPE_LABEL = {
   'klimatizace-byt': 'Klimatizace do bytu', 'klimatizace-dum': 'Klimatizace do domu',
   'klimatizace-kancelar': 'Klimatizace do kanceláře / provozovny', 'tepelne-cerpadlo': 'Tepelné čerpadlo vzduch-voda',
-  servis: 'Servis / čištění / oprava',
+  servis: 'Servis / čištění / oprava', zavolat: 'Zavolejte mi zpět',
 };
 
 const json = (body, status = 200) =>
@@ -65,10 +65,11 @@ export async function onRequestPost({ request, env }) {
 
   // Validace
   if (!TYPES.includes(d.typ)) return fail('typ');
-  if (!/^\d{3}\s?\d{2}$/.test(d.psc)) return fail('psc');
-  const short = d.zkraceny === '1';
-  if (!d.kraj) d.kraj = guessKraj(d.psc);
-  if ((!short && !d.obec) || !d.kraj || !d.jmeno) return fail('povinne');
+  const callback = d.typ === 'zavolat';
+  if (!callback && !/^\d{3}\s?\d{2}$/.test(d.psc)) return fail('psc');
+  const short = d.zkraceny === '1' || callback;
+  if (!d.kraj && d.psc) d.kraj = guessKraj(d.psc);
+  if ((!short && !d.obec) || (!callback && !d.kraj) || !d.jmeno) return fail('povinne');
   if (!/^\+?[\d\s]{9,17}$/.test(d.telefon)) return fail('telefon');
   if ((!short || d.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return fail('email');
   if (d.souhlas !== 'ano') return fail('souhlas');
@@ -126,7 +127,9 @@ export async function onRequestPost({ request, env }) {
     const html = `<h2>Nová poptávka #${id} – ${esc(TYPE_LABEL[d.typ])}</h2><table cellpadding="6" style="border-collapse:collapse">${rows
       .map(([k, v]) => `<tr><td style="border-bottom:1px solid #ddd"><b>${esc(k)}</b></td><td style="border-bottom:1px solid #ddd">${esc(v)}</td></tr>`)
       .join('')}</table>`;
-    const subject = `${captchaNote ? '[ke kontrole] ' : ''}Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`;
+    const subject = d.typ === 'zavolat'
+      ? `${captchaNote ? '[ke kontrole] ' : ''}Zavolat zpět #${id}: ${d.jmeno}, ${d.telefon}`
+      : `${captchaNote ? '[ke kontrole] ' : ''}Poptávka #${id}: ${TYPE_LABEL[d.typ]} – ${d.obec}`;
     // 1) Cloudflare Email Routing přes Worker klima-expert-mailer (bez dalších služeb)
     if (env.MAILER) {
       const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n') + `\n\nAdministrace: https://klima-expert.cz/admin/`;
