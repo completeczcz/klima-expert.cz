@@ -158,23 +158,40 @@ const why = [
     </div>
   </section>
 
-  <section class="section section--stage">
-    <div class="wrap">
-      <Faq items={faq} />
-      <details class="more more--faq">
-        <summary><span class="more__t">Klimatizace s montáží: jak vybrat a na co se připravit</span><span class="more__b" aria-hidden="true"></span></summary>
-        <div class="prose">
-          <p>Klima Expert pomáhá vybrat klimatizaci nebo tepelné čerpadlo značek Mitsubishi Heavy Industries a Hisense a zajišťuje montáž prostřednictvím ověřených partnerských firem ve všech krajích České republiky. Poptávka, zaměření i cenová nabídka jsou zdarma.</p>
-          <h2>Jaký typ klimatizace vybrat</h2>
-          <p>Do bytů a rodinných domů se nejčastěji montují nástěnné split klimatizace. Pro více místností s jednou venkovní jednotkou slouží <a href="/klimatizace/multisplit/">multisplit</a>, do podkroví a pod okna parapetní jednotky a do kanceláří kazetové nebo kanálové jednotky skryté v podhledu. Přehled najdete v sekci <a href="/produkty/">produkty</a>.</p>
-          <h2>Jaký výkon potřebuji</h2>
-          <p>Pro běžnou místnost se počítá zhruba 100 W chladicího výkonu na m², pro slunné místnosti a podkroví více. Ložnice do 20 m² obvykle vystačí s jednotkou 2,0 až 2,5 kW. Podrobně v článku <a href="/blog/jaky-vykon-klimatizace-na-m2/">jaký výkon klimatizace na m²</a> nebo v <a href="/cena-klimatizace/">kalkulačce výkonu</a>.</p>
-          <h2>Klimatizace v bytovém domě</h2>
-          <p>Umístění venkovní jednotky na fasádu bytového domu vyžaduje souhlas SVJ nebo družstva. Moderní invertorové jednotky při správném umístění splní noční hlukový limit 40 dB před okny sousedů. Více v článku <a href="/blog/povoleni-klimatizace-svj/">povolení klimatizace a SVJ</a>.</p>
-          <h2>Topení klimatizací a tepelná čerpadla</h2>
-          <p>Klimatizace umí v zimě úsporně topit. Pro vytápění celého domu a ohřev vody slouží <a href="/tepelna-cerpadla/">tepelná čerpadla vzduch-voda</a> Hisense Hi-Therma, na která lze čerpat podporu z programu Nová zelená úsporám.</p>
+  <section class="section section--stage fq" aria-labelledby="fq-h">
+    <div class="wrap fq__in">
+      <div class="fq__side" data-reveal>
+        <p class="kicker">Poradíme</p>
+        <h2 id="fq-h" class="display">Časté dotazy</h2>
+        <p class="sub">Nejčastější otázky, které od zákazníků slýcháme. Nenajdete odpověď? Rádi poradíme osobně.</p>
+        <div class="fq__card">
+          <Degree rings={3} style="width:220px;right:-70px;top:-70px;opacity:.25" />
+          <strong>Zeptejte se nás přímo</strong>
+          <a class="fq__tel" href={site.phoneHref}><Icon name="phone" size={20} /> {site.phone}</a>
+          <a class="btn btn--sun" href="/poptavka/" data-track="cta-faq">Poslat dotaz nebo poptávku</a>
+          <span class="small muted">Ozveme se {site.responseTime}.</span>
         </div>
-      </details>
+      </div>
+      <div class="fq__list">
+        <Faq items={faq} title="" />
+        <details class="fq__guide">
+          <summary>
+            <span class="fq__gico"><Icon name="doc" size={22} /></span>
+            <span class="fq__gt"><small>Průvodce</small>Jak vybrat klimatizaci a na co se připravit</span>
+          </summary>
+          <div class="prose fq__prose">
+            <p>Klima Expert pomáhá vybrat klimatizaci nebo tepelné čerpadlo značek Mitsubishi Heavy Industries a Hisense a zajišťuje montáž prostřednictvím ověřených partnerských firem ve všech krajích České republiky. Poptávka, zaměření i cenová nabídka jsou zdarma.</p>
+            <h2>Jaký typ klimatizace vybrat</h2>
+            <p>Do bytů a rodinných domů se nejčastěji montují nástěnné split klimatizace. Pro více místností s jednou venkovní jednotkou slouží <a href="/klimatizace/multisplit/">multisplit</a>, do podkroví a pod okna parapetní jednotky a do kanceláří kazetové nebo kanálové jednotky skryté v podhledu. Přehled najdete v sekci <a href="/produkty/">produkty</a>.</p>
+            <h2>Jaký výkon potřebuji</h2>
+            <p>Pro běžnou místnost se počítá zhruba 100 W chladicího výkonu na m², pro slunné místnosti a podkroví více. Ložnice do 20 m² obvykle vystačí s jednotkou 2,0 až 2,5 kW. Podrobně v článku <a href="/blog/jaky-vykon-klimatizace-na-m2/">jaký výkon klimatizace na m²</a> nebo v <a href="/cena-klimatizace/">kalkulačce výkonu</a>.</p>
+            <h2>Klimatizace v bytovém domě</h2>
+            <p>Umístění venkovní jednotky na fasádu bytového domu vyžaduje souhlas SVJ nebo družstva. Moderní invertorové jednotky při správném umístění splní noční hlukový limit 40 dB před okny sousedů. Více v článku <a href="/blog/povoleni-klimatizace-svj/">povolení klimatizace a SVJ</a>.</p>
+            <h2>Topení klimatizací a tepelná čerpadla</h2>
+            <p>Klimatizace umí v zimě úsporně topit. Pro vytápění celého domu a ohřev vody slouží <a href="/tepelna-cerpadla/">tepelná čerpadla vzduch-voda</a> Hisense Hi-Therma, na která lze čerpat podporu z programu Nová zelená úsporám.</p>
+        </div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -194,7 +211,32 @@ const why = [
 </Base>
 
 <style>
-  .more--faq { max-width: 78ch; margin: 28px 0 0; box-shadow: none; border: 1px solid var(--line); }
+  .fq__in { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .fq__in > * { min-width: 0; }
+  .fq__side { position: sticky; top: 100px; }
+  .fq .display { font-size: clamp(2.2rem, 1.3rem + 3vw, 4rem); }
+  .fq__card { position: relative; overflow: hidden; isolation: isolate; margin-top: 28px; padding: 26px; border-radius: 24px; background: var(--white); box-shadow: var(--shadow); display: grid; gap: 14px; justify-items: start; }
+  .fq__card strong { font: 700 var(--step-1)/1.2 var(--font-head); }
+  .fq__tel { display: inline-flex; align-items: center; gap: 10px; font: 700 var(--step-2)/1 var(--font-head); color: var(--ink); text-decoration: none; }
+  .fq__tel :global(.ico) { color: var(--sun); }
+  .fq__list { display: grid; gap: 10px; }
+  .fq__list :global(.faq) { max-width: none; display: grid; gap: 10px; }
+  .fq .fq__list :global(.faq .faq__item), .fq__guide { background: var(--white); border: 0; border-radius: 18px; box-shadow: 0 1px 2px rgba(14, 34, 51, 0.06), 0 8px 24px -18px rgba(14, 34, 51, 0.35); transition: box-shadow 0.2s; }
+  .fq .fq__list :global(.faq .faq__item:hover), .fq__guide:hover { box-shadow: 0 1px 2px rgba(14, 34, 51, 0.06), 0 14px 30px -18px rgba(14, 34, 51, 0.45); }
+  .fq .fq__list :global(.faq .faq__item summary) { padding: 20px 60px 20px 24px; font-size: var(--step-0); }
+  .fq .fq__list :global(.faq .faq__item summary::after) { right: 22px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--paper); display: grid; place-items: center; font-size: 1.2rem; color: var(--sun-deep); }
+  .fq .fq__list :global(.faq .faq__item[open] summary::after) { transform: translateY(-50%) rotate(45deg); }
+  .fq .fq__list :global(.faq .faq__item p) { padding: 0 24px 6px; }
+  .fq__guide { margin-top: 8px; background: linear-gradient(135deg, var(--white), var(--ice)); }
+  .fq__guide summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 16px; padding: 20px 24px; position: relative; padding-right: 60px; }
+  .fq__guide summary::-webkit-details-marker { display: none; }
+  .fq__guide summary::after { content: '+'; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--white); display: grid; place-items: center; font: 600 1.2rem/1 var(--font-body); color: var(--sun-deep); transition: transform 0.2s; }
+  .fq__guide[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .fq__gico { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--sun); color: #fff; }
+  .fq__gt { display: grid; gap: 2px; font: 650 var(--step-0)/1.3 var(--font-head); }
+  .fq__gt small { font: 700 0.74rem/1 var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--sun-deep); }
+  .fq__prose { padding: 0 24px 24px; }
+  .fq__prose h2 { font-size: var(--step-1); margin-top: 1.2em; }
   .qband { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(60% 70% at 85% 30%, var(--ice), transparent 70%), radial-gradient(50% 60% at 0% 100%, #eef5ff, transparent 70%), var(--white); }
   .qband :global(.qband__deg) { z-index: -1; }
   .qband :global(.qband__deg--a) { width: clamp(460px, 50vw, 760px); right: -14%; top: -26%; opacity: 0.32; }
@@ -252,7 +294,8 @@ const why = [
   .final__tel a { font-weight: 700; }
   .seo { padding-block: 24px 64px; }
   @media (max-width: 900px) {
-    .qband__in, .regions, .final__in { grid-template-columns: 1fr; }
+    .qband__in, .regions, .final__in, .fq__in { grid-template-columns: 1fr; }
+    .fq__side { position: static; }
     .why__nums { grid-template-columns: 1fr 1fr; }
     .posts { grid-template-columns: 1fr; }
   }
