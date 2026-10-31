@@ -1525,5 +1525,434 @@
    2307
   ],
   "alpha": false
+ },
+ "hk-am-kitchen": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-am-smarteye": {
+  "w": 1200,
+  "h": 498,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-am-voice": {
+  "w": 1200,
+  "h": 653,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-am-90": {
+  "w": 1200,
+  "h": 561,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-am-quiet": {
+  "w": 1200,
+  "h": 678,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-am-black-side": {
+  "w": 1079,
+  "h": 595,
+  "widths": [
+   480,
+   960,
+   1079
+  ],
+  "alpha": true
+ },
+ "hk-am-white-side": {
+  "w": 1028,
+  "h": 553,
+  "widths": [
+   480,
+   960,
+   1028
+  ],
+  "alpha": true
+ },
+ "hk-px-life-1": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-life-2": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-smarteye": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-airflow": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-heating": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-nano": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-clean": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-app": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-px-black-side": {
+  "w": 2000,
+  "h": 890,
+  "widths": [
+   480,
+   960,
+   1440,
+   2000
+  ],
+  "alpha": true
+ },
+ "hk-px-white-open": {
+  "w": 2000,
+  "h": 934,
+  "widths": [
+   480,
+   960,
+   1440,
+   2000
+  ],
+  "alpha": true
+ },
+ "hk-uni-install": {
+  "w": 1920,
+  "h": 820,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "hk-uni-clean": {
+  "w": 1920,
+  "h": 742,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "hk-uni-service": {
+  "w": 1920,
+  "h": 518,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "hk-uni-nano": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "hk-uni-app": {
+  "w": 1920,
+  "h": 1080,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "hk-uni-pcb": {
+  "w": 1920,
+  "h": 940,
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "alpha": false
+ },
+ "hk-uni-side": {
+  "w": 1453,
+  "h": 642,
+  "widths": [
+   480,
+   960,
+   1453
+  ],
+  "alpha": true
+ },
+ "hk-mc-bedroom": {
+  "w": 2400,
+  "h": 1352,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "hk-mc-kitchen": {
+  "w": 2400,
+  "h": 1350,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "hk-wifi": {
+  "w": 1200,
+  "h": 741,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-uvc": {
+  "w": 1200,
+  "h": 675,
+  "widths": [
+   640,
+   1200
+  ],
+  "alpha": false
+ },
+ "hk-open-unit": {
+  "w": 1179,
+  "h": 386,
+  "widths": [
+   480,
+   960,
+   1179
+  ],
+  "alpha": true
+ },
+ "hk-ms-rooms": {
+  "w": 782,
+  "h": 449,
+  "widths": [
+   640,
+   782
+  ],
+  "alpha": false
+ },
+ "hk-ms-combo": {
+  "w": 788,
+  "h": 455,
+  "widths": [
+   640,
+   788
+  ],
+  "alpha": false
+ },
+ "hk-ms-reliable": {
+  "w": 788,
+  "h": 455,
+  "widths": [
+   640,
+   788
+  ],
+  "alpha": false
+ },
+ "hk-ms-space": {
+  "w": 780,
+  "h": 449,
+  "widths": [
+   640,
+   780
+  ],
+  "alpha": false
+ },
+ "hk-ms-heat": {
+  "w": 800,
+  "h": 449,
+  "widths": [
+   640,
+   800
+  ],
+  "alpha": false
+ },
+ "hk-ms-odu": {
+  "w": 1076,
+  "h": 752,
+  "widths": [
+   480,
+   960,
+   1076
+  ],
+  "alpha": true
+ },
+ "hk-ms-cassette": {
+  "w": 599,
+  "h": 471,
+  "widths": [
+   480,
+   599
+  ],
+  "alpha": true
+ },
+ "hk-ms-duct": {
+  "w": 668,
+  "h": 272,
+  "widths": [
+   480,
+   668
+  ],
+  "alpha": true
+ },
+ "hk-r290-hero": {
+  "w": 2000,
+  "h": 811,
+  "widths": [
+   640,
+   1280,
+   2000
+  ],
+  "alpha": false
+ },
+ "hk-r290-temp": {
+  "w": 900,
+  "h": 427,
+  "widths": [
+   640,
+   900
+  ],
+  "alpha": false
+ },
+ "hk-r290-frost": {
+  "w": 900,
+  "h": 425,
+  "widths": [
+   640,
+   900
+  ],
+  "alpha": false
+ },
+ "hk-r290-hydro": {
+  "w": 2400,
+  "h": 1328,
+  "widths": [
+   640,
+   1280,
+   1920,
+   2400
+  ],
+  "alpha": false
+ },
+ "hk-integra-tank": {
+  "w": 1026,
+  "h": 575,
+  "widths": [
+   640,
+   1026
+  ],
+  "alpha": false
+ },
+ "hk-hp-app": {
+  "w": 1026,
+  "h": 385,
+  "widths": [
+   640,
+   1026
+  ],
+  "alpha": false
+ },
+ "mhi-family-dining": {
+  "w": 1400,
+  "h": 600,
+  "widths": [
+   640,
+   1280,
+   1400
+  ],
+  "alpha": false
+ },
+ "mhi-mother-bed": {
+  "w": 1400,
+  "h": 600,
+  "widths": [
+   640,
+   1280,
+   1400
+  ],
+  "alpha": false
  }
 }

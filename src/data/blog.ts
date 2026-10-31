@@ -9,10 +9,10 @@ export const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeri
 
 // Ilustrační fotky článků podle kategorie (z podkladů výrobců)
 const pools: Record<string, string[]> = {
-  klimatizace: ['room-living-titan', 'room-bedroom-dark', 'his-bedroom-mountains', 'room-living', 'airflow-render', 'his-wall-minimal', 'room-bedroom-concrete', 'room-window', 'his-office', 'room-overhead'],
+  klimatizace: ['room-living-titan', 'room-bedroom-dark', 'his-bedroom-mountains', 'room-living', 'airflow-render', 'hk-mc-kitchen', 'room-bedroom-concrete', 'room-window', 'his-office', 'room-overhead'],
   'tepelna-cerpadla': ['house-family', 'house-snow', 'his-therma-stairs', 'his-therma-green', 'his-winter-living'],
-  znacky: ['room-living-titan', 'his-bedroom-mountains', 'outdoor-terracotta', 'his-wall-minimal'],
-  'provoz-a-servis': ['room-dining', 'his-wall-minimal', 'room-living', 'airflow-render'],
+  znacky: ['room-living-titan', 'his-bedroom-mountains', 'outdoor-terracotta', 'hk-mc-bedroom'],
+  'provoz-a-servis': ['room-dining', 'hk-mc-kitchen', 'room-living', 'airflow-render'],
 };
 // Každý článek má vlastní fotku, aby se v poradně neopakovaly.
 const byPost: Record<string, string> = {

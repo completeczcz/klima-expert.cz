@@ -17,7 +17,7 @@ const { c } = Astro.props;
 const r = regions.find((x) => x.slug === c.kraj)!;
 const series = ['mhi-premium-zs', 'hisense-uni-pure', 'mhi-premium-zt', 'hisense-energy-pro-x'].map((id) => products.find((p) => p.id === id)!);
 const nearby = cities.filter((x) => x.slug !== c.slug).slice(0, 11);
-const heroImg = ['ph-family-sofa-toys','ph-couple-sofa-laughing','his-living-man','ph-senior-couple-laughing','mhi-living-shelves','ph-family-baby-floor','ph-couple-home-library','mhi-living-beige','ph-wake-up-stretch-1','his-homeoffice','ph-family-breakfast-1','mhi-bedroom-slate','ph-couple-books-laughing','mhi-living-green'][cities.findIndex((x) => x.slug === c.slug) % 14];
+const heroImg = ['hk-mc-kitchen','ph-couple-sofa-laughing','his-living-man','ph-senior-couple-laughing','mhi-living-shelves','ph-family-baby-floor','ph-couple-home-library','mhi-living-beige','ph-wake-up-stretch-1','his-homeoffice','ph-family-breakfast-1','mhi-bedroom-slate','ph-couple-books-laughing','mhi-living-green'][cities.findIndex((x) => x.slug === c.slug) % 14];
 const faq = [
   { q: `Kolik stojí klimatizace s montáží ${c.loc}?`, a: `Cena závisí na výkonu, řadě jednotky a délce potrubí. Přesnou nabídku vám ${c.loc} připraví partnerská firma po zaměření, zdarma a nezávazně.` },
   { q: `Montujete i v okolí města ${c.name}?`, a: `Ano, například v obcích ${c.okoli.join(', ')} a v celém kraji (${r.name}).` },

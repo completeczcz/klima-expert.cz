@@ -1,0 +1,15 @@
+---
+// Dekorace podle loga: kroužek „°“ z klima°expert a soustředné obrysy kolem něj.
+// Použití: <Degree class="..." /> uvnitř prvku s position:relative; barva = currentColor.
+interface Props { class?: string; rings?: number; style?: string }
+const { class: cls = '', rings = 4, style } = Astro.props;
+const r = Array.from({ length: rings }, (_, i) => 60 + i * 46);
+---
+<svg class:list={['deg', cls]} viewBox="0 0 400 400" aria-hidden="true" focusable="false" style={style}>
+  {r.map((x, i) => <circle cx="200" cy="200" r={x} fill="none" stroke="currentColor" stroke-width="1.4" opacity={String(0.55 - i * 0.1)} stroke-dasharray={i === rings - 1 ? '2 9' : undefined} />)}
+  <circle cx="200" cy="200" r="26" fill="none" stroke="currentColor" stroke-width="12" />
+</svg>
+
+<style>
+  .deg { position: absolute; pointer-events: none; color: var(--sun); }
+</style>

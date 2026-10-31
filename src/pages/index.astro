@@ -15,6 +15,9 @@ import ContourMap from '../components/ContourMap.astro';
 import Steps from '../components/Steps.astro';
 import Faq from '../components/Faq.astro';
 import Icon from '../components/Icon.astro';
+import Degree from '../components/Degree.astro';
+import MultiSplit from '../components/MultiSplit.astro';
+import { brandMeta } from '../data/products';
 import { getCollection } from 'astro:content';
 import { site, regions } from '../data/site';
 import { cities } from '../data/cities';
@@ -49,21 +52,36 @@ const why = [
   <PeopleBento />
 
   <section class="section qband" id="poptavka-rychla">
+    <Degree class="qband__deg qband__deg--a" rings={5} />
+    <Degree class="qband__deg qband__deg--b" rings={3} />
     <div class="wrap qband__in">
       <div data-reveal>
         <p class="kicker">Nezávazně a zdarma</p>
         <h2 class="display">Řekněte nám, co potřebujete. Zbytek zařídíme.</h2>
-        <ul class="qband__steps">
+        <ol class="qband__steps">
           <li><Icon name="chat" /><span><strong>Pošlete poptávku</strong>Za dvě minuty, bez registrace.</span></li>
           <li><Icon name="ruler" /><span><strong>Zaměření zdarma</strong>Technik z vašeho kraje navrhne řešení.</span></li>
-          <li><Icon name="ac" /><span><strong>Montáž za den</strong>Čistá práce, spuštění a zaškolení.</span></li>
-        </ul>
+          <li><Icon name="ac" /><span><strong>Montáž obvykle za den</strong>Čistá práce, spuštění a zaškolení.</span></li>
+        </ol>
+        <div class="qband__brands">
+          <span>Montujeme</span>
+          <img src={brandMeta['mitsubishi-heavy-industries'].logo} alt="Mitsubishi Heavy Industries" height="22" width={Math.round(22 * brandMeta['mitsubishi-heavy-industries'].ratio)} />
+          <img src={brandMeta.hisense.logo} alt="Hisense" height="22" width={Math.round(22 * brandMeta.hisense.ratio)} />
+        </div>
       </div>
-      <div data-reveal data-reveal-delay="1"><QuickStart /></div>
+      <div class="qband__form" data-reveal data-reveal-delay="1">
+        <div class="qband__unit" aria-hidden="true">
+          <Img name="mhi-zsx-titan" alt="" sizes="(max-width: 900px) 70vw, 420px" />
+          <span class="qband__chip"><Icon name="snow" size={16} /> 22 °C</span>
+        </div>
+        <QuickStart />
+      </div>
     </div>
   </section>
 
   <BrandShowcase />
+
+  <MultiSplit variant="teaser" />
 
   <ExplodedUnit />
   <SeasonScene />
@@ -177,13 +195,26 @@ const why = [
 </Base>
 
 <style>
-  .qband { background: var(--white); }
-  .qband__in { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .qband { position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(60% 70% at 85% 30%, var(--ice), transparent 70%), radial-gradient(50% 60% at 0% 100%, #eef5ff, transparent 70%), var(--white); }
+  .qband :global(.qband__deg) { z-index: -1; }
+  .qband :global(.qband__deg--a) { width: clamp(460px, 50vw, 760px); right: -14%; top: -26%; opacity: 0.32; }
+  .qband :global(.qband__deg--b) { width: clamp(220px, 24vw, 360px); left: -9%; bottom: -18%; opacity: 0.22; }
+  .qband__in { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
   .qband__in > * { min-width: 0; }
   .qband .display { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); }
-  .qband__steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 18px; }
-  .qband__steps li { display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: center; color: var(--ink-soft); }
-  .qband__steps :global(.ico) { width: 52px; height: 52px; padding: 12px; border-radius: 16px; background: var(--ice); color: var(--ink); }
+  .qband__steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 18px; position: relative; }
+  .qband__steps::before { content: ''; position: absolute; left: 26px; top: 26px; bottom: 26px; border-left: 2px dashed var(--ice-deep); }
+  .qband__steps li { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: center; color: var(--ink-soft); }
+  .qband__steps :global(.ico) { width: 52px; height: 52px; padding: 12px; border-radius: 16px; background: var(--white); color: var(--sun); box-shadow: 0 10px 24px -14px rgba(14, 34, 51, 0.45), inset 0 0 0 1px var(--line); }
+  .qband__brands { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px; margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .qband__brands span { font-size: var(--step--1); color: var(--ink-soft); font-weight: 600; }
+  .qband__brands img { height: 22px; width: auto; }
+  .qband__form { position: relative; padding-top: clamp(70px, 9vw, 120px); }
+  .qband__unit { position: absolute; top: 0; left: 50%; width: min(78%, 420px); transform: translateX(-50%); z-index: 2; pointer-events: none; }
+  .qband__unit :global(img) { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 22px rgba(14, 34, 51, 0.25)); }
+  .qband__chip { position: absolute; right: -4%; top: 4%; display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 999px; background: var(--white); box-shadow: 0 10px 24px -12px rgba(14, 34, 51, 0.45); font: 700 0.9rem/1 var(--font-body); }
+  .qband__chip :global(.ico) { color: var(--sun); }
+  .qband__form :global(.qs) { position: relative; z-index: 1; padding-top: clamp(64px, 7vw, 84px); box-shadow: 0 40px 80px -50px rgba(14, 34, 51, 0.5); }
   .qband__steps strong { display: block; font: 700 var(--step-1)/1.2 var(--font-head); color: var(--ink); }
   .pick { padding-bottom: 48px; }
   .pick__head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }

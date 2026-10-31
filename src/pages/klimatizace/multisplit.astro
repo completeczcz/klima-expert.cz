@@ -1,5 +1,6 @@
 ---
 import Landing from '../../layouts/Landing.astro';
+import MultiSplit from '../../components/MultiSplit.astro';
 import { products, kw } from '../../data/products';
 const series = ['mhi-premium-zs', 'hisense-energy-pro-x', 'mhi-diamond-zsx', 'hisense-uni-pure'].map((id) => products.find((p) => p.id === id)!);
 const faq = [
@@ -24,6 +25,7 @@ const faq = [
   faq={faq}
   ctaTitle="Navrhneme řešení pro všechny pokoje"
 >
+  <MultiSplit slot="top" />
   <section class="copy">
     <div class="wrap copy__grid">
       <div>

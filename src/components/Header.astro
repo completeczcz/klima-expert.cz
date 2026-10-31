@@ -1,70 +1,237 @@
 ---
+// Hlavička: logo | navigace uprostřed (s rozbalovacím menu u klimatizací a tepelných čerpadel) | telefon + poptávka.
 import Logo from './Logo.astro';
-import { nav, site } from '../data/site';
+import Icon from './Icon.astro';
+import Img from './Img.astro';
+import { site } from '../data/site';
+import { brandMeta } from '../data/products';
 const path = Astro.url.pathname;
 const { dark = false } = Astro.props as { dark?: boolean };
+const cur = (href: string) => (path.startsWith(href) ? 'page' : undefined);
+const mhi = brandMeta['mitsubishi-heavy-industries'];
+const his = brandMeta.hisense;
+
+const acPlaces = [
+  { href: '/klimatizace/do-bytu/', i: 'building', t: 'Do bytu', d: 'Tichá jednotka do ložnice i obýváku' },
+  { href: '/klimatizace/do-domu/', i: 'home', t: 'Do rodinného domu', d: 'Chlazení v létě, topení v přechodném období' },
+  { href: '/klimatizace/multisplit/', i: 'grid', t: 'Do více místností', d: 'Multisplit: 2–5 pokojů, jedna venkovní jednotka' },
+  { href: '/klimatizace/do-kancelare/', i: 'briefcase', t: 'Do kanceláře a obchodu', d: 'Nástěnné, kazetové i skryté jednotky' },
+];
+const acPicks = [
+  { href: '/produkty/mhi-diamond-zsx/', img: 'mhi-zsx-titan', b: 'Mitsubishi Heavy Industries', t: 'Diamond ZSX' },
+  { href: '/produkty/hisense-air-master/', img: 'his-airmaster-black', b: 'Hisense', t: 'Air Master' },
+];
+const hp = [
+  { href: '/produkty/hisense-hi-therma-smart-r290/', t: 'Hi-Therma Monoblok R290', d: 'Přírodní chladivo, voda až 75 °C' },
+  { href: '/produkty/hisense-hi-therma-monoblok/', t: 'Hi-Therma Monoblok', d: 'Vše v jedné venkovní jednotce' },
+  { href: '/produkty/hisense-hi-therma-split/', t: 'Hi-Therma Split', d: 'Hydrobox v domě, nejvíc možností' },
+  { href: '/produkty/hisense-hi-therma-integra/', t: 'Hi-Therma Integra', d: 'Hydrobox a zásobník v jednom' },
+];
+const simple = [
+  { href: '/produkty/', label: 'Produkty' },
+  { href: '/cena-klimatizace/', label: 'Ceny' },
+  { href: '/servis-klimatizace/', label: 'Servis' },
+  { href: '/blog/', label: 'Poradna' },
+];
 ---
-<header class:list={["hdr", { "hdr--dark": dark }]}>
+<header class:list={['hdr', { 'hdr--dark': dark }]} data-hdr>
   <div class="wrap hdr__in">
-    <a href="/" class="hdr__logo" aria-label={`${site.name} – úvod`}><Logo invert={dark} /></a>
+    <a href="/" class="hdr__logo" aria-label={`${site.name} – úvod`}><span class="hdr__lg hdr__lg--d"><Logo /></span><span class="hdr__lg hdr__lg--l"><Logo invert /></span></a>
+
     <nav class="hdr__nav" aria-label="Hlavní menu">
-      {nav.map((n) => (
-        <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
-      ))}
+      <div class="hdr__item">
+        <a href="/klimatizace/" aria-current={cur('/klimatizace/')} aria-haspopup="true">Klimatizace <Icon name="chev" size={14} /></a>
+        <div class="hdr__mega">
+          <div class="wrap mega">
+            <div class="mega__col">
+              <p class="mega__h">Kam ji chcete</p>
+              <ul class="mega__list">
+                {acPlaces.map((x) => (
+                  <li><a href={x.href}><span class="mega__ico"><Icon name={x.i} size={22} /></span><span><strong>{x.t}</strong><small>{x.d}</small></span></a></li>
+                ))}
+              </ul>
+            </div>
+            <div class="mega__col">
+              <p class="mega__h">Značky</p>
+              <a class="mega__brand" href="/znacky/mitsubishi-heavy-industries/" style={`--brand:${mhi.color}`}>
+                <img src={mhi.logo} alt="Mitsubishi Heavy Industries" height="20" width={Math.round(20 * mhi.ratio)} /><small>Japonská preciznost, záruka {site.warranty.mhi} let</small>
+              </a>
+              <a class="mega__brand" href="/znacky/hisense/" style={`--brand:${his.color}`}>
+                <img src={his.logo} alt="Hisense" height="20" width={Math.round(20 * his.ratio)} /><small>Chytrá výbava za rozumnou cenu</small>
+              </a>
+              <a class="mega__more" href="/produkty/">Všechny řady <Icon name="arrow" size={16} /></a>
+            </div>
+            <div class="mega__col mega__col--picks">
+              <p class="mega__h">Oblíbené</p>
+              <div class="mega__picks">
+                {acPicks.map((x) => (
+                  <a class="mega__pick" href={x.href}>
+                    <span class="mega__pimg"><Img name={x.img} alt="" sizes="200px" /></span>
+                    <small>{x.b}</small><strong>{x.t}</strong>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hdr__item">
+        <a href="/tepelna-cerpadla/" aria-current={cur('/tepelna-cerpadla/')} aria-haspopup="true">Tepelná čerpadla <Icon name="chev" size={14} /></a>
+        <div class="hdr__mega">
+          <div class="wrap mega mega--hp">
+            <div class="mega__col">
+              <p class="mega__h">Hisense Hi-Therma vzduch-voda</p>
+              <ul class="mega__list mega__list--2">
+                {hp.map((x) => <li><a href={x.href}><span class="mega__ico"><Icon name="heatpump" size={22} /></span><span><strong>{x.t}</strong><small>{x.d}</small></span></a></li>)}
+              </ul>
+            </div>
+            <div class="mega__col">
+              <p class="mega__h">Než se rozhodnete</p>
+              <ul class="mega__links">
+                <li><a href="/tepelna-cerpadla/">Jak tepelné čerpadlo funguje</a></li>
+                <li><a href="/cena-tepelneho-cerpadla/">Kolik stojí tepelné čerpadlo</a></li>
+                <li><a href="/blog/dotace-na-tepelne-cerpadlo/">Dotace Nová zelená úsporám</a></li>
+                <li><a href="/blog/vykon-tepelneho-cerpadla/">Jaký výkon potřebuji</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {simple.map((n) => <div class="hdr__item"><a href={n.href} aria-current={cur(n.href)}>{n.label}</a></div>)}
     </nav>
+
     <div class="hdr__act">
-      <a class="hdr__tel" href={site.phoneHref}>{site.phone}</a>
+      <a class="hdr__tel" href={site.phoneHref}><Icon name="phone" size={18} /><span>{site.phone}</span></a>
       <a class="btn btn--sun hdr__cta" href="/poptavka/" data-track="cta-header">Poptávka zdarma</a>
       <details class="hdr__menu">
         <summary aria-label="Otevřít menu"><span></span><span></span><span></span></summary>
         <div class="hdr__drawer">
-          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
-          <a href="/jak-to-funguje/">Jak to funguje</a>
-          <a href="/o-nas/">O nás</a>
-          <a href="/kontakt/">Kontakt</a>
+          <p class="drw__h">Klimatizace</p>
+          <div class="drw__grid">
+            {acPlaces.map((x) => <a href={x.href}><Icon name={x.i} size={22} /><span>{x.t}</span></a>)}
+          </div>
+          <p class="drw__h">Tepelná čerpadla</p>
+          <div class="drw__grid">
+            <a href="/tepelna-cerpadla/"><Icon name="heatpump" size={22} /><span>Tepelná čerpadla</span></a>
+            <a href="/cena-tepelneho-cerpadla/"><Icon name="euro" size={22} /><span>Cena a dotace</span></a>
+          </div>
+          <p class="drw__h">Další</p>
+          <nav class="drw__links" aria-label="Další odkazy">
+            {simple.map((n) => <a href={n.href}>{n.label}</a>)}
+            <a href="/jak-to-funguje/">Jak to funguje</a>
+            <a href="/o-nas/">O nás</a>
+            <a href="/kontakt/">Kontakt</a>
+          </nav>
           <a class="btn btn--sun" href="/poptavka/">Nezávazná poptávka</a>
-          <a class="hdr__drawer-tel" href={site.phoneHref}>{site.phone}</a>
+          <a class="hdr__drawer-tel" href={site.phoneHref}><Icon name="phone" size={18} /> {site.phone}</a>
         </div>
       </details>
     </div>
   </div>
 </header>
 
+<script>
+  // Hlavička se přebarví podle sekce pod ní: nad tmavými sekcemi tmavá, jinak světlá (jako apple.com).
+  const hdr = document.querySelector<HTMLElement>('[data-hdr]');
+  if (hdr) {
+    const darks = () => Array.from(document.querySelectorAll<HTMLElement>('[data-dark], .section--night'));
+    let list = darks();
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      const y = hdr.offsetHeight / 2;
+      const on = list.some((el) => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom >= y; });
+      hdr.classList.toggle('hdr--dark', on);
+    };
+    const req = () => { if (!raf) raf = requestAnimationFrame(check); };
+    addEventListener('scroll', req, { passive: true });
+    addEventListener('resize', () => { list = darks(); req(); });
+    check();
+  }
+</script>
+
 <style>
   .hdr { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
-  /* Rozmazané pozadí v pseudo-prvku: backdrop-filter na samotné hlavičce by uvěznil fixed menu uvnitř 72 px vysoké lišty */
-  .hdr::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(245, 245, 247, 0.86); -webkit-backdrop-filter: saturate(180%) blur(16px); backdrop-filter: saturate(180%) blur(16px); }
-  .hdr__in { display: flex; align-items: center; gap: 24px; min-height: 72px; }
-  .hdr__logo { text-decoration: none; flex: none; }
-  .hdr__nav { display: flex; gap: 4px; margin-left: auto; }
-  .hdr__nav a { white-space: nowrap; padding: 0.5em 0.7em; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.92rem; }
-  .hdr__nav a:hover { background: var(--ice); }
-  .hdr__nav a[aria-current] { box-shadow: inset 0 -3px 0 var(--sun); border-radius: 0; }
-  .hdr__act { display: flex; align-items: center; gap: 14px; }
-  .hdr__tel { font-weight: 700; text-decoration: none; white-space: nowrap; }
-  .hdr__cta { min-height: 44px; padding: 0.55em 1.1em; font-size: 0.95rem; }
+  /* Rozmazané pozadí v pseudo-prvku: backdrop-filter na samotné hlavičce by uvěznil fixed menu uvnitř lišty */
+  .hdr { transition: color 0.3s, border-color 0.3s; }
+  .hdr::before { content: ''; position: absolute; inset: 0; z-index: -1; transition: background 0.3s; background: rgba(250, 250, 252, 0.86); -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px); }
+  .hdr__in { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; min-height: 72px; }
+  .hdr__logo { text-decoration: none; justify-self: start; display: inline-grid; align-items: center; }
+  .hdr__lg { grid-area: 1 / 1; display: inline-flex; transition: opacity 0.3s; }
+  .hdr__lg--l, .hdr--dark .hdr__lg--d { opacity: 0; }
+  .hdr--dark .hdr__lg--l { opacity: 1; }
+  .hdr__nav { display: flex; align-self: stretch; justify-self: center; gap: 2px; }
+  .hdr__item { display: flex; align-items: center; }
+  .hdr__item > a { position: relative; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; padding: 0.55em 0.8em; border-radius: 999px; text-decoration: none; font-weight: 550; font-size: 0.93rem; color: inherit; transition: background 0.2s, color 0.2s; }
+  .hdr__item > a :global(.ico) { opacity: 0.55; transition: transform 0.25s var(--ease); }
+  .hdr__item > a:hover, .hdr__item:focus-within > a { background: rgba(0, 0, 0, 0.05); }
+  .hdr__item > a[aria-current]::after { content: ''; position: absolute; left: 50%; bottom: -2px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--sun); }
+  .hdr__item:hover > a :global(.ico) { transform: rotate(180deg); }
+
+  /* Rozbalovací panel přes celou šířku */
+  .hdr__mega { position: absolute; left: 0; right: 0; top: 100%; padding: 8px 0 30px; background: rgba(252, 252, 253, 0.98); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(14, 34, 51, 0.35); color: var(--ink);
+    opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity 0.2s, transform 0.25s var(--ease), visibility 0s linear 0.2s; }
+  .hdr__item:hover .hdr__mega, .hdr__item:focus-within .hdr__mega { opacity: 1; visibility: visible; transform: none; transition-delay: 0.08s, 0.08s, 0s; }
+  .mega { display: grid; grid-template-columns: 1.25fr 0.9fr 1fr; gap: clamp(24px, 4vw, 56px); padding-top: 22px; }
+  .mega--hp { grid-template-columns: 1.6fr 1fr; }
+  .mega__h { margin: 0 0 12px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  .mega__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .mega__list--2 { grid-template-columns: 1fr 1fr; }
+  .mega__list a { display: flex; gap: 14px; align-items: center; padding: 10px 12px; margin-left: -12px; border-radius: 14px; text-decoration: none; color: var(--ink); transition: background 0.2s; }
+  .mega__list a:hover { background: var(--ice); }
+  .mega__list strong { display: block; font: 650 1rem/1.25 var(--font-head); }
+  .mega__list small { display: block; color: var(--ink-soft); font-size: 0.85rem; }
+  .mega__ico { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--white); color: var(--sun); box-shadow: inset 0 0 0 1px var(--line); }
+  .mega__brand { display: grid; gap: 6px; padding: 14px 16px; margin-bottom: 10px; border-radius: 16px; text-decoration: none; color: var(--ink-soft); background: var(--white); box-shadow: inset 0 0 0 1px var(--line); border-left: 3px solid var(--brand); transition: transform 0.2s; }
+  .mega__brand:hover { transform: translateX(3px); }
+  .mega__brand img { height: 20px; width: auto; }
+  .mega__brand small { font-size: 0.84rem; }
+  .mega__more, .mega__links a { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none; color: var(--sun-deep); }
+  .mega__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .mega__links a { color: var(--ink); font-weight: 550; }
+  .mega__links a:hover { color: var(--sun-deep); }
+  .mega__picks { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mega__pick { display: grid; gap: 2px; padding: 12px; border-radius: 16px; background: linear-gradient(180deg, #fff, var(--paper)); box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); transition: transform 0.2s; }
+  .mega__pick:hover { transform: translateY(-3px); }
+  .mega__pimg { display: grid; place-items: center; height: 70px; margin-bottom: 8px; }
+  .mega__pimg :global(img) { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(14, 34, 51, 0.18)); }
+  .mega__pick small { color: var(--ink-soft); font-size: 0.74rem; }
+  .mega__pick strong { font: 650 0.98rem/1.2 var(--font-head); }
+
+  .hdr__act { display: flex; align-items: center; justify-content: flex-end; gap: 16px; }
+  .hdr__tel { display: inline-flex; align-items: center; gap: 7px; font-weight: 650; font-size: 0.95rem; text-decoration: none; white-space: nowrap; color: inherit; }
+  .hdr__tel :global(.ico) { color: var(--sun); }
+  .hdr__cta { white-space: nowrap; min-height: 42px; padding: 0.5em 1.15em; font-size: 0.93rem; }
+
   .hdr__menu { display: none; position: relative; }
-  .hdr__menu summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; border-radius: 10px; }
+  .hdr__menu summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; border-radius: 12px; }
   .hdr__menu summary::-webkit-details-marker { display: none; }
   .hdr__menu summary span { display: block; width: 22px; height: 2.5px; background: var(--ink); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
   .hdr__menu[open] summary span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
   .hdr__menu[open] summary span:nth-child(2) { opacity: 0; }
   .hdr__menu[open] summary span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
-  .hdr__drawer { position: fixed; left: 0; right: 0; top: 72px; bottom: 0; z-index: 60; height: calc(100dvh - 72px); background: var(--paper); padding: 20px var(--gutter) 40px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
-  .hdr__drawer a:not(.btn) { padding: 0.7em 0; font: 600 var(--step-1)/1.2 var(--font-head); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .hdr__drawer .btn { margin-top: 18px; }
-  .hdr__drawer-tel { text-align: center; border: 0 !important; font-size: var(--step-0) !important; }
+  .hdr__drawer { position: fixed; left: 0; right: 0; top: 72px; bottom: 0; z-index: 60; height: calc(100dvh - 72px); background: var(--paper); color: var(--ink); padding: 8px var(--gutter) 40px; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
+  .drw__h { margin: 16px 0 4px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  .drw__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .drw__grid a { display: grid; gap: 8px; padding: 14px; border-radius: 16px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); font: 650 0.98rem/1.2 var(--font-head); }
+  .drw__grid :global(.ico) { color: var(--sun); }
+  .drw__links { display: grid; }
+  .drw__links a { padding: 0.7em 0; font: 600 var(--step-1)/1.2 var(--font-head); text-decoration: none; border-bottom: 1px solid var(--line); color: var(--ink); }
+  .hdr__drawer .btn { margin-top: 20px; }
+  .hdr__drawer-tel { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px; font-weight: 650; text-decoration: none; color: var(--ink); }
+
   .hdr--dark { border-bottom-color: rgba(255, 255, 255, 0.08); color: #f5f5f7; }
   .hdr--dark::before { background: rgba(11, 23, 36, 0.78); }
-  .hdr--dark .hdr__nav a:hover { background: rgba(255, 255, 255, 0.08); }
-  .hdr--dark .hdr__tel { color: #fff; }
+  .hdr--dark .hdr__item > a:hover, .hdr--dark .hdr__item:focus-within > a { background: rgba(255, 255, 255, 0.1); }
+  .hdr--dark .hdr__tel :global(.ico) { color: var(--accent-dark); }
   .hdr--dark .hdr__menu summary span { background: #fff; }
-  .hdr--dark .hdr__drawer { color: var(--ink); }
-  @media (max-width: 1240px) { .hdr__tel { display: none; } }
-  @media (max-width: 980px) {
+
+  @media (max-width: 1260px) { .hdr__tel span { display: none; } .hdr__tel { width: 42px; height: 42px; justify-content: center; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line); } }
+  @media (max-width: 1080px) {
+    .hdr__in { grid-template-columns: auto 1fr; }
     .hdr__nav { display: none; }
     .hdr__menu { display: block; }
-    .hdr__act { margin-left: auto; }
   }
   @media (max-width: 460px) { .hdr__cta { display: none; } }
 </style>

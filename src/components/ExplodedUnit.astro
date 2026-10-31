@@ -1,126 +1,87 @@
 ---
-// Rozpad vnitřní jednotky na díly při posouvání (sticky sekce, proměnná --p z motion.ts)
+// Uvnitř klimatizace: skutečné snímky jednotky (Hisense), které se při posouvání prolínají krok po kroku.
+// Sticky sekce, motion.ts nastaví data-step 0–4 podle posunu.
+import Img from './Img.astro';
 const parts = [
-  { t: 'Čelní panel', d: 'Hladký kryt se za pár vteřin sundá a omyje. Displej ukazuje nastavenou teplotu.', ico: 'spark' },
-  { t: 'Filtry', d: 'Zachytí prach, pyl i alergeny. Vyšší řady mají fotokatalytický nebo vícestupňový filtr.', ico: 'filter' },
-  { t: 'Výměník', d: 'Hliníkové lamely a měděné trubky. Tady se vzduch ochladí, nebo ohřeje.', ico: 'thermo' },
-  { t: 'Tichý ventilátor', d: 'Válcový ventilátor s plynulou regulací. V nočním režimu kolem 19 dB(A), tišší než šepot.', ico: 'moon' },
-  { t: 'Lamely', d: 'Rozvádějí vzduch nahoru, dolů i do stran, aby nefoukalo přímo na vás.', ico: 'wind' },
+  { t: 'Čelní panel', d: 'Odklopí se jedním pohybem. Pod ním je vše, co potřebuje údržbu, po ruce.', img: 'hk-open-unit', fit: 'contain' },
+  { t: 'Filtry', d: 'Zachytí prach, pyl i alergeny. Vyndáte je bez nářadí a opláchnete pod sprchou.', img: 'hk-uni-clean', fit: 'cover' },
+  { t: 'Výměník', d: 'Tady se vzduch ochladí, nebo ohřeje. Po vypnutí se sám vysuší a vyčistí, aby uvnitř nevznikaly plísně.', img: 'hk-px-clean', fit: 'cover' },
+  { t: 'Tichý ventilátor', d: 'Válcový ventilátor s plynulou regulací. V nočním režimu kolem 19 dB(A), tišší než šepot.', img: 'hk-uni-service', fit: 'cover' },
+  { t: 'Lamely', d: 'Rozvádějí vzduch nahoru, dolů i do stran, aby nefoukalo přímo na vás.', img: 'hk-am-90', fit: 'cover' },
 ];
 ---
-<section class="xu" data-scrub data-reduce-p="1" aria-labelledby="xu-h">
+<section class="xu" data-dark data-scrub data-steps={String(parts.length)} data-step="0" data-reduce-p="0" aria-labelledby="xu-h">
   <div class="xu__sticky">
     <div class="wrap xu__grid">
       <div class="xu__text">
         <p class="kicker">Uvnitř klimatizace</p>
-        <h2 id="xu-h" class="display">Pět vrstev pro&nbsp;tiché pohodlí.</h2>
+        <h2 id="xu-h" class="display">Co se skrývá pod&nbsp;krytem.</h2>
         <ol class="xu__list">
           {parts.map((p, i) => (
-            <li class="xu__lab" style={`--t:${(0.46 + i * 0.1).toFixed(2)}`}>
+            <li class="xu__lab" data-i={i}>
               <span class="xu__n">{i + 1}</span>
               <div><strong>{p.t}</strong><span>{p.d}</span></div>
             </li>
           ))}
         </ol>
       </div>
-      <div class="xu__stage" aria-hidden="true">
-        <div class="xu__rig">
-          <!-- 0: zadní šasi -->
-          <div class="xu__layer" style="--i:0;--k:0">
-            <svg viewBox="0 0 640 220"><defs><linearGradient id="xc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b5266"/><stop offset="1" stop-color="#22374a"/></linearGradient></defs>
-              <rect x="6" y="6" width="628" height="196" rx="34" fill="url(#xc)" stroke="#4d6a82" stroke-width="2"/>
-              <g fill="#15283a">{[90, 230, 410, 550].map((x) => <rect x={x - 22} y="26" width="44" height="12" rx="6" />)}</g>
-              <path d="M600 150c22 0 26 30 26 52" stroke="#4d6a82" stroke-width="8" fill="none" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <!-- 1: ventilátor -->
-          <div class="xu__layer" style="--i:1;--k:3">
-            <svg viewBox="0 0 640 220"><defs>
-              <linearGradient id="xf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3ebf0"/><stop offset=".5" stop-color="#8ea4b4"/><stop offset="1" stop-color="#d7e1e7"/></linearGradient>
-              <pattern id="xfb" width="9" height="60" patternUnits="userSpaceOnUse"><rect width="3" height="60" fill="#5d7487" opacity=".55"/></pattern></defs>
-              <rect x="56" y="104" width="528" height="64" rx="32" fill="url(#xf)"/>
-              <rect x="56" y="104" width="528" height="64" rx="32" fill="url(#xfb)"/>
-              <g fill="#cfdae2" stroke="#7f97a8" stroke-width="2">{[56, 190, 320, 450, 584].map((x) => <rect x={x - 4} y="100" width="8" height="72" rx="3" />)}</g>
-              <circle cx="606" cy="136" r="18" fill="#2b4256"/>
-            </svg>
-          </div>
-          <!-- 2: výměník -->
-          <div class="xu__layer" style="--i:2;--k:2">
-            <svg viewBox="0 0 640 220"><defs>
-              <pattern id="xe" width="6" height="140" patternUnits="userSpaceOnUse"><rect width="1.6" height="140" fill="#c8d6df"/></pattern></defs>
-              <rect x="30" y="28" width="580" height="132" rx="12" fill="#5b7184" opacity=".35"/>
-              <rect x="30" y="28" width="580" height="132" rx="12" fill="url(#xe)"/>
-              <g stroke="#c9804f" stroke-width="7" stroke-linecap="round" fill="none">
-                {[50, 80, 110, 140].map((y) => <path d={`M30 ${y}H610`} />)}
-                <path d="M610 50c18 0 18 30 0 30M610 110c18 0 18 30 0 30M30 80c-18 0-18 30 0 30"/>
-              </g>
-            </svg>
-          </div>
-          <!-- 3: filtr -->
-          <div class="xu__layer" style="--i:3;--k:1">
-            <svg viewBox="0 0 640 220"><defs>
-              <pattern id="xm" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0H12V12" fill="none" stroke="#7fd0f2" stroke-width="1.4" opacity=".75"/></pattern></defs>
-              <rect x="40" y="18" width="270" height="150" rx="14" fill="#7fd0f2" fill-opacity=".14" stroke="#9fdcf6" stroke-width="3"/>
-              <rect x="40" y="18" width="270" height="150" rx="14" fill="url(#xm)"/>
-              <rect x="330" y="18" width="270" height="150" rx="14" fill="#7fd0f2" fill-opacity=".14" stroke="#9fdcf6" stroke-width="3"/>
-              <rect x="330" y="18" width="270" height="150" rx="14" fill="url(#xm)"/>
-            </svg>
-          </div>
-          <!-- 4: lamely -->
-          <div class="xu__layer" style="--i:4;--k:4">
-            <svg viewBox="0 0 640 220">
-              <path d="M70 176c120 16 380 16 500 0l-6 18c-120 14-368 14-488 0z" fill="#eef3f6" stroke="#b9c8d2" stroke-width="2"/>
-              <path d="M90 156c110 12 350 12 460 0l-4 12c-110 10-342 10-452 0z" fill="#dfe8ee" stroke="#b9c8d2" stroke-width="2"/>
-            </svg>
-          </div>
-          <!-- 5: čelní panel -->
-          <div class="xu__layer xu__layer--front" style="--i:5;--k:0">
-            <svg viewBox="0 0 640 220"><defs>
-              <linearGradient id="xp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".72" stop-color="#eef2f5"/><stop offset="1" stop-color="#d9e2e8"/></linearGradient>
-              <linearGradient id="xs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
-              <rect x="6" y="6" width="628" height="196" rx="34" fill="url(#xp)" stroke="#c9d6df" stroke-width="2"/>
-              <rect x="40" y="16" width="560" height="10" rx="5" fill="url(#xs)"/>
-              <path d="M40 168h560" stroke="#c3cfd8" stroke-width="3" stroke-linecap="round"/>
-              <text x="556" y="140" text-anchor="end" font-family="Inter Tight Variable, sans-serif" font-weight="600" font-size="26" fill="#6fc3ec">22°</text>
-              <circle cx="575" cy="131" r="3" fill="#6fc3ec"/>
-            </svg>
-          </div>
+      <div class="xu__stage">
+        <div class="xu__frame">
+          {parts.map((p, i) => (
+            <figure class:list={['xu__shot', `xu__shot--${p.fit}`]} data-i={i}>
+              <Img name={p.img} alt={`${p.t} klimatizace`} sizes="(max-width: 900px) 92vw, 700px" />
+            </figure>
+          ))}
         </div>
-        <div class="xu__shadow"></div>
+        <div class="xu__bar" aria-hidden="true">{parts.map((_, i) => <i data-i={i}></i>)}</div>
+        <p class="xu__src">Ilustrační snímky: Hisense</p>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .xu { --p: 0; position: relative; height: 380vh; background: radial-gradient(120% 80% at 70% 40%, var(--night-2), var(--night) 60%); color: #eef4f7; }
+  .xu { --p: 0; position: relative; height: 250vh; background: radial-gradient(120% 80% at 70% 40%, var(--night-2), var(--night) 60%); color: #eef4f7; }
   .xu__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; align-items: center; overflow: hidden; padding-top: 72px; }
-  .xu__grid { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .xu__grid { display: grid; grid-template-columns: 0.85fr 1.35fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .xu__grid > * { min-width: 0; }
   .xu__text { position: relative; z-index: 2; }
   .xu .display { font-size: clamp(2.2rem, 1.4rem + 3vw, 4.2rem); }
-  .xu__list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 14px; }
-  .xu__lab { --o: clamp(0.18, calc((var(--p) - var(--t)) * 10 + 0.18), 1); display: grid; grid-template-columns: 34px 1fr; gap: 14px; opacity: var(--o); transform: translateX(calc((1 - var(--o)) * -10px)); }
+  .xu__list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 6px; }
+  .xu__lab { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 16px; opacity: 0.4; transition: opacity 0.4s var(--ease), background 0.4s var(--ease); }
   .xu__lab strong { display: block; font: 700 var(--step-1)/1.2 var(--font-head); }
-  .xu__lab span { color: #a9bfcc; font-size: var(--step--1); }
-  .xu__n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.9rem; border: 1.5px solid rgba(255,255,255,.35); }
-  .xu__stage { --e: clamp(0, calc((var(--p) - 0.06) / 0.38), 1); position: relative; perspective: 1700px; perspective-origin: 50% 30%; display: grid; place-items: center; min-height: 60vh; }
-  .xu__rig { width: min(100%, 720px); aspect-ratio: 640 / 220; position: relative; transform-style: preserve-3d;
-    transform: rotateX(calc(var(--e) * 58deg)) rotateZ(calc(var(--e) * -26deg)) translateY(calc(var(--e) * -8%)) scale(calc(1 - var(--e) * 0.12)); }
-  .xu__layer { position: absolute; inset: 0; transform: translateZ(calc(var(--e) * (var(--i) - 2.5) * 78px)); backface-visibility: hidden;
-    filter: drop-shadow(0 18px 24px rgba(0, 0, 0, calc(var(--e) * 0.35))); }
-  .xu__layer svg { width: 100%; height: 100%; display: block; overflow: visible; }
-  /* zvýraznění právě popisované vrstvy */
-  .xu__layer:not(.xu__layer--front) { opacity: calc(0.25 + var(--e) * 0.75); }
-  .xu__shadow { position: absolute; left: 15%; right: 15%; bottom: 8%; height: 40px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.45), transparent); transform: scaleX(calc(0.7 + var(--e) * 0.4)); filter: blur(6px); }
+  .xu__lab div > span { display: block; color: #a9bfcc; font-size: var(--step--1); max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s var(--ease), opacity 0.4s var(--ease), margin 0.4s; }
+  .xu__n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.9rem; border: 1.5px solid rgba(255, 255, 255, 0.35); transition: background 0.3s, border-color 0.3s; }
+  .xu[data-step='0'] .xu__lab[data-i='0'], .xu[data-step='1'] .xu__lab[data-i='1'], .xu[data-step='2'] .xu__lab[data-i='2'],
+  .xu[data-step='3'] .xu__lab[data-i='3'], .xu[data-step='4'] .xu__lab[data-i='4'] { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+  .xu[data-step='0'] .xu__lab[data-i='0'] div > span, .xu[data-step='1'] .xu__lab[data-i='1'] div > span, .xu[data-step='2'] .xu__lab[data-i='2'] div > span,
+  .xu[data-step='3'] .xu__lab[data-i='3'] div > span, .xu[data-step='4'] .xu__lab[data-i='4'] div > span { max-height: 6em; opacity: 1; margin-top: 4px; }
+  .xu[data-step='0'] .xu__lab[data-i='0'] .xu__n, .xu[data-step='1'] .xu__lab[data-i='1'] .xu__n, .xu[data-step='2'] .xu__lab[data-i='2'] .xu__n,
+  .xu[data-step='3'] .xu__lab[data-i='3'] .xu__n, .xu[data-step='4'] .xu__lab[data-i='4'] .xu__n { background: var(--sun); border-color: var(--sun); }
+
+  .xu__frame { position: relative; aspect-ratio: 16 / 10; border-radius: 28px; overflow: hidden; background: radial-gradient(80% 80% at 50% 40%, #2a4157, #13263a); box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.06); }
+  .xu__shot { position: absolute; inset: 0; margin: 0; opacity: 0; transform: scale(1.04); transition: opacity 0.6s var(--ease), transform 0.9s var(--ease); }
+  .xu__shot :global(img) { width: 100%; height: 100%; display: block; }
+  .xu__shot--cover :global(img) { object-fit: cover; }
+  .xu__shot--contain { padding: 12% 8%; }
+  .xu__shot--contain :global(img) { object-fit: contain; filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.5)); }
+  .xu[data-step='0'] .xu__shot[data-i='0'], .xu[data-step='1'] .xu__shot[data-i='1'], .xu[data-step='2'] .xu__shot[data-i='2'],
+  .xu[data-step='3'] .xu__shot[data-i='3'], .xu[data-step='4'] .xu__shot[data-i='4'] { opacity: 1; transform: none; }
+  .xu__bar { display: flex; gap: 6px; margin-top: 16px; }
+  .xu__bar i { flex: 1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, 0.15); transition: background 0.4s; }
+  .xu[data-step='0'] .xu__bar i[data-i='0'], .xu[data-step='1'] .xu__bar i:is([data-i='0'], [data-i='1']),
+  .xu[data-step='2'] .xu__bar i:is([data-i='0'], [data-i='1'], [data-i='2']), .xu[data-step='3'] .xu__bar i:not([data-i='4']), .xu[data-step='4'] .xu__bar i { background: var(--sun); }
+  .xu__src { margin: 10px 0 0; font-size: 0.78rem; color: #7f97a8; text-align: right; }
   @media (max-width: 900px) {
-    .xu { height: 340vh; }
-    .xu__grid { grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 8px; }
-    .xu__stage { order: -1; min-height: 34vh; }
-    .xu .display { font-size: clamp(1.7rem, 1.2rem + 3vw, 2.4rem); margin-bottom: 0; }
-    .xu__list { margin-top: 12px; gap: 8px; }
-    .xu__lab span { display: none; }
-    .xu__lab { grid-template-columns: 28px 1fr; }
+    .xu { height: 230vh; }
+    .xu__grid { grid-template-columns: 1fr; gap: 6px; }
+    .xu__stage { order: -1; }
+    .xu__frame { aspect-ratio: 16 / 9; border-radius: 20px; }
+    .xu .display { font-size: clamp(1.6rem, 1.2rem + 3vw, 2.4rem); margin-bottom: 0; }
+    .xu__list { margin-top: 8px; gap: 2px; }
+    .xu__lab { padding: 6px 10px 6px 6px; grid-template-columns: 28px 1fr; }
     .xu__n { width: 26px; height: 26px; }
+    .xu__src { display: none; }
   }
   :global(html.reduce) .xu { height: auto; }
   :global(html.reduce) .xu__sticky { position: static; height: auto; padding-block: 80px; }

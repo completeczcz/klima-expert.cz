@@ -1,10 +1,14 @@
 ---
 // Léto → zima při posouvání: stejná místnost, klimatizace nejdřív chladí, pak topí.
 import Img from './Img.astro';
-const flows = [
-  'M520 200 C470 330 380 420 260 560', 'M580 205 C560 340 520 460 470 620', 'M645 205 C650 350 660 470 690 640',
-  'M710 205 C750 340 820 450 930 580', 'M770 200 C850 310 960 380 1100 470', 'M545 205 C500 300 430 360 330 420',
-];
+// Vějíř proudů od lamel: začátky i konce jsou rovnoměrně rozložené a seřazené zleva doprava,
+// takže se čáry nikdy nekříží. pathLength=100 sjednotí rozestupy čárek na všech čarách.
+const flows = Array.from({ length: 7 }, (_, i) => {
+  const sx = 545 + i * 34, sy = 206;
+  const ex = 230 + i * 148, ey = 610 - Math.abs(i - 3) * 46;
+  const c1x = sx + (ex - sx) * 0.08, c2x = sx + (ex - sx) * 0.6;
+  return `M${sx} ${sy} C${c1x.toFixed(0)} ${sy + 110} ${c2x.toFixed(0)} ${ey - 150} ${ex} ${ey}`;
+});
 ---
 <section class="ss" data-scrub data-reduce-p="0.2" aria-labelledby="ss-h">
   <div class="ss__sticky">
@@ -23,8 +27,8 @@ const flows = [
       <div class="ss__tint ss__tint--s"></div>
       <div class="ss__tint ss__tint--w"></div>
       <svg class="ss__flow" viewBox="0 0 1280 935" preserveAspectRatio="none" aria-hidden="true">
-        <g class="ss__fl ss__fl--s">{flows.map((d, i) => <path d={d} style={`--d:${i * 0.35}s`} />)}</g>
-        <g class="ss__fl ss__fl--w">{flows.map((d, i) => <path d={d} style={`--d:${i * 0.35}s`} />)}</g>
+        <g class="ss__fl ss__fl--s">{flows.map((d) => <path d={d} pathLength="100" />)}</g>
+        <g class="ss__fl ss__fl--w">{flows.map((d) => <path d={d} pathLength="100" />)}</g>
       </svg>
       <div class="ss__chip ss__chip--out">
         <span>Venku</span>
@@ -58,10 +62,10 @@ const flows = [
   .ss__tint--s { background: linear-gradient(180deg, rgba(111, 195, 236, 0.55), rgba(111, 195, 236, 0.08) 70%); opacity: calc((1 - var(--w)) * 0.75); }
   .ss__tint--w { background: linear-gradient(180deg, rgba(255, 174, 92, 0.6), rgba(255, 174, 92, 0.1) 70%); opacity: calc(var(--w) * 0.8); }
   .ss__flow { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .ss__fl path { fill: none; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 26 34; animation: ss-flow 2.4s linear infinite; animation-delay: calc(var(--d) * -1); }
+  .ss__fl path { fill: none; stroke-width: 4.5; stroke-linecap: round; stroke-dasharray: 3.5 8.5; animation: ss-flow 1.6s linear infinite; }
   .ss__fl--s { stroke: rgba(111, 195, 236, 0.85); opacity: calc(1 - var(--w)); }
   .ss__fl--w { stroke: rgba(255, 160, 70, 0.85); opacity: var(--w); }
-  @keyframes ss-flow { to { stroke-dashoffset: -120; } }
+  @keyframes ss-flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -12; } }
   .ss__chip { position: absolute; top: 4%; display: grid; gap: 2px; padding: 10px 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.78); backdrop-filter: blur(10px); }
   .ss__chip--out { left: 3%; }
   .ss__chip--in { right: 3%; text-align: right; }

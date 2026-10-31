@@ -23,7 +23,7 @@ const others = regions.filter((x) => x.slug !== r.slug);
 const isPraha = r.slug === 'praha';
 const cityPages = cities.filter((x) => x.kraj === r.slug);
 const title = isPraha ? 'Montáž klimatizace Praha – klimatizace s montáží' : `Montáž klimatizace ${r.name} – ${r.cities[0]}`;
-const heroImg = ['ph-family-sofa-toys','ph-couple-sofa-laughing','his-living-man','ph-senior-couple-laughing','mhi-living-shelves','ph-family-baby-floor','ph-couple-home-library','mhi-living-beige','ph-wake-up-stretch-1','his-homeoffice','ph-family-breakfast-1','mhi-bedroom-slate','ph-couple-books-laughing','mhi-living-green'][regions.findIndex((x) => x.slug === r.slug) % 14];
+const heroImg = ['hk-mc-kitchen','ph-couple-sofa-laughing','his-living-man','ph-senior-couple-laughing','mhi-living-shelves','ph-family-baby-floor','ph-couple-home-library','mhi-living-beige','ph-wake-up-stretch-1','his-homeoffice','ph-family-breakfast-1','mhi-bedroom-slate','ph-couple-books-laughing','mhi-living-green'][regions.findIndex((x) => x.slug === r.slug) % 14];
 const faq = [
   { q: `Kolik stojí montáž klimatizace ${r.locative}?`, a: `Cena závisí na výkonu, řadě jednotky a délce potrubí. Přesnou nabídku vám ${r.locative} připraví partnerská firma po zaměření, zdarma a nezávazně.` },
   { q: `Jak rychle se mi ozvete?`, a: `Na každou poptávku ${r.locative} reagujeme ${site.responseTime}. Zaměření pak partnerská firma domluví podle vašich možností, mimo hlavní sezónu obvykle do týdne.` },

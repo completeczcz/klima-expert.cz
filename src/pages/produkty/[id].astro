@@ -34,6 +34,15 @@ const sceneCap: Record<string, string> = {
   'room-bedroom-concrete': 'Klidný spánek i v tropických nocích.', 'room-living-titan': 'Ladí s každým interiérem.', 'room-living': 'Ladí s každým interiérem.', 'his-wall-minimal': 'Ladí s každým interiérem.',
   'airflow-render': 'Chlad dosáhne do celé místnosti.', 'his-winter-living': 'Příjemné teplo i v mrazivé zimě.', 'room-overhead': 'Příjemný vzduch v celém prostoru.', 'his-office': 'Příjemné prostředí pro práci.',
 };
+// Sestava: vnitřní + venkovní jednotka (u monobloku je jen venkovní).
+const unitsOf = (m: { code: string | null; outdoor: string | null }) => {
+  const code = m.code ?? '';
+  if (code.includes(' + ')) { const [a, b] = code.split(' + '); return { ind: a.trim(), out: (m.outdoor ?? b).trim() }; }
+  if (!m.outdoor || m.outdoor === code) return { ind: null, out: code };
+  return { ind: code, out: m.outdoor };
+};
+const rows = s.models.map((m) => ({ m, ...unitsOf(m) }));
+const hasIndoor = rows.some((r) => r.ind);
 const shortName = s.title.replace(/^(Mitsubishi Heavy Industries|Hisense) /, '');
 
 // Ikona podle obsahu vlastnosti
@@ -122,10 +131,31 @@ const faq = isTc
     </ul>
   </section>
 
-  <section class="section">
+  {pi.story && (
+    <section class="section story" aria-labelledby="story-h" style={`--brand:${bm.color};--brand-tint:${bm.tint}`}>
+      <div class="wrap">
+        <div class="center" data-reveal style="margin-bottom:clamp(32px,5vw,64px)">
+          <p class="kicker">Jak vám zpříjemní den</p>
+          <h2 id="story-h" class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">{shortName} zblízka.</h2>
+        </div>
+        {pi.story.map((x, i) => (
+          <article class:list={['story__row', { 'story__row--flip': i % 2 === 1 }]}>
+            <div class="story__img" data-reveal="scale"><Img name={x.img} alt={`${shortName}: ${x.t}`} sizes="(max-width: 900px) 92vw, 640px" /></div>
+            <div class="story__txt" data-reveal>
+              <span class="story__n">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{x.t}</h3>
+              <p>{x.d}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class:list={['section', { 'section--stage': !!pi.story }]}>
     <div class="wrap">
       <div class="center" data-reveal style="margin-bottom:40px">
-        <p class="kicker">Co umí</p>
+        <p class="kicker">{pi.story ? 'Výbava v kostce' : 'Co umí'}</p>
         <h2 class="display" style="font-size:clamp(2rem,1.3rem + 2.8vw,3.6rem)">Přednosti řady {shortName}</h2>
       </div>
       <div class="pf">
@@ -165,14 +195,16 @@ const faq = isTc
   )}
 
   {s.models.length > 0 && (
-    <section class="section section--stage" id="parametry">
+    <section class="section section--stage" id="parametry" style={`--brand:${bm.color};--brand-tint:${bm.tint}`}>
       <div class="wrap">
         <h2 class="display" style="font-size:clamp(1.8rem,1.2rem + 2vw,2.8rem)">Dostupné výkony</h2>
+        <p class="sub" style="margin-bottom:20px">{hasIndoor ? 'Každá sestava = vnitřní jednotka na zeď + venkovní jednotka na fasádu, balkon nebo zahradu. Montáž provedeme jako celek.' : 'Monoblok je jediná venkovní jednotka. Doma se připojí jen k topné soustavě a zásobníku vody.'}</p>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Model</th>
+                {hasIndoor && <th>Vnitřní jednotka</th>}
+                <th>{hasIndoor ? 'Venkovní jednotka' : 'Model (monoblok)'}</th>
                 {!isTc && <th>Chlazení</th>}
                 <th>Topení</th>
                 {isTc ? <th>Max. teplota vody</th> : <th>Energetická třída</th>}
@@ -180,9 +212,10 @@ const faq = isTc
               </tr>
             </thead>
             <tbody>
-              {s.models.map((m) => (
+              {rows.map(({ m, ind, out }) => (
                 <tr>
-                  <td>{m.code}</td>
+                  {hasIndoor && <td class="tcode">{ind ?? '–'}</td>}
+                  <td class="tcode">{hasIndoor && ind ? <span class="tplus" aria-hidden="true">+</span> : null}{out}</td>
                   {!isTc && <td>{kw(m.coolKw)}</td>}
                   <td>{kw(m.heatKw)}</td>
                   {isTc ? <td>{m.flowTemp ? `${m.flowTemp} °C` : '–'}</td> : <td>{m.energy ?? '–'}</td>}
@@ -194,6 +227,17 @@ const faq = isTc
         </div>
         <p class="small muted">Vhodná plocha je orientační pro běžnou místnost do výšky stropu 2,7 m. Slunné místnosti a podkroví potřebují vyšší výkon.</p>
         <p class="small muted">Vhodné pro: {s.uses.map((u) => useLabel[u]).join(', ')}.{s.wifi && ` Wi-Fi: ${s.wifi}.`}</p>
+        {pi.sheets && (
+          <div class="sheets">
+            {pi.sheets.map((d) => (
+              <a class="sheet" href={d.href} target="_blank" rel="noopener" data-track="datasheet">
+                <span class="sheet__ico"><Icon name="doc" size={22} /></span>
+                <span><strong>{d.label}</strong><small>PDF · rozměry, hlučnost, účinnost</small></span>
+                <Icon name="arrow" size={18} />
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )}
@@ -273,6 +317,23 @@ const faq = isTc
   .pf__ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--white); color: var(--ink); box-shadow: 0 8px 20px -14px rgba(14, 34, 51, 0.5); }
   .pf__i strong { font: 700 var(--step-1)/1.25 var(--font-head); }
   .pf__i span { color: var(--ink-soft); font-size: var(--step--1); }
+  .story__row { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
+  .story__row + .story__row { margin-top: clamp(40px, 7vw, 96px); }
+  .story__row--flip .story__img { order: 2; }
+  .story__row > * { min-width: 0; }
+  .story__img { border-radius: 28px; overflow: hidden; background: var(--stage); box-shadow: 0 30px 60px -40px rgba(14, 34, 51, 0.45); }
+  .story__img :global(img) { display: block; width: 100%; height: auto; }
+  .story__n { display: inline-block; font: 700 0.9rem/1 var(--font-head); color: var(--brand); letter-spacing: 0.08em; margin-bottom: 14px; padding: 6px 10px; border-radius: 999px; background: var(--brand-tint); }
+  .story__txt h3 { font: 700 clamp(1.6rem, 1.1rem + 1.6vw, 2.5rem)/1.1 var(--font-head); letter-spacing: -0.02em; margin: 0 0 14px; }
+  .story__txt p { color: var(--ink-soft); font-size: var(--step-1); line-height: 1.5; margin: 0; max-width: 38ch; }
+  .tcode { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tplus { display: none; }
+  .sheets { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .sheet { display: inline-flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 18px; background: var(--white); border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+  .sheet:hover { border-color: var(--brand); transform: translateY(-2px); }
+  .sheet > span:nth-child(2) { display: grid; gap: 2px; }
+  .sheet small { color: var(--ink-soft); font-size: 0.82rem; }
+  .sheet__ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-tint); color: var(--brand); }
   .gal { padding-bottom: clamp(40px, 6vw, 72px); }
   .gal__head { margin-bottom: 28px; }
   .gal__rail { display: grid; grid-auto-flow: column; grid-auto-columns: min(86vw, 640px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px max(var(--gutter), calc((100vw - var(--wrap)) / 2)) 16px; scrollbar-width: thin; }
@@ -294,6 +355,8 @@ const faq = isTc
     .ph__in, .offer__in { grid-template-columns: 1fr; }
     .ph__media { order: -1; }
     .pf, .rel { grid-template-columns: 1fr; }
+    .story__row { grid-template-columns: 1fr; gap: 20px; }
+    .story__row--flip .story__img { order: 0; }
   }
   @media (min-width: 560px) and (max-width: 900px) { .pf { grid-template-columns: 1fr 1fr; } }
 </style>
