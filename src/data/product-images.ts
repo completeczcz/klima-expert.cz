@@ -39,9 +39,11 @@ export const productImages: Record<string, PImg> = {
       { img: 'mhi-zsx-close', t: 'Pohybové čidlo myslí za vás.', d: 'Když z místnosti odejdete, klimatizace přepne na úsporný provoz a při delší nepřítomnosti se sama vypne. Jako jediná nástěnná řada.' },
       { img: 'mhi-mother-bed', t: 'Čistý vzduch i pro alergiky.', d: 'Filtr Allergen Clear, fotokatalytický deodorační filtr a program pro odstranění alergenů. Po vypnutí se jednotka sama vysuší a vyčistí.' },
     ] },
-  'mhi-premium-zt': { img: 'mhi-zt-white', scene: 'mhi-bedroom-slate', sceneCap: 'Klidný spánek i v tropických nocích.', variants: [
+  'mhi-premium-zt': { img: 'mhi-zt-white', scene: 'mhi-zt-outdoor', sceneCap: 'Venkovní jednotka i v elegantní černé.', variants: [
     { label: 'Bílá', img: 'mhi-zt-white', swatch: '#f4f6f7' }, { label: 'Černá', img: 'mhi-zt-black', swatch: '#1d2326' }, { label: 'Titanová', img: 'mhi-zt-titan', swatch: '#c4c2ac' }],
+    gallery: [{ img: 'mhi-bedroom-slate', t: 'V ložnici', d: 'Klidný spánek i v tropických nocích.' }],
     story: [
+      { img: 'mhi-zt-outdoor', t: 'Venkovní jednotka i v černé.', d: 'K řadě ZT si můžete vybrat černou venkovní jednotku. Na terase, u tmavé fasády nebo u moderního domu nepůsobí jako technika, ale jako součást architektury.' },
       { img: 'airflow-render', t: 'Tichý proud vzduchu do celé místnosti.', d: 'Trysková technologie a lamely 3D AUTO rozprostřou vzduch rovnoměrně. Vnitřní jednotka je slyšet od 19 dB(A).' },
       { img: 'mhi-mother-bed', t: 'Čistý vzduch pro celou rodinu.', d: 'Filtr Allergen Clear a fotokatalytický deodorační filtr zachytí pyl, prach i pachy. Program pro odstranění alergenů navíc vyčistí vnitřek jednotky.' },
     ] },
